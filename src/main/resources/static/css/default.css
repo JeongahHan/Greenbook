@@ -47,38 +47,118 @@ body {
 
 /* 기본화면 레이아웃 */
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
-header {
-  background-color: #fff;
-  padding: 32px;
-  display: flex;
-  min-width: 1200px;
+.box{
+    height: 40px;
+    min-width: 1200px;
+    padding-right: 80px;
+    padding-left: 80px;
+    overflow: hidden;
 }
-footer {
-  padding: 50px;
-  border-top: 1px solid #252a34;
-}
-footer > .footer-content {
-  width: 1200px;
-  margin: 0 auto;
-  padding: 0px 10px;
-}
-footer > .footer-content * {
-  font-size: 14px;
-}
-footer > .footer-content > ul {
-  list-style-type: none;
-  overflow: hidden;
-  margin-bottom: 20px;
-}
-footer > .footer-content > ul > li {
-  float: left;
-}
-footer > .footer-content > ul > li > a {
-  padding-right: 20px;
+.box-detail{
+    float: right;
 }
 
+#adminMenuButton{
+    margin-right: 10px;
+}
+#logoutMenuButton{
+    margin-right: 10px;
+}
+
+header {
+    padding-right: 80px;
+    padding-left: 80px;
+    padding-bottom:40px;
+    display: flex;
+    min-width: 1200px;
+}
+
+footer {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-left: 20px;
+    border-top: 1px solid #252a34;
+    background-color: antiquewhite;
+    }
+footer > .footer-content {
+    width: 1200px;
+    margin: 0px;
+    padding: 0px 10px;
+    }
+footer > .footer-content > .footer-title {
+    font-size: 18px;
+    font-weight: 900;
+    padding-bottom:20px;
+    }
+
+footer > .footer-content > .footer-detail {
+    font-size: 14px;
+    font-family: ns-light;
+    font-weight: 580;
+    }
+    
+
+
+
+
+/*헤더 디자인*/
+.site-logo{
+    width:25%;
+    text-align: center;
+}
+.site-logo>a{
+    color: #005A0D;
+    font-size: 42px;
+    line-height: 61px;
+}
+
+
+.search{
+    width:55%;
+}
+.search-box{
+    margin: 0 auto;
+    margin-top:5.5px;
+
+    width: 400px;
+    height: 48px;
+    border: 1px solid #005A0D;
+    border-radius: 6px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgb(247, 247, 247) 0px 0px 0px 1px inset;
+}
+
+.search-box>form{
+    display: flex;
+    padding-top: 7px;
+    height: 34px;
+}
+
+.search-box>form>input{
+    width: 320px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    letter-spacing: -0.33px;
+    padding-left: 14px; 
+}
+.search-box>form>button{
+    border:none;
+    background-color: transparent;
+    cursor:pointer;
+    padding-top: 4px;
+    padding-left: 20px;
+}
+.search-box>form>button>span{
+    font-size:27px;
+    color: #005A0D;
+}
+    
+    
+    
 
 
 /* 버튼 디자인 */
