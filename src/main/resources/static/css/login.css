@@ -56,9 +56,25 @@
 }
 .link-box{
     margin-top: 5px;
+    overflow: hidden;
+}
+.join-box{
+    float: left;
+}
+.search-box{
+    float: right;
+}
+.join-box{
+    text-align: left;
+}
+.search-box{
     text-align: right;
 }
-.link-box>a{
+.join-box>a{
+    text-decoration: none;
+    font-size: 15px;
+}
+.search-box>a{
     text-decoration: none;
     font-size: 15px;
 }
