@@ -1,0 +1,100 @@
+/* 사용할 font 선언 */
+@font-face {
+    font-family: ns-thin;
+    src: url(../font/NotoSansKR-Thin.otf);
+}
+@font-face {
+    font-family: ns-light;
+    src: url(../font/NotoSansKR-Light.otf);
+}
+@font-face {
+    font-family: ns-m;
+    src: url(../font/NotoSansKR-Medium.otf);
+}
+@font-face {
+    font-family: ns-bold;
+    src: url(../font/NotoSansKR-Bold.otf);
+}
+@font-face {
+    font-family: ns-black;
+    src: url(../font/NotoSansKR-Black.otf);
+}
+/*기본 설정*/
+*{
+    margin: 0;
+    padding: 0;
+    color: #252a34;
+    font-family: ns-m;
+}
+.wrap{
+    width: 1200px;
+    margin: 0 auto;
+}
+.title{
+    margin-top: 50px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.content{
+    width: 400px;
+    margin: 0 auto;
+}
+.input-box>*{
+    margin-top: 10px;
+}
+.input-form{
+    width: 100%;
+    font-size: 18px;
+    display: block;
+    padding: 0.8rem;
+    outline: none;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+.input-form:focus {
+    box-shadow: 0 0 0 0.1rem #eee;
+}
+.link-box{
+    margin-top: 5px;
+    text-align: right;
+}
+.link-box>a{
+    text-decoration: none;
+    font-size: 15px;
+}
+.btn-box{
+    margin-top: 20px;
+}
+.btn {
+    border: none;
+    border-radius: 5px;
+    padding: 1rem;
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    transition-duration: 0.5s;
+    font-size: 18px;
+    font-family: ns-light;
+    margin-top: 10px;
+}
+.bc1 {
+    background-color: rgba(0, 90, 13, 0.9);
+    color: #fff;
+    border: none;
+}
+.bc1:hover {
+    border: 2px solid rgba(0, 90, 13, 0.9);
+    background-color: #fff;
+    color: rgba(0, 90, 13);
+    cursor: pointer;
+}
+.bc2 {
+    background-color: rgb(224, 224, 224);
+    color: rgba(0, 90, 13);
+}
+.bc2:hover {
+    border: 2px solid rgba(0, 90, 13, 0.9);
+    background-color: #fff;
+    color: rgba(0, 90, 13);
+    cursor: pointer;
+}
