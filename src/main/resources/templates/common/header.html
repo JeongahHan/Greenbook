@@ -6,17 +6,17 @@
 <!-- 구글 아이콘 -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <!-- jquery -->
-<script src="/jquery-3.6.0.js"></script>
+<script src="/js/jquery-3.7.0.js"></script>
 <!-- 기본 CSS -->
-<link rel="stylesheet" href="/main.css" />
+<link rel="stylesheet" href="/css/default.css" />
 <!-- 기본 js -->
 <script src="/default.js"></script>
 
 <div class="box">
 	<div class="box-detail">
-		<th:block th:if="${session.m != null}">
-			<a href="#" class="btn bc1" id="adminMenuButton">관리자메뉴</a>		<!--관리자메뉴-->
-			<a href="#" class="btn bc1" id="logoutMenuButton">로그아웃</a>		<!--로그아웃-->
+		<th:block th:if="${session.m == null}"> <!-- 추 후 null 이 아니면으로 수정예정 -->
+			<a href="#"  id="adminMenuButton">관리자메뉴</a>		<!--관리자메뉴-->
+			<a href="#"  id="logoutMenuButton">로그아웃</a>		<!--로그아웃-->
 		</th:block>
 	</div>
 </div>
@@ -40,13 +40,13 @@
 	<div class="header-link">
 		<!-- 세션 로그인 안되어있을때 -->
 		<th:block th:if="${session.m == null}">
-			<span class="material-icons-outlined" target="#login-modal">account_circle</span> <!-- 로그인-->
-			<span class="material-icons-outlined">favorite_border</span> <!--찜-->									
+			<span class="material-icons" target="#login-modal">person_outline</span> <!-- 로그인-->
+			<span class="material-icons">favorite_border</span><!--찜-->								
 		</th:block>
 		
 		<!-- 세션 로그인 되어있을때 -->
 		<th:block th:if="${session.m != null}">
-			<span class="material-icons-outlined">email</span>  <!--쪽지-->
+			<span class="material-icons">mail_outline</span> <!--쪽지-->
 		</th:block>
 	</div>
 </header>
