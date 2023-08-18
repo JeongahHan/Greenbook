@@ -19,4 +19,9 @@ public class ProductController {
 		return "product/productBoard";
 	}
 	
+	@GetMapping(value="/writeFrm")
+	public String writeFrm() {
+		return "product/writeFrm";
+	}
+	
 }
