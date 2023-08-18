@@ -14,7 +14,7 @@
 
 <div class="box">
 	<div class="box-detail">
-		<th:block th:if="${session.m != null}"> <!-- 추후 null이 아니면으로 수정예정 --(정아님 로그아웃 기능 확인을 위해 수정하였습니다 ㅠㅠ)>
+		<th:block th:if="${session.m != null}"> <!-- 정아님 로그아웃 기능 확인을 위해 null이 아닌으로 수정하였습니다. ㅠㅠ -->
 			<a href="#"  id="adminMenuButton">관리자메뉴</a>		<!--관리자메뉴--> <!-- 관리자만 보이게 -->
 			<a href="/member/logout"  id="logoutMenuButton">로그아웃</a>		<!--로그아웃-->
 		</th:block>
@@ -40,7 +40,8 @@
 	<div class="header-link">
 		<!-- 세션 로그인 안되어있을때 -->
 		<th:block th:if="${session.m == null}">
-			<span class="material-icons headericon" target="#login-modal">person_outline</span> <!-- 로그인-->
+			<!-- 정아님,,로그인 기능 확인을 위해 a태그를 제가 임의로 추가하였습니다 ㅠㅠ -->
+			<a href="/member/loginFrm"><span class="material-icons headericon">person_outline</span></a><!-- 로그인-->
 			<span class="material-icons headericon">favorite_border</span><!--찜-->	
 			<span class="material-icons headericon">mail_outline</span> <!--쪽지-->							
 		</th:block>
@@ -52,7 +53,7 @@
     <nav>
 		<ul class="navi">
 			<li><a href="#">중고책방</a></li> 
-			<li><a href="/member/loginFrm">요즘 이 책</a></li>
+			<li><a href="#">요즘 이 책</a></li>
 			<li><a href="#">자유게시판</a></li>
 			<li><a href="#">서비스</a>
 				<ul class="sub-navi">
