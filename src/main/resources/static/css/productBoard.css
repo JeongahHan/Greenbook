@@ -7,7 +7,6 @@
 /* main-top */
 .main{
     width: 1900px;
-    height: 1900px;
 }
 
 .main-wrap{
@@ -35,11 +34,10 @@
 .main-mid{
     margin: 20px auto;
     width: 1700px;
-    height: 1700px;
-    background-color: antiquewhite;
 }
 
 .mid-text1{
+	padding-left : 30px;
     font-weight: 900;
 }
 
