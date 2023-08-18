@@ -1,0 +1,115 @@
+*{
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+
+/* main-top */
+.main{
+    width: 1900px;
+    height: 1900px;
+}
+
+.main-wrap{
+
+}
+
+.main-top-text{
+    padding: 20px;
+}
+
+.top-text1{
+    font-weight: 900;
+}
+
+.top-text2{
+    font-weight: 900;
+    color: #ccc;
+}
+
+.top-text3{
+    font-weight: 900;
+    background-color: #eee7e7;
+}
+
+.main-mid{
+    margin: 20px auto;
+    width: 1700px;
+    height: 1700px;
+    background-color: antiquewhite;
+}
+
+.mid-text1{
+    font-weight: 900;
+}
+
+/* main-mid */
+.main-mid{
+    width: 1200px;
+}
+
+.mid-content{
+
+}
+
+.mid-content>ul{
+    list-style-type: none;
+    overflow: hidden;
+}
+
+.product{
+    width: calc(100%/5);
+    height: 100%;
+    float: left;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.product>a{
+    display: block;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.img-box{
+    margin: 0 auto;
+}
+
+.img-box>img{
+    display: block;
+    height: 280px;
+    max-width: 100%;
+}
+
+.info{
+    padding-top: 10px;
+}
+
+.info>div{
+    padding-top: 3px;
+}
+
+.info>.book-title{
+    color: #000;
+    font-weight: 900;
+}
+
+.info>.book-writer{
+    color:gray;
+    font-size: 12px;
+}
+
+.info>.book-price{
+    color: #000;
+    font-weight: 900;
+}
+
+.product>a:hover{
+    box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2);
+    transform: scale( 1.05 );
+    transition: all 0.5s linear;
+}
+
+.product>a:hover .book-title{
+    text-decoration: underline;
+}

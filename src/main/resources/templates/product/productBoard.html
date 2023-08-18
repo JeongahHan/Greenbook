@@ -2,11 +2,233 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>중고거래게시판</title>
 </head>
 <body>
 
-	<h1>명훈 테스트</h1>
+	<div class="header"></div>
+	
+<div class="main">
+        <div class="main-wrap">
+
+            <!-- 홈 > 중고거래게시판 -->
+            <div class="main-top-text">
+                <span class="top-text1">홈 </span>
+                <span class="top-text2"> > </span>
+                <span class="top-text3">중고거래게시판</span>
+            </div>
+
+            <!-- 최신게시물 / 상품리스트 -->
+            <div class="main-mid">
+                <div>
+                    <span class="mid-text1">최신 게시물</span>
+                </div>
+                <!--
+                <div class="mid-content">
+                    <ul>
+                        <li class="product">
+                            <a href="#">
+                                <div class="img-box">
+                                    <img src="/img/데미안.jpg">
+                                </div>
+                                <div class="info">
+                                    <div class="book-title">데미안</div>
+                                    <div class="book-writer">저자 | 헤르만 헤세</div>
+                                    <div class="book-price">3,000 원</div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="product">
+                            <a href="#">
+                                <div class="img-box">
+                                    <img src="/img/아프니까 청춘이다.jpg">
+                                </div>
+                                <div class="info">
+                                    <div class="book-title">아프니까 청춘이다</div>
+                                    <div class="book-writer">저자 | 김난도</div>
+                                    <div class="book-price">4,000 원</div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="product">
+                            <a href="#">
+                                <div class="img-box">
+                                    <img src="/img/총균쇠.jpg">
+                                </div>
+                                <div class="info">
+                                    <div class="book-title">총,균,쇠</div>
+                                    <div class="book-writer">저자 | 재러드 다이아몬드</div>
+                                    <div class="book-price">15,000 원</div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="product">
+                            <a href="#">
+                                <div class="img-box">
+                                    <img src="/img/매미울음소리 그칠 무렵.jpg">
+                                </div>
+                                <div class="info">
+                                    <div class="book-title">매미 울음소리 그칠 무렵</div>
+                                    <div class="book-writer">저자 | 요시다 아키미</div>
+                                    <div class="book-price">3,500 원</div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="product">
+                            <a href="#">
+                                <div class="img-box">
+                                    <img src="/img/삼국지.jpg">
+                                </div>
+                                <div class="info">
+                                    <div class="book-title">삼국지</div>
+                                    <div class="book-writer">저자 | 나관중</div>
+                                    <div class="book-price">1,500 원</div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="product">
+                            <a href="#">
+                                <div class="img-box">
+                                    <img src="/img/미라클모닝.jpg">
+                                </div>
+                                <div class="info">
+                                    <div class="book-title">미라클모닝</div>
+                                    <div class="book-writer">저자 | 할 엘로드</div>
+                                    <div class="book-price">4,500 원</div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="product">
+                            <a href="#">
+                                <div class="img-box">
+                                    <img src="/img/레미제라블3.jpg">
+                                </div>
+                                <div class="info">
+                                    <div class="book-title">레미제라블3</div>
+                                    <div class="book-writer">저자 | 빅토르 위고</div>
+                                    <div class="book-price">2,500 원</div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="product">
+                            <a href="#">
+                                <div class="img-box">
+                                    <img src="/img/코딩의 기술.jpg">
+                                </div>
+                                <div class="info">
+                                    <div class="book-title">코딩의 기술</div>
+                                    <div class="book-writer">저자 | 오즈 모리하루</div>
+                                    <div class="book-price">12,000 원</div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="product">
+                            <a href="#">
+                                <div class="img-box">
+                                    <img src="/img/모든 순간이 너였다.jpg">
+                                </div>
+                                <div class="info">
+                                    <div class="book-title">모든 순간이 너였다</div>
+                                    <div class="book-writer">저자 | 하태완</div>
+                                    <div class="book-price">10,000 원</div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="product">
+                            <a href="#">
+                                <div class="img-box">
+                                    <img src="/img/제노사이드.jpg">
+                                </div>
+                                <div class="info">
+                                    <div class="book-title">제노사이드</div>
+                                    <div class="book-writer">저자 | 다카노 가즈아키</div>
+                                    <div class="book-price">8,000 원</div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="product">
+                            <a href="#">
+                                <div class="img-box">
+                                    <img src="/img/공산당 선언.jpg">
+                                </div>
+                                <div class="info">
+                                    <div class="book-title">공산당 선언</div>
+                                    <div class="book-writer">저자 | 칼 마르크스</div>
+                                    <div class="book-price">3,000 원</div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="product">
+                            <a href="#">
+                                <div class="img-box">
+                                    <img src="/img/이웃집 토토로.jpg">
+                                </div>
+                                <div class="info">
+                                    <div class="book-title">이웃집 토토로</div>
+                                    <div class="book-writer">저자 | 미야자키 하야오</div>
+                                    <div class="book-price">10,000 원</div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="product">
+                            <a href="#">
+                                <div class="img-box">
+                                    <img src="/img/원피스 25권.jpg">
+                                </div>
+                                <div class="info">
+                                    <div class="book-title">원피스 25권</div>
+                                    <div class="book-writer">저자 | 오다 에이치로</div>
+                                    <div class="book-price">3,500 원</div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="product">
+                            <a href="#">
+                                <div class="img-box">
+                                    <img src="/img/꽃보다 남자.webp">
+                                </div>
+                                <div class="info">
+                                    <div class="book-title">꽃보다 남자</div>
+                                    <div class="book-writer">저자 | 카미오 요코</div>
+                                    <div class="book-price">3,000 원</div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="product">
+                            <a href="#">
+                                <div class="img-box">
+                                    <img src="/img/7년의 밤.jpg">
+                                </div>
+                                <div class="info">
+                                    <div class="book-title">7년의 밤</div>
+                                    <div class="book-writer">저자 | 정유정</div>
+                                    <div class="book-price">10,000 원</div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                -->
+            </div>
+
+        </div>
+    </div>
+	
+	<div class="footer"></div>
 	
 </body>
 </html>
