@@ -1,0 +1,136 @@
+/* 사용할 font 선언 */
+@font-face {
+  font-family: ns-thin;
+  src: url(../font/NotoSansKR-Thin.otf);
+}
+@font-face {
+  font-family: ns-light;
+  src: url(../font/NotoSansKR-Light.otf);
+}
+@font-face {
+  font-family: ns-m;
+  src: url(../font/NotoSansKR-Medium.otf);
+}
+@font-face {
+  font-family: ns-bold;
+  src: url(../font/NotoSansKR-Bold.otf);
+}
+@font-face {
+  font-family: ns-black;
+  src: url(../font/NotoSansKR-Black.otf);
+}
+
+
+/* 
+    사이트 사용 색상 
+    
+    메인컬러 (그린) : #005A0D
+    블랙 : #252A34
+    화이트 : #FFF
+*/
+
+
+/* 전체태그 기본 margin, padding 제거 */
+/* 기본 글씨 색 및 폰트 설정 */
+* {
+    margin: 0;
+    padding: 0;
+    color: #252a34;
+    font-family: ns-m;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* 기본화면 레이아웃 */
+a {
+  text-decoration: none;
+}
+header {
+  background-color: #fff;
+  padding: 32px;
+  display: flex;
+  min-width: 1200px;
+}
+footer {
+  padding: 50px;
+  border-top: 1px solid #252a34;
+}
+footer > .footer-content {
+  width: 1200px;
+  margin: 0 auto;
+  padding: 0px 10px;
+}
+footer > .footer-content * {
+  font-size: 14px;
+}
+footer > .footer-content > ul {
+  list-style-type: none;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+footer > .footer-content > ul > li {
+  float: left;
+}
+footer > .footer-content > ul > li > a {
+  padding-right: 20px;
+}
+
+
+
+/* 버튼 디자인 */
+.btn {
+  border: none;
+  padding: 1rem;
+  display: inline-block;
+  box-sizing: border-box;
+  transition-duration: 0.5s;
+  font-size: 16px;
+  font-family: ns-light;
+}
+.bc1 {
+  color: #005A0D;
+  background-color: #fff;
+  border: 2px solid #005A0D;
+}
+.bc1:hover {
+  background-color: #005A0D;
+  color: #fff;
+  cursor: pointer;
+}
+.bs1 {
+  padding: 1rem;
+}
+.bs2 {
+  padding: 1.5rem;
+  font-size: 1.1em;
+}
+.bs3 {
+  padding: 2rem;
+  font-size: 1.2em;
+}
+.bs4 {
+  width: 100%;
+  padding: 2rem;
+  font-size: 1.2em;
+}
+
+/* font 클래스*/
+.f-thin {
+  font-family: ns-thin;
+}
+.f-light {
+  font-family: ns-light;
+}
+.f-medium {
+  font-family: ns-m;
+}
+.f-bold {
+  font-family: ns-bold;
+}
+.f-black {
+  font-family: ns-black;
+}
