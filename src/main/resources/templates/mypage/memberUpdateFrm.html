@@ -12,14 +12,11 @@
 	<div>헤더</div>
     <div class="page-content">
         <div class="page-title">마이페이지</div>
-        <ul class="mypage-menu">
-            <li>회원정보</li>
-            <li>내가 쓴 게시물</li>
-            <li>나의 댓글</li>
-            <li>관심 도서</li>
-            <li>판매 도서</li>
-        </ul>
+        <th:block th:include="mypage/mypageMenu"></th:block>
         <form action="#" class="updateForm">
+        	<div class="icon">
+        		
+        	</div>
             <div class="input-wrap">
                 <label for="memberNo">회원번호</label>
                 <input type="text" name="memberNo" id="memberNo" value="1" disabled>

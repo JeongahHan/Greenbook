@@ -1,7 +1,7 @@
 
 /* 마이페이지 디폴트 css */
 *{
-    /* margin: 0; */
+    margin: 0; 
     padding: 0;
 }
 
@@ -17,18 +17,29 @@
 
 
 .mypage-menu{
-    background-color: blanchedalmond;
     list-style: none;
     width: 200px;
     float: left;
 }
+.mypage-menu>li{
+    padding: 20px 20px;
+
+}
+.mypage-menu>li:hover{
+	background-color: #005A0D;
+    color: #fff;
+    cursor: pointer;
+}
+
 
 
 
 .updateForm{
     width: 400px;
-    background-color: chocolate;
+    background-color: #ccc;
     float: left;
+    font-size: 20px;
+    
 }
 
 .input-wrap{
@@ -37,6 +48,8 @@
 
 .updateForm input{
     float: right;
+    font-size: 18px;
+
 }
 
 .btn-box{
