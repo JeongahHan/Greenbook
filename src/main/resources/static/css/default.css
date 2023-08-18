@@ -45,7 +45,8 @@ body {
     min-height: 100vh;
 }
 
-/* 기본화면 레이아웃 */
+
+/* 기본화면 레이아웃 (헤더 푸터)*/
 a {
     text-decoration: none;
 }
@@ -68,11 +69,14 @@ a {
 }
 
 header {
+    padding-top:20px;
     padding-right: 80px;
     padding-left: 80px;
     padding-bottom:40px;
     display: flex;
-    min-width: 1200px;
+    min-width: 1050px;
+    width: 1050px;
+    margin: 0 auto;
 }
 
 footer {
@@ -98,7 +102,6 @@ footer > .footer-content > .footer-detail {
     font-family: ns-light;
     font-weight: 580;
     }
-    
 
 
 
@@ -156,9 +159,24 @@ footer > .footer-content > .footer-detail {
     font-size:27px;
     color: #005A0D;
 }
-    
-    
-    
+
+.header-link{
+    width:20%;
+    box-sizing: border-box;
+    padding: 21px 0px;
+    text-align: center;
+}
+.headericon{
+    width:50px;
+    font-size: 35px;
+    padding-right:15px;
+}
+
+
+
+
+
+
 
 
 /*기본 버튼 디자인 */
