@@ -35,15 +35,22 @@
 
 
 .updateForm{
-    width: 400px;
-    background-color: #ccc;
+    width: 500px;
+    background-color: blanchedalmond;
     float: left;
     font-size: 20px;
     
 }
+.user-box{
+    text-align: center;
+}
+.user-box>.material-icons{
+    /* span아이콘 선택자 */
+    font-size: 100px;
+}
 
 .input-wrap{
-    margin: 10px;
+    margin: 20px;
 }
 
 .updateForm input{
