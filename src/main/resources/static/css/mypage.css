@@ -9,10 +9,6 @@
     overflow: hidden;
 }
 
-.page-title{
-    width: 1200px;
-    background-color: brown;
-}
 
 .mypage-menu{
     background-color: blanchedalmond;
@@ -21,16 +17,15 @@
     float: left;
 }
 
-.mypage-menu>li{
-    /* float: left; */
-}
+
 
 .updateForm{
+    width: 500px;
     background-color: chocolate;
     float: left;
 }
 .updateForm input{
-    float: right;
+    float: left;
 }
 
 
