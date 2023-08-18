@@ -27,4 +27,9 @@ public class MemberController {
 	public String searchPwFrm() {
 		return "member/searchPwFrm";
 	}
+	
+	@GetMapping(value="/joinFrm")
+	public String joinFrm() {
+		return "member/joinFrm";
+	}
 }
