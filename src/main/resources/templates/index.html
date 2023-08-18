@@ -5,10 +5,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>test!!</h1>
-	<a href="/member/loginFrm">로그인</a>
-	<a href="/mypage/memberUpdateFrm">마이페이지</a>
-	<a href="/product/board?reqPage=1">중고거래게시판</a>
+	<th:block th:include="common/header"></th:block>
+		<div class="page-title">메인페이지</div>
 	<th:block th:include="common/footer"></th:block>
 </body>
 </html>
