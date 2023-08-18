@@ -41,12 +41,8 @@
 		<!-- 세션 로그인 안되어있을때 -->
 		<th:block th:if="${session.m == null}">
 			<span class="material-icons" target="#login-modal">person_outline</span> <!-- 로그인-->
-			<span class="material-icons">favorite_border</span><!--찜-->								
-		</th:block>
-		
-		<!-- 세션 로그인 되어있을때 -->
-		<th:block th:if="${session.m != null}">
-			<span class="material-icons">mail_outline</span> <!--쪽지-->
+			<span class="material-icons">favorite_border</span><!--찜-->	<!-- 로그아웃시 접근 못하게 -->
+			<span class="material-icons">mail_outline</span> <!--쪽지--> <!-- 로그아웃시 접근 못하게 -->			
 		</th:block>
 	</div>
 </header>
