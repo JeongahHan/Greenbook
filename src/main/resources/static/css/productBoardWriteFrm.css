@@ -35,11 +35,51 @@
 
 .main-mid{
     margin: 20px auto;
-    width: 1700px;
-    background-color: yellow;
+    width: 1200px;
 }
 
 .mid-text1{
 	padding-left : 30px;
     font-weight: 900;
 }
+
+.productWrite{
+	padding-left: 28px;
+	padding-top: 10px;
+}
+
+/*
+
+/* tbl, tr, td, th 
+
+.tbl th,
+.tbl td {
+  padding: 1rem;
+  text-align: center;
+}
+
+.productWrite td, .productWrite th {
+	border : 1px solid #ccc;
+}
+
+.tr-1 {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.td-2 {
+  background-color: rgba(57, 62, 70, 0.1);
+}
+.input-form {
+  width: 100%;
+  display: block;
+  padding: 0.8rem;
+  background-color: #fff;
+  outline: none;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.input-form:focus {
+  box-shadow: 0 0 0 0.1rem #eee;
+}
+*/

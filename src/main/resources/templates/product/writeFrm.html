@@ -19,7 +19,7 @@
                 <span class="top-text3">중고거래게시판</span>
             </div>
 
-            <!-- 최신게시물 / 상품리스트 -->
+            <!-- 글쓰기 -->
             <div class="main-mid">
                 <div>
                     <span class="mid-text1">글쓰기</span>
@@ -27,12 +27,17 @@
                 
                 <form action="/product/write" method="post" enctype="multipart/form-data">
                 	<table class="tbl productWrite">
-                		<tr class="tr-1">
-                			<th class="td-2">제목</th>
-                			<td colspan="3">
-                				<input type="text" name="productTitle" class="input-form">
-                			</td>
-                		</tr>
+
+						<th class="td-3">제목</th>
+						<td>
+							<input type="text" name="productTitle" class="input-form">
+						</td>
+						
+						<th class="td-3">글쓴이</th>
+						<td>
+							<input type="text" name="productWriter" class="input-form">
+                		</td>
+                		
                 	</table>
                 </form>
             </div>
