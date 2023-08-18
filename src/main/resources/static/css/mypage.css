@@ -1,0 +1,37 @@
+
+
+*{
+    /* margin: 0; */
+    padding: 0;
+}
+
+.page-content{
+    overflow: hidden;
+}
+
+.page-title{
+    width: 1200px;
+    background-color: brown;
+}
+
+.mypage-menu{
+    background-color: blanchedalmond;
+    list-style: none;
+    width: 200px;
+    float: left;
+}
+
+.mypage-menu>li{
+    /* float: left; */
+}
+
+.updateForm{
+    background-color: chocolate;
+    float: left;
+}
+.updateForm input{
+    float: right;
+}
+
+
+
