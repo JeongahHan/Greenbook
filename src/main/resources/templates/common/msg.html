@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script src="/js/sweetalert.min.js"></script>
+	<script th:inline="javascript">
+		const title = [[${title}]];
+		const msg = [[${msg}]];
+		const icon = [[${icon}]];
+		const loc = [[${loc}]];
+		swal({
+			title : title,
+			text : msg,
+			icon : icon
+		}).then(function(){
+			location.href = loc;
+		});
+	</script>
+</body>
+</html>
