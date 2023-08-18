@@ -14,9 +14,9 @@
 
 <div class="box">
 	<div class="box-detail">
-		<th:block th:if="${session.m == null}"> <!-- 추 후 null 이 아니면으로 수정예정 -->
+		<th:block th:if="${session.m != null}"> <!-- 추후 null이 아니면으로 수정예정 --(정아님 로그아웃 기능 확인을 위해 수정하였습니다 ㅠㅠ)>
 			<a href="#"  id="adminMenuButton">관리자메뉴</a>		<!--관리자메뉴--> <!-- 관리자만 보이게 -->
-			<a href="#"  id="logoutMenuButton">로그아웃</a>		<!--로그아웃-->
+			<a href="/member/logout"  id="logoutMenuButton">로그아웃</a>		<!--로그아웃-->
 		</th:block>
 	</div>
 </div>
