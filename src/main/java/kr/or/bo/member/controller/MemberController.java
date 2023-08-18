@@ -22,4 +22,9 @@ public class MemberController {
 	public String searchIdFrm() {
 		return "member/searchIdFrm";
 	}
+	
+	@GetMapping(value="/searchPwFrm")
+	public String searchPwFrm() {
+		return "member/searchPwFrm";
+	}
 }
