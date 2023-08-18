@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>아이디찾기</title>
+<link rel="stylesheet" href="/css/searchId.css">
+<script src="/js/jquery-3.7.0.js"></script>
+</head>
+<body>
+    <div class="wrap">
+        <div class="title">
+            <h1>ID 찾기</h1>
+        </div>
+        <form action="/member/searchId" method="post">
+            <div class="content">
+                <div class="sub-title">
+                    <span>이메일로 찾기</span>
+                    <hr>
+                </div>
+                <div class="input-box">
+                    <label for="memberName">이름</label>
+                    <input type="text" name="memberName" id="memberName" class="input-form" placeholder="이름을 입력해주세요" autocomplete="off" required>
+                    <label for="memberEmail">이메일</label>
+                    <input type="text" name="memberEmail" id="memberEmail" class="input-form" placeholder="가입 시 기재했던 이메일을 입력해주세요" autocomplete="off" required>	
+                </div>
+                <div class="btn-box">
+                    <button type="submit" class="btn bc2">확인</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

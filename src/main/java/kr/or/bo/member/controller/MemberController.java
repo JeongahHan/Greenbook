@@ -17,4 +17,14 @@ public class MemberController {
 	public String loginFrm() {
 		return "member/loginFrm";
 	}
+	
+	@GetMapping(value="/searchIdFrm")
+	public String searchIdFrm() {
+		return "member/searchIdFrm";
+	}
+	
+	@GetMapping(value="/searchPwFrm")
+	public String searchPwFrm() {
+		return "member/searchPwFrm";
+	}
 }

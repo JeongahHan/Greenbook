@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>비밀번호찾기</title>
+<link rel="stylesheet" href="/css/searchId.css">
+<script src="/js/jquery-3.7.0.js"></script>
+</head>
+<body>
+    <div class="wrap">
+        <div class="title">
+            <h1>비밀번호 찾기</h1>
+        </div>
+        <form action="/member/searchPw" method="post">
+            <div class="content">
+                <div class="sub-title">
+                    <span>이메일로 찾기</span>
+                    <hr>
+                </div>
+                <div class="input-box">
+                    <label for="memberId">아이디</label>
+                    <input type="text" name="memberId" id="memberId" class="input-form" placeholder="ID를 입력해주세요" autocomplete="off" required>
+                    <label for="memberEmail">이메일</label>
+                    <input type="text" name="memberEmail" id="memberEmail" class="input-form" placeholder="가입 시 기재했던 이메일을 입력해주세요" autocomplete="off" required>	
+                </div>
+                <div class="btn-box">
+                    <button type="submit" class="btn bc2">확인</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
