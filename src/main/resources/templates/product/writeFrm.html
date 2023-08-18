@@ -2,11 +2,45 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>글쓰기</title>
+<link rel="stylesheet" href="/css/productBoardWriteFrm.css">
 </head>
 <body>
 
-	<h1>테스트</h1>
+	<div class="header"></div>
+	
+	<div class="main">
+		<div class="main-wrap">
+		
+			<!-- 홈 > 중고거래게시판 -->
+            <div class="main-top-text">
+                <span class="top-text1">홈 </span>
+                <span class="top-text2"> > </span>
+                <span class="top-text3">중고거래게시판</span>
+            </div>
+
+            <!-- 최신게시물 / 상품리스트 -->
+            <div class="main-mid">
+                <div>
+                    <span class="mid-text1">글쓰기</span>
+                </div>
+                
+                <form action="/product/write" method="post" enctype="multipart/form-data">
+                	<table class="tbl productWrite">
+                		<tr class="tr-1">
+                			<th class="td-2">제목</th>
+                			<td colspan="3">
+                				<input type="text" name="productTitle" class="input-form">
+                			</td>
+                		</tr>
+                	</table>
+                </form>
+            </div>
+            
+		</div>
+	</div>
+	
+	<div class="footer"></div>
 
 </body>
 </html>
