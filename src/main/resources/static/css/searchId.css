@@ -93,3 +93,34 @@
 .bc2:hover {
     cursor: pointer;
 }
+/*모달*/
+.modal-wrap{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.search-modal{
+    width: 400px;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 30px;
+}
+.modal-top>h2{
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+#searchId{
+	text-align: center;
+	margin-bottom: 20px;
+	text-size: 15px;
+}
+.red{
+	color : red;
+}

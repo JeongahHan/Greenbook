@@ -27,6 +27,17 @@
             </div>
         </div>
     </div>
+    <div class="modal-wrap">
+        <div class="search-modal">
+            <div class="modal-top">
+                <h2>ID 찾기</h2>
+            </div>
+            <div class="modal-content">
+				<p id="searchId"></p>
+				<button type="button" class="btn bc2" id="close">닫기</button>
+            </div>
+        </div>
+    </div>
     <script>
     	$("#btn").on("click", function(){
 			const memberName = $("#memberName").val();
@@ -37,13 +48,18 @@
     			data : {memberName : memberName, memberEmail : memberEmail},
     			success : function(data) {
 					if(data == ""){
-						console.log("일치하는 정보를 찾을 수 없습니다.");
+						$("#searchId").text("일치하는 정보를 찾을 수 없습니다.");
 					}else{
-						console.log(data);
+						$("#searchId").text("아이디는 "+data+"입니다.");
 					}
+    				//모달 열기
+    				$(".modal-wrap").css("display","flex");
+    				//닫기 버튼 클릭 시 모달 닫기
+    				$("#close").on("click", function(){
+    					$(".modal-wrap").css("display","none");
+    				});
     			}
     		});
-
     	});
     </script>
 </body>
