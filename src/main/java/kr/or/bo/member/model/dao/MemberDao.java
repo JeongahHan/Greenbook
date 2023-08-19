@@ -42,4 +42,11 @@ public class MemberDao {
 		}
 		return (Member)list.get(0);
 	}
+
+	public int updatePw(int memberNo, String memberPw) {
+		String query = "update member set member_pw = ? where member_no = ?";
+		Object[] params = {memberNo, memberPw};
+		int result = jdbc.update(query, params);
+		return result;
+	}
 }

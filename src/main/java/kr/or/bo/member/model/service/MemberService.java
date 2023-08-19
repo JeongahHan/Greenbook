@@ -2,6 +2,7 @@ package kr.or.bo.member.model.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.bo.member.model.dao.MemberDao;
 import kr.or.bo.member.model.vo.Member;
@@ -24,5 +25,11 @@ public class MemberService {
 	public Member selectMemberPw(String memberId, String memberEmail) {
 		Member m = memberDao.selectMemberPw(memberId, memberEmail);
 		return m;
+	}
+	
+	@Transactional
+	public int updatePw(int memberNo, String memberPw) {
+		int result = memberDao.updatePw(memberNo, memberPw);
+		return result;
 	}
 }
