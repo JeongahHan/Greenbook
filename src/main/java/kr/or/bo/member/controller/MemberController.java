@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.bo.member.model.service.MemberService;
 import kr.or.bo.member.model.vo.Member;
@@ -69,10 +70,14 @@ public class MemberController {
 	}
 	
 	//아이디 찾기 기능
+	@ResponseBody
 	@PostMapping(value="/searchId")
-	public Member searchId(String memberName, String memberEmail) {
+	public String searchId(String memberName, String memberEmail) {
 		Member m = memberService.selectMemberId(memberName, memberEmail);
-		return m;
+		if(m != null) {
+			return m.getMemberId();
+		}
+		return null;
 	}
 	
 	@GetMapping(value="/searchPwFrm")

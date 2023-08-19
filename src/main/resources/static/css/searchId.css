@@ -86,12 +86,10 @@
     margin-top: 10px;
 }
 .bc2 {
-    background-color: rgb(224, 224, 224);
+    border: 1px solid rgba(0, 90, 13, 0.9);
+    background-color: #fff;
     color: rgba(0, 90, 13);
 }
 .bc2:hover {
-    border: 2px solid rgba(0, 90, 13, 0.9);
-    background-color: #fff;
-    color: rgba(0, 90, 13);
     cursor: pointer;
 }

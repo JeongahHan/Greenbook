@@ -20,7 +20,7 @@
                 <label for="memberName">이름</label>
                 <input type="text" name="memberName" id="memberName" class="input-form" placeholder="이름을 입력해주세요" autocomplete="off" required>
                 <label for="memberEmail">이메일</label>
-                <input type="text" name="memberEmail" id="memberEmail" class="input-form" placeholder="가입 시 기재했던 이메일을 입력해주세요" autocomplete="off" required>	
+                <input type="text" name="memberEmail" id="memberEmail" class="input-form" placeholder="가입 시 기재했던 이메일을 입력해주세요" autocomplete="off" required>
             </div>
             <div class="btn-box">
                 <button type="button" class="btn bc2" id="btn">확인</button>
@@ -36,7 +36,11 @@
     			type : "post",
     			data : {memberName : memberName, memberEmail : memberEmail},
     			success : function(data) {
-    				console.log(data);
+					if(data == ""){
+						console.log("일치하는 정보를 찾을 수 없습니다.");
+					}else{
+						console.log(data);
+					}
     			}
     		});
 
