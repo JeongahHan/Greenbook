@@ -1,9 +1,11 @@
 package kr.or.bo.member.controller;
+import javax.servlet.http.HttpSession;
 
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpSession;
+
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -66,14 +68,55 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+	//searchIdFrm.html로 이동
 	@GetMapping(value="/searchIdFrm")
 	public String searchIdFrm() {
 		return "member/searchIdFrm";
 	}
 	
+	//아이디 찾기 기능
+	@ResponseBody
+	@PostMapping(value="/searchId")
+	public String searchId(String memberName, String memberEmail) {
+		Member m = memberService.selectMemberId(memberName, memberEmail);
+		if(m != null) {
+			return m.getMemberId();
+		}
+		return null;
+	}
+	
+	//비밀번호 찾기.html로 이동
 	@GetMapping(value="/searchPwFrm")
 	public String searchPwFrm() {
 		return "member/searchPwFrm";
+	}
+	
+	//비밀번호 찾기 -> 아이디,이메일 일치 확인
+	@ResponseBody
+	@PostMapping(value="/searchPw")
+	public Member searchPw(String memberId, String memberEmail) {
+		Member m = memberService.selectMemberPw(memberId, memberEmail);
+		if(m != null) {
+			return m;
+		}
+		return null;
+	}
+	
+	//비밀번호 찾기 -> 새 비밀번호 받아 비밀번호 변경
+	@PostMapping(value="/updatePw")
+	public String updatePw(int memberNo, String memberPw, Model model) {
+		int result = memberService.updatePw(memberNo, memberPw);
+		if(result > 0) {
+			model.addAttribute("title", "비밀번호 변경완료");
+			model.addAttribute("msg", "새 비밀번호로 변경되었으니 로그인 부탁 드립니다.");
+			model.addAttribute("icon", "success");
+		}else {
+			model.addAttribute("title", "비밀번호 변경실패");
+			model.addAttribute("msg", "비밀번호 변경을 실패하였습니다.");
+			model.addAttribute("icon", "error");
+		}
+		model.addAttribute("loc", "/member/loginFrm");
+		return "common/msg";
 	}
 	
 	@GetMapping(value="/joinFrm")

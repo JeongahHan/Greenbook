@@ -24,6 +24,7 @@ public class MemberDao {
 		}
 		return (Member)list.get(0);
 	}
+
 	public List selectAllMember() {
 		String query = "select * from MEMBER order by 1";
 		List list = jdbc.query(query, memberRowMapper);
@@ -38,9 +39,33 @@ public class MemberDao {
 	public Member selectOneMember(String checkId) {
 		String query = "select * from member where member_id=?";
 		List list = jdbc.query(query, memberRowMapper, checkId);
+
+
+	public Member selectMemberId(String memberName, String memberEmail) {
+		String query = "select * from member where member_name =? and member_email = ?";
+		List list = jdbc.query(query, memberRowMapper, memberName, memberEmail);
+
 		if(list.isEmpty()) {
 			return null;			
 		}
 		return (Member)list.get(0);
 	}
+
+
+	public Member selectMemberPw(String memberId, String memberEmail) {
+		String query = "select * from member where member_id = ? and member_email = ?";
+		List list = jdbc.query(query, memberRowMapper, memberId, memberEmail);
+		if(list.isEmpty()) {
+			return null;
+		}
+		return (Member)list.get(0);
+	}
+
+	public int updatePw(int memberNo, String memberPw) {
+		String query = "update member set member_pw = ? where member_no = ?";
+		Object[] params = {memberNo, memberPw};
+		int result = jdbc.update(query, params);
+		return result;
+	}
+
 }

@@ -85,6 +85,13 @@
     font-family: ns-light;
     margin-top: 10px;
 }
+.bc1 {
+    background-color: rgba(0, 90, 13);
+    color: #fff;
+}
+.bc1:hover {
+    cursor: pointer;
+}
 .bc2 {
     border: 1px solid rgba(0, 90, 13, 0.9);
     background-color: #fff;
@@ -116,8 +123,11 @@
     padding: 20px;
     text-align: center;
 }
-#searchId{
+#searchPw{
 	text-align: center;
 	margin-bottom: 20px;
 	text-size: 15px;
+}
+.success{
+	margin: 0 auto;
 }

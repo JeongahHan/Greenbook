@@ -56,36 +56,23 @@
 }
 .link-box{
     margin-top: 5px;
-    overflow: hidden;
-}
-.join-box{
-    float: left;
-}
-.search-box{
-    float: right;
-}
-.join-box{
-    text-align: left;
-}
-.search-box{
     text-align: right;
 }
-.join-box>a{
-    text-decoration: none;
-    font-size: 15px;
-}
-.search-box>a{
-    text-decoration: none;
-    font-size: 15px;
+.link-box>a{
+	text-decoration : none;
+	font-family : ns-light;
 }
 .btn-box{
     margin-top: 20px;
 }
+.btn-box>a{
+	text-decoration : none;
+}
 .btn {
     border: none;
     border-radius: 5px;
-    padding: 1rem;
     width: 100%;
+    height: 55px;
     display: block;
     box-sizing: border-box;
     transition-duration: 0.5s;
@@ -99,18 +86,13 @@
     border: none;
 }
 .bc1:hover {
-    border: 2px solid rgba(0, 90, 13, 0.9);
-    background-color: #fff;
-    color: rgba(0, 90, 13);
     cursor: pointer;
 }
 .bc2 {
-    background-color: rgb(224, 224, 224);
+	border: 1px solid rgba(0, 90, 13, 0.9);
+    background-color: #fff;
     color: rgba(0, 90, 13);
 }
 .bc2:hover {
-    border: 2px solid rgba(0, 90, 13, 0.9);
-    background-color: #fff;
-    color: rgba(0, 90, 13);
     cursor: pointer;
 }
