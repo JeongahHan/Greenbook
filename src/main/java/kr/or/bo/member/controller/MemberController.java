@@ -97,6 +97,7 @@ public class MemberController {
 		return null;
 	}
 	
+	//비밀번호 찾기 -> 새 비밀번호 받아 비밀번호 변경
 	@PostMapping(value="/updatePw")
 	public String updatePw(int memberNo, String memberPw, Model model) {
 		int result = memberService.updatePw(memberNo, memberPw);
