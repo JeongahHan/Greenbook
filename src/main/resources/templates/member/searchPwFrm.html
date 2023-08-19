@@ -33,8 +33,22 @@
                 <h2>비밀번호 찾기</h2>
             </div>
             <div class="modal-content">
-				<p id="searchPw"></p>
-				<button type="button" class="btn bc2" id="close">닫기</button>
+            	<div class="fail">
+					<p id="searchPw"></p>
+					<button type="button" class="btn bc2 close">닫기</button>            	
+            	</div>
+            	<div class="success">
+            		<form action="/member/updatePw" method="post">
+            			<div class="input-box">
+	            			<label for="memberPw">새 비밀번호</label>
+	            			<input type="password" name="memberPw" id="memberPw" class="input-form" placeholder="새 비밀번호를 입력해주세요" required>            			
+            			</div>
+            			<div class="btn-box">
+                			<button type="submit" class="btn bc1">확인</button>
+                			<button type="button" class="btn bc2 close">닫기</button>
+            			</div>
+            		</form>
+            	</div>
             </div>
         </div>
     </div>
@@ -47,11 +61,19 @@
     			type : "post",
     			data : {memberId : memberId, memberEmail : memberEmail},
     			success : function(data) {
+					$(".modal-wrap").css("display","flex");
 					if(data == ""){
-						console.log("일치하는 회원정보가 없습니다.")
+						$(".fail").show();
+						$(".success").hide();
+						$("#searchPw").text("일치하는 회원 정보가 없습니다.");
 					}else{
-						console.log(data);
+						$(".fail").hide();
+						$(".success").show();   	
 					}
+    				//닫기 버튼 클릭 시 모달 닫기
+    				$(".close").on("click", function(){
+    					$(".modal-wrap").css("display","none");
+    				});    				
     			}
     		});
     	});
