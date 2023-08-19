@@ -80,6 +80,17 @@ public class MemberController {
 		return null;
 	}
 	
+	//비밀번호 찾기 -> 아이디,이메일 일치 확인
+	@ResponseBody
+	@PostMapping(value="/searchPw")
+	public Member searchPw(String memberId, String memberEmail) {
+		Member m = memberService.selectMemberPw(memberId, memberEmail);
+		if(m != null) {
+			return m;
+		}
+		return null;
+	}
+	
 	@GetMapping(value="/searchPwFrm")
 	public String searchPwFrm() {
 		return "member/searchPwFrm";

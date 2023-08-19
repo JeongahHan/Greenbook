@@ -20,4 +20,9 @@ public class MemberService {
 		Member m = memberDao.selectMemberId(memberName, memberEmail);
 		return m;
 	}
+
+	public Member selectMemberPw(String memberId, String memberEmail) {
+		Member m = memberDao.selectMemberPw(memberId, memberEmail);
+		return m;
+	}
 }

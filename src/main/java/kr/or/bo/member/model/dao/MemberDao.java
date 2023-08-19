@@ -33,4 +33,13 @@ public class MemberDao {
 		}
 		return (Member)list.get(0);
 	}
+
+	public Member selectMemberPw(String memberId, String memberEmail) {
+		String query = "select * from member where member_id = ? and member_email = ?";
+		List list = jdbc.query(query, memberRowMapper, memberId, memberEmail);
+		if(list.isEmpty()) {
+			return null;
+		}
+		return (Member)list.get(0);
+	}
 }
