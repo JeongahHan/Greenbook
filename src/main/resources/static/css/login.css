@@ -81,6 +81,9 @@
 .btn-box{
     margin-top: 20px;
 }
+.btn-box>a{
+	text-decoration : none;
+}
 .btn {
     border: none;
     border-radius: 5px;
