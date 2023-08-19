@@ -62,9 +62,17 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+	//searchIdFrm.html로 이동
 	@GetMapping(value="/searchIdFrm")
 	public String searchIdFrm() {
 		return "member/searchIdFrm";
+	}
+	
+	//아이디 찾기 기능
+	@PostMapping(value="/searchId")
+	public Member searchId(String memberName, String memberEmail) {
+		Member m = memberService.selectMemberId(memberName, memberEmail);
+		return m;
 	}
 	
 	@GetMapping(value="/searchPwFrm")
