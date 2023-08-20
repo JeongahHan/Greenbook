@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>회원 관리</title>
+
+<style>
+.ajaxResult{
+border : 2px solid #ccc;
+min-height :100px; 
+}
+</style>
+
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+	<div class="page-content">
+		<div class="page-title">회원관리</div>
+		
+		
+		<input type="text" id="find" class="inputid">
+		<button class="btn bc1 bc1-1" id="jQ">회원정보조회</button>
+		<p class=" ajaxResult" id="result"></p>
+		
+		
+		
+		<table class="tbl tbl-hover">
+			<tr class="tr-3 .green">
+				<th>선택</th>
+				<th>회원번호</th>
+				<th>아이디</th>
+				<th>비밀번호</th>
+				<th>이름</th>
+				<th>전화번호</th>
+				<th>주소</th>
+				<th>가입일</th>
+				<th>회원등급</th>
+				<th>등급변경</th>
+			</tr>
+			<tr class="tr-1" th:each="m : ${list}">
+				<td><input type="checkbox" class="chk"></td>
+				<td th:text="${m.memberNo}"></td>
+				<td th:text="${m.memberId}"></td>
+				<td th:text="${m.memberPw}"></td>
+				<td th:text="${m.memberName}"></td>
+				<td th:text="${m.memberPhone}"></td>
+				<td th:text="${m.memberEmail}"></td>
+				<td th:text="${m.enrollDate}"></td>
+				<td th:switch=${m.memberLevel}>
+				<select th:case="1"class="input-form">
+						<option value="1" selected>관리자</option>
+						<option value="2">그린이</option>
+						<option value="3">블랙이</option>
+				</select>
+				<select th:case="2"class="input-form">
+						<option value="1">관리자</option>
+						<option value="2"selected>그린이</option>
+						<option value="3">블랙이</option>
+				</select>
+				<select th:case="3"class="input-form">
+						<option value="1">관리자</option>
+						<option value="2">그린이</option>
+						<option value="3" selected>블랙이</option>
+				</select>
+				</td>
+				<td>
+					<button class="btn bc1 bc1-1 changeLevel">회원등급변경</button>
+				</td>
+			</tr>
+			
+		</table>
+		
+		<button class="bc1 bs5 checkedchangeLevel">선택회원등급변경</button>
+        
+	</div>
+	<th:block th:include="common/footer"></th:block>
+	<script>
+	
+	$("#jQ").on("click",function(){
+		const memberId = $("#find").val();
+		$.ajax({
+			url : "/member/find",
+			type : "post",
+			data : {memberId : memberId},
+			dataType : "json",
+			success : function(data){
+				console.log(data);
+				$("#result").empty();
+				$("#result").append(data.memberId +"<br>");
+				$("#result").append(data.memberName +"<br>");
+				$("#result").append(data.memberPhone +"<br>");
+				$("#result").append(data.memberEmail +"<br>");
+				$("#result").append(data.memberLevel +"<br>");
+				
+				/* const tr = $("<tr>");
+				tr.addClass("tr-1");
+				const imgTd = $("<td>");
+				const img =$("<img style = 'width:100%;'>");
+				img.attr("src",data[i].thumb);
+				imgTd.append(img);
+				
+				const titleTd = $("<td>");
+				titleTd.text(data[i].mainTitle);
+				
+				const addressTd = $("<td>");
+				addressTd.text(data[i].address);
+				
+				const telTd = $("<td>");
+				telTd.text(data[i].tel);
+				
+				
+				
+				tr.append(imgTd).append(titleTd).append(addressTd).append(telTd);
+				
+				$(".busan>table").append(tr); */
+				
+				
+			}
+			
+		});
+		
+	});
+	
+	$(".checkedchangeLevel").on("click",function(){
+		const check = $(".chk:checked");
+		if(check.length == 0){
+			return;
+		}
+		const no = new Array();
+		const level = new Array();
+		
+		check.each(function(index,item){
+			const memberNo = $(item).parent().next().text();
+			const memberLevel = $(item).parent().parent().find("select").val();
+			no.push(memberNo);
+			level.push(memberLevel);
+		});
+		console.log(no);
+		console.log(level);
+		location.href="/member/checkedchangeLevel?no="+no.join("/")+"&level="+level.join("/");
+		
+	});
+	
+	
+	$(".changeLevel").on("click",function(){
+		const memberLevel = $(this).parent().prev().children().val();
+		const memberNo = $(this).parent().parent().children().eq(1).text();
+		console.log(memberLevel,memberNo);
+		location.href="/member/changeLevel?memberNo="+memberNo+"&memberLevel="+memberLevel;
+	});
+	
+	
+	</script>
+
+</body>
+</html>

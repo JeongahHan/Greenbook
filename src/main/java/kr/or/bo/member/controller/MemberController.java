@@ -1,6 +1,11 @@
 package kr.or.bo.member.controller;
-
 import javax.servlet.http.HttpSession;
+
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -117,5 +122,44 @@ public class MemberController {
 	@GetMapping(value="/joinFrm")
 	public String joinFrm() {
 		return "member/joinFrm";
+	}
+	@GetMapping(value = "/admin")
+	public String admin(Model model) {
+		List list = memberService.selectAllMember();
+		model.addAttribute("list", list);
+		return "member/admin";
+		
+	}
+	@GetMapping(value = "/changeLevel")
+	public String changeLevel(int memberNo,int memberLevel ,Model model) {
+		int result = memberService.changeLevel(memberNo,memberLevel);
+		if(result>0) {
+			return "redirect:/member/admin";
+		}else {
+			model.addAttribute("title", "등급변경실패하였습니다");
+			model.addAttribute("msg", "등급변경실패! 관리자에게 문의하세요");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/member/admin");
+			return "common/msg";
+		}
+	}
+	@GetMapping(value = "/checkedchangeLevel")
+	public String checkedchangeLevel(String no, String level ,Model model) {
+		boolean result = memberService.checkedChangeLevel(no,level);
+		if(result) { //불린형으로 논리형이라 바로 가능!!
+			return "redirect:/member/admin";
+		}else {
+			model.addAttribute("title", "등급변경실패하였습니다");
+			model.addAttribute("msg", "등급변경실패! 관리자에게 문의하세요");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/member/admin");
+			return "common/msg";
+		}
+	}
+	@ResponseBody
+	@PostMapping(value = "/find")
+	public Member find(String memberId) {
+		Member member = memberService.selectOneMember(memberId);
+		return member;
 	}
 }
