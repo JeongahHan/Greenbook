@@ -45,7 +45,7 @@ public class MemberDao {
 
 	public int updatePw(int memberNo, String memberPw) {
 		String query = "update member set member_pw = ? where member_no = ?";
-		Object[] params = {memberNo, memberPw};
+		Object[] params = {memberPw, memberNo};
 		int result = jdbc.update(query, params);
 		return result;
 	}
