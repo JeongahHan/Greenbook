@@ -4,9 +4,6 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -85,7 +82,7 @@ public class MemberController {
 		return null;
 	}
 	
-	//비밀번호 찾기.html로 이동
+	//seachPw.html로 이동
 	@GetMapping(value="/searchPwFrm")
 	public String searchPwFrm() {
 		return "member/searchPwFrm";
@@ -119,17 +116,19 @@ public class MemberController {
 		return "common/msg";
 	}
 	
+	//joinFrm.html으로 이동
 	@GetMapping(value="/joinFrm")
 	public String joinFrm() {
 		return "member/joinFrm";
 	}
+	
 	@GetMapping(value = "/admin")
 	public String admin(Model model) {
 		List list = memberService.selectAllMember();
 		model.addAttribute("list", list);
 		return "member/admin";
-		
 	}
+	
 	@GetMapping(value = "/changeLevel")
 	public String changeLevel(int memberNo,int memberLevel ,Model model) {
 		int result = memberService.changeLevel(memberNo,memberLevel);
@@ -143,6 +142,7 @@ public class MemberController {
 			return "common/msg";
 		}
 	}
+	
 	@GetMapping(value = "/checkedchangeLevel")
 	public String checkedchangeLevel(String no, String level ,Model model) {
 		boolean result = memberService.checkedChangeLevel(no,level);
@@ -156,6 +156,7 @@ public class MemberController {
 			return "common/msg";
 		}
 	}
+	
 	@ResponseBody
 	@PostMapping(value = "/find")
 	public Member find(String memberId) {

@@ -107,38 +107,59 @@
     border: none;
 }
 .bc1:hover{
-    border: 2px solid rgba(0, 90, 13, 0.9);
-    background-color: #fff;
-    color: rgba(0, 90, 13);
-    cursor: pointer;
-}
-.bc2 {
-    background-color: rgb(224, 224, 224);
-    color: rgba(0, 90, 13);
-}
-.bc2:hover {
-    border: 2px solid rgba(0, 90, 13, 0.9);
-    background-color: #fff;
-    color: rgba(0, 90, 13);
     cursor: pointer;
 }
 .all{
     font-size: 18px;
 }
 .agreement{
-    font-size: 16px;
+    font-size: 18px;
+    overflow : hidden;
 }
 .agreement>*{
     margin-top: 10px;
 }
-.agreeContent{
-    width: 98%;
-    margin: 0 auto;
-    border: 1px solid black;
-    padding: 10px;
-    margin-top: 10px;
+.use,.privacy{
+	color: rgba(0, 90, 13);
+	text-align: right;
 }
-.agreeContent>ul{
-    list-style-position: inside;
-    padding-left: 10px;
+.left{
+	float : left;
 }
+.right{
+	float : right;
+}
+
+/*모달*/
+.privacy-wrap,.use-wrap{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.agree-modal{
+	width: 500px;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 30px;
+	position: relative; 
+}
+.modal-content{
+	height: 50vh; 
+	overflow-y: auto;
+}
+.close-icon {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 30px;
+}
+.close-icon:hover {
+  cursor: pointer;
+}
+
