@@ -19,4 +19,9 @@ public class MypageController {
 		return "mypage//memberUpdateFrm";
 	}
 	
+	@GetMapping(value = "/myBoard")
+	public String myBoard() {
+		return "mypage/myBoard";
+	}
+	
 }
