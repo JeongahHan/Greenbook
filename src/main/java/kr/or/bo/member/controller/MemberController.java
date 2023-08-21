@@ -137,6 +137,18 @@ public class MemberController {
 		}
 	}
 	
+	//회원가입 -> 이메일 중복체크
+	@ResponseBody
+	@PostMapping(value="/checkEmail")
+	public String checkEmail(String memberEmail) {
+		Member m = memberService.checkEmail(memberEmail);
+		if(m == null) {
+			return "0";
+		}else {
+			return "1";
+		}
+	}
+	
 	//회원가입 -> 이메일 인증코드 보내기
 	@ResponseBody
 	@PostMapping(value="/auth")

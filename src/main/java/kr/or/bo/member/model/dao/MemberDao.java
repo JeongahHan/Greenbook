@@ -89,4 +89,13 @@ public class MemberDao {
 		int result = jdbc.update(query, params);
 		return result;
 	}
+
+	public Member checkEmail(String memberEmail) {
+		String query = "select * from member where member_email = ?";
+		List list = jdbc.query(query, memberRowMapper, memberEmail);
+		if(list.isEmpty()) {
+			return null;
+		}
+		return (Member)list.get(0);
+	}
 }
