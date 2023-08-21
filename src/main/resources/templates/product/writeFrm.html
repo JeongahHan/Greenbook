@@ -51,7 +51,7 @@
 								<select class="product-condition input-form">
 									<option value="5">매우 좋음</option>
 									<option value="4">좋음</option>
-									<option value="3">보통</option>
+									<option value="3" selected>보통</option>
 									<option value="2">나쁨</option>
 									<option value="1">매우 나쁨</option>
 								</select>
@@ -80,6 +80,16 @@
 								<textarea name="photoContent" class="input-form" placeholder="내용을 입력해주세요."></textarea>
 							</td>
 						</tr>
+						
+						<!-- 
+						<tr class="tr-1">
+							<th class="td-3">작성자</th>
+							<td>
+								<span th:text="${session.m.memberId}"></span>
+								<input type="hidden" name="productWriter" th:value="${session.m.memberId}">
+							</td>
+						</tr>
+						 -->
 						
 						<tr class="tr-1">
 							<th colspan="4">
