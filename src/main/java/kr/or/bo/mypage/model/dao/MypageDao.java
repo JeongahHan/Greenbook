@@ -15,9 +15,12 @@ public class MypageDao {
 	//회원정보 수정
 	public int updateMember(Member member) {
 		// TODO Auto-generated method stub
-		int result = 0;
-		String query= "UPDATE MEMBER SET MEMBER_PW=? , MEMBER_PHONE=? , MEMBER_EMAIL=? WHERE MEMBER_ID = ?";
 		
+		//변수 총 4개
+		//비번, 휴대폰, 이메일 3개 수정 아이디받은곳에서
+		String query= "UPDATE MEMBER SET MEMBER_PW=? , MEMBER_PHONE=? , MEMBER_EMAIL=? WHERE MEMBER_ID = ?";
+		Object[] params = {member.getMemberPw(), member.getMemberPhone(), member.getMemberEmail(), member.getMemberId()};
+		int result = jdbc.update(query,params);
 		
 		return result;
 	}
