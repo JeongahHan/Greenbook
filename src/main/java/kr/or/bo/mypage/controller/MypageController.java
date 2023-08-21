@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.mypage.model.service.MypageService;
 
 @Controller
@@ -30,9 +31,12 @@ public class MypageController {
 		return "mypage/myComment";
 	}
 	@PostMapping(value = "/update")
-	public String update() {
+	public String update(Member member) {
+		// disabled 때문인거 같은데 멤버 비밀번호, 휴대폰, 이메일만 넘겨받음
+		System.out.println(member);
+		int result = mypageService.updateMember(member);
 		
-		return "mypage/myComment";//에러땜에 임시로 여기로감
+		return "mypage/memberUpdateFrm";//에러땜에 임시로 여기로감
 	}
 	
 }
