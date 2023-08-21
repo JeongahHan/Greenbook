@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.or.bo.EmailSender;
 import kr.or.bo.member.model.service.MemberService;
 import kr.or.bo.member.model.vo.Member;
 
@@ -20,6 +21,8 @@ import kr.or.bo.member.model.vo.Member;
 public class MemberController {
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private EmailSender emailSender;
 	
 	//loginFrm.html로 이동
 	@GetMapping(value="/loginFrm")
@@ -122,7 +125,7 @@ public class MemberController {
 		return "member/joinFrm";
 	}
 	
-	//아이디 중복체크
+	//회원가입 -> 아이디 중복체크
 	@ResponseBody
 	@PostMapping(value="/checkId")
 	public String checkId(String memberId) {
@@ -132,6 +135,31 @@ public class MemberController {
 		}else {
 			return "1";
 		}
+	}
+	
+	//회원가입 -> 이메일 인증코드 보내기
+	@ResponseBody
+	@PostMapping(value="/auth")
+	public String authMail(String memberEmail) {
+		String authCode = emailSender.authMail(memberEmail);
+		return authCode;
+	}
+	
+	@PostMapping(value="/signup")
+	public String signup(Member member, Model model) {
+		int result = memberService.insertMember(member);
+		if(result>0) {
+			model.addAttribute("title", "회원가입 성공");
+			model.addAttribute("msg", "신규 회원 가입을 축하합니다.");
+			model.addAttribute("icon", "success");
+			model.addAttribute("loc", "/");
+		}else {
+			model.addAttribute("title", "회원가입 실패");
+			model.addAttribute("msg", "정보 입력 확인 부탁 드립니다.");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/");
+		}
+		return "common/msg";
 	}
 	
 	@GetMapping(value = "/admin")

@@ -48,6 +48,48 @@
 	padding-top: 10px;
 }
 
+
+.tbl {
+    width: 100%;
+    border-spacing: 0px;
+    border-collapse: collapse;
+    margin-top: 10px;
+  	margin-left: 30px;
+}
+
+
+.tbl th, td {
+	padding: 1rem;
+	text-align: center;
+}
+
+.tbl .td-3 {
+  background-color: rgba(57, 62, 70, 0.1);
+}
+
+.productWrite th{
+	border: 1px solid #ccc;
+}
+
+.productWrite td{
+	border: 1px solid #ccc;
+}
+
+.input-form {
+    width: 100%;
+    display: block;
+    padding: 0.8rem;
+    background-color: #fff;
+    outline: none;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+textarea.input-form {
+    resize: none;
+    min-height: 400px;
+}
+
 /*
 
 /* tbl, tr, td, th 
