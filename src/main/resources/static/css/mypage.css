@@ -70,6 +70,7 @@
 
 
 /* 내가 쓴 게시물 */
+/*  */
 .mypage-content-wrap{
 	width: 1000px;
 	float: left;
@@ -115,6 +116,26 @@
 }
 
 
+/* 나의 댓글 css */
+.myComment-wrap{
+    overflow: hidden;
+}
+.myComment{
+    width: 700px;
+    float: left;
+}
+.myComment p{
+    padding: 10px 10px;
+}
+.myComment-date{
+    text-align: right;
+}
+.comment-imgBox{
+    /* 댓글작성한 게시글의 이미지박스 선택자 */
+    width: 300px;
+    background-color: darkorange;
+    float: left;
+}
 
 
 
