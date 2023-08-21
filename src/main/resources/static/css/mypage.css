@@ -133,8 +133,13 @@
 .comment-imgBox{
     /* 댓글작성한 게시글의 이미지박스 선택자 */
     width: 300px;
-    background-color: darkorange;
+    height: 300px;
+    
+    /* background-color: darkorange; */
     float: left;
+}
+.comment-imgBox img{
+    height: 100%;
 }
 
 
