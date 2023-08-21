@@ -61,7 +61,7 @@
                 		<tr>
                 			<th class="td-3">썸네일</th>
 							<td colspan="6">
-							<input type="file" name="upfile">
+							<input type="file" name="imageFile" accpt=".jpg, .png, .jpeg">
 							</td>
                 		</tr>
                 		
@@ -81,7 +81,6 @@
 							</td>
 						</tr>
 						
-						<!-- 
 						<tr class="tr-1">
 							<th class="td-3">작성자</th>
 							<td>
@@ -89,7 +88,6 @@
 								<input type="hidden" name="productWriter" th:value="${session.m.memberId}">
 							</td>
 						</tr>
-						 -->
 						
 						<tr class="tr-1">
 							<th colspan="4">
@@ -108,7 +106,17 @@
 
 	<script>
 	
-	
+		$("[name=imageFile]").on("change",function(){
+			if(this.files.length != 0 && this.files[0] != 0){
+				const reader = new FileReader();
+				reader.readAsDataURL(this.files[0]);
+				reader.onload = function(e){
+					$("#img-view").attr("src", e.target.result);
+				}
+			}else {
+				$("#img-view").attr("src","");
+			}
+		});
 	
 	</script>
 

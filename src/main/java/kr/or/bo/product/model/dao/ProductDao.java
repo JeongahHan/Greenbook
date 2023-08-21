@@ -17,8 +17,10 @@ public class ProductDao {
 	private ProductRowMapper productRowmapper;
 
 	public int insertPhoto(Product p) {
-		String query = "INSERT INTO PRODUCT_BOARD VALUES (PRODUCT_BOARD_SEQ.NEXTVAL, ?, ?, ?, TO_CHAR(SYSDATE, 'YYYY-MM-DD'), ?, ?, ?, 0, 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD'), ?)";
-		return 0;
+		String query = "INSERT INTO PRODUCT_BOARD VALUES (PRODUCT_BOARD_SEQ.NEXTVAL, ?, ?, ?, TO_CHAR(SYSDATE, 'YYYY-MM-DD'), ?, ?, ?, ?, DEFAULT)";
+		Object[] params = {p.getProductBoardTitle(), p.getProductBoardContent(), p.getProductBoardWriter(), p.getProductPrice(), p.getProductAuthor(), p.getProductCondition(), p.getProductSellCheck()};
+		int result = jdbc.update(query, params);
+		return result;
 	}
 	
 }
