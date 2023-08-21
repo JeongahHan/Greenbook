@@ -230,7 +230,7 @@
 
 			<div class="main-bottom">
 				<div>
-					<a href="/product/writeFrm" class="btn write">글쓰기</a> <!-- th:if="${session.m != null}" 추가 예정 -->
+					<a th:if="${session.m != null && session.m.memberLevel != 3}" href="/product/writeFrm" class="btn write">글쓰기</a> <!-- th:if="${session.m != null}" 추가 예정 -->
 				</div>
 				
 			</div>
