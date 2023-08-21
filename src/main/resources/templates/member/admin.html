@@ -9,6 +9,7 @@
 border : 2px solid #ccc;
 min-height :100px; 
 }
+
 </style>
 
 </head>
@@ -86,40 +87,59 @@ min-height :100px;
 			success : function(data){
 				console.log(data);
 				$("#result").empty();
-				$("#result").append(data.memberId +"<br>");
-				$("#result").append(data.memberName +"<br>");
-				$("#result").append(data.memberPhone +"<br>");
-				$("#result").append(data.memberEmail +"<br>");
-				$("#result").append(data.memberLevel +"<br>");
+				//$("#result").append(data.memberId +"<br>");
+				//$("#result").append(data.memberName +"<br>");
+				//$("#result").append(data.memberPhone +"<br>");
+				//$("#result").append(data.memberEmail +"<br>");
+				//$("#result").append(data.enrollDate +"<br>");
+				//$("#result").append(data.memberLevel +"<br>"); 
 				
-				/* const tr = $("<tr>");
-				tr.addClass("tr-1");
-				const imgTd = $("<td>");
-				const img =$("<img style = 'width:100%;'>");
-				img.attr("src",data[i].thumb);
-				imgTd.append(img);
-				
-				const titleTd = $("<td>");
-				titleTd.text(data[i].mainTitle);
-				
-				const addressTd = $("<td>");
-				addressTd.text(data[i].address);
-				
-				const telTd = $("<td>");
-				telTd.text(data[i].tel);
+		   $(".tbl").append(
+	         $("<tr></tr>")
+	         .append($("<td></td>").append($("<input></input>".attr("type","checkbox").attr("class","chk")))
+	         .append($("<td></td>").text(data.memberId))
+             .append($("<td></td>").text(data.memberName))
+             .append($("<td></td>").text(data.memberPhone))
+             .append($("<td></td>").text(data.memberEmail))
+             .append($("<td></td>").text(data.enrollDate))
+             .append($("<td></td>").text(data.memberLevel))
+             .append($("<td></td>").append($("<button></button>").attr("class","btn bc1 bc1-1 changeLevel").attr("value","회원등급변경") ))
+	     );
 				
 				
-				
-				tr.append(imgTd).append(titleTd).append(addressTd).append(telTd);
-				
-				$(".busan>table").append(tr); */
-				
-				
-			}
+		}
 			
 		});
 		
+	
 	});
+	
+	
+	
+	
+	//$("#result").append("'<tr class="tr-1">''<td><input type="checkbox" class="chk"></td>''<td value = "'+data.memberId+'"></td>''<td value = "'+data.memberName+'"></td>''<td value = "'+data.memberPhone+'"></td>''<td value = "'+data.memberEmail+'"></td>''<td value = "'+data.enrollDate+'"></td>''<td value = "'+data.memberLevel+'"></td>''<td><button class="btn bc1 bc1-1 changeLevel">회원등급변경</button></td></tr>'");
+				//$("#result").append("tbl");
+	
+	/*var memberinfo = data;
+	var tr = '<thead>'+
+	         '<tr>' +
+	         '<th>아이디</th>'+
+	         '<th>이름</th>'+
+	         '<th>전화번호</th>'+
+	         '<th>이메일</th>'+
+	         '<th>가입일</th>'+
+	         '<th>회원등급</th>'+
+	         '<th>변경</th>'+
+	        '</tr>'+
+	        '</tread>';
+	        
+	  $(memberinfo, function(){
+		  tr += '<td>' + memberinfo.memberId + '</td><td>' + memberinfo.memberName +'</td><td>'+ memberinfo.memberPhone +'</td><td>'+ memberinfo.memberEmail +'</td><td>'+ memberinfo.enrollDate +'</td><td>'+ memberLevel +'</td></tr>';  
+	  });
+	  
+	  $("#memberinfo").append(tr);
+	    */     
+
 	
 	$(".checkedchangeLevel").on("click",function(){
 		const check = $(".chk:checked");

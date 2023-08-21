@@ -296,6 +296,10 @@ footer > .footer-content > .footer-detail {
   background-color: rgba(57, 62, 70, 0.15);
 }
 
+.slideTogglebox{
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
 /* input 디자인 */
 .inputid{
   width: 200px;
