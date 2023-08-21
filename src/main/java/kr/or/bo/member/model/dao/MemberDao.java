@@ -25,8 +25,6 @@ public class MemberDao {
 		return (Member)list.get(0);
 	}
 	
-
-
 	public List selectAllMember() {
 		String query = "select * from MEMBER order by 1";
 		List list = jdbc.query(query, memberRowMapper);

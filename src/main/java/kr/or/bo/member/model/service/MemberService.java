@@ -24,6 +24,7 @@ public class MemberService {
 		List list = memberDao.selectAllMember();
 		return list;
 	}
+	
 	@Transactional
 	public int changeLevel(int memberNo, int memberLevel) {
 		return memberDao.changeLevel(memberNo, memberLevel);
