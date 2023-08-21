@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>중고거래게시판</title>
 <link rel="stylesheet" href="/css/productBoard.css">
+<link rel="stylesheet" href="/css/productDefault.css">
 <script src="/javascript/jquery-3.7.0.js"></script>
 </head>
 <body>
@@ -228,7 +229,14 @@
             </div>
 
 			<div class="main-bottom">
-				<a href="/product/writeFrm" class="">글쓰기</a> <!-- th:if="${session.m != null}" 추가 예정 -->
+				<div>
+					<a href="/product/writeFrm" class="btn write">글쓰기</a> <!-- th:if="${session.m != null}" 추가 예정 -->
+				</div>
+				
+			</div>
+			
+			<div>
+				<div class="page-btn">페이지 버튼</div>
 			</div>
 
         </div>
