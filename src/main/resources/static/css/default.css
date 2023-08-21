@@ -182,8 +182,8 @@ footer > .footer-content > .footer-detail {
     font-size: 35px;
     padding-right:15px;
 }
-.headericon:last-child{
-    padding-right:0px;
+#mail-icon{
+	padding-right:0px;
 }
 .letter-count{
     font-size: 19px;
@@ -250,12 +250,17 @@ footer > .footer-content > .footer-detail {
     opacity: 1;
     visibility: visible;
 }
+
 .sub-navi>li:first-child{
     padding-top: 15px;
 }
 .sub-navi a:last-child{
     padding-bottom: 15px;
 }
+
+
+
+
 
 
 /*이미지*/
