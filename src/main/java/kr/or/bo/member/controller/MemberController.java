@@ -122,6 +122,18 @@ public class MemberController {
 		return "member/joinFrm";
 	}
 	
+	//아이디 중복체크
+	@ResponseBody
+	@GetMapping(value="/checkId")
+	public String checkId(String memberId) {
+		Member m = memberService.checkId(memberId);
+		if(m == null) {
+			return "0";
+		}else {
+			return "1";
+		}
+	}
+	
 	@GetMapping(value = "/admin")
 	public String admin(Model model) {
 		List list = memberService.selectAllMember();

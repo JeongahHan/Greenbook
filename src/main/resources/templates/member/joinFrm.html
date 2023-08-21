@@ -18,9 +18,6 @@
                 <span class="red">*</span><span>필수 입력 사항</span>
                 <hr>
             </div>
-            <form name="checkIdFrm" action="/member/checkId" method="post"> 
-                <input type="hidden" name="checkId">
-            </form>
             <form action="/member/signup" method="post" id="signupFrm" autocomplete="off">
                 <table class="tbl">
                     <tr>
@@ -29,7 +26,7 @@
                         </th>
                         <td>
                             <div class="id-wrap">
-                                <input type="text" name="memberId" id="memberId" class="input-form" placeholder="4글자 이상, 영어 소문자+숫자 입력 가능" required>
+                                <input type="text" name="memberId" id="memberId" class="input-form" placeholder="4~8글자, 영어 대+소문자+숫자 입력 가능" required>
                                 <button type="button" id="idChkBtn" class="btn bc1">중복체크</button>					
                             </div>
                         </td>
@@ -265,8 +262,51 @@
     	</div>
 	</div>
     <script>
-    	//아이디 유효성 검사
-    	//아이디 중복 검사
+  		//아이디 유효성 검사 & 중복체크
+	    $("#memberId").on("keyup",function(){
+			const memberId = $(this).val();
+			//정규표현식을 통한 유효성 검사
+			const idReg = /^[a-zA-Z0-9]{4,8}$/;
+			if(idReg.test(memberId)){
+				//유효성이 만족되면 -> DB에서 중복체크(ajax)
+				$.ajax({
+					url : "/member/checkId",
+					type : "post",
+					data : {memberId : memberId},
+					success : function(data){
+						if(data == "0"){
+							$("#ajaxCheckId").text("사용가능합니다.");
+							$("#ajaxCheckId").css("color","blue");
+							$("#memberId").css("border","1px solid blue");
+						}else{
+							$("#ajaxCheckId").text("이미 사용중인 아이디입니다.");
+							$("#ajaxCheckId").css("color","red");
+							$("#memberId").css("border","1px solid red");	
+						}
+					}
+				});
+			}else{
+				$("#ajaxCheckId").text("아이디는 영어/숫자로 4~8글자입니다.");
+				$("#ajaxCheckId").css("color","red");
+				$(this).css("border","1px solid red");
+			}
+		});
+		$("#idChkBtn").on("click",function(){
+			const memberIdInput = $("#memberId");
+			const memberId = memberIdInput.val();
+			$("[name=checkId]").val(memberId);
+			//숨겨놓은 form태그를 바로 submit하면 현재 브라우저가 새로 로드됨(기존 입력한 데이터가 모두 사라짐)
+			//새창을 띄우고, 새창과 숨겨놓은 form태그를 연결해서 submit 수행(새창에서 페이지가 이동)
+			//첫번째 매개변수는 새창에서 띄울 페이지(아무페이지도 안띄움)
+			//두번째 매개변수 : 새창이름
+			//세번째 매개변수 : 새창의 조건
+			window.open("","checkIdWindow","left=700px,top=300px,width=300px,height=200px,menubar=no,status=no,scrollbars=yes");
+			//새로뜬 빈창과 숨겨둔 form을 연결
+			$("[name=checkIdFrm]").attr("target","checkIdWindow");
+			$("[name=checkIdFrm]").submit();
+		});
+    	
+    	
     	//비밀번호, 비밀번호 확인 일치
     	//이메일 유효성 검사
     	//이메일 인증코드 검사

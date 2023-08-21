@@ -19,6 +19,8 @@ public class MemberService {
 		Member m = memberDao.selectOneMember(memberId, memberPw);
 		return m;
 	}
+	
+
 
 	public List selectAllMember() {
 		List list = memberDao.selectAllMember();
@@ -65,6 +67,11 @@ public class MemberService {
 	public int updatePw(int memberNo, String memberPw) {
 		int result = memberDao.updatePw(memberNo, memberPw);
 		return result;
+	}
+
+	public Member checkId(String memberId) {
+		Member m = memberDao.checkId(memberId);
+		return m;
 	}
 
 }
