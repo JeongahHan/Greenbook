@@ -73,5 +73,11 @@ public class MemberService {
 		Member m = memberDao.checkId(memberId);
 		return m;
 	}
+	
+	@Transactional
+	public int insertMember(Member member) {
+		int result = memberDao.insertMember(member);
+		return result;
+	}
 
 }
