@@ -243,21 +243,20 @@ footer > .footer-content > .footer-detail {
     position: absolute;
     min-width: 200px;
     box-sizing: border-box;
-    transition: .3s ease;
 }
-.service:hover>.sub-navi{
+.service:hover .sub-navi{
     display:block;
-    opacity: 1;
-    visibility: visible;
 }
 
 .sub-navi>li:first-child{
     padding-top: 15px;
 }
-.sub-navi a:last-child{
+.sub-navi>li:last-child>a{
     padding-bottom: 15px;
 }
-
+.sub-navi a{
+	padding-bottom:20px;
+}
 
 
 
