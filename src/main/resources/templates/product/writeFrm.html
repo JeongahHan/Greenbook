@@ -81,13 +81,7 @@
 							</td>
 						</tr>
 						
-						<tr class="tr-1">
-							<th class="td-3">작성자</th>
-							<td>
-								<span th:text="${session.m.memberId}"></span>
-								<input type="hidden" name="productWriter" th:value="${session.m.memberId}">
-							</td>
-						</tr>
+						<input type="hidden" name="productWriter" th:value="${session.m.memberId}">
 						
 						<tr class="tr-1">
 							<th colspan="4">
