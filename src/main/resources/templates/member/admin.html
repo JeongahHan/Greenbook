@@ -3,17 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 관리</title>
-
-<style>
-.ajaxResult{
-border : 2px solid #ccc;
-min-height :100px; 
-}
-
-</style>
-
 </head>
 <body>
+
 	<th:block th:include="common/header"></th:block>
 	<div class="page-content">
 		<div class="page-title">회원관리</div>
@@ -21,7 +13,7 @@ min-height :100px;
 		
 		<input type="text" id="find" class="inputid">
 		<button class="btn bc1 bc1-1" id="jQ">회원정보조회</button>
-		<p class=" ajaxResult" id="result"></p>
+		<table class=" ajaxResult" id="result"></table>
 		
 		
 		
@@ -75,9 +67,14 @@ min-height :100px;
         
 	</div>
 	<th:block th:include="common/footer"></th:block>
+	
+	
+	
 	<script>
 	
 	$("#jQ").on("click",function(){
+		
+		
 		const memberId = $("#find").val();
 		$.ajax({
 			url : "/member/find",
@@ -86,25 +83,34 @@ min-height :100px;
 			dataType : "json",
 			success : function(data){
 				console.log(data);
+				/*
 				$("#result").empty();
-				//$("#result").append(data.memberId +"<br>");
-				//$("#result").append(data.memberName +"<br>");
-				//$("#result").append(data.memberPhone +"<br>");
-				//$("#result").append(data.memberEmail +"<br>");
-				//$("#result").append(data.enrollDate +"<br>");
-				//$("#result").append(data.memberLevel +"<br>"); 
+				$("#result").append(data.memberId +"<br>");
+				$("#result").append(data.memberName +"<br>");
+			    $("#result").append(data.memberPhone +"<br>");
+				$("#result").append(data.memberEmail +"<br>");
+				$("#result").append(data.enrollDate +"<br>");
+				$("#result").append(data.memberLevel +"<br>"); 
+				*/
 				
-		   $(".tbl").append(
-	         $("<tr></tr>")
-	         .append($("<td></td>").append($("<input></input>".attr("type","checkbox").attr("class","chk")))
-	         .append($("<td></td>").text(data.memberId))
-             .append($("<td></td>").text(data.memberName))
-             .append($("<td></td>").text(data.memberPhone))
-             .append($("<td></td>").text(data.memberEmail))
-             .append($("<td></td>").text(data.enrollDate))
-             .append($("<td></td>").text(data.memberLevel))
-             .append($("<td></td>").append($("<button></button>").attr("class","btn bc1 bc1-1 changeLevel").attr("value","회원등급변경") ))
-	     );
+				var Add = 
+				 "<table class='tbl'><tr class='tr-1'>"+
+				 "<td><input type='checkbox' class='chk'></td>"+
+				 "<td>"+data.memberId+"</td>"+
+				 "<td>"+data.memberName+"</td>"+
+				 "<td>"+data.memberPhone+"</td>"+
+				 "<td>"+data.memberEmail+"</td>"+
+				 "<td>"+data.enrollDate+"</td>"+
+				 
+				 //"<td switch = data.memberLevel><select class='input-form'><option value='1' <c:if test='${data.memberLevel eq '1'}'>selected</c:if>>관리자</option><option value='2' <c:if test='${data.memberLevel eq '2'}'>selected</c:if>>그린이</option><option value='3' <c:if test='${data.memberLevel eq '3'}'>selected</c:if>>블랙이</option></select>"+
+				
+				 "<td switch = 'data.memberLevel'><select case= 'data.memberLevel' class='input-form'><option value='1' selected>관리자</option><option value='2'>그린이</option><option value='3'>블랙이</option></select></td>"+
+		
+		        "<td><button class='btn bc1 bc1-1 changeLevel'>회원등급변경</button></td>"+
+				 "</tr></table>";
+				$("#result").append(Add);
+
+		  
 				
 				
 		}
@@ -113,7 +119,21 @@ min-height :100px;
 		
 	
 	});
-	
+		
+		
+
+
+		/* $(".tbl").append(
+		         $("<tr></tr>")
+		         .append($("<td></td>").append($("<input></input>".attr("type","checkbox").attr("class","chk")))
+		         .append($("<td></td>").text(data.memberId))
+	             .append($("<td></td>").text(data.memberName))
+	             .append($("<td></td>").text(data.memberPhone))
+	             .append($("<td></td>").text(data.memberEmail))
+	             .append($("<td></td>").text(data.enrollDate))
+	             .append($("<td></td>").text(data.memberLevel))
+	             .append($("<td></td>").append($("<button></button>").attr("class","btn bc1 bc1-1 changeLevel").attr("value","회원등급변경") ))
+		     ); */
 	
 	
 	
