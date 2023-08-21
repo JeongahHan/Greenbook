@@ -124,7 +124,7 @@ public class MemberController {
 	
 	//아이디 중복체크
 	@ResponseBody
-	@GetMapping(value="/checkId")
+	@PostMapping(value="/checkId")
 	public String checkId(String memberId) {
 		Member m = memberService.checkId(memberId);
 		if(m == null) {
