@@ -14,10 +14,8 @@
 
 <div class="box">
 	<div class="box-detail">
-		<th:block th:if="${session.m != null}"> <!-- 정아님 로그아웃 기능 확인을 위해 null이 아닌으로 수정하였습니다. ㅠㅠ -->
-			<a href="#" class="btn bc1" id="adminMenuButton">관리자메뉴</a>		<!--관리자메뉴-->
-			<a href="/member/logout" class="btn bc1" id="logoutMenuButton">로그아웃</a>	
-		</th:block>
+			<a th:if="${session.m !=null && session.m.memberLevel == 1}" href="#" id="adminMenuButton">관리자메뉴</a>
+			<a th:if="${session.m !=null}" href="/member/logout" id="logoutMenuButton">로그아웃</a>	
 	</div>
 </div>
 
@@ -58,8 +56,7 @@
 					<ul class="sub-navi">
 						<li><a href="#"><span>Company</span></a></li>
 						<li><a href="/FnA/FnA"><span>자주묻는질문</span></a></li>
-						<li><a href="#"><span>Contact</span></a></li>
-						<li><a href="/mypage/memberUpdateFrm"><span>마이페이지</span></a></li><!-- 추후 삭제 -->
+						<li><a href="/mypage/memberUpdateFrm"><span>Contact</span></a></li> <!-- 마이페이지 연결되어있음 -->
 					</ul>
 			</li>
 		</ul>

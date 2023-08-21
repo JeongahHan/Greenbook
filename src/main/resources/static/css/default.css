@@ -65,8 +65,16 @@ a {
 #adminMenuButton{
     margin-right: 10px;
 }
+#adminMenuButton:hover{
+    color: #005A0D;
+    border-bottom:1px solid #005A0D;
+}
 #logoutMenuButton{
     margin-right: 10px;
+}
+#logoutMenuButton:hover{
+    color: #005A0D;
+    border-bottom:1px solid #005A0D;
 }
 
 header {
@@ -252,7 +260,7 @@ footer > .footer-content > .footer-detail {
     padding-top: 15px;
 }
 .sub-navi>li:last-child>a{
-    padding-bottom: 15px;
+    padding-bottom: 25px;
 }
 .sub-navi a{
 	padding-bottom:20px;
