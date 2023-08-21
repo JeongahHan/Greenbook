@@ -10,11 +10,11 @@
 </head>
 <body>
 	
-	<div>헤더</div>
+	<th:block th:include="common/header"></th:block>
     <div class="page-content">
         <div class="page-title">마이페이지</div>
         <th:block th:include="mypage/mypageMenu"></th:block>
-        <div class="myComment-wrap">
+        <div class="mypage-content-wrap">
 	        <form action="#" class="updateForm">
 	        	<div class="user-box">
 	        		<span class="material-icons">person</span>
@@ -63,7 +63,7 @@
         </div>
 
     </div>
-    <div>풋터</div>
+	<th:block th:include="common/footer"></th:block>
 
 </body>
 </html>
