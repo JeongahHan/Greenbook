@@ -1,5 +1,8 @@
 package kr.or.bo.product.controller;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -40,8 +43,21 @@ public class ProductController {
 	public String write(Product p, MultipartFile imageFile, Model model) {
 		String savepath = root+"product/";
 		String filepath = fileUtil.getFilepath(savepath, imageFile.getOriginalFilename());
+		p.setFilepath(filepath);
+		File upfile = new File(savepath+filepath);
 		
-		return root;
+		try {
+			imageFile.transferTo(upfile);
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		int result = productService.insertPhoto(p);
+		return "common/msg";
 		
 	}
 	
