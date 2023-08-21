@@ -24,7 +24,7 @@ public class MypageController {
 	@GetMapping(value = "/memberUpdateFrm")
 	public String memberUpdateFrm () {
 		
-		return "mypage/memberUpdateFrm";
+		return "mypage/myBoard";
 	}
 	
 	@GetMapping(value = "/myBoard")
@@ -47,6 +47,11 @@ public class MypageController {
 		System.out.println(m);
 		
 		return "mypage/memberUpdateFrm";//에러땜에 임시로 여기로감
+	}
+	
+	@GetMapping(value = "/myWishList")
+	public String myWishList() {
+		return "mypage/myWishList";
 	}
 	
 }
