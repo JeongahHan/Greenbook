@@ -121,6 +121,7 @@
 .myComment-wrap{
     /* 오버프롤히든 없어도 될듯? */
     /* overflow: hidden; */
+    /* width: 1000px; */
 }
 .myComment-one{
     overflow: hidden;
