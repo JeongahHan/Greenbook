@@ -25,8 +25,6 @@ public class MemberDao {
 		return (Member)list.get(0);
 	}
 	
-
-
 	public List selectAllMember() {
 		String query = "select * from MEMBER order by 1";
 		List list = jdbc.query(query, memberRowMapper);
@@ -88,5 +86,14 @@ public class MemberDao {
 		Object[] params = {member.getMemberId(),member.getMemberPw(),member.getMemberName(),member.getMemberPhone(),member.getMemberEmail()};
 		int result = jdbc.update(query, params);
 		return result;
+	}
+
+	public Member checkEmail(String memberEmail) {
+		String query = "select * from member where member_email = ?";
+		List list = jdbc.query(query, memberRowMapper, memberEmail);
+		if(list.isEmpty()) {
+			return null;
+		}
+		return (Member)list.get(0);
 	}
 }
