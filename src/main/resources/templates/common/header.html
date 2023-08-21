@@ -39,14 +39,9 @@
     </div>
     
 	<div class="header-link">
-		<!-- 세션 로그인 안되어있을때 -->
-		<th:block th:if="${session.m == null}">
-
-			<!-- 정아님,,로그인 기능 확인을 위해 a태그를 제가 임의로 추가하였습니다 ㅠㅠ -->
-			<a href="/member/loginFrm"><span class="material-icons headericon">person_outline</span></a> <!-- 로그인-->
-			<span class="material-icons headericon">favorite_border</span><!--찜-->	
-			<span class="material-icons headericon">mail_outline</span> <!--쪽지-->							
-		</th:block>
+		<a href="/member/loginFrm"><span class="material-icons headericon">person_outline</span></a> <!-- 로그인-->
+		<a href="#"><span class="material-icons headericon">favorite_border</span></a><!--찜-->	
+		<a href="#"><span class="material-icons headericon" id="mail-icon">mail_outline</span></a> <!--쪽지-->							
 	</div>
 	<p class="letter-count">0</p><!--숫자는 안읽은 쪽지 개수 받아오려고함-->
 </header>
@@ -59,12 +54,12 @@
 			<li><a href="#"><span>요즘 이 책</span></a></li>
 			<li><a href="#"><span>자유게시판</span></a></li>
 			<li class="service">
-				<span>서비스</span>
+				<a><span>서비스</span></a>
 					<ul class="sub-navi">
 						<li><a href="#"><span>Company</span></a></li>
 						<li><a href="/FnA/FnA"><span>자주묻는질문</span></a></li>
 						<li><a href="#"><span>Contact</span></a></li>
-						<li><a href="/mypage/memberUpdateFrm">마이페이지</a></li>
+						<li><a href="/mypage/memberUpdateFrm"><span>마이페이지</span></a></li><!-- 추후 삭제 -->
 					</ul>
 			</li>
 		</ul>
