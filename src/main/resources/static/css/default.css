@@ -46,6 +46,7 @@ body {
 }
 
 
+
 /* 기본화면 레이아웃 (헤더 푸터)*/
 a {
     text-decoration: none;
@@ -72,7 +73,7 @@ header {
     padding-top:20px;
     padding-right: 80px;
     padding-left: 80px;
-    padding-bottom:40px;
+    padding-bottom:20px;
     display: flex;
     min-width: 1050px;
     width: 1050px;
@@ -102,18 +103,18 @@ footer > .footer-content > .footer-detail {
     font-family: ns-light;
     font-weight: 580;
     }
-    
+
 .page-content {
     width: 1200px;
     margin: 30px auto;
     margin-bottom: 10px;
     flex-grow: 1;
-  }
-.page-title {
+    }
+.page-image {
     font-family: ns-bold;
     padding: 20px 0px;
     font-size: 1.5rem;
-  }
+    }
 
 
 
@@ -128,8 +129,6 @@ footer > .footer-content > .footer-detail {
     font-size: 42px;
     line-height: 61px;
 }
-
-
 .search{
     width:55%;
 }
@@ -183,6 +182,142 @@ footer > .footer-content > .footer-detail {
     font-size: 35px;
     padding-right:15px;
 }
+.headericon:last-child{
+    padding-right:0px;
+}
+.letter-count{
+    font-size: 19px;
+}
+
+
+
+/*카테고리 메뉴 디자인*/
+.menu{
+    width: 1050px;
+    margin: 0 auto;
+}
+.navi{
+    overflow: hidden;
+    margin: 0;
+    padding:0;
+}
+.navi>li{
+    float: left;
+}
+.navi>li{
+    list-style-type: none;
+    width: calc(100% / 4 - 2px);
+}
+
+.navi li>a{
+    display: block;
+    height: 40px;
+    line-height:40px;
+    text-align: center;
+    text-decoration: none;
+
+    border:1px solid #fff;
+    background-color: #fff;
+    color:rgb(51, 51, 51);
+    font-size: 17px;
+
+    cursor: pointer;
+}
+
+.navi li>a>span:hover{
+    color: #005A0D;
+    border-bottom:1px solid #005A0D;
+}
+
+
+
+/*서브메뉴*/
+
+.sub-navi>li{
+    list-style-type: none;
+    width: calc(100% - 2px);
+}
+.sub-navi{
+    display:none;
+    margin-left: 31.25px;
+    position: absolute;
+    min-width: 200px;
+    box-sizing: border-box;
+    transition: .3s ease;
+}
+.service:hover>.sub-navi{
+    display:block;
+    opacity: 1;
+    visibility: visible;
+}
+.sub-navi>li:first-child{
+    padding-top: 15px;
+}
+.sub-navi a:last-child{
+    padding-bottom: 15px;
+}
+
+
+/*이미지*/
+#main-page-content{
+    margin: 0;
+}
+
+.main-page-image{
+    min-width: 100vw;
+    height: 700px;
+    margin-top:25px;
+    padding:0;
+}
+.main-page-image>img{
+    width: 100%;
+    height: 700px;
+}
+
+.main-text{
+    transform: translate(-25%,-210%);
+}
+.main-text>p{
+    font-size: 42px;
+    line-height: 41px;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+
+
+/*이 상품 어때요?*/
+.page-content2{
+    margin: 0 auto;
+    padding-top: 250px;
+    padding-bottom: 100px;
+    text-align: center;
+}
+.page-main-like-text{
+    padding-bottom: 50px;
+}
+.page-main-like-text>p:first-child{
+    color:rgb(51, 51, 51);
+    font-size: 35px;
+    line-height: 1.15;
+    letter-spacing: -0.26px;
+    font-weight: 500;
+}
+.page-main-like-text>p:last-child{
+    font-size: 21px;
+    font-weight: normal;
+    line-height: 1.45;
+    letter-spacing: -0.2px;
+    text-align: center;
+    color: rgb(153, 153, 153);
+    margin-top: 10px;
+}
+
+
+
+
+
 
 
 
@@ -299,6 +434,8 @@ footer > .footer-content > .footer-detail {
 .slideTogglebox{
   background-color: rgba(0, 0, 0, 0.05);
 }
+
+
 
 /* input 디자인 */
 .inputid{
