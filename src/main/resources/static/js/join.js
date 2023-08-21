@@ -1,3 +1,5 @@
+const checkArr = [false,false,false];
+
 //아이디 유효성 검사 & 중복체크
 $("#idChkBtn").on("click",function(){
     const memberId = $("#memberId").val();
@@ -14,10 +16,12 @@ $("#idChkBtn").on("click",function(){
                     $("#ajaxCheckId").text("사용가능합니다.");
                     $("#ajaxCheckId").css("color","blue");
                     $("#memberId").css("border","1px solid blue");
+                    checkArr[0] = true;
                 }else{
                     $("#ajaxCheckId").text("이미 사용중인 아이디입니다.");
                     $("#ajaxCheckId").css("color","red");
-                    $("#memberId").css("border","1px solid red");	
+                    $("#memberId").css("border","1px solid red");
+                    checkArr[0] = false;	
                 }
             }
         });
@@ -25,6 +29,7 @@ $("#idChkBtn").on("click",function(){
         $("#ajaxCheckId").text("아이디는 영어/숫자로 4~8글자입니다.");
         $("#ajaxCheckId").css("color","red");
         $(this).css("border","1px solid red");
+        checkArr[0] = false;
     }
 });
 
@@ -46,10 +51,12 @@ function pwDupCHECK(){
         $("#checkPw").text("비밀번호가 일치합니다.");
         $("#checkPw").css("color","blue");
         $("#memberPwRe").css("border","1px solid blue");
+        checkArr[1] = true;
     }else{
         $("#checkPw").text("비밀번호가 일치하지 않습니다.");
         $("#checkPw").css("color","red");
         $("#memberPwRe").css("border","1px solid red");
+        checkArr[1] = false;
     }
 }
 
@@ -76,6 +83,7 @@ $("#emailChkBtn").on("click", function(){
         $("#checkEmail").text("메일 주소가 유효하지 않습니다.");
         $("#checkEmail").css("color","red");
         $("#memberEmail").css("border","1px solid red");
+        checkArr[2] = false;
     }
 });
 //이메일 인증 타이머 시작
@@ -115,9 +123,11 @@ $("#authBtn").on("click",function(){
             $("#authMsg").css("color","blue");
             window.clearInterval(intervalId);
             $("#timeZone").empty();
+        	checkArr[2] = true;
         }else{
             $("#authMsg").text("메일코드를 확인하세요");
             $("#authMsg").css("color","red");
+            checkArr[2] = false;
         }
     }
 });
@@ -127,20 +137,38 @@ $("#allAgreement").click(function() {
     if($("#allAgreement").is(":checked")) $(".agreecheck").prop("checked", true);
     else $(".agreecheck").prop("checked", false);
 });
+
 //이용약관 모달 열기
 $(".use").on("click", function(){
     $(".use-wrap").css("display","flex");
 });
+
 //이용약관 모달 닫기
 $(".use-close").on("click", function(){
     $(".use-wrap").css("display","none");
 });
+
 //개인정보수집 모달 열기
 $(".privacy").on("click", function(){
     $(".privacy-wrap").css("display","flex");
 });
+
 //개인정보수집 모달 닫기
 $(".privacy-close").on("click", function(){
     $(".privacy-wrap").css("display","none");
 });
-//회원 가입 전 아이디 유효성, 중복체크, 비밀번호 확인, 체크박스 여부 모두 체크하기
+
+//회원 가입 버튼 클릭 시 아이디 유효성, 중복체크, 비밀번호 확인, 체크박스 여부 모두 체크하기
+
+$("button[type=submit]").on("click",function(event){
+	$("#agreeCheck").empty();
+	const agreeCheck = $("#useAgreement").is(":checked") && $("#privacyAgreement").is(":checked");
+	if(!agreeCheck){
+		$("#agreeCheck").text("약관 동의는 필수입니다.");
+		$("#agreeCheck").css("color","red");
+	}
+    const check = checkArr[0] && checkArr[1] && checkArr[2] && $("#useAgreement").is(":checked") && $("#privacyAgreement").is(":checked");
+    if(!check){
+        event.preventDefault();
+    }
+});
