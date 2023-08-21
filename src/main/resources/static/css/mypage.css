@@ -136,7 +136,7 @@
     float: left;
 }
 .myComment p{
-    padding: 10px 10px;
+    padding: 10px 15px;
 }
 .myComment-date{
     text-align: right;
@@ -153,11 +153,13 @@
     height: 100%;
 }
 
-.material-icons{
+.myComment-one>.material-icons{
+    /* 나의 댓글 삭제 아이콘*/
     display: block;
     font-weight: 900;
     color: red;
     float: left;
+    
 }
 
 
