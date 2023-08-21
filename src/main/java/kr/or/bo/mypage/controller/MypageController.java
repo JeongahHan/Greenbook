@@ -24,4 +24,9 @@ public class MypageController {
 		return "mypage/myBoard";
 	}
 	
+	@GetMapping(value = "/myComment")
+	public String myComment() {
+		return "mypage/myComment";
+	}
+	
 }
