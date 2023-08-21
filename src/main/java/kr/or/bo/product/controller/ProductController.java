@@ -55,7 +55,6 @@ public class ProductController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		int result = productService.insertPhoto(p);
 		if(result > 0) {
 			model.addAttribute("title", "작성완료");

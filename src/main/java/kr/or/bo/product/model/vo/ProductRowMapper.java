@@ -22,7 +22,6 @@ public class ProductRowMapper implements RowMapper<Product>{
 		p.setProductRegDate("product_reg_date");
 		p.setProductSellCheck(rs.getInt("product_sell_check"));
 		p.setReadCount(rs.getInt("read_count"));
-		p.setTradeDate(rs.getString("trade_date"));
 		return p;
 	}
 
