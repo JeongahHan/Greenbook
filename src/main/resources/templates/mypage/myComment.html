@@ -3,16 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <title>나의 댓글</title>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-	<div>헤더</div>
+	<th:block th:include="common/header"></th:block>
 	<div class="page-content">
 		<div class="page-title">마이페이지</div>
 		<th:block th:include="mypage/mypageMenu"></th:block>
 		<div class="mypage-content-wrap">
 			<div class="myComment-wrap">
 				<div class="mypage-content-title">나의 댓글</div>
-				<div class="myComment-wrap">
+				<div class="myComment-one">
 					<div class="myComment">
 						<p><a href="#">th로 게시글 제목 불러옴게시글로 이동이동 이동</a> 에 남긴 댓글</p>
 						<p>소금이라 할지니 인생에 가치를 주는 원질이 되는 것이다 그들은 앞이 긴지라 착목한는 곳이 원대하고 그들은 피가 더운지라 실현에 대한 자신과 용기가 있다 그러므로 그들은 이상의 보배를 능히 품으며 그들의 이상은 아름답고 소담스러운</p>
@@ -21,11 +22,13 @@
 					<div class="comment-imgBox">
                     	<img src="/img/product-img/매미울음소리 그칠 무렵.jpg">
 					</div>
+					<span class="material-icons">clear</span>
 				</div>
+				
 			</div>
 		</div>
 	</div>
-	<div>풋터</div>
+	<th:block th:include="common/footer"></th:block>
 
 </body>
 </html>

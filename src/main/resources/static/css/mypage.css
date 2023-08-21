@@ -22,6 +22,7 @@
 }
 
 
+
 /* 마이페이지 메뉴 */
 .mypage-menu{
     list-style: none;
@@ -39,7 +40,20 @@
     cursor: pointer;
 }
 
+/* 마이페이지 컨텐츠 쓰는 필드 */
+.mypage-content-wrap{
+	width: 1000px;
+	float: left;
+}
+/* 마이페이지 컨텐츠 제목 디자인 */
+.mypage-content-title{
+    font-family: ns-bold;
+    padding: 20px 0;
+    font-size: 30px;
+}
 
+
+/* 회원정보 */
 .updateForm{
     width: 500px;
     background-color: blanchedalmond;
@@ -71,17 +85,8 @@
 
 
 /* 내가 쓴 게시물 */
-/*  */
-.mypage-content-wrap{
-	width: 1000px;
-	float: left;
-}
 /* 제목 디자인 */
-.mypage-content-title{
-    font-family: ns-bold;
-    padding: 20px 0;
-    font-size: 30px;
-}
+
 
 /* 테이블 디자인 */
 .mypage-tbl{
@@ -118,22 +123,27 @@
 
 
 /* 나의 댓글 css */
-.myComment-wrap{
+
+.myComment-one{
     overflow: hidden;
+    background-color: rgba(110, 110, 110, 0.15);
+    padding: 10px 0;
+    border-radius: 20px;
+    margin: 10px 0px;
 }
 .myComment{
     width: 700px;
     float: left;
 }
 .myComment p{
-    padding: 10px 10px;
+    padding: 10px 15px;
 }
 .myComment-date{
     text-align: right;
 }
 .comment-imgBox{
     /* 댓글작성한 게시글의 이미지박스 선택자 */
-    width: 300px;
+    width: 270px;
     height: 300px;
     
     /* background-color: darkorange; */
@@ -143,6 +153,14 @@
     height: 100%;
 }
 
+.myComment-one>.material-icons{
+    /* 나의 댓글 삭제 아이콘*/
+    display: block;
+    font-weight: 900;
+    color: red;
+    float: left;
+    
+}
 
 
 
