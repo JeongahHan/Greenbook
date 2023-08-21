@@ -145,6 +145,23 @@ public class MemberController {
 		return authCode;
 	}
 	
+	@PostMapping(value="/signup")
+	public String signup(Member member, Model model) {
+		int result = memberService.insertMember(member);
+		if(result>0) {
+			model.addAttribute("title", "회원가입 성공");
+			model.addAttribute("msg", "신규 회원 가입을 축하합니다.");
+			model.addAttribute("icon", "success");
+			model.addAttribute("loc", "/");
+		}else {
+			model.addAttribute("title", "회원가입 실패");
+			model.addAttribute("msg", "정보 입력 확인 부탁 드립니다.");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/");
+		}
+		return "common/msg";
+	}
+	
 	@GetMapping(value = "/admin")
 	public String admin(Model model) {
 		List list = memberService.selectAllMember();
