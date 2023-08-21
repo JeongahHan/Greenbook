@@ -34,7 +34,7 @@
 
 .main-mid{
     margin: 20px auto;
-    width: 1700px;
+    width: 1200px;
     background-color: blue;
 }
 
@@ -44,10 +44,6 @@
 }
 
 /* main-mid */
-.main-mid{
-    width: 1200px;
-}
-
 .mid-content{
 
 }
@@ -113,3 +109,28 @@
 .product>a:hover .book-title{
     text-decoration: underline;
 }
+
+.main-bottom{
+    margin: 20px auto;
+    width: 1200px;
+    background-color: yellow;
+    overflow: hidden;
+}
+
+/* 글쓰기 버튼 */
+.write{
+	float: right;
+	background-color: rgba(57, 62, 70, 0.9);
+  	color: #fff;
+  	border: 2px solid rgba(57, 62, 70, 0.9);
+  	text-decoration: none;
+}
+
+/* 페이지 버튼 */
+.page-btn{
+    margin: 20px auto;
+    width: 1200px;
+    background-color: red;
+    text-align: center;
+}
+
