@@ -7,6 +7,7 @@
 <script src="/js/jquery-3.7.0.js"></script>
 </head>
 <body>
+	<th:block th:include="common/header"></th:block>
     <div class="wrap">
         <div class="title">
             <h1>ID 찾기</h1>
@@ -18,12 +19,12 @@
             </div>
             <div class="input-box">
                 <label for="memberName">이름</label>
-                <input type="text" name="memberName" id="memberName" class="input-form" placeholder="이름을 입력해주세요" autocomplete="off">
+                <input type="text" name="memberName" id="memberName" class="s-input-form" placeholder="이름을 입력해주세요" autocomplete="off">
                 <label for="memberEmail">이메일</label>
-                <input type="text" name="memberEmail" id="memberEmail" class="input-form" placeholder="가입 시 기재했던 이메일을 입력해주세요" autocomplete="off">
+                <input type="text" name="memberEmail" id="memberEmail" class="s-input-form" placeholder="가입 시 기재했던 이메일을 입력해주세요" autocomplete="off">
             </div>
             <div class="btn-box">
-                <button type="button" class="btn bc2" id="btn">확인</button>
+                <button type="button" class="s-btn s-bc2" id="btn">확인</button>
             </div>
         </div>
     </div>
@@ -34,10 +35,11 @@
             </div>
             <div class="modal-content">
 				<p id="searchId"></p>
-				<button type="button" class="btn bc2" id="close">닫기</button>
+				<button type="button" class="s-btn s-bc2" id="close">닫기</button>
             </div>
         </div>
     </div>
+    <th:block th:include="common/footer"></th:block>
     <script>
     	$("#btn").on("click", function(){
 			const memberName = $("#memberName").val();

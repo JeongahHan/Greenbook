@@ -29,6 +29,8 @@
 .wrap{
     width: 1200px;
     margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 .title{
     margin-top: 50px;
@@ -42,7 +44,7 @@
 .input-box>*{
     margin-top: 10px;
 }
-.input-form{
+.s-input-form{
     width: 100%;
     font-size: 18px;
     display: block;
@@ -51,7 +53,7 @@
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
-.input-form:focus {
+.s-input-form:focus {
     box-shadow: 0 0 0 0.1rem #eee;
 }
 .link-box{
@@ -68,7 +70,7 @@
 .btn-box>a{
 	text-decoration : none;
 }
-.btn{
+.s-btn{
     border: none;
     border-radius: 5px;
     width: 100%;
@@ -80,19 +82,19 @@
     font-family: ns-light;
     margin-top: 10px;
 }
-.bc1 {
+.s-bc1 {
     background-color: rgba(0, 90, 13, 0.9);
     color: #fff;
     border: none;
 }
-.bc1:hover {
+.s-bc1:hover {
     cursor: pointer;
 }
-.bc2 {
+.s-bc2 {
 	border: 1px solid rgba(0, 90, 13, 0.9);
     background-color: #fff;
     color: rgba(0, 90, 13);
 }
-.bc2:hover {
+.s-bc2:hover {
     cursor: pointer;
 }

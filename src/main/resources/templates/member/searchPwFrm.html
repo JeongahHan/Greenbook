@@ -7,6 +7,7 @@
 <script src="/js/jquery-3.7.0.js"></script>
 </head>
 <body>
+	<th:block th:include="common/header"></th:block>
     <div class="wrap">
         <div class="title">
             <h1>비밀번호 찾기</h1>
@@ -18,12 +19,12 @@
             </div>
             <div class="input-box">
                 <label for="memberId">아이디</label>
-                <input type="text" name="memberId" id="memberId" class="input-form" placeholder="ID를 입력해주세요" autocomplete="off">
+                <input type="text" name="memberId" id="memberId" class="s-input-form" placeholder="ID를 입력해주세요" autocomplete="off">
                 <label for="memberEmail">이메일</label>
-                <input type="text" name="memberEmail" id="memberEmail" class="input-form" placeholder="가입 시 기재했던 이메일을 입력해주세요" autocomplete="off">	
+                <input type="text" name="memberEmail" id="memberEmail" class="s-input-form" placeholder="가입 시 기재했던 이메일을 입력해주세요" autocomplete="off">	
             </div>
             <div class="btn-box">
-                <button type="button" class="btn bc2" id="btn">확인</button>
+                <button type="button" class="s-btn s-bc2" id="btn">확인</button>
             </div>
         </div>
     </div>
@@ -35,7 +36,7 @@
             <div class="modal-content">
             	<div class="fail">
 					<p id="searchPw"></p>
-					<button type="button" class="btn bc2 close">닫기</button>            	
+					<button type="button" class="s-btn s-bc2 close">닫기</button>            	
             	</div>
             	<div class="success">
             		<form action="/member/updatePw" method="post">
@@ -45,14 +46,15 @@
 	            			<input type="password" name="memberPw" id="memberPw" class="input-form" placeholder="새 비밀번호를 입력해주세요" required>            			
             			</div>
             			<div class="btn-box">
-                			<button type="submit" class="btn bc1">확인</button>
-                			<button type="button" class="btn bc2 close">닫기</button>
+                			<button type="submit" class="s-btn s-bc1">확인</button>
+                			<button type="button" class="s-btn s-bc2 close">닫기</button>
             			</div>
             		</form>
             	</div>
             </div>
         </div>
     </div>
+    <th:block th:include="common/footer"></th:block>
     <script>
     	$("#btn").on("click", function(){
 			const memberId = $("#memberId").val();

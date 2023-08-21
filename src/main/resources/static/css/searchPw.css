@@ -29,6 +29,8 @@
 .wrap{
     width: 1200px;
     margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 .title{
     margin-top: 50px;
@@ -58,7 +60,7 @@
     margin-top: 10px;
     margin-bottom: 5px;
 }
-.input-form{
+.s-input-form{
     width: 100%;
     font-size: 18px;
     display: block;
@@ -67,13 +69,13 @@
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
-.input-form:focus {
+.s-input-form:focus {
     box-shadow: 0 0 0 0.1rem #eee;
 }
 .btn-box{
     margin-top: 20px;
 }
-.btn {
+.s-btn {
     border: none;
     border-radius: 5px;
     padding: 1rem;
@@ -85,19 +87,19 @@
     font-family: ns-light;
     margin-top: 10px;
 }
-.bc1 {
+.s-bc1 {
     background-color: rgba(0, 90, 13);
     color: #fff;
 }
-.bc1:hover {
+.s-bc1:hover {
     cursor: pointer;
 }
-.bc2 {
+.s-bc2 {
     border: 1px solid rgba(0, 90, 13, 0.9);
     background-color: #fff;
     color: rgba(0, 90, 13);
 }
-.bc2:hover {
+.s-bc2:hover {
     cursor: pointer;
 }
 /*모달*/

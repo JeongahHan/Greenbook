@@ -29,6 +29,8 @@
 .wrap{
     width: 1200px;
     margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 .title{
     margin-top: 50px;
@@ -45,26 +47,26 @@
 .red{
     color: red;
 }
-.tbl{
+.s-tbl{
     width: 100%;
     border-spacing: 0px;
     border-collapse: collapse;
 }
-.tbl th,
-.tbl td{
+.s-tbl th,
+.s-tbl td{
     padding: 1rem;
     text-align: left;
 }
-.tbl th{
+.s-tbl th{
     width: 20%;
 }
-.tbl th>label{
+.s-tbl th>label{
     font-size: 18px;
 }
-.tbl td{
+.s-tbl td{
     width: 80%;
 }
-.input-form{
+.s-input-form{
     width: 100%;
     height: 50px;
     font-size: 18px;
@@ -74,7 +76,7 @@
     box-sizing: border-box;
     padding-left: 10px;
 }
-.input-form:focus {
+.s-input-form:focus {
     box-shadow: 0 0 0 0.1rem #eee;
 }
 .id-wrap{
@@ -91,7 +93,7 @@
     text-align: center;
     width: 100%;
 }
-.btn {
+.s-btn {
     width: 300px;
     border: none;
     border-radius: 5px;
@@ -101,12 +103,12 @@
     font-size: 18px;
     font-family: ns-light;
 }
-.bc1 {
+.s-bc1 {
     background-color: rgba(0, 90, 13, 0.9);
     color: #fff;
     border: none;
 }
-.bc1:hover{
+.s-bc1:hover{
     cursor: pointer;
 }
 .all{
