@@ -19,4 +19,14 @@ public class MypageController {
 		return "mypage//memberUpdateFrm";
 	}
 	
+	@GetMapping(value = "/myBoard")
+	public String myBoard() {
+		return "mypage/myBoard";
+	}
+	
+	@GetMapping(value = "/myComment")
+	public String myComment() {
+		return "mypage/myComment";
+	}
+	
 }
