@@ -102,6 +102,18 @@ footer > .footer-content > .footer-detail {
     font-family: ns-light;
     font-weight: 580;
     }
+    
+.page-content {
+    width: 1200px;
+    margin: 30px auto;
+    margin-bottom: 10px;
+    flex-grow: 1;
+  }
+.page-title {
+    font-family: ns-bold;
+    padding: 20px 0px;
+    font-size: 1.5rem;
+  }
 
 
 
