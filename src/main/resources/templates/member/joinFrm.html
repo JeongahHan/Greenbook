@@ -48,6 +48,9 @@
                         </th>
                         <td>
                             <input type="password" name="memberPwRe" id="memberPwRe" class="input-form" placeholder="비밀번호를 한번 더 입력해주세요" required>	
+                       		<div class="id-wrap">
+                       			<span id="checkPw"></span>
+                       		</div>
                         </td>
                     </tr>
                     <tr>
@@ -74,6 +77,9 @@
                             <div class="id-wrap">
                                 <input type="text" name="memberEmail" id="memberEmail" class="input-form" placeholder="greenbook@green.com" required>
                                 <button type="button" id="emailChkBtn" class="btn bc1">인증하기</button>	
+                            </div>
+                            <div class="id-wrap">
+                            	<span id="checkEmail"></span>
                             </div>
                         </td>
                     </tr>
@@ -296,7 +302,34 @@
 		});
     	
     	//비밀번호, 비밀번호 확인 일치
+    	$("#memberPwRe").on("change",function(){
+		    const pwValue = $("#memberPw").val();
+		    const pwReValue = $("#memberPwRe").val();
+		    if(pwValue == pwReValue){
+		    	$("#checkPw").text("비밀번호가 일치합니다.");
+		    	$("#checkPw").css("color","blue");
+		        $("#memberPwRe").css("border","1px solid blue");
+		    }else{
+		    	$("#checkPw").text("비밀번호가 일치하지 않습니다.");
+		    	$("#checkPw").css("color","red");
+		        $("#memberPwRe").css("border","1px solid red");
+		    }
+		});
+    	
     	//이메일 유효성 검사
+    	$("#memberEmail").on("change", function(){
+    		const memberEmail = $("#memberEmail").val();
+    		const emailReg = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+    		if(emailReg.test(memberEmail)){
+    			$("#checkEmail").text("메일 주소가 유효하니, 인증을 완료해주세요.");
+		    	$("#checkEmail").css("color","blue");
+		        $("#memberEmail").css("border","1px solid blue");
+    		}else{
+    			$("#checkEmail").text("메일 주소가 유효하지 않습니다.");
+		    	$("#checkEmail").css("color","red");
+		        $("#memberEmail").css("border","1px solid red");
+    		}
+    	});
     	//이메일 인증코드 검사
     	
     	//전체 동의 체크박스
@@ -320,6 +353,7 @@
 		$(".privacy-close").on("click", function(){
 			$(".privacy-wrap").css("display","none");
 		});
+		//회원 가입 전 아이디 유효성, 중복체크, 비밀번호 확인, 체크박스 여부 모두 체크하기
     </script>
 </body>
 </html>
