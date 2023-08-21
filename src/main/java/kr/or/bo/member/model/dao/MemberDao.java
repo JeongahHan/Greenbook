@@ -74,10 +74,8 @@ public class MemberDao {
 		return result;
 	}
 
-
-
 	public Member checkId(String memberId) {
-		String query = "select * from member_tbl where member_id = ?";
+		String query = "select * from member where member_id = ?";
 		List list = jdbc.query(query, memberRowMapper, memberId);
 		if(list.isEmpty()) {
 			return null;

@@ -122,7 +122,7 @@ public class MemberController {
 		return "member/joinFrm";
 	}
 	
-	//아이디 중복체크
+	//회원가입 -> 아이디 중복체크
 	@ResponseBody
 	@PostMapping(value="/checkId")
 	public String checkId(String memberId) {

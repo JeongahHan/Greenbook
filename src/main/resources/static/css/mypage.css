@@ -32,8 +32,6 @@
 }
 
 
-
-
 .updateForm{
     width: 500px;
     background-color: blanchedalmond;
@@ -62,5 +60,19 @@
 .btn-box{
     text-align: center;
 }
+
+
+/* 내가 쓴 게시물 */
+.mypage-content-wrap{
+	width: 1000px;
+	background-color: #ccc;
+	float: left;
+	
+}
+
+
+
+
+
 
 
