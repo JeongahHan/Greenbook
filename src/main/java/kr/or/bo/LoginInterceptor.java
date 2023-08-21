@@ -18,7 +18,6 @@ public class LoginInterceptor implements HandlerInterceptor{
 		
 		HttpSession session = request.getSession();
 		Member m = (Member)session.getAttribute("m");
-		System.out.println(m);
 		if(m == null) {
 			response.sendRedirect("/member/loginMsg");
 			return false;
