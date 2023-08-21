@@ -3,6 +3,7 @@ package kr.or.bo.mypage.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.or.bo.mypage.model.service.MypageService;
@@ -27,6 +28,11 @@ public class MypageController {
 	@GetMapping(value = "/myComment")
 	public String myComment() {
 		return "mypage/myComment";
+	}
+	@PostMapping(value = "/update")
+	public String update() {
+		
+		return "mypage/myComment";//에러땜에 임시로 여기로감
 	}
 	
 }
