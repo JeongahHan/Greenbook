@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.or.bo.EmailSender;
 import kr.or.bo.member.model.service.MemberService;
 import kr.or.bo.member.model.vo.Member;
 
@@ -20,6 +21,8 @@ import kr.or.bo.member.model.vo.Member;
 public class MemberController {
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private EmailSender emailSender;
 	
 	//loginFrm.html로 이동
 	@GetMapping(value="/loginFrm")
@@ -132,6 +135,14 @@ public class MemberController {
 		}else {
 			return "1";
 		}
+	}
+	
+	//회원가입 -> 이메일 인증코드 보내기
+	@ResponseBody
+	@PostMapping(value="/auth")
+	public String authMail(String memberEmail) {
+		String authCode = emailSender.authMail(memberEmail);
+		return authCode;
 	}
 	
 	@GetMapping(value = "/admin")
