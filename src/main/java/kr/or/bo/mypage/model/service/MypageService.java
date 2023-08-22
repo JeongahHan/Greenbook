@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.mypage.model.dao.MypageDao;
+import kr.or.bo.mypage.model.vo.MypageListData;
 import kr.or.bo.product.model.vo.Product;
 
 @Service
@@ -27,7 +28,7 @@ public class MypageService {
 	public List<Product> selectMySellBook(String memberId, int reqPage) {
 		// TODO Auto-generated method stub
 		
-		List list = mypageDao.selectMySellBook(memberId,reqPage);
+		List mySellBookList = mypageDao.selectMySellBook(memberId,reqPage);
 		
 		//여기서 페이지 나비 만들기
 		// 1. 한페이지당 게시물 수 지정 -> 10개
@@ -94,8 +95,9 @@ public class MypageService {
 
 		pageNavi += "</ul>";
 		
+		MypageListData mld = new MypageListData(mySellBookList,pageNavi);
 		
-		return list;
+		return mySellBookList;
 	}//selectMySellBook() 종료
 	
 }
