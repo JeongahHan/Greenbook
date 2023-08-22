@@ -1,5 +1,7 @@
 package kr.or.bo.mypage.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +31,12 @@ public class MypageController {
 	}
 	
 	@GetMapping(value = "/myBoard")
-	public String myBoard() {
+	public String myBoard(int reqPage) {
+		
+		//내가 쓴 게시물만 조회 해오기 //아직 Board Vo가 없음
+		//ArrayList<Board> list = mypageService.selectMyBoardList();
+		System.out.println(reqPage);
+		
 		return "mypage/myBoard";
 	}
 	
