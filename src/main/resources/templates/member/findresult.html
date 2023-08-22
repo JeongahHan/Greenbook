@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- 구글 아이콘 -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!-- jquery -->
+<script src="/js/jquery-3.7.0.js"></script>
+<!-- 기본 CSS -->
+<link rel="stylesheet" href="/css/admin.css">
+<!-- 기본 js -->
+<script src="/js/find.js"></script>
+</head>
+<body>
+
+
+	<th:block th:include="common/header"></th:block>
+	<div class="page-content">
+		<div class="page-title">회원관리</div>
+
+		
+		<!-- <button class="btn bc1 bc1-1 modal-open-btn" target="#find-modal">회원찾기</button> -->
+		<!--<table class=" ajaxResult" id="result"></table> --> 
+		
+		 <input type="text" id="find" name="memberId" class="inputid" placeholder="조회할 회원아이디" >
+		 <button class="btn bc1 bc1-1 findbtn" id="findjQ">회원정보 추가 조회</button>
+		                
+		
+		<table class="tbl tbl-hover">
+			<tr class="tr-3 .green">
+				<th>선택</th>
+				<th>회원번호</th>
+				<th>아이디</th>
+				<th>비밀번호</th>
+				<th>이름</th>
+				<th>전화번호</th>
+				<th>주소</th>
+				<th>가입일</th>
+				<th>회원등급</th>
+				<th>등급변경</th>
+			</tr>
+			<tr class="tr-1">
+				<td><input type="checkbox" class="chk"></td>
+				<td th:text="${m.memberNo}"></td>
+				<td th:text="${m.memberId}"></td>
+				<td th:text="${m.memberPw}"></td>
+				<td th:text="${m.memberName}"></td>
+				<td th:text="${m.memberPhone}"></td>
+				<td th:text="${m.memberEmail}"></td>
+				<td th:text="${m.enrollDate}"></td>
+				<td th:switch=${m.memberLevel}>
+				<select th:case="1"class="input-form">
+						<option value="1" selected>관리자</option>
+						<option value="2">그린이</option>
+						<option value="3">블랙이</option>
+				</select>
+				<select th:case="2"class="input-form">
+						<option value="1">관리자</option>
+						<option value="2"selected>그린이</option>
+						<option value="3">블랙이</option>
+				</select>
+				<select th:case="3"class="input-form">
+						<option value="1">관리자</option>
+						<option value="2">그린이</option>
+						<option value="3" selected>블랙이</option>
+				</select>
+				</td>
+				<td>
+					<button class="btn bc1 bc1-1 changeLevel">회원등급변경</button>
+				</td>
+			</tr>
+			
+		</table>
+		
+		<button class="bc1 bs5 checkedchangeLevel">선택회원등급변경</button>
+        
+	</div>
+	<th:block th:include="common/footer"></th:block>
+	
+	
+	
+	<script>
+	
+	
+	$(".checkedchangeLevel").on("click",function(){
+		const check = $(".chk:checked");
+		if(check.length == 0){
+			return;
+		}
+		const no = new Array();
+		const level = new Array();
+		
+		check.each(function(index,item){
+			const memberNo = $(item).parent().next().text();
+			const memberLevel = $(item).parent().parent().find("select").val();
+			no.push(memberNo);
+			level.push(memberLevel);
+		});
+		console.log(no);
+		console.log(level);
+		location.href="/member/checkedchangeLevel?no="+no.join("/")+"&level="+level.join("/");
+		
+	});
+	
+	
+	$(".changeLevel").on("click",function(){
+		const memberLevel = $(this).parent().prev().children().val();
+		const memberNo = $(this).parent().parent().children().eq(1).text();
+		console.log(memberLevel,memberNo);
+		location.href="/member/changeLevel?memberNo="+memberNo+"&memberLevel="+memberLevel;
+	});
+	
+	
+	
+$("#findjQ").on("click",function(){
+		
+		
+		const memberId = $("#find").val();
+		$.ajax({
+			url : "/member/find",
+			type : "post",
+			data : {memberId : memberId},
+			dataType : "json",
+			success : function(data){
+				console.log(data);
+				/*
+				$("#result").empty();
+				$("#result").append(data.memberId +"<br>");
+				$("#result").append(data.memberName +"<br>");
+			    $("#result").append(data.memberPhone +"<br>");
+				$("#result").append(data.memberEmail +"<br>");
+				$("#result").append(data.enrollDate +"<br>");
+				$("#result").append(data.memberLevel +"<br>"); 
+				*/
+				const inputTd = $("<td>");
+				const input = $("<input type='checkbox'>");
+				input.addClass("chk");
+				inputTd.append(td);
+			
+				const tr = $("<tr>");
+				tr.addClass("tr-1");
+				
+				const memberNoTd = $("<td>");
+				memberNoTd.text(data.memberNo);
+				memberNoTd.append(td);
+				
+				const memberIdTd = $("<td>");
+				memberIdTd.text(data.memberId);
+				memberIdTd.append(td);
+				
+				const memberPwTd = $("<td>");
+				memberPwTd.text(data.memberPw);
+				memberPwTd.append(td);
+				
+				const memberNameTd = $("<td>");
+				memberNameTd.text(data.memberName);
+				memberNameTd.append(td);
+				
+				const memberPhoneTd = $("<td>");
+				memberPhoneTd.text(data.memberPhone);
+				memberPhoneTd.append(td);
+				
+				const memberEmailTd = $("<td>");
+				memberEmailTd.text(data.memberEmail);
+				memberEmailTd.append(td);
+				
+				const enrollDateTd = $("<td>");
+				enrollDateTd.text(data.enrollDate);
+				enrollDateTd.append(td);
+				
+				const memberLevelTd = $("<td>");
+				memberLevelTd.text(data.memberLevel);
+				memberLevelTd.append(td);
+				//<select id ='level' class='input-form'><option value='1'>관리자</option><option value='2'>그린이</option><option value='3'>블랙이</option></select>
+				
+				const btnTd = $("<td>");
+				const btn = $("<button>");
+				btn.addClass("btn bc1 bc1-1 changeLevel");
+				btn.text("회원등급변경");
+				btnTd.append(td);
+				
+				btnTd.on("click", function(){
+					const memberLevel = $(this).parent().prev().children().val();
+					const memberNo = $(this).parent().parent().children().eq(1).text();
+					console.log(memberLevel,memberNo);
+					location.href="/member/changeLevel?memberNo="+memberNo+"&memberLevel="+memberLevel;
+				});
+				
+				
+				
+				tr.append(inputTd).append(memberNoTd).append(memberIdTd).append(memberPwTd).append(memberNameTd).append(memberPhoneTd).append(memberEmailTd).append(enrollDateTd).append(memberLevelTd).append(btnTd);
+				$(".tbl>table").append(tr);
+				
+				
+				
+		}
+			
+		});
+		
+	
+	});
+	/*
+const tr = $("<tr>");
+tr.addClass("tr-1");
+
+tr.on("click", function(){
+	const place = new naver.maps.LatLng(data[i].lat, data[i].lng);
+	map.setCenter(place);
+	marker.setPosition(place);
+	console.log(data[i].lat, data[i].lng);
+});
+
+
+const imgTd = $("<td>");
+const img = $("<img style='width:100%;'>");
+img.attr("src",data[i].thumb);
+imgTd.append(img);
+
+const titleTd = $("<td>");
+titleTd.text(data[i].mainTitle);
+
+const addrTd = $("<td>");
+addrTd.text(data[i].address);
+
+const telTd = $("<td>");
+telTd.text(data[i].tel);
+
+tr.append(imgTd).append(titleTd).append(addrTd).append(telTd);
+$(".busan>table").append(tr);
+*/
+
+
+
+
+/*
+if( data.memberLevel == '1') {
+      $(".input-form").val("1").prop("selected", true);
+   } else if( data.memberLevel == '2') {
+      $(".input-form").val("2").prop("selected", true);
+   } else {
+      $(".input-form").val("3").prop("selected", true);
+   }
+
+var Add = 
+"<table class='tbl'><tr class='tr-1'>"+
+"<td><input type='checkbox' class='chk'></td>"+
+"<td>"+data.memberNo+"</td>"+
+"<td>"+data.memberId+"</td>"+
+"<td>"+data.memberName+"</td>"+
+"<td>"+data.memberPhone+"</td>"+
+"<td>"+data.memberEmail+"</td>"+
+"<td>"+data.enrollDate+"</td>"+
+
+
+"<td><select id ='level' class='input-form'><option value='1'>관리자</option><option value='2'>그린이</option><option value='3'>블랙이</option></select></td>"+
+// $('#level').val(data.memberLevel).prop('selected',true); 
+
+"<td><button class='btn bc1 bc1-1 changeLevel'>회원등급변경</button></td>"+
+	 "</tr></table>";
+	 $("#result").append(Add);  
+*/	 
+
+
+
+
+
+	</script>
+		
+
+</body>
+</html>

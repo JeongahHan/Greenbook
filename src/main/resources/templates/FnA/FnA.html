@@ -3,7 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<!-- 구글 아이콘 -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!-- jquery -->
+<script src="/js/jquery-3.7.0.js"></script>
+<!-- 기본 CSS -->
+<link rel="stylesheet" href="/css/admin.css">
+<!-- 기본 js -->
 </head>
 <body>
 <th:block th:include="common/header"></th:block>
@@ -55,12 +61,11 @@
   
     <th:block th:include="common/footer"></th:block>
       <script>
-      
-      $(document).ready(function(){
-    	  $('#slideTogglebox').slideUp();
-    	  $('#slideTogglebox1').slideUp();
-    	  $('#slideTogglebox2').slideUp();
-    	  
+     //$('#slideTogglebox').slideUp();
+	  //$('#slideTogglebox1').slideUp();
+	  //$('#slideTogglebox2').slideUp();
+	  $('.slideTogglebox').css("display","none");
+           $(document).ready(function(){
     	     $('#title').click(function(){
     	       $('#slideTogglebox').slideToggle();
     	     })

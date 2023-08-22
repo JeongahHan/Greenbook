@@ -3,7 +3,61 @@
 임시 초록
 #D0F5BE
 
+F2EE9D
+7A9D54
+557A46
+8C3333
+
+
+B31312 빨강
+
 */
+
+*{
+    margin: 0; 
+    padding: 0;
+}
+
+/*모달*/
+
+.modal-bg {
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  display: none;
+  align-items: center;
+  flex-direction: column;
+}
+.modal-wrap {
+  margin-top: 150px;
+  width: 600px;
+  background: #fff;
+  height: auto;
+}
+.modal-wrap div {
+  padding: 1rem;
+}
+.modal-wrap div:not(:last-child) {
+  border-bottom: 1px solid #ccc;
+}
+.modal-wrap .modal-foot {
+  text-align: right;
+}
+.modal-wrap div.modal-head {
+  position: relative;
+}
+.close-icon {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 30px;
+}
+.close-icon:hover {
+  cursor: pointer;
+}
+
+
 /* 게시판 페이징 디자인 */
 #pageNavi{
     margin:100px 30px 30px 30px ;
@@ -51,11 +105,6 @@
 
 
 /* 마이페이지 디폴트 css */
-*{
-    margin: 0; 
-    padding: 0;
-}
-
 .page-content{
     overflow: hidden;
 }
@@ -125,6 +174,26 @@
 
 .btn-box{
     text-align: center;
+}
+.btn{
+    border: none;
+    padding: 0.5rem;
+    display: inline-block;
+    box-sizing: border-box;
+    transition-duration: 0.5s;
+    font-size: 16px;
+    font-family: ns-light;    
+    
+}
+.bc1 {
+    color: #005A0D;
+    background-color: #fff;
+    border: 2px solid #005A0D;
+}
+.bc1:hover {
+    background-color: #005A0D;
+    color: #fff;
+    cursor: pointer;
 }
 
 
