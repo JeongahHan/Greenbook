@@ -3,6 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 관리</title>
+<!-- 구글 아이콘 -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!-- jquery -->
+<script src="/js/jquery-3.7.0.js"></script>
+<!-- 기본 CSS -->
+<link rel="stylesheet" href="/css/admin.css">
+<!-- 기본 js -->
 </head>
 <body>
 
@@ -13,6 +20,9 @@
 		
 		<input type="text" id="find" class="inputid">
 		<button class="btn bc1 bc1-1" id="jQ">회원정보조회</button>
+		
+		<button class="btn bc11 modal-open-btn" target="#login-modal">SIGN IN</button>
+		
 		<table class=" ajaxResult" id="result"></table>
 		
 		
@@ -149,23 +159,6 @@ $("#jQ").on("click",function(){
 					 "</tr></table>";
 					 $("#result").append(Add);  
 					 
-				 
-			
-				 
-				 
-				 $(document).ready(function(){
-					 $(".changeLevel").on("click",function(){
-							const memberLevel = $(this).parent().prev().children().val();
-							const memberNo = $(this).parent().parent().children().eq(1).text();
-							console.log(memberLevel,memberNo);
-							location.href="/member/changeLevel?memberNo="+memberNo+"&memberLevel="+memberLevel;
-					 });
-				 });
-				 
-				 
-				// console.log(data.memberLevel);
-		  
-				
 				
 		}
 			
