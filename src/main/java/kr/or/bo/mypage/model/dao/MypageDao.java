@@ -35,6 +35,7 @@ public class MypageDao {
 		// TODO Auto-generated method stub
 		
 		String query = "";
+		
 		List list = jdbc.query(query, productRowMapper);
 		
 		return list;
