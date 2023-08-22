@@ -72,7 +72,37 @@
 	
 	<script>
 	
-	$("#jQ").on("click",function(){
+	
+	$(".checkedchangeLevel").on("click",function(){
+		const check = $(".chk:checked");
+		if(check.length == 0){
+			return;
+		}
+		const no = new Array();
+		const level = new Array();
+		
+		check.each(function(index,item){
+			const memberNo = $(item).parent().next().text();
+			const memberLevel = $(item).parent().parent().find("select").val();
+			no.push(memberNo);
+			level.push(memberLevel);
+		});
+		console.log(no);
+		console.log(level);
+		location.href="/member/checkedchangeLevel?no="+no.join("/")+"&level="+level.join("/");
+		
+	});
+	
+	
+	$(".changeLevel").on("click",function(){
+		const memberLevel = $(this).parent().prev().children().val();
+		const memberNo = $(this).parent().parent().children().eq(1).text();
+		console.log(memberLevel,memberNo);
+		location.href="/member/changeLevel?memberNo="+memberNo+"&memberLevel="+memberLevel;
+	});
+	
+	
+$("#jQ").on("click",function(){
 		
 		
 		const memberId = $("#find").val();
@@ -92,7 +122,15 @@
 				$("#result").append(data.enrollDate +"<br>");
 				$("#result").append(data.memberLevel +"<br>"); 
 				*/
-				
+				/*
+				 if( data.memberLevel == '1') {
+		               $(".input-form").val("1").prop("selected", true);
+		            } else if( data.memberLevel == '2') {
+		               $(".input-form").val("2").prop("selected", true);
+		            } else {
+		               $(".input-form").val("3").prop("selected", true);
+		            }
+				*/
 				var Add = 
 				 "<table class='tbl'><tr class='tr-1'>"+
 				 "<td><input type='checkbox' class='chk'></td>"+
@@ -103,13 +141,18 @@
 				 "<td>"+data.enrollDate+"</td>"+
 				 
 				 //"<td switch = data.memberLevel><select class='input-form'><option value='1' <c:if test='${data.memberLevel eq '1'}'>selected</c:if>>관리자</option><option value='2' <c:if test='${data.memberLevel eq '2'}'>selected</c:if>>그린이</option><option value='3' <c:if test='${data.memberLevel eq '3'}'>selected</c:if>>블랙이</option></select>"+
-				
-				 "<td switch = 'data.memberLevel'><select case= 'data.memberLevel' class='input-form'><option value='1' selected>관리자</option><option value='2'>그린이</option><option value='3'>블랙이</option></select></td>"+
+				 // "<td switch = 'data.memberLevel'><select case= 'data.memberLevel' class='input-form'><option value='1' selected>관리자</option><option value='2'>그린이</option><option value='3'>블랙이</option></select></td>"+
+				 
+				 
+		          
+				 
+		           "<td switch = 'data.memberLevel'><select  if( data.memberLevel == '1') { $('.input-form').val('1').prop('selected', true); } else if( data.memberLevel == '2') { $('.input-form').val('2').prop('selected', true);} else {$('.input-form').val('3').prop('selected', true);} class='input-form'><option value='1'>관리자</option><option value='2'>그린이</option><option value='3'>블랙이</option></select></td>"+
 		
 		        "<td><button class='btn bc1 bc1-1 changeLevel'>회원등급변경</button></td>"+
 				 "</tr></table>";
-				$("#result").append(Add);
-
+				  
+				 $("#result").append(Add);
+				 console.log(data.memberLevel);
 		  
 				
 				
@@ -161,33 +204,6 @@
 	    */     
 
 	
-	$(".checkedchangeLevel").on("click",function(){
-		const check = $(".chk:checked");
-		if(check.length == 0){
-			return;
-		}
-		const no = new Array();
-		const level = new Array();
-		
-		check.each(function(index,item){
-			const memberNo = $(item).parent().next().text();
-			const memberLevel = $(item).parent().parent().find("select").val();
-			no.push(memberNo);
-			level.push(memberLevel);
-		});
-		console.log(no);
-		console.log(level);
-		location.href="/member/checkedchangeLevel?no="+no.join("/")+"&level="+level.join("/");
-		
-	});
-	
-	
-	$(".changeLevel").on("click",function(){
-		const memberLevel = $(this).parent().prev().children().val();
-		const memberNo = $(this).parent().parent().children().eq(1).text();
-		console.log(memberLevel,memberNo);
-		location.href="/member/changeLevel?memberNo="+memberNo+"&memberLevel="+memberLevel;
-	});
 	
 	
 	</script>
