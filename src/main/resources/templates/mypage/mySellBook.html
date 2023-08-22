@@ -17,11 +17,26 @@
                     	<img src="/img/product-img/매미울음소리 그칠 무렵.jpg">
 					</div>
 					<p th:text="${list.productBoardTitle}"></p>
-					<p>저자</p>
-					<p>작성자</p>
-					<p>3000원</p>
+					<p>저자 : <span th:text="${list.productAuthor}"></span></p>
+					<p th:text="${list.productBoardWriter}">판매자user01</p>
+					<p><span th:text="${list.productPrice}"></span>원</p> 
 				</div>
+				<!-- 
+				${mySellBookList}에 담겨 있는 이름들
 				
+				productBoardTitle
+				productBoardContent
+				productBoardWriter
+				productRegDate
+				productPrice
+				productAuthor
+				productAuthor
+				productCondition
+				productSellCheck
+				readCount
+				filepath
+				
+				 -->
 				
 				
 			</div>
