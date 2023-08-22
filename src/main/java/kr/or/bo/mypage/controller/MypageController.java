@@ -23,6 +23,7 @@ public class MypageController {
 	
 	@GetMapping(value = "/memberUpdateFrm")
 	public String memberUpdateFrm () {
+		//임시 로그인확인 코드
 		
 		return "mypage/memberUpdateFrm";
 	}
