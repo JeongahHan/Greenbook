@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+		<div class="page-content">
+			<div class="page-title">마이페이지</div>
+			<th:block th:include="mypage/mypageMenu"></th:block>
+			<div class="mypage-content-wrap">
+				<div class="mypage-content-title">내가 판매 중인 도서</div>
+				
+			</div>
+		</div>
+	<th:block th:include="common/footer"></th:block>
+	
+</body>
+</html>
