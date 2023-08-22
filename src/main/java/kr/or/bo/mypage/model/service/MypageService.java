@@ -49,7 +49,7 @@ public class MypageService {
 		System.out.println("MypageService 총 페이지 수 : " + totalPage);
 		
 		// 페이지 네비게이션 사이즈 지정 /// <<1 2 3 4 ....10>> 이런거
-		int pageNaviSize = 10;
+		int pageNaviSize = 5;
 		// 페이지 네비게이션 시작번호
 		// reqPage 1 ~ 5 : 1 2 3 4 5
 		// reqPage 6 ~ 10 : 6 7 8 9 10
