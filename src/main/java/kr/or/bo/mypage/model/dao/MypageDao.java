@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import kr.or.bo.board.vo.BoardRowMapper;
 import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.product.model.vo.ProductRowMapper;
 
@@ -16,6 +17,8 @@ public class MypageDao {
 	//찜목록 RowMapper추가 필요
 	@Autowired
 	private ProductRowMapper productRowMapper;
+	@Autowired
+	private BoardRowMapper boardRowMapper;
 
 	//회원정보 수정
 	public int updateMember(Member member) {
@@ -50,6 +53,26 @@ public class MypageDao {
 		//단일 값(행1, 열1)을 조회하는 경우
 		int totalCount = jdbc.queryForObject(query, Integer.class, memberId);
 				
+		return totalCount;
+	}
+
+	//내가 작성한 자유게시판 글 조회
+	public List selectMyBoardList(String memberId, int start, int end) {
+		// TODO Auto-generated method stub
+		String query = "select * from(select ROWNUM AS RNUM,N.* from(select * from BOARD where BOARD_WRITER = ? order by 1 DESC)N) where rnum between ? and ?";
+		List list = jdbc.query(query, boardRowMapper, memberId, start, end);
+
+
+		return list;
+	}
+
+	//내가 작성한 자유게시판 게시글 토탈 카운트 세오기
+	public int selectMyBoardListTotalCount(String memberId) {
+		// TODO Auto-generated method stub
+		String query = "select count(*) as cnt from BOARD where BOARD_WRITER = ?";
+		int totalCount = jdbc.queryForObject(query, Integer.class, memberId);
+
+		
 		return totalCount;
 	}
 	
