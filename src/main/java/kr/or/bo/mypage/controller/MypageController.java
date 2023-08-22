@@ -62,4 +62,9 @@ public class MypageController {
 		return "mypage/myWishList";
 	}
 	
+	@GetMapping(value = "/mySellBook")
+	public String mySellBook() {
+		return "mypage/mySellBook";
+	}
+	
 }
