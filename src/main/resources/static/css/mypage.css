@@ -173,7 +173,10 @@
     width: 170px;
     background-color: #ccc;
     float: left;
-    margin: 10px 15px;
+    padding: 10px 15px;
+}
+.wishList-imgBox img{
+    width: 100%;
 }
 
 
