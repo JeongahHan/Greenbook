@@ -40,7 +40,6 @@ public class MsgController {
 	public String receiveList(Model model, @SessionAttribute(required = false) Member m) {
 		List list = msgService.selectReceiveList(m.getMemberId());
 		model.addAttribute("list", list);
-		System.out.println(list);
 		return "msg/msglist";
 	}
 	
