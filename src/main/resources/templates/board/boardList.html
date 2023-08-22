@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>게시판 리스트</title>
+
+<!-- 구글 아이콘 -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!-- jquery -->
+<script src="/js/jquery-3.7.0.js"></script>
+<!-- 기본 CSS -->
+<link rel="stylesheet" href="/css/board.css">
+<!-- 기본 js -->
+
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+	<div class="page-content">
+		<div class="page-title">
+            <p>홈</p>
+            <p>></p>
+            <p>자유게시판</p>
+        </div>
+		
+		<!-- 로그인이 되어있으면서 && 관리자일때만 -->
+		<!--<a th:if="${session.m !=null && (session.m.memberLevel == 1 || session.m.memberLevel == 2)}" href="/board/writeFrm" class="btn bc4">글쓰기</a>-->
+		
+		<table class="tbl tbl-hover notice-tbl">
+			<tr class="tr-2">
+				<th style="width:10%">번호</th>
+				<th style="width:45%">제목</th>
+				<th style="width:15%">작성자</th>
+				<th style="width:20%">작성일</th>
+				<th style="width:10%">조회수</th>
+			</tr>
+			<tr class="tr-1" th:each="board : ${boardList}">
+			<td th:text ="${board.boardNo}"></td>
+			<td><a th:href ="@{/board/view(boardNo=${board.boardNo})}" th:text="${board.boardTitle}"></a></td> <!-- board/view?boardNo=105 -->
+			<td th:text="${board.boardWriter}"></td>
+			<td th:text="${board.boardRegDate}"></td>
+			<td th:text="${board.boardReadCount}"></td>
+			</tr>
+		</table>
+		
+		<div class="board-search">
+			<div class="board-search-center">
+				<div class="board-search-choice-square1">
+					<select class="board-search-choice-square2">
+						<option value="board_Title">제목</option>
+						<option value="board_Content">내용</option>
+						<option value="board_Writer">작성자</option>
+					</select>
+				</div>
+					
+				<div class="board-board-search">
+					<div class="board-board-search-box">
+						<input type="text" name="keyword" placeholder="검색어를 입력해주세요">
+						<button type="button" class="boardSearchBtn">
+							<span class="material-icons">search</span>
+						</button>
+					</div>
+				</div>
+			</div>
+			
+			<div class="board-write-button">
+				<a href="#" class="board-btn">글쓰기</a>
+			</div>
+		</div>
+		
+		
+		
+		<div id="pageNavi" th:utext="${pageNavi}"></div>   <!-- 태그로 동작시킬려고 utext 로 가져옴 -->
+		
+		
+		<!-- 로그인이 되어있으면서 && 관리자일때만 -->
+		<!--  <a th:if="${session.m !=null && (session.m.memberLevel == 1 || session.m.memberLevel == 2)}" href="#" class="board-btn board-bc1 board-bs4">글쓰기</a>-->
+		
+		
+	</div>
+	<th:block th:include="common/footer"></th:block>
+
+
+	<script>
+		//제목:내용 찾기
+		$(".boardSearchBtn").on("click",function(){
+			const boardChoice=$(this).parent().parent().prev().children().val();
+			const keyword = $(this).prev().val(); 
+			location.href="/board/search?reqPage=1&boardChoice="+boardChoice+"&keyword="+keyword;
+			
+			console.log(boardChoice);
+		});
+	
+	</script>
+</body>
+</html>
