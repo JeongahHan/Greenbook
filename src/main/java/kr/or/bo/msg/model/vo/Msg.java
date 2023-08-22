@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class Msg {
-	int mid;
-	String sender;
-	String receiver;
-	String message;
-	int readChk;
-	String sendDate;
+	private int mid;
+	private String sender;
+	private String receiver;
+	private String message;
+	private int readChk;
+	private String sendDate;
 }

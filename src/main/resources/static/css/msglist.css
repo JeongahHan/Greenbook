@@ -1,0 +1,103 @@
+/* 사용할 font 선언 */
+@font-face {
+    font-family: ns-thin;
+    src: url(../Noto_Sans_KR/static/NotoSansKR-Thin.ttf);
+}
+@font-face {
+    font-family: ns-light;
+    src: url(../Noto_Sans_KR/static/NotoSansKR-Light.ttf);
+}
+@font-face {
+    font-family: ns-m;
+    src: url(../Noto_Sans_KR/static/NotoSansKR-Medium.ttf);
+}
+@font-face {
+    font-family: ns-bold;
+    src: url(../Noto_Sans_KR/static/NotoSansKR-Bold.ttf);
+}
+@font-face {
+    font-family: ns-black;
+    src: url(../Noto_Sans_KR/static/NotoSansKR-Black.ttf);
+}
+/*기본 설정*/
+*{
+    margin: 0;
+    padding: 0;
+    color: #252a34;
+    font-family: ns-m;
+}
+.total-wrap{
+    width: 800px;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.tabs{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    overflow: hidden;
+}
+.tabs li{
+    float: left;
+    width: calc(100% / 2);
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+}
+.tabs li.active-tab{
+    color: rgb(0, 90, 13);
+}
+.msg-wrap{
+    width: 100%;
+    margin:  0 auto;
+    padding: 10px 20px;
+    display: none;
+    box-sizing: border-box;
+    border: 1px solid rgba(245, 245, 245, 0.9);
+}
+.first-line{
+    overflow: hidden;
+}
+.who{
+    float: left;
+}
+.date{
+    float: right;
+    font-size: 14px;
+}
+.second-line{
+    overflow: hidden;
+    font-size: 14px;
+}
+.title{
+    float: left;
+    margin-top: 10px;
+}
+.read{
+    float: right;
+    margin-top: 3px;
+}
+.material-symbols-outlined{
+    color: red;
+}
+.s-btn{
+    border: none;
+    border-radius: 5px;
+    width: 150px;
+    height: 40px;
+    float: right;
+    box-sizing: border-box;
+    transition-duration: 0.5s;
+    font-size: 16px;
+    font-family: ns-light;
+    margin-top: 20px;
+}
+.s-bc1 {
+    background-color: rgba(0, 90, 13, 0.9);
+    color: #fff;
+    border: none;
+}
+.s-bc1:hover {
+    cursor: pointer;
+}
