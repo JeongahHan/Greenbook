@@ -18,6 +18,7 @@ import kr.or.bo.FileUtil;
 import kr.or.bo.product.model.service.ProductService;
 import kr.or.bo.product.model.vo.Product;
 import kr.or.bo.product.model.vo.ProductFile;
+import kr.or.bo.product.model.vo.ProductListData;
 
 @Controller
 @RequestMapping(value="/product")
@@ -34,6 +35,9 @@ public class ProductController {
 	
 	@GetMapping(value="/board")
 	public String board(Model model, int reqPage) {
+		ProductListData pld = productService.selectProductList(reqPage);
+		model.addAttribute("productList", pld.getProductList());
+		model.addAttribute("pageNavi", pld.getPageNavi());
 		return "product/productBoard";
 	}
 	
@@ -81,7 +85,7 @@ public class ProductController {
 			model.addAttribute("msg", "게시글 작성 중 문제가 발생했습니다.");
 			model.addAttribute("icon", "error");
 		}
-		model.addAttribute("loc", "/product/board");
+		model.addAttribute("loc", "/product/board?reqPage=1");
 		return "common/msg";
 	}
 	
