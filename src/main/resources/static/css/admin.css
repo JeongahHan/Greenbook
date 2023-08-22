@@ -392,6 +392,10 @@ footer > .footer-content > .footer-detail {
 .bc1-1{
 	border-radius: 20px;
 }
+.findbtn{
+	margin-bottom: 20px;
+}
+
 
 /* font 클래스*/
 .f-thin {
@@ -460,7 +464,7 @@ footer > .footer-content > .footer-detail {
   border: 1px solid #ccc;
   box-sizing: border-box;
   font-size: 17px;
-  margin-left: 30px;
+  /*margin-left: 30px;*/
   margin-bottom: 30px;
 }
 .input-form {
@@ -488,7 +492,7 @@ textarea.input-form {
   padding: 20px 0px;
   font-size: 1.5rem;
   font-size: 40px;
-  margin-left: 35px;
+  /*margin-left: 35px;*/
   color : #005A0D;
 }
 
