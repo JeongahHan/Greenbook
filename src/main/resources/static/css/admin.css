@@ -1,3 +1,4 @@
+
 /* 사용할 font 선언 */
 @font-face {
   font-family: ns-thin;
@@ -374,6 +375,23 @@ footer > .footer-content > .footer-detail {
   padding: 2rem;
   font-size: 1.2em;
 }
+.bs5{
+  transition-duration: 0.5s;
+  font-size: 16px;
+  font-family: ns-light;
+  width: 70%;
+  padding: 2rem;
+  font-size: 1.2em;
+  margin-left: 140px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  box-sizing: content-box;
+  border-radius: 30px;
+  
+}
+.bc1-1{
+	border-radius: 20px;
+}
 
 /* font 클래스*/
 .f-thin {
@@ -392,6 +410,87 @@ footer > .footer-content > .footer-detail {
   font-family: ns-black;
 }
 
+/* 테이블 디자인 */
+.tbl {
+  width: 100%;
+  border-spacing: 0px;
+  border-collapse: collapse;
+}
+.tbl th,
+.tbl td {
+  padding: 1rem;
+  text-align: center;
+}
+.tbl .tr-1 {
+  background-color: rgba(255, 255, 255, 1);
+}
+.tbl .tr-2 {
+  background-color: rgba(57, 62, 70, 0.1);
+}
+.tbl .tr-3 {
+  background-color: #005A0D;
+  
+}
+.tr-3 :not(.green){
+	color : #fff;
+	font-family: ns-light;
+	font-size: 17px;
+}
+
+.tbl.tbl-hover .tr-1:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.tbl.tbl-hover .tr-2:hover {
+  background-color: rgba(57, 62, 70, 0.15);
+}
+
+.slideTogglebox{
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+
+
+/* input 디자인 */
+.inputid{
+  width: 200px;
+  display: inline-block;
+  padding: 0.8rem;
+  background-color: #fff;
+  outline: none;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 17px;
+  margin-left: 30px;
+  margin-bottom: 30px;
+}
+.input-form {
+  width: 100%;
+  display: block;
+  padding: 0.8rem;
+  background-color: #fff;
+  outline: none;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.input-form:focus {
+  box-shadow: 0 0 0 0.1rem #eee;
+}
+
+textarea.input-form {
+  resize: none;
+  min-height: 300px;
+}
+.input-form:read-only:not(select),
+.input-form:disabled {
+  background-color: #f7f7f9;
+}
+.page-title {
+  padding: 20px 0px;
+  font-size: 1.5rem;
+  font-size: 40px;
+  margin-left: 35px;
+  color : #005A0D;
+}
 
 
 
