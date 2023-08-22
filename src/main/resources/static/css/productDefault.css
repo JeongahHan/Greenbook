@@ -9,10 +9,17 @@
   transition-duration: 0.5s;
   font-size: 16px;
   font-family: ns-light;
+  cursor: pointer;
 }
 
 .bc2 {
   background-color: rgba(57, 62, 70, 0.9);
+  color: #fff;
+  border: 2px solid rgba(57, 62, 70, 0.9);
+}
+
+.bc3 {
+  background-color: #005A0D;
   color: #fff;
   border: 2px solid rgba(57, 62, 70, 0.9);
 }
