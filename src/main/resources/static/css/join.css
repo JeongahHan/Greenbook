@@ -131,8 +131,7 @@
 .right{
 	float : right;
 }
-
-/*모달*/
+/*약관동의 모달*/
 .privacy-wrap,.use-wrap{
     width: 100vw;
     height: 100vh;
@@ -188,6 +187,34 @@
 }
 #authBtn:hover{
 	cursor: pointer;
+}
+/*입력값 메세지 모달*/
+.modal-wrap{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.search-modal{
+    width: 400px;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 30px;
+}
+.modal-top>h2{
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+#msg{
+	text-align: center;
+	margin-bottom: 20px;
+	text-size: 15px;
 }
 
 

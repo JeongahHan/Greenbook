@@ -182,14 +182,7 @@ $(".privacy-close").on("click", function(){
 });
 
 //회원 가입 버튼 클릭 시 아이디 유효성, 중복체크, 비밀번호 확인, 체크박스 여부 모두 체크하기
-
 $("button[type=submit]").on("click",function(event){
-	$("#agreeCheck").empty();
-	const agreeCheck = $("#useAgreement").is(":checked") && $("#privacyAgreement").is(":checked");
-	if(!agreeCheck){
-		$("#agreeCheck").text("약관 동의는 필수입니다.");
-		$("#agreeCheck").css("color","red");
-	}
     const check = checkArr[0] && checkArr[1] && checkArr[2] && $("#useAgreement").is(":checked") && $("#privacyAgreement").is(":checked");
     if(!check){
         event.preventDefault();
