@@ -25,10 +25,9 @@ public class MypageService {
 	}//업데이트 멤버 종료
 
 	//내가 판매중인 도서 조회해오기
-	public List<Product> selectMySellBook(String memberId, int reqPage) {
+	public MypageListData selectMySellBook(String memberId, int reqPage) {
 		// TODO Auto-generated method stub
 		
-		List mySellBookList = mypageDao.selectMySellBook(memberId,reqPage);
 		
 		//여기서 페이지 나비 만들기
 		// 1. 한페이지당 게시물 수 지정 -> 10개
@@ -36,6 +35,9 @@ public class MypageService {
 		int numPerPage = 10;
 		int end = reqPage * numPerPage;
 		int start = end - numPerPage + 1;
+		List mySellBookList = mypageDao.selectMySellBook(memberId, start, end);
+		
+		
 		// 2. 페이지 네비게이션 제작
 		// 총 페이지 수 계산을 위해서는 총 게시물 수를 알아야함 -> DB에서 그룹함수로 조회
 		int totalCount = mypageDao.selectMySellBookTotalCount(memberId);		
@@ -59,7 +61,7 @@ public class MypageService {
 		// 이전버튼 제작 < 1 2
 		if (pageNo != 1) {// 페이지 번호가 1이 아닌경우만 1이면 그 전이 없으니까
 			pageNavi += "<li>";
-			pageNavi += "<a class='page-item' href='/notice/list?reqPage=" + (pageNo - 1) + "'>";
+			pageNavi += "<a class='page-item' href='/mypage/mySellBook?reqPage=" + (pageNo - 1) + "'>";
 			pageNavi += "<span class='material-icons'>chevron_left</span>";
 			pageNavi += "</a>";
 			pageNavi += "</li>";
@@ -68,13 +70,13 @@ public class MypageService {
 		for (int i = 0; i < pageNaviSize; i++) {
 			if (pageNo == reqPage) {
 				pageNavi += "<li>";
-				pageNavi += "<a class='page-item active-page' href='/notice/list?reqPage=" + (pageNo) + "'>";
+				pageNavi += "<a class='page-item active-page' href='/mypage/mySellBook?reqPage=" + (pageNo) + "'>";
 				pageNavi += pageNo;
 				pageNavi += "</a>";
 				pageNavi += "</li>";
 			} else {
 				pageNavi += "<li>";
-				pageNavi += "<a class='page-item' href='/notice/list?reqPage=" + (pageNo) + "'>";
+				pageNavi += "<a class='page-item' href='/mypage/mySellBook?reqPage=" + (pageNo) + "'>";
 				pageNavi += pageNo;
 				pageNavi += "</a>";
 				pageNavi += "</li>";
@@ -87,7 +89,7 @@ public class MypageService {
 		// 다음버튼 제작 >> ...4 5 >>
 		if (pageNo <= totalPage) {
 			pageNavi += "<li>";
-			pageNavi += "<a class='page-item' href='/notice/list?reqPage=" + (pageNo) + "'>";/// pageNo-1에서 바꿈
+			pageNavi += "<a class='page-item' href='/mypage/mySellBook?reqPage=" + (pageNo) + "'>";/// pageNo-1에서 바꿈
 			pageNavi += "<span class='material-icons'>chevron_right</span>"; /// left를 right로
 			pageNavi += "</a>";
 			pageNavi += "</li>";
@@ -97,7 +99,7 @@ public class MypageService {
 		
 		MypageListData mld = new MypageListData(mySellBookList,pageNavi);
 		
-		return mySellBookList;
+		return mld;
 	}//selectMySellBook() 종료
 	
 }

@@ -31,12 +31,12 @@ public class MypageDao {
 	}
 
 	//내가 판매중인 도서 조회
-	public List selectMySellBook(String memberId, int reqPage) {
+	public List selectMySellBook(String memberId, int start, int end) {
 		// TODO Auto-generated method stub
 		
-		String query = "select * from(select ROWNUM AS RNUM,N.* from(select * from PRODUCT_BOARD where PRODUCT_BOARD_WRITER = ? order by 1 DESC)N) where rnum between 1 and 10";
+		String query = "select * from(select ROWNUM AS RNUM,N.* from(select * from PRODUCT_BOARD where PRODUCT_BOARD_WRITER = ? order by 1 DESC)N) where rnum between ? and ?";
 		
-		List list = jdbc.query(query, productRowMapper, memberId);
+		List list = jdbc.query(query, productRowMapper, memberId, start, end);
 		
 		return list;
 	}

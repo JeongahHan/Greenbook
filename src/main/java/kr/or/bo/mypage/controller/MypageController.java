@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import kr.or.bo.member.model.service.MemberService;
 import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.mypage.model.service.MypageService;
+import kr.or.bo.mypage.model.vo.MypageListData;
 import kr.or.bo.product.model.vo.Product;
 
 @Controller
@@ -72,9 +73,10 @@ public class MypageController {
 		System.out.println(m.getMemberId());
 		
 		//내가 판매중인 도서 select 해오기
-		List<Product> list =mypageService.selectMySellBook(m.getMemberId(), reqPage);
+		MypageListData mld =mypageService.selectMySellBook(m.getMemberId(), reqPage);
 		
-		model.addAttribute("mySellBookList", list);
+		model.addAttribute("mySellBookList", mld.getMypageList());
+		model.addAttribute("pageNavi", mld.getPageNavi());
 		
 		return "mypage/mySellBook";
 	}
