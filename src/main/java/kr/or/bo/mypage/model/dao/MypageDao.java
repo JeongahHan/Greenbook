@@ -40,5 +40,17 @@ public class MypageDao {
 		
 		return list;
 	}
+
+	//내가 판매중인 도서 토탈 카운트 세오기
+	public int selectMySellBookTotalCount(String memberId) {
+		// TODO Auto-generated method stub
+		String query = "select count(*) as cnt from PRODUCT_BOARD where PRODUCT_BOARD_WRITER = ?";
+		//jdbc.query(query, rowMapper, 위치홀더값 ,,,)
+		//query메소드를 사용하는 경우 매번 rowMapper를 제작 (결과가 1개여도)
+		//단일 값(행1, 열1)을 조회하는 경우
+		int totalCount = jdbc.queryForObject(query, Integer.class, memberId);
+				
+		return totalCount;
+	}
 	
 }
