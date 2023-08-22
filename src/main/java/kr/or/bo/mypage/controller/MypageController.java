@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import kr.or.bo.member.model.service.MemberService;
 import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.mypage.model.service.MypageService;
+import kr.or.bo.product.model.vo.Product;
 
 @Controller
 @RequestMapping(value = "/mypage")
@@ -63,7 +64,13 @@ public class MypageController {
 	}
 	
 	@GetMapping(value = "/mySellBook")
-	public String mySellBook() {
+	public String mySellBook(HttpSession session, int reqPage) {
+		Member m = (Member)session.getAttribute("m");
+		System.out.println(reqPage);
+		System.out.println(m.getMemberId());
+		
+		//내가 판매중인 도서 select 해오기
+		ArrayList<Product> list =mypageService.selectMySellBook(m.getMemberId(), reqPage);
 		return "mypage/mySellBook";
 	}
 	
