@@ -32,6 +32,7 @@ public class ProductService {
 		return result;
 	}
 
+	@Transactional
 	public ProductListData selectProductList(int reqPage) {
 		
 		int numPerPage = 15;
@@ -39,6 +40,13 @@ public class ProductService {
 		int end = reqPage * numPerPage;
 		int start = end - numPerPage + 1;
 		List productList = productDao.selectProductList(start, end);
+		for(Object obj : productList) {
+			Product p = (Product)obj;
+			ProductFile pf = productDao.selectProductImgList(p.getProductBoardNo());
+			// p.setFilepath(filepath);
+			// p.setProductFile(productFile);
+			p.setProductFile(pf);
+		}
 		
 		int totalCount = productDao.selectProductTotalCount();
 		int totalPage = (int)Math.ceil(totalCount/(double)numPerPage);

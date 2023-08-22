@@ -32,12 +32,12 @@
                     <li class="product" th:each="product : ${productList}">
                     	<a href="#">
                     		<div class="img-box">
-                    			<img src="/img/product-img/데미안.jpg">
+                    			
                     		</div>
                     		<div class="info">
 								<div class="book-title" th:text="${product.productBoardTitle}"></div>
-								<div class="book-writer" th:text="${product.productAuthor}"></div>
-								<div class="book-price" th:text="${product.productPrice}"></div>
+								<div class="book-writer">저자 | <span th:text="${product.productAuthor}"></span></div>
+								<div class="book-price"><span th:text="${product.productPrice}"></span> 원</div>
                     		</div>
                     	</a>
                     </li>

@@ -57,7 +57,7 @@ public class ProductController {
 		String savepath = root+"product/";
 		String filename = imageFile.getOriginalFilename();
 		String filepath = fileUtil.getFilepath(savepath, imageFile.getOriginalFilename());
-		p.setFilepath(filepath);
+	
 		File upfile = new File(savepath+filepath);
 		
 		try {
