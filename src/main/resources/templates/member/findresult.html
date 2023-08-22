@@ -133,50 +133,54 @@ $("#findjQ").on("click",function(){
 				$("#result").append(data.enrollDate +"<br>");
 				$("#result").append(data.memberLevel +"<br>"); 
 				*/
+				const inputTd = $("<td>");
+				const input = $("<input type='checkbox'>");
+				input.addClass("chk");
+				inputTd.append(td);
 			
 				const tr = $("<tr>");
 				tr.addClass("tr-1");
 				
 				const memberNoTd = $("<td>");
-				td.text(data.memberNo);
+				memberNoTd.text(data.memberNo);
 				memberNoTd.append(td);
 				
 				const memberIdTd = $("<td>");
-				td.text(data.memberId);
+				memberIdTd.text(data.memberId);
 				memberIdTd.append(td);
 				
 				const memberPwTd = $("<td>");
-				td.text(data.memberPw);
+				memberPwTd.text(data.memberPw);
 				memberPwTd.append(td);
 				
 				const memberNameTd = $("<td>");
-				td.text(data.memberName);
+				memberNameTd.text(data.memberName);
 				memberNameTd.append(td);
 				
 				const memberPhoneTd = $("<td>");
-				td.text(data.memberPhone);
+				memberPhoneTd.text(data.memberPhone);
 				memberPhoneTd.append(td);
 				
 				const memberEmailTd = $("<td>");
-				td.text(data.memberEmail);
+				memberEmailTd.text(data.memberEmail);
 				memberEmailTd.append(td);
 				
 				const enrollDateTd = $("<td>");
-				td.text(data.enrollDate);
+				enrollDateTd.text(data.enrollDate);
 				enrollDateTd.append(td);
 				
 				const memberLevelTd = $("<td>");
-				td.text(data.memberLevel);
+				memberLevelTd.text(data.memberLevel);
 				memberLevelTd.append(td);
 				//<select id ='level' class='input-form'><option value='1'>관리자</option><option value='2'>그린이</option><option value='3'>블랙이</option></select>
 				
 				const btnTd = $("<td>");
 				const btn = $("<button>");
-				button.addClass("btn bc1 bc1-1 changeLevel");
-				button.text("회원등급변경");
+				btn.addClass("btn bc1 bc1-1 changeLevel");
+				btn.text("회원등급변경");
 				btnTd.append(td);
 				
-				button.on("click", function(){
+				btnTd.on("click", function(){
 					const memberLevel = $(this).parent().prev().children().val();
 					const memberNo = $(this).parent().parent().children().eq(1).text();
 					console.log(memberLevel,memberNo);
@@ -185,7 +189,7 @@ $("#findjQ").on("click",function(){
 				
 				
 				
-				tr.append(memberNoTd).append(memberIdTd).append(memberPwTd).append(memberNameTd).append(memberPhoneTd).append(memberEmailTd).append(enrollDateTd).append(memberLevelTd).append(btnTd);
+				tr.append(inputTd).append(memberNoTd).append(memberIdTd).append(memberPwTd).append(memberNameTd).append(memberPhoneTd).append(memberEmailTd).append(enrollDateTd).append(memberLevelTd).append(btnTd);
 				$(".tbl>table").append(tr);
 				
 				

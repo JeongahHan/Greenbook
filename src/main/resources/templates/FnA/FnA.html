@@ -61,9 +61,10 @@
   
     <th:block th:include="common/footer"></th:block>
       <script>
-      $('#slideTogglebox').slideUp();
-	  $('#slideTogglebox1').slideUp();
-	  $('#slideTogglebox2').slideUp();
+     //$('#slideTogglebox').slideUp();
+	  //$('#slideTogglebox1').slideUp();
+	  //$('#slideTogglebox2').slideUp();
+	  $('.slideTogglebox').css("display","none");
            $(document).ready(function(){
     	     $('#title').click(function(){
     	       $('#slideTogglebox').slideToggle();
