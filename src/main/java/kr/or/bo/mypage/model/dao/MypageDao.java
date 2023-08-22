@@ -1,16 +1,21 @@
 package kr.or.bo.mypage.model.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import kr.or.bo.member.model.vo.Member;
+import kr.or.bo.product.model.vo.ProductRowMapper;
 
 @Repository
 public class MypageDao {
 	@Autowired
 	private JdbcTemplate jdbc;
 	//찜목록 RowMapper추가 필요
+	@Autowired
+	private ProductRowMapper productRowMapper;
 
 	//회원정보 수정
 	public int updateMember(Member member) {
@@ -23,6 +28,16 @@ public class MypageDao {
 		int result = jdbc.update(query,params);
 		
 		return result;
+	}
+
+	//내가 판매중인 도서 조회
+	public List selectMySellBook(String memberId, int reqPage) {
+		// TODO Auto-generated method stub
+		
+		String query = "";
+		List list = jdbc.query(query, productRowMapper);
+		
+		return list;
 	}
 	
 }

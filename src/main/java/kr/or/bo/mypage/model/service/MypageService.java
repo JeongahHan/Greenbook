@@ -1,6 +1,7 @@
 package kr.or.bo.mypage.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,11 +24,14 @@ public class MypageService {
 	}//업데이트 멤버 종료
 
 	//내가 판매중인 도서 조회해오기
-	public ArrayList<Product> selectMySellBook(String memberId, int reqPage) {
+	public List<Product> selectMySellBook(String memberId, int reqPage) {
 		// TODO Auto-generated method stub
 		
+		List list = mypageDao.selectMySellBook(memberId,reqPage);
+		
 		//여기서 페이지 나비 만들기
-		return null;
-	}
+		
+		return list;
+	}//selectMySellBook() 종료
 	
 }
