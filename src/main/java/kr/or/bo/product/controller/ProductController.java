@@ -33,7 +33,7 @@ public class ProductController {
 	private FileUtil fileUtil;
 	
 	@GetMapping(value="/board")
-	public String board() {
+	public String board(Model model, int reqPage) {
 		return "product/productBoard";
 	}
 	
