@@ -73,7 +73,7 @@
 
 textarea.input-form {
     resize: none;
-    min-height: 400px;
+    height: 400px;
 }
 
 /*
