@@ -34,8 +34,9 @@ public class MypageDao {
 	public List selectMySellBook(String memberId, int reqPage) {
 		// TODO Auto-generated method stub
 		
-		String query = "";
-		List list = jdbc.query(query, productRowMapper);
+		String query = "select * from(select ROWNUM AS RNUM,N.* from(select * from PRODUCT_BOARD where PRODUCT_BOARD_WRITER = ? order by 1 DESC)N) where rnum between 1 and 10";
+		
+		List list = jdbc.query(query, productRowMapper, memberId);
 		
 		return list;
 	}

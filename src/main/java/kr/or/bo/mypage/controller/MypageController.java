@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -65,13 +66,16 @@ public class MypageController {
 	}
 	
 	@GetMapping(value = "/mySellBook")
-	public String mySellBook(HttpSession session, int reqPage) {
+	public String mySellBook(HttpSession session,Model model, int reqPage) {
 		Member m = (Member)session.getAttribute("m");
 		System.out.println(reqPage);
 		System.out.println(m.getMemberId());
 		
 		//내가 판매중인 도서 select 해오기
 		List<Product> list =mypageService.selectMySellBook(m.getMemberId(), reqPage);
+		
+		model.addAttribute("mySellBookList", list);
+		
 		return "mypage/mySellBook";
 	}
 	
