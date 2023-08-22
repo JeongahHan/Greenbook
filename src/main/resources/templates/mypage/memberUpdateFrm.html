@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>마이페이지 회원정보</title>
-<link rel="stylesheet" href="/css/default.css">
+<link rel="stylesheet" href="/css/mypageDefault.css">
 <link rel="stylesheet" href="/css/mypage.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"  rel="stylesheet">
 <script src="/js/jquery-3.7.0.js"></script>
@@ -35,7 +35,7 @@
 	            </div>
 	            <div class="input-wrap">
 	                <label for="memberName">회원이름</label>
-	                <input type="text" name="memberName" id="memberName" th:value="${session.m.memberName}" disabled>
+	            	<input type="text" name="memberName" id="memberName" th:value="${session.m.memberName}" disabled>
 	            </div>
 	            <div class="input-wrap">
 	                <label for="memberPhone">휴대폰번호</label>

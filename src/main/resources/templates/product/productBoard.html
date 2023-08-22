@@ -29,6 +29,19 @@
                 <div class="mid-content">
                     <ul>
                     
+                    <li class="product" th:each="product : ${productList}">
+                    	<a href="#">
+                    		<div class="img-box">
+                    			<img src="/img/product-img/데미안.jpg">
+                    		</div>
+                    		<div class="info">
+								<div class="book-title" th:text="${product.productBoardTitle}"></div>
+								<div class="book-writer" th:text="${product.productAuthor}"></div>
+								<div class="book-price" th:text="${product.productPrice}"></div>
+                    		</div>
+                    	</a>
+                    </li>
+                    
                     <!-- 
                         <li class="product">
                             <a href="#">
@@ -224,6 +237,45 @@
                                 </div>
                             </a>
                         </li>
+                        
+                        <li class="product">
+                            <a href="#">
+                                <div class="img-box">
+                                    <img src="/img/product-img/7년의 밤.jpg">
+                                </div>
+                                <div class="info">
+                                    <div class="book-title">7년의 밤</div>
+                                    <div class="book-writer">저자 | 정유정</div>
+                                    <div class="book-price">10,000 원</div>
+                                </div>
+                            </a>
+                        </li>
+                        
+                        <li class="product">
+                            <a href="#">
+                                <div class="img-box">
+                                    <img src="/img/product-img/7년의 밤.jpg">
+                                </div>
+                                <div class="info">
+                                    <div class="book-title">7년의 밤</div>
+                                    <div class="book-writer">저자 | 정유정</div>
+                                    <div class="book-price">10,000 원</div>
+                                </div>
+                            </a>
+                        </li>
+                        
+                        <li class="product">
+                            <a href="#">
+                                <div class="img-box">
+                                    <img src="/img/product-img/7년의 밤.jpg">
+                                </div>
+                                <div class="info">
+                                    <div class="book-title">7년의 밤</div>
+                                    <div class="book-writer">저자 | 정유정</div>
+                                    <div class="book-price">10,000 원</div>
+                                </div>
+                            </a>
+                        </li>
                          -->
                         
                     </ul>
@@ -240,7 +292,7 @@
 			</div>
 			
 			<div>
-				<div class="page-btn">페이지 버튼</div>
+				<div id="pageNavi" th:utext="${pageNavi}"></div>
 			</div>
 
         </div>

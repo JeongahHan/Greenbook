@@ -26,7 +26,7 @@
                             <label for="memberId">아이디<span class="red">*</label>
                         </th>
                         <td>
-                            <input type="text" name="memberId" id="memberId" class="s-input-form" placeholder="4~8글자, 영어 대+소문자+숫자 입력 가능" required>
+                            <input type="text" name="memberId" id="memberId" class="s-input-form" placeholder="4~8글자, 영어 대+소문자+숫자 입력 가능">
                             <div class="id-wrap">
                             	<span id="ajaxCheckId"></span>
                             </div>
@@ -37,7 +37,7 @@
                             <label for="memberPw">비밀번호<span class="red">*</span></label>
                         </th>
                         <td>
-                            <input type="password" name="memberPw" id="memberPw" class="s-input-form" placeholder="비밀번호를 입력해주세요" required>
+                            <input type="password" name="memberPw" id="memberPw" class="s-input-form" placeholder="비밀번호를 입력해주세요">
                         </td>
                     </tr>
                     <tr>
@@ -45,7 +45,7 @@
                             <label for="memberPwRe">비밀번호 확인<span class="red">*</span></label>
                         </th>
                         <td>
-                            <input type="password" name="memberPwRe" id="memberPwRe" class="s-input-form" placeholder="비밀번호를 한번 더 입력해주세요" required>	
+                            <input type="password" name="memberPwRe" id="memberPwRe" class="s-input-form" placeholder="비밀번호를 한번 더 입력해주세요">	
                        		<div class="id-wrap">
                        			<span id="checkPw"></span>
                        		</div>
@@ -56,7 +56,7 @@
                             <label for="memberName">이름<span class="red">*</span></label>
                         </th>
                         <td>
-                            <input type="text" name="memberName" id="memberName" class="s-input-form" placeholder="이름을 입력해주세요" required>
+                            <input type="text" name="memberName" id="memberName" class="s-input-form" placeholder="이름을 입력해주세요">
                         </td>
                     </tr>
                     <tr>
@@ -64,7 +64,7 @@
                             <label for="memberPhone">휴대폰<span class="red">*</span></label>
                         </th>
                         <td>
-                            <input type="text" name="memberPhone" id="memberPhone" class="s-input-form" placeholder="010-0000-0000" required>			
+                            <input type="text" name="memberPhone" id="memberPhone" class="s-input-form" placeholder="010-0000-0000">			
                         </td>
                     </tr>
                     <tr>
@@ -73,7 +73,7 @@
                         </th>
                         <td>
                             <div class="id-wrap">
-                                <input type="text" name="memberEmail" id="memberEmail" class="s-input-form" placeholder="greenbook@green.com" required>
+                                <input type="text" name="memberEmail" id="memberEmail" class="s-input-form" placeholder="greenbook@green.com">
                                 <button type="button" id="emailChkBtn" class="s-btn s-bc1">인증코드</button>
                             </div>
                             <div class="id-wrap">
@@ -113,9 +113,6 @@
                             	<div class="right">
 	                                <a class="privacy">약관보기</a>                            	
                             	</div>
-                            </div>
-                            <div class="id-wrap">
-                            	<span id="agreeCheck"></span>
                             </div>
                         </td>
                     </tr>
@@ -277,6 +274,17 @@
 	        </div>
     	</div>
 	</div>
+	<div class="modal-wrap">
+        <div class="search-modal">
+        	<div class="search-top">
+                <h2>회원가입</h2>
+            </div>
+            <div class="search-content">            
+				<p id="msg"></p>
+				<button type="button" class="modal-btn s-bc2" id="close">닫기</button>
+            </div>
+    	</div>
+    </div>
 	<th:block th:include="common/footer"></th:block>
 	<script src="/js/join.js"></script>
 </body>
