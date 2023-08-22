@@ -15,8 +15,8 @@
         <form action="/member/login" method="post">
             <div class="content">
                 <div class="input-box">
-                    <input type="text" name="memberId" class="s-input-form" placeholder="아이디를 입력해주세요" autocomplete="off" required>
-                    <input type="password" name="memberPw" class="s-input-form" placeholder="비밀번호를 입력해주세요" autocomplete="off" required>	
+                    <input type="text" name="memberId" class="s-input-form" placeholder="아이디를 입력해주세요" autocomplete="off">
+                    <input type="password" name="memberPw" class="s-input-form" placeholder="비밀번호를 입력해주세요" autocomplete="off">	
                 </div>
                 <div class="link-box">
                   <a href="/member/searchIdFrm">아이디 찾기</a>
@@ -30,6 +30,30 @@
             </div>
         </form>
     </div>
+    <div class="modal-wrap">
+        <div class="search-modal">
+        	<div class="modal-top">
+                <h2>로그인</h2>
+            </div>
+            <div class="modal-content">
+				<p id="msg"></p>
+				<button type="button" class="s-btn s-bc2" id="close">닫기</button>
+            </div>
+        </div>
+    </div>
     <th:block th:include="common/footer"></th:block>
+    <script>
+    	$("button[type=submit]").on("click",function(event){
+    		if($("input[name=memberId]").val() == "" || $("input[name=memberPw]").val() == ""){
+    			$("#msg").text("아이디 또는 비밀번호를 입력해주세요.");
+    			//모달 열기
+    			$(".modal-wrap").css("display","flex");
+    			event.preventDefault();
+    		}
+    	});
+		$("#close").on("click", function(){
+			$(".modal-wrap").css("display","none");
+		});
+    </script>
 </body>
 </html>

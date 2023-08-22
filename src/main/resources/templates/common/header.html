@@ -12,6 +12,10 @@
 <!-- 기본 js -->
 
 
+
+
+
+
 <div class="box">
 	<div class="box-detail">
 			<a th:if="${session.m !=null && session.m.memberLevel == 1}" href="/member/admin" id="adminMenuButton">관리자메뉴</a>
@@ -27,7 +31,7 @@
 
     <div class="search">
 		<div class="search-box">
-			<form action="search.html">
+			<form action="#">
 				<input type="text" name="keyword" placeholder="검색어를 입력해주세요">
 				<button type="submit">
 					<span class="material-icons">search</span>
@@ -35,6 +39,7 @@
 			</form>
 		</div>
     </div>
+    
     
 	<div class="header-link">
 		<a href="/member/loginFrm"><span class="material-icons headericon">person_outline</span></a> <!-- 로그인-->
