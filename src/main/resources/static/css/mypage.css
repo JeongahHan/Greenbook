@@ -4,6 +4,9 @@
 #D0F5BE
 
 */
+
+
+
 /* 게시판 페이징 디자인 */
 #pageNavi{
     margin:100px 30px 30px 30px ;
@@ -125,6 +128,25 @@
 
 .btn-box{
     text-align: center;
+}
+.btn{
+    border: none;
+    padding: 0.5rem;
+    display: inline-block;
+    box-sizing: border-box;
+    transition-duration: 0.5s;
+    font-size: 16px;
+    font-family: ns-light;    
+}
+.bc1 {
+    color: #005A0D;
+    background-color: #fff;
+    border: 2px solid #005A0D;
+}
+.bc1:hover {
+    background-color: #005A0D;
+    color: #fff;
+    cursor: pointer;
 }
 
 
