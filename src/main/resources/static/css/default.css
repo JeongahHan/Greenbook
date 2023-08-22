@@ -515,4 +515,8 @@ textarea.input-form {
 }
 */
 
+.info>.book-writer>.book-writer{
+    color:gray;
+    font-size: 12px;
+}
 

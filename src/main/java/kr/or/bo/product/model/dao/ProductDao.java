@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.or.bo.product.model.vo.Product;
 import kr.or.bo.product.model.vo.ProductFile;
+import kr.or.bo.product.model.vo.ProductFileRowMapper;
 import kr.or.bo.product.model.vo.ProductRowMapper;
 
 @Repository
@@ -19,6 +20,9 @@ public class ProductDao {
 	
 	@Autowired
 	private ProductRowMapper productRowmapper;
+	
+	@Autowired
+	private ProductFileRowMapper productFileRowmapper;
 
 	public int insertPhoto(Product p) {
 		String query = "INSERT INTO PRODUCT_BOARD VALUES (PRODUCT_BOARD_SEQ.NEXTVAL, ?, ?, ?, TO_CHAR(SYSDATE, 'YYYY-MM-DD'), ?, ?, ?, ?, DEFAULT)";
@@ -51,5 +55,12 @@ public class ProductDao {
 		int totalCount = jdbc.queryForObject(query, Integer.class);
 		return totalCount;
 	}
+
+	public ProductFile selectProductImgList(int productBoardNo) {
+		String query = "select * from product_file where product_no=?";
+		List list = jdbc.query(query, productFileRowmapper, productBoardNo);
+		return (ProductFile)list.get(0);
+	}
+
 	
 }

@@ -85,16 +85,10 @@
 }
 
 .info>.book-title{
-    color: #000;
     font-weight: 900;
 }
 
 .info>.book-writer{
-    color:gray;
-    font-size: 12px;
-}
-
-.info>.book-writer>.book-writer{
     color:gray;
     font-size: 12px;
 }
