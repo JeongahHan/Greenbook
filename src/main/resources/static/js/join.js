@@ -187,39 +187,46 @@ $("button[type=submit]").on("click",function(event){
 	if(!agreeCheck){
 		$("#msg").text("약관동의는 필수입니다.");
 		$(".modal-wrap").css("display","flex");
+		event.preventDefault();
 	}
 	
 	if($("#memberEmail").val() == ""){
 		$("#msg").text("이메일을 입력해주세요.");
 		$(".modal-wrap").css("display","flex");
+		event.preventDefault();
 	}
 	
 	if($("#memberPhone").val() == ""){
 		$("#msg").text("휴대폰번호를 입력해주세요.");
 		$(".modal-wrap").css("display","flex");
+		event.preventDefault();
 	}
 		
 	if($("#memberName").val() == ""){
 		$("#msg").text("이름을 입력해주세요.");
 		$(".modal-wrap").css("display","flex");
+		event.preventDefault();
 	}
 	
 	if($("#memberPwRe").val() == ""){
 		$("#msg").text("비밀번호를 한번 더 입력해주세요.");
 		$(".modal-wrap").css("display","flex");
+		event.preventDefault();
 	}
 	
 	if($("#memberPw").val() == ""){
 		$("#msg").text("비밀번호를 입력해주세요.");
 		$(".modal-wrap").css("display","flex");
+		event.preventDefault();
 	}
 	
 	if($("#memberId").val() == ""){
 		$("#msg").text("아이디를 입력해주세요.");
 		$(".modal-wrap").css("display","flex");
+		event.preventDefault();
 	}
 	
-    const check = checkArr[0] && checkArr[1] && checkArr[2] && $("#useAgreement").is(":checked") && $("#privacyAgreement").is(":checked");
+    const check = checkArr[0] && checkArr[1] && checkArr[2];
     if(!check){
         event.preventDefault();
     }
