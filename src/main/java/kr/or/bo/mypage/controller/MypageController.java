@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import kr.or.bo.member.model.service.MemberService;
 import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.mypage.model.service.MypageService;
+import kr.or.bo.mypage.model.vo.MypageListData;
 import kr.or.bo.product.model.vo.Product;
 
 @Controller
@@ -65,13 +67,17 @@ public class MypageController {
 	}
 	
 	@GetMapping(value = "/mySellBook")
-	public String mySellBook(HttpSession session, int reqPage) {
+	public String mySellBook(HttpSession session,Model model, int reqPage) {
 		Member m = (Member)session.getAttribute("m");
 		System.out.println(reqPage);
 		System.out.println(m.getMemberId());
 		
 		//내가 판매중인 도서 select 해오기
-		List<Product> list =mypageService.selectMySellBook(m.getMemberId(), reqPage);
+		MypageListData mld =mypageService.selectMySellBook(m.getMemberId(), reqPage);
+		
+		model.addAttribute("mySellBookList", mld.getMypageList());
+		model.addAttribute("pageNavi", mld.getPageNavi());
+		
 		return "mypage/mySellBook";
 	}
 	
