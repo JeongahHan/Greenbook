@@ -305,6 +305,7 @@ footer > .footer-content > .footer-detail {
     padding-top: 250px;
     padding-bottom: 100px;
     text-align: center;
+    min-width:1200px;
 }
 .page-main-like-text{
     padding-bottom: 50px;
@@ -327,18 +328,40 @@ footer > .footer-content > .footer-detail {
 }
 
 
+.main-btn {
+  border: none;
+  padding: 1rem;
+  display: inline-block;
+  box-sizing: border-box;
+  transition-duration: 0.5s;
+  font-size: 16px;
+  font-family: ns-light;
+}
+
+.main-bc1 {
+  color: #005A0D;
+  background-color: #fff;
+  border: 2px solid #005A0D;
+}
+.main-bc1:hover {
+  background-color: #005A0D;
+  color: #fff;
+  cursor: pointer;
+}
+
+.main-bs4 {
+  width: 20%;
+  height: 30px;
+  padding: 2rem;
+  font-size: 1.2em;
+  line-height:3px;
+}
 
 
 
 
-
-
-
-
-
-
-
-/*기본 버튼 디자인 */
+/*
+	기본 버튼 디자인 
 .btn {
   border: none;
   padding: 1rem;
@@ -392,7 +415,7 @@ footer > .footer-content > .footer-detail {
 	border-radius: 20px;
 }
 
-/* font 클래스*/
+	 font 클래스
 .f-thin {
   font-family: ns-thin;
 }
@@ -409,7 +432,7 @@ footer > .footer-content > .footer-detail {
   font-family: ns-black;
 }
 
-/* 테이블 디자인 */
+ 	테이블 디자인 
 .tbl {
   width: 100%;
   border-spacing: 0px;
@@ -449,7 +472,7 @@ footer > .footer-content > .footer-detail {
 
 
 
-/* input 디자인 */
+	input 디자인 
 .inputid{
   width: 200px;
   display: inline-block;
@@ -490,6 +513,6 @@ textarea.input-form {
   margin-left: 35px;
   color : #005A0D;
 }
-
+*/
 
 
