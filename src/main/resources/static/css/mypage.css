@@ -163,4 +163,21 @@
 }
 
 
+/* myWishList 디자인 */
+.wishList-wrap{
+    /* width: 100%; */
+    background-color: bisque;
+    overflow: hidden;
+}
+.wishList-one{
+    width: 170px;
+    background-color: #ccc;
+    float: left;
+    padding: 10px 15px;
+}
+.wishList-imgBox img{
+    width: 100%;
+}
+
+
 

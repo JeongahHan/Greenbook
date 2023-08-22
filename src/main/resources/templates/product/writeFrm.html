@@ -9,6 +9,10 @@
 <body>
 
 	<th:block th:include="common/header"></th:block>
+
+	<script src="/summernote/summernote-lite.js"></script>
+	<script src="/summernote/lang/summernote-ko-KR.js"></script>
+	<link rel="stylesheet" href="/summernote/summernote-lite.css">
 	
 	<div class="main">
 		<div class="main-wrap">
@@ -48,7 +52,7 @@
 							</td>
 							<th class="td-3">책 상태</th>
 							<td>
-								<select class="product-condition input-form">
+								<select name = "productCondition" class="product-condition input-form">
 									<option value="5">매우 좋음</option>
 									<option value="4">좋음</option>
 									<option value="3" selected>보통</option>
@@ -76,8 +80,8 @@
 						
 						<tr class="tr-1">
 							<th class="td-3">내용</th>
-							<td colspan="3">
-								<textarea name="productBoardContent" class="input-form" placeholder="내용을 입력해주세요."></textarea>
+							<td colspan="3" style="text-align : left;">
+								<textarea name="productBoardContent" id="productBoardContent" class="input-form" placeholder="내용을 입력해주세요."></textarea>
 							</td>
 						</tr>
 						
@@ -111,6 +115,33 @@
 				$("#img-view").attr("src","");
 			}
 		});
+		
+		// 썸머노트
+		$("#productBoardContent").summernote({
+			height : 400,
+			lang : "ko-KR",
+			callbacks : {
+				onImageUpload : function(files){
+					uploadImage(files[0],this);
+				}
+			}
+		});
+		
+		function uploadImage(file, editor){
+			const form = new FormData();
+			form.append("file",file);
+			
+			$.ajax({
+				url : "/product/editor",
+				type : "post",
+				data : form,
+				processData : false,
+				contentType : false,
+				success : function(data){
+					$(editor).summernote("insertImage",data);
+				}
+			});
+		}
 	
 	</script>
 

@@ -2,6 +2,7 @@ package kr.or.bo.product.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,11 +11,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.bo.FileUtil;
 import kr.or.bo.product.model.service.ProductService;
 import kr.or.bo.product.model.vo.Product;
+import kr.or.bo.product.model.vo.ProductFile;
 
 @Controller
 @RequestMapping(value="/product")
@@ -41,7 +44,14 @@ public class ProductController {
 	
 	@PostMapping(value="/write")
 	public String write(Product p, MultipartFile imageFile, Model model) {
+
+		ArrayList<ProductFile> fileList = null;
+		if(imageFile != null) {
+			fileList = new ArrayList<ProductFile>();
+		}
+		
 		String savepath = root+"product/";
+		String filename = imageFile.getOriginalFilename();
 		String filepath = fileUtil.getFilepath(savepath, imageFile.getOriginalFilename());
 		p.setFilepath(filepath);
 		File upfile = new File(savepath+filepath);
@@ -55,7 +65,13 @@ public class ProductController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		int result = productService.insertPhoto(p);
+		
+		ProductFile pf = new ProductFile();
+		pf.setFilename(filename);
+		pf.setFilepath(filepath);
+		fileList.add(pf);
+		
+		int result = productService.insertPhoto(p, fileList);
 		if(result > 0) {
 			model.addAttribute("title", "작성완료");
 			model.addAttribute("msg", "게시글 작성이 완료되었습니다.");
@@ -67,6 +83,25 @@ public class ProductController {
 		}
 		model.addAttribute("loc", "/product/board");
 		return "common/msg";
+	}
+	
+	@ResponseBody
+	@PostMapping(value="/editor", produces = "plain/text;charset=utf-8")
+	public String editorUpload(MultipartFile file) {
+		String savepath = root+"editor/";
+		String filepath = fileUtil.getFilepath(savepath, file.getOriginalFilename());
+		File image = new File(savepath+filepath);
+		
+		try {
+			file.transferTo(image);
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "/editor/"+filepath;
 	}
 	
 }

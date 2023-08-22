@@ -1,19 +1,5 @@
 @charset "UTF-8";
 @charset "UTF-8";
-*{
-    margin: 0;
-    padding: 0;
-    outline: none;
-}
-
-/* main-top */
-.main{
-    width: 1900px;
-}
-
-.main-wrap{
-
-}
 
 .main-top-text{
     padding: 20px;
@@ -87,7 +73,7 @@
 
 textarea.input-form {
     resize: none;
-    min-height: 400px;
+    height: 400px;
 }
 
 /*

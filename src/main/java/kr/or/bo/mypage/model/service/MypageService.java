@@ -17,6 +17,6 @@ public class MypageService {
 		int result = mypageDao.updateMember(member);
 		
 		return result;
-	}
+	}//업데이트 멤버 종료
 	
 }
