@@ -41,7 +41,7 @@ public class MypageController {
 		//ArrayList<Board> list = mypageService.selectMyBoardList();
 		System.out.println(reqPage);
 		//내가 작성한 자유게시판 select 해오기
-		MypageListData mld2 = mypageService.selectMyBoardList();
+		//MypageListData mld2 = mypageService.selectMyBoardList();
 
 		
 		return "mypage/myBoard";
