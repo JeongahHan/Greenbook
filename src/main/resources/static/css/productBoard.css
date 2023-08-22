@@ -35,7 +35,6 @@
 .main-mid{
     margin: 20px auto;
     width: 1200px;
-    background-color: blue;
 }
 
 .mid-text1{
@@ -113,7 +112,6 @@
 .main-bottom{
     margin: 20px auto;
     width: 1200px;
-    background-color: yellow;
     overflow: hidden;
 }
 
@@ -124,13 +122,13 @@
   	color: #fff;
   	border: 2px solid rgba(57, 62, 70, 0.9);
   	text-decoration: none;
+  	margin-right: 30px;
 }
 
 /* 페이지 버튼 */
 .page-btn{
     margin: 20px auto;
     width: 1200px;
-    background-color: red;
     text-align: center;
 }
 

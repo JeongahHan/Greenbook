@@ -32,12 +32,12 @@
 						<tr>
 							<th class="td-3">제목</th>
 							<td>
-								<input type="text" name="productTitle" class="input-form" placeholder="제목을 입력해주세요.">
+								<input type="text" name="productBoardTitle" class="input-form" placeholder="제목을 입력해주세요.">
 							</td>
 							
 							<th class="td-3">글쓴이</th>
 							<td>
-								<input type="text" name="productWriter" class="input-form" placeholder="글쓴이를 입력해주세요.">
+								<input type="text" name="productAuthor" class="input-form" placeholder="글쓴이를 입력해주세요.">
 	                		</td>
                 		</tr>
                 		
@@ -61,7 +61,7 @@
                 		<tr>
                 			<th class="td-3">썸네일</th>
 							<td colspan="6">
-							<input type="file" name="upfile">
+							<input type="file" name="imageFile" accpt=".jpg, .png, .jpeg">
 							</td>
                 		</tr>
                 		
@@ -77,19 +77,11 @@
 						<tr class="tr-1">
 							<th class="td-3">내용</th>
 							<td colspan="3">
-								<textarea name="photoContent" class="input-form" placeholder="내용을 입력해주세요."></textarea>
+								<textarea name="productBoardContent" class="input-form" placeholder="내용을 입력해주세요."></textarea>
 							</td>
 						</tr>
 						
-						<!-- 
-						<tr class="tr-1">
-							<th class="td-3">작성자</th>
-							<td>
-								<span th:text="${session.m.memberId}"></span>
-								<input type="hidden" name="productWriter" th:value="${session.m.memberId}">
-							</td>
-						</tr>
-						 -->
+						<input type="hidden" name="productBoardWriter" th:value="${session.m.memberId}">
 						
 						<tr class="tr-1">
 							<th colspan="4">
@@ -108,7 +100,17 @@
 
 	<script>
 	
-	
+		$("[name=imageFile]").on("change",function(){
+			if(this.files.length != 0 && this.files[0] != 0){
+				const reader = new FileReader();
+				reader.readAsDataURL(this.files[0]);
+				reader.onload = function(e){
+					$("#img-view").attr("src", e.target.result);
+				}
+			}else {
+				$("#img-view").attr("src","");
+			}
+		});
 	
 	</script>
 

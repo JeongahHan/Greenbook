@@ -5,7 +5,7 @@
 <title>내가 쓴 게시물</title>
 </head>
 <body>
-	<div>헤더</div>
+	<th:block th:include="common/header"></th:block>
 	<div class="page-content">
 		<div class="page-title">마이페이지 내가쓴 게시물</div>
 		<th:block th:include="mypage/mypageMenu"></th:block>
@@ -61,7 +61,7 @@
 		
 		</div>
 	</div>
-	<div>풋터</div>
+	<th:block th:include="common/footer"></th:block>
 
 </body>
 </html>

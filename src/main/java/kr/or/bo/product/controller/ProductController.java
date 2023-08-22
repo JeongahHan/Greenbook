@@ -39,7 +39,7 @@ public class ProductController {
 		return "product/writeFrm";
 	}
 	
-	@PostMapping(value="/wirte")
+	@PostMapping(value="/write")
 	public String write(Product p, MultipartFile imageFile, Model model) {
 		String savepath = root+"product/";
 		String filepath = fileUtil.getFilepath(savepath, imageFile.getOriginalFilename());
@@ -55,10 +55,18 @@ public class ProductController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		int result = productService.insertPhoto(p);
+		if(result > 0) {
+			model.addAttribute("title", "작성완료");
+			model.addAttribute("msg", "게시글 작성이 완료되었습니다.");
+			model.addAttribute("icon", "success");
+		}else {
+			model.addAttribute("title", "작성실패");
+			model.addAttribute("msg", "게시글 작성 중 문제가 발생했습니다.");
+			model.addAttribute("icon", "error");
+		}
+		model.addAttribute("loc", "/product/board");
 		return "common/msg";
-		
 	}
 	
 }

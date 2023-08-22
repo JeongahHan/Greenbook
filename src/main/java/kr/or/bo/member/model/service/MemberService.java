@@ -20,12 +20,11 @@ public class MemberService {
 		return m;
 	}
 	
-
-
 	public List selectAllMember() {
 		List list = memberDao.selectAllMember();
 		return list;
 	}
+	
 	@Transactional
 	public int changeLevel(int memberNo, int memberLevel) {
 		return memberDao.changeLevel(memberNo, memberLevel);
@@ -78,6 +77,11 @@ public class MemberService {
 	public int insertMember(Member member) {
 		int result = memberDao.insertMember(member);
 		return result;
+	}
+
+	public Member checkEmail(String memberEmail) {
+		Member m = memberDao.checkEmail(memberEmail);
+		return m;
 	}
 
 }
