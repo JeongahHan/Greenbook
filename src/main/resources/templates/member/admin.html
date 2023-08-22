@@ -3,19 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 관리</title>
+<!-- 구글 아이콘 -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!-- jquery -->
+<script src="/js/jquery-3.7.0.js"></script>
+<!-- 기본 CSS -->
+<link rel="stylesheet" href="/css/admin.css">
+<!-- 기본 js -->
+<script src="/js/find.js"></script>
 </head>
 <body>
 
 	<th:block th:include="common/header"></th:block>
 	<div class="page-content">
 		<div class="page-title">회원관리</div>
+
 		
+		<button class="btn bc1 bc1-1 modal-open-btn findbtn" target="#find-modal">회원찾기</button>
 		
-		<input type="text" id="find" class="inputid">
-		<button class="btn bc1 bc1-1" id="jQ">회원정보조회</button>
-		<table class=" ajaxResult" id="result"></table>
-		
-		
+  <!--회원찾기 모달 -->	
+		 <div id="find-modal" class="modal-bg">
+   		<div class="modal-wrap">
+       		<div class="modal-head">
+       			<h2>찾고싶은회원아이디</h2>
+       			<span class="material-icons close-icon modal-close">close</span>
+       		</div>
+       		<form action="/member/findresult" method="post">
+	       		<div class="modal-content">
+					<div class="input-box">
+					<form action="/member/findresult" method="post">
+						<input type="text" id="find" name="memberId" class="inputid" placeholder="조회할 회원아이디" >
+		                <button  type="submit" class="btn bc1 bc1-1" id="find">회원정보조회</button>
+		                </form>
+		                
+		                <!--<button class="btn bc1 bc1-1" id="jQ">회원정보조회</button> 
+		                <table class=" ajaxResult" id="result"></table> --> 
+					</div>				
+	       		</div>
+	       		<div class="modal-foot">
+		          
+	       		</div>
+    		</form>
+     		</div>
+   	</div>
+   	
+   	
+   	
 		
 		<table class="tbl tbl-hover">
 			<tr class="tr-3 .green">
@@ -102,77 +135,7 @@
 	});
 	
 	
-$("#jQ").on("click",function(){
-		
-		
-		const memberId = $("#find").val();
-		$.ajax({
-			url : "/member/find",
-			type : "post",
-			data : {memberId : memberId},
-			dataType : "json",
-			success : function(data){
-				console.log(data);
-				/*
-				$("#result").empty();
-				$("#result").append(data.memberId +"<br>");
-				$("#result").append(data.memberName +"<br>");
-			    $("#result").append(data.memberPhone +"<br>");
-				$("#result").append(data.memberEmail +"<br>");
-				$("#result").append(data.enrollDate +"<br>");
-				$("#result").append(data.memberLevel +"<br>"); 
-				*/
-				
-				 if( data.memberLevel == '1') {
-		               $(".input-form").val("1").prop("selected", true);
-		            } else if( data.memberLevel == '2') {
-		               $(".input-form").val("2").prop("selected", true);
-		            } else {
-		               $(".input-form").val("3").prop("selected", true);
-		            }
-				
-				var Add = 
-				 "<table class='tbl'><tr class='tr-1'>"+
-				 "<td><input type='checkbox' class='chk'></td>"+
-				 "<td>"+data.memberNo+"</td>"+
-				 "<td>"+data.memberId+"</td>"+
-				 "<td>"+data.memberName+"</td>"+
-				 "<td>"+data.memberPhone+"</td>"+
-				 "<td>"+data.memberEmail+"</td>"+
-				 "<td>"+data.enrollDate+"</td>"+
-				 
-				
-				 "<td><select id ='level' class='input-form'><option value='1'>관리자</option><option value='2'>그린이</option><option value='3'>블랙이</option></select></td>"+
-				// $('#level').val(data.memberLevel).prop('selected',true); 
-				 
-                 "<td><button class='btn bc1 bc1-1 changeLevel'>회원등급변경</button></td>"+
-					 "</tr></table>";
-					 $("#result").append(Add);  
-					 
-				 
-			
-				 
-				 
-				 $(document).ready(function(){
-					 $(".changeLevel").on("click",function(){
-							const memberLevel = $(this).parent().prev().children().val();
-							const memberNo = $(this).parent().parent().children().eq(1).text();
-							console.log(memberLevel,memberNo);
-							location.href="/member/changeLevel?memberNo="+memberNo+"&memberLevel="+memberLevel;
-					 });
-				 });
-				 
-				 
-				// console.log(data.memberLevel);
-		  
-				
-				
-		}
-			
-		});
-		
-	
-	});
+
 	
 	</script>
 
