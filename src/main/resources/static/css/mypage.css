@@ -4,6 +4,9 @@
 #D0F5BE
 
 */
+
+
+
 /* 게시판 페이징 디자인 */
 #pageNavi{
     margin:100px 30px 30px 30px ;
@@ -128,7 +131,7 @@
 }
 .btn{
     border: none;
-    padding: 1rem;
+    padding: 0.5rem;
     display: inline-block;
     box-sizing: border-box;
     transition-duration: 0.5s;
