@@ -183,10 +183,39 @@ $(".privacy-close").on("click", function(){
 
 //회원 가입 버튼 클릭 시 아이디 유효성, 중복체크, 비밀번호 확인, 체크박스 여부 모두 체크하기
 $("button[type=submit]").on("click",function(event){
-
 	const agreeCheck = $("#useAgreement").is(":checked") && $("#privacyAgreement").is(":checked");
 	if(!agreeCheck){
 		$("#msg").text("약관동의는 필수입니다.");
+		$(".modal-wrap").css("display","flex");
+	}
+	
+	if($("#memberEmail").val() == ""){
+		$("#msg").text("이메일을 입력해주세요.");
+		$(".modal-wrap").css("display","flex");
+	}
+	
+	if($("#memberPhone").val() == ""){
+		$("#msg").text("휴대폰번호를 입력해주세요.");
+		$(".modal-wrap").css("display","flex");
+	}
+		
+	if($("#memberName").val() == ""){
+		$("#msg").text("이름을 입력해주세요.");
+		$(".modal-wrap").css("display","flex");
+	}
+	
+	if($("#memberPwRe").val() == ""){
+		$("#msg").text("비밀번호를 한번 더 입력해주세요.");
+		$(".modal-wrap").css("display","flex");
+	}
+	
+	if($("#memberPw").val() == ""){
+		$("#msg").text("비밀번호를 입력해주세요.");
+		$(".modal-wrap").css("display","flex");
+	}
+	
+	if($("#memberId").val() == ""){
+		$("#msg").text("아이디를 입력해주세요.");
 		$(".modal-wrap").css("display","flex");
 	}
 	
