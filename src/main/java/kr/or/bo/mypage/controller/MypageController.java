@@ -40,6 +40,9 @@ public class MypageController {
 		//내가 쓴 게시물만 조회 해오기 //아직 Board Vo가 없음
 		//ArrayList<Board> list = mypageService.selectMyBoardList();
 		System.out.println(reqPage);
+		//내가 작성한 자유게시판 select 해오기
+		MypageListData mld2 = mypageService.selectMyBoardList();
+
 		
 		return "mypage/myBoard";
 	}
