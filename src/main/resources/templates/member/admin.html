@@ -122,7 +122,7 @@ $("#jQ").on("click",function(){
 				$("#result").append(data.enrollDate +"<br>");
 				$("#result").append(data.memberLevel +"<br>"); 
 				*/
-				/*
+				
 				 if( data.memberLevel == '1') {
 		               $(".input-form").val("1").prop("selected", true);
 		            } else if( data.memberLevel == '2') {
@@ -130,29 +130,40 @@ $("#jQ").on("click",function(){
 		            } else {
 		               $(".input-form").val("3").prop("selected", true);
 		            }
-				*/
+				
 				var Add = 
 				 "<table class='tbl'><tr class='tr-1'>"+
 				 "<td><input type='checkbox' class='chk'></td>"+
+				 "<td>"+data.memberNo+"</td>"+
 				 "<td>"+data.memberId+"</td>"+
 				 "<td>"+data.memberName+"</td>"+
 				 "<td>"+data.memberPhone+"</td>"+
 				 "<td>"+data.memberEmail+"</td>"+
 				 "<td>"+data.enrollDate+"</td>"+
 				 
-				 //"<td switch = data.memberLevel><select class='input-form'><option value='1' <c:if test='${data.memberLevel eq '1'}'>selected</c:if>>관리자</option><option value='2' <c:if test='${data.memberLevel eq '2'}'>selected</c:if>>그린이</option><option value='3' <c:if test='${data.memberLevel eq '3'}'>selected</c:if>>블랙이</option></select>"+
-				 // "<td switch = 'data.memberLevel'><select case= 'data.memberLevel' class='input-form'><option value='1' selected>관리자</option><option value='2'>그린이</option><option value='3'>블랙이</option></select></td>"+
+				
+				 "<td><select id ='level' class='input-form'><option value='1'>관리자</option><option value='2'>그린이</option><option value='3'>블랙이</option></select></td>"+
+				// $('#level').val(data.memberLevel).prop('selected',true); 
+				 
+                 "<td><button class='btn bc1 bc1-1 changeLevel'>회원등급변경</button></td>"+
+					 "</tr></table>";
+					 $("#result").append(Add);  
+					 
+				 
+			
 				 
 				 
-		          
+				 $(document).ready(function(){
+					 $(".changeLevel").on("click",function(){
+							const memberLevel = $(this).parent().prev().children().val();
+							const memberNo = $(this).parent().parent().children().eq(1).text();
+							console.log(memberLevel,memberNo);
+							location.href="/member/changeLevel?memberNo="+memberNo+"&memberLevel="+memberLevel;
+					 });
+				 });
 				 
-		           "<td switch = 'data.memberLevel'><select  if( data.memberLevel == '1') { $('.input-form').val('1').prop('selected', true); } else if( data.memberLevel == '2') { $('.input-form').val('2').prop('selected', true);} else {$('.input-form').val('3').prop('selected', true);} class='input-form'><option value='1'>관리자</option><option value='2'>그린이</option><option value='3'>블랙이</option></select></td>"+
-		
-		        "<td><button class='btn bc1 bc1-1 changeLevel'>회원등급변경</button></td>"+
-				 "</tr></table>";
-				  
-				 $("#result").append(Add);
-				 console.log(data.memberLevel);
+				 
+				// console.log(data.memberLevel);
 		  
 				
 				
@@ -162,49 +173,6 @@ $("#jQ").on("click",function(){
 		
 	
 	});
-		
-		
-
-
-		/* $(".tbl").append(
-		         $("<tr></tr>")
-		         .append($("<td></td>").append($("<input></input>".attr("type","checkbox").attr("class","chk")))
-		         .append($("<td></td>").text(data.memberId))
-	             .append($("<td></td>").text(data.memberName))
-	             .append($("<td></td>").text(data.memberPhone))
-	             .append($("<td></td>").text(data.memberEmail))
-	             .append($("<td></td>").text(data.enrollDate))
-	             .append($("<td></td>").text(data.memberLevel))
-	             .append($("<td></td>").append($("<button></button>").attr("class","btn bc1 bc1-1 changeLevel").attr("value","회원등급변경") ))
-		     ); */
-	
-	
-	
-	//$("#result").append("'<tr class="tr-1">''<td><input type="checkbox" class="chk"></td>''<td value = "'+data.memberId+'"></td>''<td value = "'+data.memberName+'"></td>''<td value = "'+data.memberPhone+'"></td>''<td value = "'+data.memberEmail+'"></td>''<td value = "'+data.enrollDate+'"></td>''<td value = "'+data.memberLevel+'"></td>''<td><button class="btn bc1 bc1-1 changeLevel">회원등급변경</button></td></tr>'");
-				//$("#result").append("tbl");
-	
-	/*var memberinfo = data;
-	var tr = '<thead>'+
-	         '<tr>' +
-	         '<th>아이디</th>'+
-	         '<th>이름</th>'+
-	         '<th>전화번호</th>'+
-	         '<th>이메일</th>'+
-	         '<th>가입일</th>'+
-	         '<th>회원등급</th>'+
-	         '<th>변경</th>'+
-	        '</tr>'+
-	        '</tread>';
-	        
-	  $(memberinfo, function(){
-		  tr += '<td>' + memberinfo.memberId + '</td><td>' + memberinfo.memberName +'</td><td>'+ memberinfo.memberPhone +'</td><td>'+ memberinfo.memberEmail +'</td><td>'+ memberinfo.enrollDate +'</td><td>'+ memberLevel +'</td></tr>';  
-	  });
-	  
-	  $("#memberinfo").append(tr);
-	    */     
-
-	
-	
 	
 	</script>
 
