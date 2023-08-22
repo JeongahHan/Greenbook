@@ -35,14 +35,20 @@ public class MypageController {
 	}
 	
 	@GetMapping(value = "/myBoard")
-	public String myBoard(int reqPage) {
+	public String myBoard(HttpSession session,Model model,int reqPage) {
 		
 		//내가 쓴 게시물만 조회 해오기 //아직 Board Vo가 없음
 		//ArrayList<Board> list = mypageService.selectMyBoardList();
 		System.out.println(reqPage);
+		Member m = (Member)session.getAttribute("m");
+		System.out.println(reqPage);
+		System.out.println(m.getMemberId());
+		
 		//내가 작성한 자유게시판 select 해오기
-		//MypageListData mld2 = mypageService.selectMyBoardList();
-
+		MypageListData mld = mypageService.selectMyBoardList(m.getMemberId(),reqPage);
+		
+		model.addAttribute("myBoardList",mld.getMypageList());
+		model.addAttribute("pageNavi", mld.getPageNavi());
 		
 		return "mypage/myBoard";
 	}
