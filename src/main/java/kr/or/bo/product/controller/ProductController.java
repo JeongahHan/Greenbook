@@ -44,9 +44,14 @@ public class ProductController {
 	
 	@PostMapping(value="/write")
 	public String write(Product p, MultipartFile imageFile, Model model) {
+
 		ArrayList<ProductFile> fileList = null;
+		if(imageFile != null) {
+			fileList = new ArrayList<ProductFile>();
+		}
 		
 		String savepath = root+"product/";
+		String filename = imageFile.getOriginalFilename();
 		String filepath = fileUtil.getFilepath(savepath, imageFile.getOriginalFilename());
 		p.setFilepath(filepath);
 		File upfile = new File(savepath+filepath);
@@ -60,7 +65,13 @@ public class ProductController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		int result = productService.insertPhoto(p);
+		
+		ProductFile pf = new ProductFile();
+		pf.setFilename(filename);
+		pf.setFilepath(filepath);
+		fileList.add(pf);
+		
+		int result = productService.insertPhoto(p, fileList);
 		if(result > 0) {
 			model.addAttribute("title", "작성완료");
 			model.addAttribute("msg", "게시글 작성이 완료되었습니다.");
