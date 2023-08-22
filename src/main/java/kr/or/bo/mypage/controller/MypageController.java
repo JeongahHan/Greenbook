@@ -24,7 +24,7 @@ public class MypageController {
 	@GetMapping(value = "/memberUpdateFrm")
 	public String memberUpdateFrm () {
 		
-		return "mypage/myBoard";
+		return "mypage/memberUpdateFrm";
 	}
 	
 	@GetMapping(value = "/myBoard")
