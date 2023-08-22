@@ -1,6 +1,7 @@
 package kr.or.bo.mypage.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -70,7 +71,7 @@ public class MypageController {
 		System.out.println(m.getMemberId());
 		
 		//내가 판매중인 도서 select 해오기
-		ArrayList<Product> list =mypageService.selectMySellBook(m.getMemberId(), reqPage);
+		List<Product> list =mypageService.selectMySellBook(m.getMemberId(), reqPage);
 		return "mypage/mySellBook";
 	}
 	
