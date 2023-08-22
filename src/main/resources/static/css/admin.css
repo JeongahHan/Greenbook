@@ -505,6 +505,8 @@ textarea.input-form {
   display: none;
   align-items: center;
   flex-direction: column;
+  top: 0;
+  left: 0;
 }
 .modal-wrap {
   margin-top: 150px;
