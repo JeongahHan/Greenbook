@@ -1,6 +1,9 @@
 package kr.or.bo.product.model.dao;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -35,6 +38,18 @@ public class ProductDao {
 		Object[] params = {file.getProductNo(), file.getFilename(), file.getFilepath()};
 		int result = jdbc.update(query, params);
 		return result;
+	}
+
+	public List selectProductList(int start, int end) {
+		String query = "SELECT * FROM (SELECT ROWNUM AS RNUM, N.* FROM (SELECT * FROM PRODUCT_BOARD ORDER BY 1 DESC)N) WHERE RNUM BETWEEN ? AND ?";
+		List productList = jdbc.query(query,  productRowmapper, start, end);
+		return productList;
+	}
+
+	public int selectProductTotalCount() {
+		String query = "select count(*) as cnt from product_board";
+		int totalCount = jdbc.queryForObject(query, Integer.class);
+		return totalCount;
 	}
 	
 }
