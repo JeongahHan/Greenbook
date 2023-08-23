@@ -84,7 +84,11 @@ public class MypageController {
 		
 		int result = mypageService.deleteMember(m.getMemberNo());
 		if(result>0) {//회원탈퇴 성공한 경우
-			return "redirect:/member/logout";//로그아웃해
+			model.addAttribute("title", "회원 탈퇴 성공");
+			model.addAttribute("msg", "회원 탈퇴후 로그아웃을 진행합니다.");
+			model.addAttribute("icon", "success");
+			model.addAttribute("loc", "/member/logout");//로그아웃해
+			
 			
 		}else {
 			model.addAttribute("title", "회원 탈퇴 실패");
