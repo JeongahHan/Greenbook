@@ -9,6 +9,7 @@
 //   $(".sub-navi").prev().after("<span class='material-icons dropdown'>expand_more</span>");
 // });
 
+console.log("js연결확인")
 
 $(function () {
   $(document).on("click", ".modal-open-btn", function () {//모달오픈버튼을 누르면
