@@ -26,7 +26,7 @@ public class BoardService {
 		//reqPage가 1이면 -> 1~10
 		//reqPage가 2이면 -> 11~20
 		//reqPage가 3이면 -> 21~30
-		
+
 		int end = reqPage * numPerPage;
 		int start = (end-numPerPage)+1;
 		

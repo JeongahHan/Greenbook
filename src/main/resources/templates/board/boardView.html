@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+
+<!-- 구글 아이콘 -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!-- jquery -->
+<script src="/js/jquery-3.7.0.js"></script>
+<!-- 기본 CSS -->
+<link rel="stylesheet" href="/css/board.css">
+
+
+</head>
+<body>
+	<th:block th:include ="common/header"></th:block>
+	<div class="page-content">
+		<div class="page-title">
+			<p>홈</p>
+            <p>></p>
+            <p>자유게시판</p>
+		</div>
+		<table class="tbl noticeView">
+			<tr class="tr-3">
+				<th colspan="6" th:text="${b.boardTitle}"></th>
+			</tr>
+			
+			<tr class="tr-1">
+				<th class="td-3" style="width:15%;">작성자</th>
+				<td th:text="${b.boardWriter}"></td>
+				<th class="td-3" style="width:10%;">작성일</th>
+				<td th:text="${b.boardRegDate}"></td>
+				<th class="td-3" style="width:10%;">조회수</th>
+				<td th:text="${b.boardReadCount}"></td>
+			</tr>
+			
+			<tr class="tr-1">
+				<th class="td-3">첨부파일</th>
+				<td colspan="5">
+					<th:block th:each="file : ${b.fileList}">
+						<img src="/img/file.png" width="16px">
+						<a th:href="@{/board/filedown(filename=${file.filename},filepath=${file.filepath})}" th:text="${file.filename}"></a>  <!-- file 값 두개보내기 -->
+					</th:block>
+				</td>
+			</tr>
+			
+			<tr class="tr-1">
+				<td colspan="6">
+					<div class="noticeContent" th:utext="${b.boardContent}"></div>  <!-- utext로 태그 : 입력한 엔터기호를 출력할때는 <br>태그로 인식  -->
+					<!-- textarea, 사람이 입력하는 기준으로는 엔터가 \r\n >>html 에서는 한칸으로 처리 -->
+				</td>
+			</tr>
+			
+			<!-- 수정 삭제 버튼 -->
+			<tr class="tr-1" th:if="${session.m != null && session.m.memberId == b.boardWriter}"> <!-- 로그인한상태이고 세션의아이디와 글쓴이가 같을때 -->
+				<th colspan = "6">
+					<a class="btn bc44" th:href="@{/board/updateFrm(boardNo=${b.boardNo})}">수정</a>
+					<button class="btn bc44" th:onclick="boardDelete([[${b.board}]])">삭제</button><!-- 실제 진짜 삭제할건지 물어보기위해 버튼 처리 -->
+					<!-- boardeNo 를  통해 자바스크립트 진행하기위해 대괄호 두개 처리 -->
+				</th>
+			</tr>
+		</table>
+		
+		<!-- 댓글 (로그인해야 작성가능) -->
+		<div class="inputCommentBox" th:if="${session.m != null}">
+			<form action="/board/insertComment" method="post">
+				<ul>
+					<li>
+						<span class="material-icons">account_box</span>
+					</li>
+					<li>
+						<input type="hidden" name="boardCommentWriter" th:value="${session.m.memberId}"> <!-- 세션 아이디 보내기 -->
+						<input type="hidden" name="boardRef" th:value="${b.boardNo}">
+						<!-- <input type="hidden" name="noticeCommentRef"> 댓글 참조 번호(댓글에다가 또 댓글을 달았을때 그 번호) 보내야하지만 안보내기--> 
+						<textarea name="boardCommentContent" class="input-form"></textarea>
+					</li>
+					<li>
+						<button type="submit" class="btn bc1 bs4">등록</button>
+					</li>
+				</ul>
+			</form>
+		</div>
+		
+		<!-- 댓글 출력 창 -->
+		<div class="commentBox">
+			<th:block th:each="bc : ${commentList}">
+				<ul class="posting-comment">
+					<li>
+						<span class="material-icons">account_box</span>
+					</li>
+					<li>
+						<p class="comment-info">
+							<span th:text="${bc.boardCommentWriter}"></span>
+							<span th:text="${bc.boardCommentDate}"></span>
+							<!-- 좋아요, 좋아요 취소 기능 -->
+							<span class ="like-box">
+								<span class="material-icons" th:if="${session.m == null}" onclick="loginMsg();">thumb_up_off_alt</span>
+								<!--로그인을 했는데 내가 눌렀으면 removeLike 표시-->
+								<!--로그인을 했는데 내가 안눌렀으면 addLike 표시-->
+								<span class="material-icons" th:if="${session.m != null && nc.isLike == 1}" th:onclick="removeLike(this,[[${bc.boardCommentNo}]],[[${session.m.memberNo}]]);">thumb_up_alt</span> 
+								<span class="material-icons" th:if="${session.m != null && nc.isLike == 0}" th:onclick="addLike(this,[[${bc.boardCommentNo}]],[[${session.m.memberNo}]]);">thumb_up_off_alt</span>
+								<span th:text="${bc.likeCount}"></span> 
+							</span>
+						</p>
+						
+						<p class="comment-content" th:text="${bc.boardCommentContent}"></p>
+						
+						<textarea name="noticeCommentContent" class="input-form" style="min-height:96px;display:none;" th:text="${bc.boardCommentContent}"></textarea>
+						
+						<p class="comment-link">
+							<th:block th:if="${session.m !=null}">
+								<th:block th:if="${session.m.memberId == bc.boardCommentWriter}">
+									<a href="javaScript:void(0)"; th:onclick="modifyComment(this,[[${bc.boardCommentNo}]],[[${b.boardNo}]]);">수정</a> <!-- this 는 onclick 이벤트 자체를 호출시키는 그 this -->
+									<a href="javaScript:void(0)"; th:onclick="deleteComment(this,[[${bc.boardCommentNo}]],[[${b.boardNo}]]);">삭제</a>	 <!-- this / 댓글번호 / 공지사항번호 -->
+								</th:block>
+								<a href="javaScript:void(0)" class="recShow">답글달기</a> <!-- 대댓글 토글-->
+							</th:block>
+						</p>
+					</li>
+				</ul>
+				<!-- 대댓글 출력 -->
+				<th:block th:each="bcc : ${reCommentList}">        <!-- nc 와 ncc 구분 중요 -->
+					<ul class="posting-comment reply" th:if="${bc.boardCommentNo == bcc.boardCommentRef}">
+						<li>
+							<span class="material-icons">subdirectory_arrow_right</span>
+							<span class="material-icons">account_box</span>
+						</li>
+						
+						<li>
+							<p class="comment-info">
+								<span th:text = "${bcc.boardCommentWriter}"></span>
+								<span th:text = "${bcc.boardCommentDate}"></span>
+								<span class ="like-box">
+									<span class="material-icons" th:if="${session.m == null}" onclick="loginMsg();">thumb_up_off_alt</span>
+									<!--로그인을 했는데 내가 눌렀으면 removeLike 표시-->
+									<!--로그인을 했는데 내가 안눌렀으면 addLike 표시-->
+									<span class="material-icons" th:if="${session.m != null && ncc.isLike == 1}" th:onclick="removeLike(this,[[${bcc.boardCommentNo}]],[[${session.m.memberNo}]]);">thumb_up_alt</span> 
+									<span class="material-icons" th:if="${session.m != null && ncc.isLike == 0}" th:onclick="addLike(this,[[${bcc.boardCommentNo}]],[[${session.m.memberNo}]]);">thumb_up_off_alt</span>
+									<span th:text="${bcc.likeCount}"></span> 
+								</span>
+							</p>
+							<p class="comment-content" th:text="${bcc.boardCommentContent}"></p>
+							<textarea name="boardCommentContent" class="input-form" style="min-height:96px;display:none;" th:text="${bcc.boardCommentContent}"></textarea>
+							<p class="comment-link">
+								<th:block th:if="${session.m !=null}">
+									<th:block th:if="${session.m.memberId == bcc.boardCommentWriter}">
+										<a href="javaScript:void(0)"; th:onclick="modifyComment(this,[[${bcc.boardCommentNo}]],[[${b.boardNo}]]);">수정</a> 
+										<a href="javaScript:void(0)"; th:onclick="deleteComment(this,[[${bcc.boardCommentNo}]],[[${b.boardNo}]]);">삭제</a>
+									</th:block>
+								</th:block>
+							</p>
+						</li>
+					</ul>
+				</th:block>
+				
+				<!-- 대댓글 입력 -->
+				<div class="inputCommentBox inputRecommentBox" th:if="${session.m != null}"> <!-- 위에 inputcomment 와 비슷  -->
+					<form action = "/board/insertComment" method="post">
+						<ul>
+							<li>
+								<span class="material-icons">subdirectory_arrow_right</span>
+							</li>
+							<li>
+								<input type="hidden" name="boardCommentWriter" th:value="${session.m.memberId}">
+								<input type="hidden" name="boardRef" th:value="${b.boardNo}">
+								<input type="hidden" name="boardCommentRef" th:value="${bc.boardCommentNo}">
+								<textarea name = "boardCommentContent" class="input-form"></textarea>
+							</li>
+							<li>
+								<button type="submit" class="btn bc1 bs4">등록</button>
+							</li>
+						</ul>
+					</form>
+				</div>
+			</th:block>
+		</div>
+		
+	</div>
+	<th:block th:include="common/footer"></th:block>
+	<style>
+		.comment-info{
+			display:flex;
+		}
+		.like-box{
+			display:flex;
+			align-items: center;
+		}
+		.like-box>span:first-child{
+			cursor:pointer;
+			color:#ff2e63;
+		}	
+	</style>
+
+	<script>
+	//좋아요, 좋아요취소
+		function loginMsg(){
+			alert("로그인 후 이용해주세요")
+		}
+	
+	
+		function addLike(obj,boardCommentNo,memberNo){
+			const likeBtn=$(obj);
+			$.ajax({
+				url : "/board/addLike",
+				type:"post",
+				data : {boardCommentNo:boardCommentNo , memberNo:memberNo},
+				success:function(data){
+					likeBtn.text("thumb_up_alt"); //채워져있는거
+					likeBtn.attr("onclick","removeLike(this,"+boardCommentNo+","+memberNo+")");
+					likeBtn.next().text(data);
+				}
+			});
+		}
+		
+		function removeLike(obj,boardCommentNo,memberNo){
+			const likeBtn = $(obj);
+			$.ajax({
+				url:"/board/removeLike",
+				type:"post",
+				data : {boardCommentNo:boardCommentNo , memberNo:memberNo},
+				success:function(data){
+					likeBtn.text("thumb_up_off_alt"); //안채워져있는거
+					likeBtn.attr("onclick","addLike(this,"+boardCommentNo+","+memberNo+")");
+					likeBtn.next().text(data);
+				}
+			});
+		}
+	
+		
+		
+		
+	 //게시글삭제
+		function boardDelete(boardNo){
+			if(confirm("게시글을 삭제하시겠습니까?")){
+				location.href = "/board/delete?boardNo="+boardNo;
+			}
+		}
+		
+		//답글달기
+		$(".recShow").on("click",function(){
+			//몇번째 답글달지 버튼을 클릭한지 구함
+			const index = $(".recShow").index(this);
+			if($(this).text() == "답글달기"){
+				$(this).text("취소");
+			}else{
+				$(this).text("답글달기")
+			}
+			
+			//대댓글양식중에 해당번쨰 양식을 화면에 출력
+			$(".inputRecommentBox").eq(index).toggle();
+			$(".inputRecommentBox").eq(index).find("textarea").focus();
+		});
+		
+		//수정하기
+		function modifyComment(obj,boardCommentNo,boardNo){
+			//1.대댓글 내용 안보이게하고 ,
+			$(obj).parent().prev().prev().hide();
+			//2. 숨겨둔 textarea 보이게 하기 
+			$(obj).parent().prev().show();
+			
+			//수정 -> 수정완료 (이벤트도 수정완료 이벤트로 변경)
+			$(obj).text("수정완료");
+			$(obj).attr("onclick","modifyComplete(this,"+boardCommentNo+","+boardNo+")");
+			
+			//삭제 -> 수정취소  (이벤트도 수정취소 이벤트로 변경)
+			$(obj).next().text("수정취소");
+			$(obj).next().attr("onclick","modifyCancel(this,"+boardCommentNo+","+boardNo+")");
+			
+			//답글달기 버튼 숨김
+			$(obj).next().next().hide();
+		}
+		
+		
+		//수정취소 버튼
+		function modifyCancel(obj,boardCommentNo,boardNo){
+			//숨어있는 p태그를 보여줌 
+			$(obj).parent().prev().prev().show();
+			//보이는 textarea를 숨김
+			$(obj).parent().prev().hide();
+			
+			//수정완료 -> 수정(이벤트변경)
+			$(obj).prev().text("수정");
+			$(obj).prev().attr("onclick","modifyComment(this,"+boardCommentNo+","+boardNo+")");
+			//수정취소 -> 삭제(이벤트변경)
+			$(obj).text("삭제");
+			$(obj).prev().attr("onclick","deleteComment(this,"+boardCommentNo+","+boardNo+")");
+			
+			//답글달기 다시 보여줌 
+			$(obj).next().show();
+		}
+		
+		//수정완료 버튼
+		function modifyComplete(obj,boardCommentNo,boardNo){
+			//javascript에서 form을 생성해서 데이터를 넣어서 전송하는 방법
+			//보내야할것 : update에 필요한 수정된 댓글 내용(textarea에 들어있음) ,  댓글번호(where),  공지사항번호(완료후 다시 이페이지로 오기 위해서 )
+			
+			//1.form태그 생성
+			const form = $("<form style='display:none' action='/board/updateComment' method='post'>")
+			
+			//2.input 태그 생성해서 댓글번호랑 공지사항 번호 넣기
+			const commentNoInput = $("<input type='text' name='boardCommentNo'>");
+			commentNoInput.val(boardCommentNo);
+			const boardNoInput = $(" <input type='text' name='boardRef'>");
+			boardNoInput.val(boardNo);
+			
+			//3.변경한 내용이 들어있는 textarea
+			const textArea = $(obj).parent().prev().clone(); //복제해서 가지고 옴 (왜냐면..잠깐사이에도 사라지는게 보임  )
+			//4. form태그 내부에 input2개와 textarea태그를 포함 
+			form.append(commentNoInput).append(boardNoInput).append(textArea);
+			//5.완성된 form 태그를 body에 추가
+			$("body").append(form);
+			//6.form submit(전송)
+			form.submit();
+		}
+		
+		//삭제
+		function deleteComment(obj,boardCommentNo,boardNo){
+			if(confirm("댓글을 삭제하시겠습니까?")){
+				location.href="/board/deleteComment?boardCommentNo="+boardCommentNo+"&boardNo="+boardNo;
+			}
+		}
+		
+	</script>
+	
+</body>
+</html>
