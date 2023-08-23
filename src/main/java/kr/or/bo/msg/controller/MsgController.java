@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import kr.or.bo.member.model.vo.Member;
@@ -64,20 +65,11 @@ public class MsgController {
 	}
 	
 	//쪽지 상세 보기
+	@ResponseBody
 	@GetMapping(value = "/receiveView")
-	public String receiveView(int mid, Model model) {
+	public Msg receiveView(int mid, Model model) {
 		Msg msg = msgService.selectReceiveView(mid);
-		if(msg != null) {
-			model.addAttribute("msg", msg);
-			return "msg/msglist";
-		}else {
-			model.addAttribute("title", "조회 실패");
-			model.addAttribute("msg", "쪽지 상세 조회에 실패하였습니다.");
-			model.addAttribute("icon", "error");
-			model.addAttribute("loc", "/msg/receiveList");
-			return "common/msg";
-		}
-		
+		return msg;
 	}
 
 }
