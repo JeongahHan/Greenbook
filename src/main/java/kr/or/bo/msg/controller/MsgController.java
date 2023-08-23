@@ -57,7 +57,7 @@ public class MsgController {
 		//쪽지 전송 실패
 		}else {
 			model.addAttribute("title", "전송 실패");
-			model.addAttribute("msg", "관리자에게 쪽지가 성공적으로 전송되었습니다.");
+			model.addAttribute("msg", "관리자에게 쪽지 전송을 실패하였습니다.");
 			model.addAttribute("icon", "error");
 		}
 		model.addAttribute("loc", "/msg/receiveList");
@@ -87,6 +87,25 @@ public class MsgController {
 		}else {
 			model.addAttribute("title", "삭제 실패");
 			model.addAttribute("msg", "쪽지 삭제에 실패하였습니다.");
+			model.addAttribute("icon", "error");
+		}
+		model.addAttribute("loc", "/msg/receiveList");
+		return "common/msg";
+	}
+	
+	//쪽지 답장하기
+	@PostMapping(value = "/replyMsg")
+	public String replyMsg(Msg msg, Model model) {
+		int result = msgService.replyMsg(msg);
+		//쪽지 전송 성공
+		if(result > 0) {
+			model.addAttribute("title", "전송 완료");
+			model.addAttribute("msg", "쪽지가 성공적으로 전송되었습니다.");
+			model.addAttribute("icon", "success");
+		//쪽지 전송 실패
+		}else {
+			model.addAttribute("title", "전송 실패");
+			model.addAttribute("msg", "쪽지 전송에 실패하였습니다.");
 			model.addAttribute("icon", "error");
 		}
 		model.addAttribute("loc", "/msg/receiveList");

@@ -68,9 +68,29 @@
 	            <hr>
 	            <textarea class="s-input-form" id="message" readonly></textarea>
 	        </div>
-	        <button type="button" class="modalBtn s-bc1">답장하기</button>
+	        <button type="button" class="modalBtn s-bc1" id="replyMsg">답장하기</button>
 	        <button type="button" class="modalBtn s-bc2" id="close">취소</button>
         </div>
+    </div>
+    <!-- 답장하기 모달-->
+    <div class="replyMsg-modal-wrap">
+    	<div class="adminMsg-modal">
+	        <div class="modal-title">
+	            <h3>쪽지 쓰기</h3>
+	            <hr>
+	        </div>
+	        <form action="/msg/replyMsg" method="post">
+	            <div class="modal-content">
+	                <span><strong>받는 사람</strong></span>
+	                <span class="receiver replyReceiver"></span>
+	                <input type="hidden" name="sender" th:value="${session.m.memberId}">
+	                <input type="hidden" name="receiver" id="replyReceiver">
+	                <textarea name="message" class="s-input-form"></textarea>
+	            </div>
+	            <button type="submit" class="modalBtn s-bc1">보내기</button>
+	            <button type="button" class="modalBtn s-bc2" id="replyMsgCancel">취소</button>	        
+	        </form>
+    	</div>
     </div>
     <th:block th:include="common/footer"></th:block>
     <script>
@@ -101,6 +121,7 @@
 	  		const mid = $(this).children().eq(0).val();
 	  		const readChk = $(this).find("span").eq(3);
 	  		const msgwrap = $(this);
+	  		const receiver = $(this).find("span").eq(0).text();
 	  		$.ajax({
 				url : "/msg/receiveView",
 				type : "get",
@@ -129,6 +150,18 @@
 								//해당 쪽지를 리스트에서 안보이게 하기
 								msgwrap.hide();
 							}
+						});
+					});
+					//답장하기
+					$("#replyMsg").on("click", function(){
+						//답장 쪽지 모달 열기
+						$(".replyMsg-modal-wrap").css("display","flex");
+						//받는 사람 데이터 넣어주기
+						$(".replyReceiver").text(receiver);
+						$("#replyReceiver").val(receiver);
+						//답장 쪽지 모달 닫기
+						$("#replyMsgCancel").on("click", function(){
+							$(".replyMsg-modal-wrap").css("display","none");
 						});
 					});
 				}
