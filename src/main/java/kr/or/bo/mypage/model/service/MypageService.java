@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.mypage.model.dao.MypageDao;
@@ -17,6 +18,7 @@ public class MypageService {
 	private MypageDao mypageDao;
 
 	//회원정보 수정
+	@Transactional
 	public int updateMember(Member member) {
 		// TODO Auto-generated method stub
 		int result = mypageDao.updateMember(member);
@@ -177,6 +179,14 @@ public class MypageService {
 		
 		return mld;
 	}//selectMySellBook() 종료
+
+	//회원탈퇴
+	@Transactional
+	public int deleteMember(int memberNo) {
+		// TODO Auto-generated method stub
+		int result = mypageDao.deleteMember(memberNo);
+		return result;
+	}
 
 	
 	
