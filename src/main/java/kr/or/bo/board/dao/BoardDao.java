@@ -46,11 +46,11 @@ public class BoardDao {
 		String query = null;
 		
 		if(type.equals("title")) {
-			query = "select * from (select rownum as snum, s.* from ((select * from (select* from (select rownum as rnum, n.* from(select * from board order by 1 desc)n) where board_title like '%'||?||'%'))s)) where snum between ? and ?";
+			query = "select * from (select rownum as snum, s.* from ((select * from (select* from (select rownum as rnum, n.* from(select * from board order by 1 desc)n) where board_title like UPPER('%'||?||'%')))s)) where snum between ? and ?";
 		}else if(type.equals("content")) {
-			query = "select * from (select rownum as snum, s.* from ((select * from (select* from (select rownum as rnum, n.* from(select * from board order by 1 desc)n) where board_content like '%'||?||'%'))s)) where snum between ? and ?";
+			query = "select * from (select rownum as snum, s.* from ((select * from (select* from (select rownum as rnum, n.* from(select * from board order by 1 desc)n) where board_content like UPPER('%'||?||'%')))s)) where snum between ? and ?";
 		}else if(type.equals("writer")){
-			query = "select * from (select rownum as snum, s.* from ((select * from (select* from (select rownum as rnum, n.* from(select * from board order by 1 desc)n) where board_writer like '%'||?||'%'))s)) where snum between ? and ?";
+			query = "select * from (select rownum as snum, s.* from ((select * from (select* from (select rownum as rnum, n.* from(select * from board order by 1 desc)n) where board_writer like UPPER('%'||?||'%')))s)) where snum between ? and ?";
 		}
 		List boardList = jdbc.query(query, boardRowMapper,keyword,start,end);
 		return boardList;
@@ -62,11 +62,11 @@ public class BoardDao {
 			String query = null;
 			
 			if(type.equals("title")) {
-				query = "select count(*) from (select rownum as snum, s.* from ((select * from (select * from (select rownum as rnum, n.* from (select * from board order by 1 desc)n) where board_title like '%'||?||'%'))s))";
+				query = "select count(*) from (select rownum as snum, s.* from ((select * from (select * from (select rownum as rnum, n.* from (select * from board order by 1 desc)n) where board_title like UPPER('%'||?||'%')))s))";
 			}else if(type.equals("content")) {
-				query = "select count(*) from (select rownum as snum, s.* from ((select * from (select * from (select rownum as rnum, n.* from (select * from board order by 1 desc)n) where board_content like '%'||?||'%'))s))";
+				query = "select count(*) from (select rownum as snum, s.* from ((select * from (select * from (select rownum as rnum, n.* from (select * from board order by 1 desc)n) where board_content like UPPER('%'||?||'%')))s))";
 			}else if(type.equals("writer")){
-				query = "select count(*) from (select rownum as snum, s.* from ((select * from (select * from (select rownum as rnum, n.* from (select * from board order by 1 desc)n) where board_writer like '%'||?||'%'))s))";
+				query = "select count(*) from (select rownum as snum, s.* from ((select * from (select * from (select rownum as rnum, n.* from (select * from board order by 1 desc)n) where board_writer like UPPER('%'||?||'%')))s))";
 			}
 			
 			int totalCount = jdbc.queryForObject(query,Integer.class,keyword);

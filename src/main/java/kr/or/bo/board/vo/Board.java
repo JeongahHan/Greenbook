@@ -17,14 +17,14 @@ public class Board {
 	private String boardRegDate;
 	private int boardReadCount;
 	
-	private List fileList;
+	private List fileList; //리스트 타입 객체 선언 
 	
 	
 	//검색필터
 	private String type; //검색타입
 	private String keyword; //검색내용
 	
-	
+
 	
 	
 	public String getBoardContentBr() {
