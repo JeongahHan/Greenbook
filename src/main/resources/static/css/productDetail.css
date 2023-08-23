@@ -28,7 +28,7 @@
 
 .top-text3{
     font-weight: 900;
-    background-color: #eee7e7;
+    background-color: #f0f8ef;
 }
 
 .main-mid{
@@ -43,30 +43,100 @@
 }
 
 .mid-content{
-	margin: 0 auto;
+	margin: 50px auto;
 	text-align: center;
-	border: 1px solid #ccc;
 }
 
 .img-box{
 	width: 500px;
-	height: 500px;
 	margin: 0 auto;
 }
 
 .img-box > img{
+	padding: 30px;
 	width: inherit;
 	height: 100%;
-	object-fit: scale-down;
+	object-fit: cover;
+	box-sizing: border-box;
 }
 
 .profile-box{
-	width: 100%;
+	margin: 0 auto;
+	width: 80%;
 	height: 50px;
 	line-height: 50px;
-	background-color: yellow;
+	overflow: hidden;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 20px;
 }
-	
+
+.box1{
+	float: left;
+	height: 100%;
+	overflow: hidden;
+}
+
+.userMainImage, .ProductBoardWriter{
+	float: left;
+	padding: 0 2px;
+}
+
+.userMainImage{
+	font-size: 40px;
+	line-height: 50px;
+	color: gray;
+}
+
+.ProductBoardWriter{
+	font-size: 20px;
+	line-height: 50px;
+}
+
+.Grade{
+	font-size: 20px;
+	line-height: 50px;
+	color: gray;
+}
+
+.Grade > span{
+	font-size: 20px;
+	line-height: 50px;
+	color: gray;
+}
+
+.box2{
+	float: right;
+}
+
+.main-box{
+	text-align: left;
+    margin: 0 auto;
+    width: 80%;
+    padding-top: 30px;
+}
+
+.title, .author, .price{
+	padding-bottom: 2px;
+}
+
+.title{
+	font-size: 30px;
+	font-weight: 900;
+}
+
+.author{
+	font-size: 20px;
+	font-weight: 0;
+	color: gray;
+}
+
+.price{
+	font-size: 20px;
+	font-weight: 900;
+}
+
+.content{
+	padding-top: 30px;
 }
 
 /*
