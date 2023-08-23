@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>쪽지함</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="/css/msglist.css">
+    <script src="/js/jquery-3.7.0.js"></script>
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+    <div class="total-wrap">
+        <ul class="tabs">
+            <h4><li>받은 쪽지함</li></h4>
+            <h4><li>보낸 쪽지함</li></h4>
+            <hr>
+        </ul>
+        <div class="msg-wrap" th:each="msg : ${list}">
+        	<a th:href="@{/msg/receiveView(mid=${msg.mid})}">
+             <div class="first-line">
+                 <div class="who">
+                     <span th:text="${msg.sender}"></span>
+                 </div>
+                 <div class="date">
+                     <span th:text="${msg.sendDate}"></span>
+                 </div>
+             </div>
+             <div class="second-line">
+                 <div class="title">
+                     <span th:text="${msg.message}"></span>
+                 </div>
+                 <div class="read">
+                     <span th:if="${msg.readChk == 0}"class="material-symbols-outlined">looks_one</span>
+                 </div>
+             </div>
+            </a>
+        </div>
+        <button type="button" class="s-btn s-bc1" id="adminMsg">관리자에게 쪽지</button>
+    </div>
+    <div class="modal-wrap">
+    	<div class="adminMsg-modal">
+	        <div class="modal-title">
+	            <h3>쪽지 쓰기</h3>
+	            <hr>
+	        </div>
+            <div class="modal-content">
+                <span><strong>받는 사람</strong></span>
+                <span class="receiver">관리자</span>
+                <textarea name="message" class="s-input-form"></textarea>
+            </div>
+            <button type="submit" class="modalBtn s-bc1">보내기</button>
+            <button type="button" class="modalBtn s-bc2" id="cancel">취소</button>
+    	</div>
+    </div>
+    <th:block th:include="common/footer"></th:block>
+    <script>
+	    const tabs = $(".tabs li");
+	    tabs.on("click",function(){
+	        tabs.removeClass("active-tab");
+	        $(this).addClass("active-tab");
+	        const msg = $(".msg-wrap");
+	        msg.show();
+	    });
+	
+	    $(function(){
+	        tabs.eq(0).click();
+	    });
+	    
+		//'관리자에게 쪽지' 클릭 시 '관리자에게 쪽지 쓰기' 모달 띄우기
+	    $("#adminMsg").on("click", function(){
+	    	$(".modal-wrap").css("display","flex");
+	    });
+		$("#cancel").on("click", function(){
+			$(".modal-wrap").css("display","none");
+		});
+    </script>
+</body>
+</html>

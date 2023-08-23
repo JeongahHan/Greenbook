@@ -1,5 +1,7 @@
 package kr.or.bo.product.model.vo;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +21,6 @@ public class Product {
 	private int productCondition;
 	private int productSellCheck;
 	private int readCount;
-	private String filepath;
+	private ProductFile productFile;
 	
 }
