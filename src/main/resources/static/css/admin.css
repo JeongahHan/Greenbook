@@ -428,6 +428,9 @@ footer > .footer-content > .footer-detail {
 .tbl .tr-1 {
   background-color: rgba(255, 255, 255, 1);
 }
+.tbl>.tr-1>.fna{
+  border: 1px solid #005A0D; 
+}
 .tbl .tr-2 {
   background-color: rgba(57, 62, 70, 0.1);
 }
@@ -440,6 +443,7 @@ footer > .footer-content > .footer-detail {
 	font-family: ns-light;
 	font-size: 17px;
 }
+
 
 .tbl.tbl-hover .tr-1:hover {
   background-color: rgba(0, 0, 0, 0.05);
