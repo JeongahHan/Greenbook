@@ -75,5 +75,15 @@ public class MypageDao {
 		
 		return totalCount;
 	}
+
+	//회원탈퇴
+	public int deleteMember(int memberNo) {
+		// TODO Auto-generated method stub
+		String query ="delete from member where member_no=?";
+		Object[] params = {memberNo};
+		int result = jdbc.update(query,params);
+		
+		return result;
+	}
 	
 }
