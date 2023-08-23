@@ -68,7 +68,10 @@ public class MsgController {
 	@ResponseBody
 	@GetMapping(value = "/receiveView")
 	public Msg receiveView(int mid, Model model) {
+		//쪽지 번호로 해당 쪽지 정보 가져오기
 		Msg msg = msgService.selectReceiveView(mid);
+		//쪽지 번호로 해당 쪽지 열람 여부 바꾸기(미열람 -> 열람)
+		int result = msgService.readMsg(mid);
 		return msg;
 	}
 

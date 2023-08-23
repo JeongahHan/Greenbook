@@ -82,7 +82,7 @@ public class MemberDao {
 	}
 
 	public int insertMember(Member member) {
-		String query = "insert into member values(member_seq.nextval,?,?,?,?,?,2,to_char(sysdate,'yyyy-mm-dd'),0)";
+		String query = "insert into member values(member_seq.nextval,?,?,?,?,?,2,to_char(sysdate,'yyyy-mm-dd'),50)";
 		Object[] params = {member.getMemberId(),member.getMemberPw(),member.getMemberName(),member.getMemberPhone(),member.getMemberEmail()};
 		int result = jdbc.update(query, params);
 		return result;
