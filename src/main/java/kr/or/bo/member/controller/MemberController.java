@@ -40,7 +40,6 @@ public class MemberController {
 				// 블랙이인 경우
 				model.addAttribute("title", "로그인 권한 없음");
 				model.addAttribute("msg", "블랙이로 변경되었습니다. 쪽지함을 확인하세요.");
-				model.addAttribute("icon", "warning");
 				model.addAttribute("loc", "/");
 			} else {
 				// session에 로그인한 회원 정보를 저장
@@ -48,14 +47,12 @@ public class MemberController {
 				// 관리자, 그린이인 경우
 				model.addAttribute("title", "로그인 성공");
 				model.addAttribute("msg", "환영합니다.");
-				model.addAttribute("icon", "success");
 				model.addAttribute("loc", "/");
 			}
 		} else {
 			// 로그인 실패(아이디 or 비밀번호 불일치)
 			model.addAttribute("title", "로그인 실패");
 			model.addAttribute("msg", "아이디 또는 비밀번호를 확인하세요");
-			model.addAttribute("icon", "error");
 			model.addAttribute("loc", "/");
 		}
 		return "common/msg";
@@ -110,11 +107,9 @@ public class MemberController {
 		if (result > 0) {
 			model.addAttribute("title", "비밀번호 변경완료");
 			model.addAttribute("msg", "새 비밀번호로 변경되었으니 로그인 부탁 드립니다.");
-			model.addAttribute("icon", "success");
 		} else {
 			model.addAttribute("title", "비밀번호 변경실패");
 			model.addAttribute("msg", "비밀번호 변경을 실패하였습니다.");
-			model.addAttribute("icon", "error");
 		}
 		model.addAttribute("loc", "/member/loginFrm");
 		return "common/msg";
@@ -164,12 +159,10 @@ public class MemberController {
 		if (result > 0) {
 			model.addAttribute("title", "회원가입 성공");
 			model.addAttribute("msg", "신규 회원 가입을 축하합니다.");
-			model.addAttribute("icon", "success");
 			model.addAttribute("loc", "/");
 		} else {
 			model.addAttribute("title", "회원가입 실패");
 			model.addAttribute("msg", "정보 입력 확인 부탁 드립니다.");
-			model.addAttribute("icon", "error");
 			model.addAttribute("loc", "/");
 		}
 		return "common/msg";
@@ -190,7 +183,6 @@ public class MemberController {
 		} else {
 			model.addAttribute("title", "등급변경실패하였습니다");
 			model.addAttribute("msg", "등급변경실패! 관리자에게 문의하세요");
-			model.addAttribute("icon", "error");
 			model.addAttribute("loc", "/member/admin");
 			return "common/msg";
 		}
@@ -204,7 +196,6 @@ public class MemberController {
 		} else {
 			model.addAttribute("title", "등급변경실패하였습니다");
 			model.addAttribute("msg", "등급변경실패! 관리자에게 문의하세요");
-			model.addAttribute("icon", "error");
 			model.addAttribute("loc", "/member/admin");
 			return "common/msg";
 		}

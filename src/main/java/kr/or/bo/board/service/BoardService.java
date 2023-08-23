@@ -135,7 +135,7 @@ public class BoardService {
 				
 				//2. 페이지 네비게이션 제작
 				//총 페이지 수 계산을 위해서는 "총 게시물 수"를 알아야함  ->>  DB에서 그룹함수로 조회
-				int totalCount = boardDao.getSearchListTotalCount(start,end,type,keyword);
+				int totalCount = boardDao.getSearchListTotalCount(type,keyword);
 				//총 페이지 수 계산
 				//총 게시물 수 100
 				//한 페이지당 게시물 수 : 10
@@ -170,7 +170,7 @@ public class BoardService {
 				String pageNavi = "<ul class='pagination square-style'>";
 				if(pageNo != 1) { //페이지리스트가 1 2 3 4 5 가 아닐때  >> 이전버튼 생김
 				pageNavi += "<li>";
-				pageNavi += "<a class='page-item' href='/board/list?reqPage="+(pageNo-1)+"'>";
+				pageNavi += "<a class='page-item' href='/board/getSearchList?reqPage="+(pageNo-1)+"&type="+(type)+"&keyword="+(keyword)+"'>";
 				pageNavi += "<span class='material-icons'>chevron_left</span>";
 				pageNavi += "</a>";
 				pageNavi += "</li>";
@@ -180,13 +180,13 @@ public class BoardService {
 				for(int i=0; i<pageNaviSize; i++) {
 					if(pageNo == reqPage) {
 						pageNavi += "<li>";
-						pageNavi += "<a class='page-item active-page' href='/board/list?reqPage="+(pageNo)+"'>";
+						pageNavi += "<a class='page-item active-page' href='/board/getSearchList?reqPage="+(pageNo)+"&type="+(type)+"&keyword="+(keyword)+"'>";
 						pageNavi += pageNo;
 						pageNavi += "</a>";
 						pageNavi += "</li>";
 					}else {
 						pageNavi += "<li>";
-						pageNavi += "<a class='page-item' href='/board/list?reqPage="+(pageNo)+"'>";
+						pageNavi += "<a class='page-item' href='/board/getSearchList?reqPage="+(pageNo)+"&type="+(type)+"&keyword="+(keyword)+"'>";
 						pageNavi += pageNo;
 						pageNavi += "</a>";
 						pageNavi += "</li>";
@@ -202,7 +202,7 @@ public class BoardService {
 				// >>> 다음 버튼 만들기
 				if(pageNo <= totalPage) {
 					pageNavi += "<li>";
-					pageNavi += "<a class='page-item' href='/board/list?reqPage="+(pageNo)+"'>";  //이미 pageNo++; 상태로 반복문을 나왔기 때문에 pageNo+1 이 아님. 
+					pageNavi += "<a class='page-item' href='/board/getSearchList?reqPage="+(pageNo)+"&type="+(type)+"&keyword="+(keyword)+"'>";  //이미 pageNo++; 상태로 반복문을 나왔기 때문에 pageNo+1 이 아님. 
 					pageNavi += "<span class='material-icons'>chevron_right</span>";
 					pageNavi += "</a>";
 					pageNavi += "</li>";

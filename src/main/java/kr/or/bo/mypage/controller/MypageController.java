@@ -60,8 +60,13 @@ public class MypageController {
 		return "redirect:/mypage/myBoard?reqPage=1";
 	}
 	
+	//나의 댓글
 	@GetMapping(value = "/myComment")
 	public String myComment() {
+		
+		//내가 작성한 댓글 조회해서 넘겨주기
+		
+		
 		return "mypage/myComment";
 	}
 	@PostMapping(value = "/update")
