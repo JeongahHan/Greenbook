@@ -124,6 +124,7 @@ $("#findjQ").on("click",function(){
 			dataType : "json",
 			success : function(data){
 				console.log(data);
+					
 				/*
 				$("#result").empty();
 				$("#result").append(data.memberId +"<br>");
@@ -168,24 +169,19 @@ $("#findjQ").on("click",function(){
 				const memberLevelTd = $("<td>");
 				const select = $("<select>");
 				select.addClass("input-form");
+				
+				
 				const option1 = $("<option value='1'>");
 				option1.text("관리자");
 				const option2 = $("<option value='2'>");
-				option1.text("그린이");
+				option2.text("그린이");
 				const option3 = $("<option value='3'>");
-				option1.text("블랙이");
+				option3.text("블랙이");
 				select.append(option1).append(option2).append(option3);
+				select.children().eq(data.memberLevel-1).prop("selected", true);
+				
 				memberLevelTd.append(select);
 				
-				if( data.memberLevel == '1') {
-				      $(".input-form").val("1").prop("selected", true);
-				   } else if( data.memberLevel == '2') {
-				      $(".input-form").val("2").prop("selected", true);
-				   } else {
-				      $(".input-form").val("3").prop("selected", true);
-				   }
-				
-				//<select id ='level' class='input-form'><option value='1'>관리자</option><option value='2'>그린이</option><option value='3'>블랙이</option></select>
 				
 				const btnTd = $("<td>");
 				const btn = $("<button>");
@@ -203,16 +199,25 @@ $("#findjQ").on("click",function(){
 				
 				
 				tr.append(inputTd).append(memberNoTd).append(memberIdTd).append(memberPwTd).append(memberNameTd).append(memberPhoneTd).append(memberEmailTd).append(enrollDateTd).append(memberLevelTd).append(btnTd);
-				$("#admintbl>table").append(tr);
-				
+				$("#admintbl>tbody").append(tr);
 				
 				
 		}
 			
-		});
+		})
+		.fail(function() {
+		    console.log( "error" );
+		    alert("없는 회원입니다~!다시 검색해주세요~!");
+		    
+		  })
+
 		
 	
 	});
+	
+	
+	
+//<select id ='level' class='input-form'><option value='1'>관리자</option><option value='2'>그린이</option><option value='3'>블랙이</option></select>
 	/*
 const tr = $("<tr>");
 tr.addClass("tr-1");
