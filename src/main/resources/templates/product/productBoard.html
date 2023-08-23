@@ -30,7 +30,7 @@
                     <ul>
                     
                     <li class="product" th:each="product : ${productList}">
-                    	<a href="#">
+                    	<a th:href="@{/product/productDetail(productBoardNo=${product.productBoardNo})}">
                     		<div class="img-box">
                     			<img th:src="${product.productFile.getFilepath}">
                     		</div>

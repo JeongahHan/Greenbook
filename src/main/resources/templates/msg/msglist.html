@@ -16,9 +16,9 @@
             <hr>
         </ul>
         <div class="msg-wrap" th:each="msg : ${list}">
+        	<input type="hidden" id=mid th:value="${msg.mid}">
         	<div class="first-line">
 	             <div class="who">
-	             	<input type="hidden" id=mid th:value="${msg.mid}">
 	                <span th:text="${msg.sender}"></span>
 	             </div>
 	             <div class="date">
@@ -30,7 +30,7 @@
 	                <span th:text="${msg.message}"></span>
 	            </div>
 	            <div class="read">
-	                <span th:if="${msg.readChk == 0}"class="material-symbols-outlined">looks_one</span>
+	                <span th:if="${msg.readChk == 0}" class="material-symbols-outlined">looks_one</span>
 	            </div>
 	        </div>
         </div>
@@ -62,7 +62,7 @@
     	<div class="adminMsg-modal">
 	        <div class="modal-title">
 	            <h3><span id="sender"></span></h3>
-	            <span class="material-icons">delete</span>
+	            <a href="#"><span class="material-icons">delete</span></a>
 	        </div>
 	        <div class="modal-content">
 	            <hr>
@@ -98,16 +98,21 @@
 	  	
 	  	//쪽지 상세보기
 	  	$(".msg-wrap").on("click", function(){
-	  		const mid = $("#mid").val();
+	  		const mid = $(this).children().eq(0).val();
+	  		const readChk = $(this).find("span").eq(3);
 	  		$.ajax({
 				url : "/msg/receiveView",
 				type : "get",
 				data : {mid : mid},
 				success : function(data){
-					console.log(data);
+					//쪽지 상세보기 모달 내 데이터 넣기
 					$("#sender").text(data.sender);
 					$("#message").val(data.message);
+					//쪽지 상세보기 모달 열기
 					$(".msgView-modal-wrap").css("display","flex");
+					//안 읽음 표시 삭제하기
+					readChk.hide();
+					//쪽지 상세보기 모달 닫기
 					$("#close").on("click", function(){
 						$(".msgView-modal-wrap").css("display","none");
 					});

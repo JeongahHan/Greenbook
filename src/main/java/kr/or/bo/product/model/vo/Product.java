@@ -22,5 +22,6 @@ public class Product {
 	private int productSellCheck;
 	private int readCount;
 	private ProductFile productFile;
+	private List fileList;
 	
 }

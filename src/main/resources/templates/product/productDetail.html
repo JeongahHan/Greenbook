@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>상세보기</title>
+<link rel="stylesheet" href="/css/productDetail.css">
+<link rel="stylesheet" href="/css/productDefault.css">
+<script src="/javascript/jquery-3.7.0.js"></script>
+</head>
+<body>
+
+	<th:block th:include="common/header"></th:block>
+	
+	<div class="main">
+        <div class="main-wrap">
+
+            <!-- 홈 > 중고거래게시판 -->
+            <div class="main-top-text">
+                <span class="top-text1">홈 </span>
+                <span class="top-text2"> > </span>
+                <span class="top-text3">중고거래게시판</span>
+            </div>
+
+            <!-- 최신게시물 / 상품리스트 -->
+            <div class="main-mid">
+            
+                <div>
+                    <span class="mid-text1"></span>
+                </div>
+                
+                <div class="mid-content">
+                
+	                <div class="img-box">
+						<img th:src="${p.productFile.getFilepath}">
+					</div>
+					
+					<div class="profile-box">
+						<span th:text="${p.getProductBoardWriter}"></span>
+						<span>신뢰도</span>
+					</div>
+					
+                </div>
+                
+            </div>
+
+        </div>
+    </div>
+	
+		
+		
+	<th:block th:include="common/footer"></th:block>
+
+	<script src="/javascript/productBoard.js"></script>
+</body>
+</html>
