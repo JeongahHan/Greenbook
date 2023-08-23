@@ -32,7 +32,7 @@
                     <li class="product" th:each="product : ${productList}">
                     	<a href="#">
                     		<div class="img-box">
-                    			
+                    			<img th:src="${product.productFile.getFilepath}">
                     		</div>
                     		<div class="info">
 								<div class="book-title" th:text="${product.productBoardTitle}"></div>
