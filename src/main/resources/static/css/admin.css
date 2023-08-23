@@ -533,11 +533,21 @@ textarea.input-form {
 .modal-wrap div.modal-head {
   position: relative;
   background-color:#005A0D;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
+.modal-head>h2{
+  font-family: ns-light;
+}
+
 .modal-head :not(.headcss){
    color:#fff;
-   font-family: ns-light;
 }
+.modal-head :not(.modal-close){
+   color:#fff;
+}
+
 .modal-content{
 	height: 90px;
 }
