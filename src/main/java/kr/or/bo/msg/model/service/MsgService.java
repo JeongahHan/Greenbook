@@ -47,4 +47,9 @@ public class MsgService {
 		int result = msgDao.replyMsg(msg);
 		return result;
 	}
+
+	public List selectSendList(String memberId) {
+		List list = msgDao.selectSendList(memberId);
+		return list;
+	}
 }

@@ -36,12 +36,12 @@ public class MsgController {
 		}
 	}
 	
-	//쪽지 리스트
+	//받은 쪽지 리스트
 	@GetMapping(value = "/receiveList")
 	public String receiveList(Model model, @SessionAttribute(required = false) Member m) {
 		List list = msgService.selectReceiveList(m.getMemberId());
 		model.addAttribute("list", list);
-		return "msg/msglist";
+		return "msg/receiveMsgList";
 	}
 	
 	//관리자에게 쪽지 보내기
@@ -104,5 +104,12 @@ public class MsgController {
 		model.addAttribute("loc", "/msg/receiveList");
 		return "common/msg";
 	}
-
+	
+	//보낸 쪽지 리스트
+	@GetMapping(value = "/sendList")
+	public String sendList(Model model, @SessionAttribute(required = false) Member m) {
+		List list = msgService.selectSendList(m.getMemberId());
+		model.addAttribute("list", list);
+		return "msg/sendMsgList";
+	}
 }

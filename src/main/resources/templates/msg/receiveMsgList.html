@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>쪽지함</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="/css/msglist.css">
-    <script src="/js/jquery-3.7.0.js"></script>
+<meta charset="UTF-8">
+<title>쪽지함</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet" href="/css/msglist.css">
+<script src="/js/jquery-3.7.0.js"></script>
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
     <div class="total-wrap">
         <ul class="tabs">
             <h4><li>받은 쪽지함</li></h4>
-            <h4><li>보낸 쪽지함</li></h4>
+            <a href="/msg/sendList"><h4><li>보낸 쪽지함</li></h4></a>
             <hr>
         </ul>
         <div class="msg-wrap" th:each="msg : ${list}">
