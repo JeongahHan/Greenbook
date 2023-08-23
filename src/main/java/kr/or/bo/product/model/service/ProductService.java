@@ -11,6 +11,7 @@ import kr.or.bo.product.model.dao.ProductDao;
 import kr.or.bo.product.model.vo.Product;
 import kr.or.bo.product.model.vo.ProductFile;
 import kr.or.bo.product.model.vo.ProductListData;
+import kr.or.bo.product.model.vo.ProductViewData;
 
 @Service
 public class ProductService {
@@ -95,6 +96,27 @@ public class ProductService {
 		ProductListData pld = new ProductListData(productList, pageNavi);
 		
 		return pld;
+	}
+
+	@Transactional
+	public ProductViewData selectOneProduct(int productBoardNo, int memberNo) {
+		int result = productDao.updateReadCount(productBoardNo);
+		if(result > 0) {
+			Product p = productDao.selectOneProduct(productBoardNo);
+			ProductFile pf = productDao.selectProductImgList(productBoardNo);
+			
+			p.setProductFile(pf);
+			
+			List commentList = productDao.selectCommentList(productBoardNo);
+			
+			List reCommentList = productDao.selectRecommentList(productBoardNo);
+			
+			ProductViewData pvd = new ProductViewData(p, commentList, reCommentList);
+			
+			return pvd;
+		}else {
+			return null;
+		}
 	}
 	
 }

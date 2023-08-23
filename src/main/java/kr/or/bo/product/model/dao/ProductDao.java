@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.or.bo.product.model.vo.Product;
+import kr.or.bo.product.model.vo.ProductCommentRowMapper;
 import kr.or.bo.product.model.vo.ProductFile;
 import kr.or.bo.product.model.vo.ProductFileRowMapper;
 import kr.or.bo.product.model.vo.ProductRowMapper;
@@ -23,6 +24,9 @@ public class ProductDao {
 	
 	@Autowired
 	private ProductFileRowMapper productFileRowmapper;
+	
+	@Autowired
+	private ProductCommentRowMapper productCommentRowmapper;
 
 	public int insertPhoto(Product p) {
 		String query = "INSERT INTO PRODUCT_BOARD VALUES (PRODUCT_BOARD_SEQ.NEXTVAL, ?, ?, ?, TO_CHAR(SYSDATE, 'YYYY-MM-DD'), ?, ?, ?, ?, DEFAULT)";
@@ -62,5 +66,35 @@ public class ProductDao {
 		return (ProductFile)list.get(0);
 	}
 
+	public int updateReadCount(int productBoardNo) {
+		String query = "UPDATE PRODUCT_BOARD SET READ_COUNT = READ_COUNT+1 WHERE PRODUCT_BOARD_NO = ?";
+		Object[] params = {productBoardNo};
+		int result = jdbc.update(query, params);
+		return result;
+	}
+
+	public Product selectOneProduct(int productBoardNo) {
+		String query = "select * from product_board where product_board_no = ?";
+		List list = jdbc.query(query, productRowmapper, productBoardNo);
+		return (Product)list.get(0);
+	}
+
+	public List selectProductFile(int productBoardNo) {
+		String query = "select * from product_file where product_no = ?";
+		List list = jdbc.query(query, productFileRowmapper, productBoardNo);
+		return list;
+	}
+
+	public List selectCommentList(int productBoardNo) {
+		String query = "select * from PRODUCT_COMMENT where PRODUCT_REF = ? and PRODUCT_COMMENT_REF is null order by 1";
+		List list = jdbc.query(query, productCommentRowmapper, productBoardNo);
+		return list;
+	}
+
+	public List selectRecommentList(int productBoardNo) {
+		String query = "select * from PRODUCT_COMMENT where PRODUCT_REF = ? and PRODUCT_COMMENT_REF is not null order by 1";
+		List list = jdbc.query(query, productCommentRowmapper, productBoardNo);
+		return list;
+	}
 	
 }
