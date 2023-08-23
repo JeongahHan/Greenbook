@@ -13,10 +13,14 @@
 $(function () {
   $(document).on("click", ".modal-open-btn", function () {//모달오픈버튼을 누르면
     $($(this).attr("target")).css("display", "flex");
-    const productBoardNo = $(this).attr("value");
-    console.log(productBoardNo);
+    
+    const deleteTargetNo = $(this).attr("value");
+    console.log(deleteTargetNo);
+    const toControllPath = $(".toControllPath").attr("value");
+    //console.log(toControllPath);
 
-    $(".deleteBtn").attr("href","/mypage/mySellBookDelete?productBoardNo="+productBoardNo);
+
+    $(".deleteBtn").attr("href",toControllPath+deleteTargetNo);
     
 
   });

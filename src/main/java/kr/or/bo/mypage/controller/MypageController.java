@@ -54,6 +54,11 @@ public class MypageController {
 		
 		return "mypage/myBoard";
 	}
+	@GetMapping(value = "/myBoardDelete")
+	public String myBoardDelete() {
+		
+		return "redirect:/mypage/myBoard?reqPage=1";
+	}
 	
 	@GetMapping(value = "/myComment")
 	public String myComment() {
@@ -113,6 +118,9 @@ public class MypageController {
 	@GetMapping(value = "/mySellBookDelete")
 	public String mySellBookDelete(int productBoardNo) {
 		System.out.println("MypageController 삭제할 판매도서 번호 : "+productBoardNo);
+		
+		//int result = mypageService.mySellBookDelete(productBoardNo); //메소드 가져오는게 나을지도?
+		
 		
 		return "redirect:/mypage/mySellBook?reqPage=1";
 	}
