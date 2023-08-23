@@ -26,12 +26,16 @@
 					<td th:text="${list.boardWriter}">유저01</td>
 					<td th:text="${list.boardRegDate}">2023-08-21</td>
 					<td th:text="${list.boardReadCount}"></td>
-					<td>삭제</td>
+					<td>
+						<p style="display : none" class="toControllPath" value="/mypage/myBoardDelete?boardNo=">모달에 컨트롤 경로지정</p>
+						<!-- <button class="btn bc1 modal-open-btn deleteBtn" target="#delete-modal">삭제</button> -->
+						<button class="btn bc1 modal-open-btn deleteBtn" target="#delete-modal" th:value="${list.boardNo}">삭제</button>
+					</td>
 				</tr>
 				<!-- 
 				담겨오는정보들
 				Board(boardNo=103, boardTitle=게시판 테스트103, boardContent=테스트용, boardWriter=user01, boardRegDate=2023-08-22, boardReadCount=0, fileList=null)
-				 -->
+				 --
 			</table>
 			<div id="pageNavi" th:utext="${pageNavi}"></div>
 			
@@ -41,5 +45,24 @@
 	</div>
 	<th:block th:include="common/footer"></th:block>
 
+	<!-- 삭제 모달 -->
+	    <div id="delete-modal" class="modal-bg">
+	      <div class="modal-wrap">
+	        <div class="modal-head">
+	          <h2>정말 삭제하시겠습니까?</h2>
+	          <span class="material-icons close-icon modal-close">close</span>
+	        </div>
+	        <div class="modal-content btn-box">
+	          <p></p>
+	          <p></p>
+	          <p></p>
+	          <a class="btn bc1 deleteBtn">삭제</a>
+	          <button class="btn bc1 modal-close">창닫기</button>
+	        </div>
+	        <div class="modal-foot">
+	        </div>
+	      </div>
+    	</div>
+	
 </body>
 </html>

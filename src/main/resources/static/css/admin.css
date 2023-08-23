@@ -507,15 +507,22 @@ textarea.input-form {
   flex-direction: column;
   top: 0;
   left: 0;
+  
 }
 .modal-wrap {
+  max-width:400px;
+  overflow:hidden;
+  border-radius:10px;
   margin-top: 150px;
-  width: 600px;
-  background: #fff;
+  width: 100%;
+  background-color : #fff;
   height: auto;
+  box-shadow: 5px 10px 10px 1px rgba(0,0,0,.3); 
 }
 .modal-wrap div {
   padding: 1rem;
+  color:#005A0D;
+
 }
 .modal-wrap div:not(:last-child) {
   border-bottom: 1px solid #ccc;
@@ -525,6 +532,24 @@ textarea.input-form {
 }
 .modal-wrap div.modal-head {
   position: relative;
+  background-color:#005A0D;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.modal-head>h2{
+  font-family: ns-light;
+}
+
+.modal-head :not(.headcss){
+   color:#fff;
+}
+.modal-head :not(.modal-close){
+   color:#fff;
+}
+
+.modal-content{
+	height: 90px;
 }
 .close-icon {
   position: absolute;
