@@ -105,7 +105,7 @@
     cursor: pointer;
 }
 /*관리자에게 쪽지쓰기 모달*/
-.adminMsg-modal-wrap,.msgView-modal-wrap{
+.adminMsg-modal-wrap,.msgView-modal-wrap,.replyMsg-modal-wrap{
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
@@ -186,4 +186,7 @@
     width: 10%;
     float: right;
     margin-top: 5px;
+}
+.modal-title>.material-icons:hover{
+	cursor: pointer;
 }

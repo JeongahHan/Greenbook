@@ -29,4 +29,22 @@ public class MsgService {
 		Msg msg = msgDao.selectReceiveView(mid);
 		return msg;
 	}
+	
+	@Transactional
+	public int readMsg(int mid) {
+		int result = msgDao.readMsg(mid);
+		return result;
+	}
+	
+	@Transactional
+	public int deleteMsg(int mid) {
+		int result = msgDao.deleteMsg(mid);
+		return result;
+	}
+	
+	@Transactional
+	public int replyMsg(Msg msg) {
+		int result = msgDao.replyMsg(msg);
+		return result;
+	}
 }

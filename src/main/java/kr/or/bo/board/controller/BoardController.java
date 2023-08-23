@@ -37,13 +37,18 @@ public class BoardController {
 	////////////////////////////////////////////////////////////////////////////
 	
 	//제목:내용 찾기
-	@ResponseBody
+
 	@GetMapping(value="/getSearchList")
-	public List getSearchList(int reqPage,String type,String keyword) {
+	public String getSearchList(int reqPage,String type,String keyword,Model model) {
+		
 		BoardListData bld = boardService.getSearchList(reqPage,type,keyword);
-		return bld.getBoardList();
+		
+		model.addAttribute("boardList",bld.getBoardList());
+		model.addAttribute("pageNavi",bld.getPageNavi());
+		
+		return "board/boardSearchList";
 	}
-	
+	//////////////////////////////////////////////////////////////////
 
 	
 	

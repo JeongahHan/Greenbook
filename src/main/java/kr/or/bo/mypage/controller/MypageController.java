@@ -60,8 +60,13 @@ public class MypageController {
 		return "redirect:/mypage/myBoard?reqPage=1";
 	}
 	
+	//나의 댓글
 	@GetMapping(value = "/myComment")
 	public String myComment() {
+		
+		//내가 작성한 댓글 조회해서 넘겨주기
+		
+		
 		return "mypage/myComment";
 	}
 	@PostMapping(value = "/update")
@@ -76,13 +81,19 @@ public class MypageController {
 		
 		return "mypage/memberUpdateFrm";//에러땜에 임시로 여기로감
 	}
+	
+	//회원탈퇴
 	@GetMapping(value = "/delete")
 	public String memberDelete(@SessionAttribute(required = false)Member m, Model model) {//로그인로직 내가 안만들었는데 세션멤버m 써도 되는건가? 위에 set어트리뷰트 하긴했는데// 써지긴하네
 		System.out.println(m);
 		
 		int result = mypageService.deleteMember(m.getMemberNo());
 		if(result>0) {//회원탈퇴 성공한 경우
-			return "redirect:/member/logout";//로그아웃해
+			model.addAttribute("title", "회원 탈퇴 성공");
+			model.addAttribute("msg", "회원 탈퇴후 로그아웃을 진행합니다.");
+			model.addAttribute("icon", "success");
+			model.addAttribute("loc", "/member/logout");//로그아웃해
+			
 			
 		}else {
 			model.addAttribute("title", "회원 탈퇴 실패");
