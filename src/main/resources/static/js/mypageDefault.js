@@ -20,8 +20,15 @@ $(function () {
     const toControllPath = $(".toControllPath").attr("value");
     console.log(toControllPath);
 
+    if(deleteTargetNo!=null){//어디서 지울지 보내야한다면
+      $(".deleteBtn").attr("href",toControllPath+deleteTargetNo);
+      console.log("deleteTargetNo 들어있음");
 
-    $(".deleteBtn").attr("href",toControllPath+deleteTargetNo);
+    }else if(deleteTargetNo ==null){//회원탈퇴는 세션에서 꺼내쓸거라 deleteTargetNo가 필요없음
+      $(".deleteBtn").attr("href",toControllPath);
+      console.log("deleteTargetNo 비어있음");
+
+    }
     
 
   });

@@ -76,6 +76,8 @@ public class MypageController {
 		
 		return "mypage/memberUpdateFrm";//에러땜에 임시로 여기로감
 	}
+	
+	//회원탈퇴
 	@GetMapping(value = "/delete")
 	public String memberDelete(@SessionAttribute(required = false)Member m, Model model) {//로그인로직 내가 안만들었는데 세션멤버m 써도 되는건가? 위에 set어트리뷰트 하긴했는데// 써지긴하네
 		System.out.println(m);
