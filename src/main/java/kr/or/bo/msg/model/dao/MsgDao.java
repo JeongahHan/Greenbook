@@ -46,4 +46,18 @@ public class MsgDao {
 		int result = jdbc.update(query, params);
 		return result;
 	}
+
+	public int deleteMsg(int mid) {
+		String query = "delete from message where mid = ?";
+		Object[] params = {mid};
+		int result = jdbc.update(query, params);
+		return result;
+	}
+
+	public int replyMsg(Msg msg) {
+		String query = "insert into message values(message_seq.nextval, ?, ?, ?, 0, TO_CHAR(SYSDATE, 'YYYY.MM.DD HH24:MI'))";
+		Object[] params = {msg.getSender(), msg.getReceiver(), msg.getMessage()};
+		int result = jdbc.update(query, params);
+		return result;
+	}
 }

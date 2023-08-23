@@ -50,27 +50,47 @@
 	                <span class="receiver">관리자</span>
 	                <input type="hidden" name="sender" th:value="${session.m.memberId}">
 	                <input type="hidden" name="receiver" value="admin">
-	                <textarea name="message" class="s-input-form"></textarea>
+	                <textarea name="message" class="s-input-form" id="sendMsg"></textarea>
 	            </div>
 	            <button type="submit" class="modalBtn s-bc1">보내기</button>
 	            <button type="button" class="modalBtn s-bc2" id="cancel">취소</button>	        
 	        </form>
     	</div>
     </div>
-    <!-- 쪽지 상세보기 모달 -->
+	<!-- 쪽지 상세보기 모달 -->
     <div class="msgView-modal-wrap">
     	<div class="adminMsg-modal">
 	        <div class="modal-title">
 	            <h3><span id="sender"></span></h3>
-	            <a href="#"><span class="material-icons">delete</span></a>
+	            <span class="material-icons" id="deleteMsg">delete</span>
 	        </div>
 	        <div class="modal-content">
 	            <hr>
 	            <textarea class="s-input-form" id="message" readonly></textarea>
 	        </div>
-	        <button type="button" class="modalBtn s-bc1">답장하기</button>
+	        <button type="button" class="modalBtn s-bc1" id="replyMsg">답장하기</button>
 	        <button type="button" class="modalBtn s-bc2" id="close">취소</button>
         </div>
+    </div>
+    <!-- 답장하기 모달-->
+    <div class="replyMsg-modal-wrap">
+    	<div class="adminMsg-modal">
+	        <div class="modal-title">
+	            <h3>쪽지 쓰기</h3>
+	            <hr>
+	        </div>
+	        <form action="/msg/replyMsg" method="post">
+	            <div class="modal-content">
+	                <span><strong>받는 사람</strong></span>
+	                <span class="receiver replyReceiver"></span>
+	                <input type="hidden" name="sender" th:value="${session.m.memberId}">
+	                <input type="hidden" name="receiver" id="replyReceiver">
+	                <textarea name="message" class="s-input-form" id="replyTextarea"></textarea>
+	            </div>
+	            <button type="submit" class="modalBtn s-bc1">보내기</button>
+	            <button type="button" class="modalBtn s-bc2" id="replyMsgCancel">취소</button>	        
+	        </form>
+    	</div>
     </div>
     <th:block th:include="common/footer"></th:block>
     <script>
@@ -89,6 +109,7 @@
 		//'관리자에게 쪽지' 클릭 시 '관리자에게 쪽지 쓰기' 모달 띄우기
 	    $("#adminMsg").on("click", function(){
 	    	$(".adminMsg-modal-wrap").css("display","flex");
+	    	$("#sendMsg").val("");
 	    });
 		
 	  	//'관리자에게 쪽지 쓰기' 모달에서 '취소'버튼 클릭 시 모달 닫기
@@ -100,6 +121,8 @@
 	  	$(".msg-wrap").on("click", function(){
 	  		const mid = $(this).children().eq(0).val();
 	  		const readChk = $(this).find("span").eq(3);
+	  		const msgwrap = $(this);
+	  		const receiver = $(this).find("span").eq(0).text();
 	  		$.ajax({
 				url : "/msg/receiveView",
 				type : "get",
@@ -115,6 +138,34 @@
 					//쪽지 상세보기 모달 닫기
 					$("#close").on("click", function(){
 						$(".msgView-modal-wrap").css("display","none");
+					});
+					//삭제 버튼 클릭 시 해당 쪽지 삭제하기
+					$("#deleteMsg").on("click", function(){
+						$.ajax({
+							url : "/msg/deleteMsg",
+							type : "get",
+							data : {mid : mid},
+							success : function(){
+								//쪽지 상세보기 모달 닫기
+								$(".msgView-modal-wrap").css("display","none");
+								//해당 쪽지를 리스트에서 안보이게 하기
+								msgwrap.hide();
+							}
+						});
+					});
+					//답장하기
+					$("#replyMsg").on("click", function(){
+						//답장 쪽지 모달 열기
+						$(".replyMsg-modal-wrap").css("display","flex");
+						//textarea 초기화
+						$("#replyTextarea").val("");
+						//받는 사람 데이터 넣어주기
+						$(".replyReceiver").text(receiver);
+						$("#replyReceiver").val(receiver);
+						//답장 쪽지 모달 닫기
+						$("#replyMsgCancel").on("click", function(){
+							$(".replyMsg-modal-wrap").css("display","none");
+						});
 					});
 				}
 			});

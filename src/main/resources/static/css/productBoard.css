@@ -5,6 +5,12 @@
     outline: none;
 }
 
+		body {
+		  display: flex;
+		  flex-direction: column;
+		  min-height: 100vh;
+		}
+
 /* main-top */
 .main{
 	margin: 0 auto;
@@ -13,9 +19,60 @@
 .main-wrap{
 }
 
-.main-top-text{
-    padding: 20px;
-}
+		.page-content {
+		    width: 1200px;
+		    margin: 30px auto;
+		    margin-bottom: 10px;
+		    flex-grow: 1;
+		}	
+
+		.page-title {
+		    padding: 20px 0px;
+		    font-size: 1.5rem;
+		    overflow: hidden;
+		}
+		
+		.page-title>p{
+		    float: left;
+		    font-family: ns-bold;
+		    font-size: 20px;
+		    margin-right:10px;
+		}
+		
+		.page-title>p:last-child{
+		    color:#005A0D;
+		}
+		
+		/*글쓰기 버튼*/
+		.board-write-button{
+			margin-right: 30px;
+			float: right;
+			
+			width:120px;
+			height:37px;
+			border: 1px solid #005A0D;
+			font-size:15px;
+			text-align:center;
+			
+			padding-top:6px;
+			box-sizing: border-box;
+			transition-duration: 0.5s;
+			
+			background-color: #005A0D;
+		
+		}
+		.board-btn{
+			color: #fff;
+			transition-duration: 0.5s;
+		}
+		.board-write-button:hover{
+			background-color: #fff;
+		  	cursor: pointer;
+		}
+		.board-write-button:hover>.board-btn{
+			color: #005A0D;
+		}
+
 
 .top-text1{
     font-weight: 900;
@@ -28,7 +85,7 @@
 
 .top-text3{
     font-weight: 900;
-    background-color: #eee7e7;
+    background-color: #f0f8ef;
 }
 
 .main-mid{
@@ -140,6 +197,64 @@
     width: 1200px;
     overflow: hidden;
 }
+
+		/*제목 : 찾기*/
+		.board-search{
+		  margin-top: 30px;
+		  overflow: hidden;
+		}
+		.board-search-center{
+		  margin: 0 auto;
+		  width:424px;
+		}
+		.board-search-choice-square1{
+		  width:120px;
+		  margin-right: 2px;
+		  float: left;
+		}
+		.board-type{
+		  width:100%;
+		  height: 37px;
+		  border: 1px solid #005A0D;
+		  background-color: rgb(255, 255, 255);
+		  box-shadow: rgb(247, 247, 247) 0px 0px 0px 1px inset;
+		  font-size:15px;
+		  padding-left:10px;
+		}
+		
+		.board-board-search{
+		  float:left;
+		}
+		.board-board-search-box{
+		  display: flex;
+		  width: 300px;
+		  height: 35px;
+		  border: 1px solid #005A0D;
+		  background-color: rgb(255, 255, 255);
+		  box-shadow: rgb(247, 247, 247) 0px 0px 0px 1px inset;
+		}
+		
+		.board-board-search-box input{
+		  width: 280px;
+		  background-color: transparent;
+		  border: none;
+		  outline: none;
+		  font-size:15px;
+		  letter-spacing: -0.33px;
+		  padding-left: 14px; 
+		}
+		.board-board-search-box button{
+		  border:none;
+		  background-color: transparent;
+		  cursor:pointer;
+		  padding-top: 4px;
+		  padding-left: 20px;
+		}
+		.board-board-search-box button>span{
+		  font-size:27px;
+		  color: #005A0D;
+		}
+
 
 /* 글쓰기 버튼 */
 .write{

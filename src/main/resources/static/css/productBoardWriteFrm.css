@@ -1,6 +1,14 @@
 @charset "UTF-8";
 @charset "UTF-8";
 
+/* main-top */
+.main{
+	margin: 0 auto;
+}
+
+.main-wrap{
+}
+
 .main-top-text{
     padding: 20px;
 }
@@ -16,7 +24,7 @@
 
 .top-text3{
     font-weight: 900;
-    background-color: #eee7e7;
+    background-color: #f0f8ef;
 }
 
 .main-mid{
@@ -39,8 +47,7 @@
     width: 100%;
     border-spacing: 0px;
     border-collapse: collapse;
-    margin-top: 10px;
-  	margin-left: 30px;
+    margin-top: 50px;
 }
 
 

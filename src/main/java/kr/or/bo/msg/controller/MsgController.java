@@ -28,7 +28,6 @@ public class MsgController {
 		if(m == null) {
 			model.addAttribute("title", "접근 권한 없음");
 			model.addAttribute("msg", "로그인 후 볼 수 있습니다.");
-			model.addAttribute("icon", "warning");
 			model.addAttribute("loc", "/");
 			return "common/msg";
 		//로그인이 된 경우
@@ -53,12 +52,10 @@ public class MsgController {
 		if(result > 0) {
 			model.addAttribute("title", "전송 완료");
 			model.addAttribute("msg", "관리자에게 쪽지가 성공적으로 전송되었습니다.");
-			model.addAttribute("icon", "success");
 		//쪽지 전송 실패
 		}else {
 			model.addAttribute("title", "전송 실패");
-			model.addAttribute("msg", "관리자에게 쪽지가 성공적으로 전송되었습니다.");
-			model.addAttribute("icon", "error");
+			model.addAttribute("msg", "관리자에게 쪽지 전송을 실패하였습니다.");
 		}
 		model.addAttribute("loc", "/msg/receiveList");
 		return "common/msg";
@@ -73,6 +70,39 @@ public class MsgController {
 		//쪽지 번호로 해당 쪽지 열람 여부 바꾸기(미열람 -> 열람)
 		int result = msgService.readMsg(mid);
 		return msg;
+	}
+	
+	//쪽지 삭제하기
+	@ResponseBody
+	@GetMapping(value = "/deleteMsg")
+	public String deleteMsg(int mid, Model model) {
+		int result = msgService.deleteMsg(mid);
+		if(result>0) {
+			model.addAttribute("title", "삭제 완료");
+			model.addAttribute("msg", "쪽지가 성공적으로 삭제되었습니다.");
+		}else {
+			model.addAttribute("title", "삭제 실패");
+			model.addAttribute("msg", "쪽지 삭제에 실패하였습니다.");
+		}
+		model.addAttribute("loc", "/msg/receiveList");
+		return "common/msg";
+	}
+	
+	//쪽지 답장하기
+	@PostMapping(value = "/replyMsg")
+	public String replyMsg(Msg msg, Model model) {
+		int result = msgService.replyMsg(msg);
+		//쪽지 전송 성공
+		if(result > 0) {
+			model.addAttribute("title", "전송 완료");
+			model.addAttribute("msg", "쪽지가 성공적으로 전송되었습니다.");
+		//쪽지 전송 실패
+		}else {
+			model.addAttribute("title", "전송 실패");
+			model.addAttribute("msg", "쪽지 전송에 실패하였습니다.");
+		}
+		model.addAttribute("loc", "/msg/receiveList");
+		return "common/msg";
 	}
 
 }
