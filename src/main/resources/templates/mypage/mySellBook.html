@@ -16,13 +16,14 @@
 					<div class="wishList-imgBox">
                     	<img src="/img/product-img/매미울음소리 그칠 무렵.jpg">
 					</div>
-					<p><span th:text="${list.productBoardNo}"></span>글번호</p>
+					<p><span class="productBoardNo" th:text="${list.productBoardNo}"></span>글번호</p>
 					<p th:text="${list.productBoardTitle}"></p>
 					<p>저자 : <span th:text="${list.productAuthor}"></span></p>
 					<p th:text="${list.productBoardWriter}">판매자user01</p>
 					<p><span th:text="${list.productPrice}"></span>원</p>
 					<a class="btn bc1">판매완료</a>
-					<button class="btn bc1 modal-open-btn" target="#delete-modal" th:value="${list.productBoardNo}">판매취소</button>
+					<a class="btn bc1 modal-open-btn" target="#delete-modal" th:href="@{/mypage/mySellBookDelete(productBoardNo=${list.productBoardNo})}" th:value="${list.productBoardNo}">판매취소</a>
+					<!-- <button class="btn bc1 modal-open-btn" target="#delete-modal" th:value="${list.productBoardNo}">판매취소</button> -->
 				</div>
 				<!-- 
 				${mySellBookList}에 담겨 있는 이름들
@@ -39,7 +40,7 @@
 				readCount
 				filepath
 				
-				 -->
+				-->
 				
 			</div>
 			<div id="pageNavi" th:utext="${pageNavi}"></div>
@@ -58,8 +59,7 @@
 	          <p></p>
 	          <p></p>
 	          <p></p>
-	          <p></p>
-	          <button class="btn bc1">삭제</button>
+	          <a class="btn bc1 deleteBtn">삭제</a>
 	          <button class="btn bc1 modal-close">창닫기</button>
 	        </div>
 	        <div class="modal-foot">

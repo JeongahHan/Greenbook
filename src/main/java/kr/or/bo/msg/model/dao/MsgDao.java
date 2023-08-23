@@ -22,4 +22,21 @@ public class MsgDao {
 		List list = jdbc.query(query, msgRowMapper, memberId);
 		return list;
 	}
+
+	public int sendMsgToAdmin(Msg msg) {
+		String query = "insert into message values(message_seq.nextval, ?, ?, ?, 0, TO_CHAR(SYSDATE, 'YYYY.MM.DD HH24:MI'))";
+		Object[] params = {msg.getSender(), msg.getReceiver(), msg.getMessage()};
+		int result = jdbc.update(query, params);
+		return result;
+	}
+
+	public Msg selectReceiveView(int mid) {
+		String query = "select * from message where mid = ?";
+		List list = jdbc.query(query, msgRowMapper, mid);
+		if(list == null) {
+			return null;			
+		}else {
+			return (Msg)list.get(0);
+		}
+	}
 }

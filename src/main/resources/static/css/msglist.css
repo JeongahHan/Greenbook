@@ -58,6 +58,7 @@
 }
 .msg-wrap:hover{
 	background-color: rgba(0, 0, 0, 0.01);
+	cursor: pointer;
 }
 .first-line{
     overflow: hidden;
@@ -104,7 +105,7 @@
     cursor: pointer;
 }
 /*관리자에게 쪽지쓰기 모달*/
-.modal-wrap{
+.adminMsg-modal-wrap,.msgView-modal-wrap{
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
@@ -165,4 +166,24 @@
 }
 .s-bc2:hover {
     cursor: pointer;
+}
+/*쪽지 상세보기 모달*/
+.modal-title{
+    overflow: hidden;
+}
+#sender{
+	padding-left: 20px;
+    display: block;
+    width: 90%;
+    float: left;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+.modal-title>.material-icons{
+    color: red;
+    font-size: 20px;
+    display: block;
+    width: 10%;
+    float: right;
+    margin-top: 5px;
 }

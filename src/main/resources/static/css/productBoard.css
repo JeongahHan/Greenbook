@@ -98,14 +98,42 @@
     font-weight: 900;
 }
 
+.product>a{
+	color: #252a34;
+	background-color: #fff;
+}
+
 .product>a:hover{
+	background-color: #005A0D;;
     box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2);
     transform: scale( 1.05 );
     transition: all 0.5s linear;
 }
 
+.product > a> .info > div{
+	color: #252a34;
+}
+
+.product > a> .info > .book-writer > span{
+	color: gray;
+}
+
+
+.product > a> .info > .book-writer{
+	color: gray;
+}
+
 .product>a:hover .book-title{
     text-decoration: underline;
+}
+
+.product>a:hover .book-title,
+.product>a:hover .book-writer,
+.product>a:hover .book-writer > span,
+.product>a:hover .book-price,
+.product>a:hover .book-price > span{
+	font-weight: 300;
+	color: #fff;
 }
 
 .main-bottom{
