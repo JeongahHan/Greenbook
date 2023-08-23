@@ -58,6 +58,7 @@
 }
 .msg-wrap:hover{
 	background-color: rgba(0, 0, 0, 0.01);
+	cursor: pointer;
 }
 .first-line{
     overflow: hidden;
