@@ -105,7 +105,7 @@
     cursor: pointer;
 }
 /*관리자에게 쪽지쓰기 모달*/
-.modal-wrap{
+.adminMsg-modal-wrap,.msgView-modal-wrap{
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);

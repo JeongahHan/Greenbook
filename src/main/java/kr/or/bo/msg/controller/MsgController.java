@@ -69,7 +69,7 @@ public class MsgController {
 		Msg msg = msgService.selectReceiveView(mid);
 		if(msg != null) {
 			model.addAttribute("msg", msg);
-			return "msg/receiveView";
+			return "msg/msglist";
 		}else {
 			model.addAttribute("title", "조회 실패");
 			model.addAttribute("msg", "쪽지 상세 조회에 실패하였습니다.");
