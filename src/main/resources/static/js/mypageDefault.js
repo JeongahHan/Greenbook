@@ -17,7 +17,7 @@ $(function () {
     const deleteTargetNo = $(this).attr("value");
     console.log(deleteTargetNo);
     const toControllPath = $(".toControllPath").attr("value");
-    //console.log(toControllPath);
+    console.log(toControllPath);
 
 
     $(".deleteBtn").attr("href",toControllPath+deleteTargetNo);

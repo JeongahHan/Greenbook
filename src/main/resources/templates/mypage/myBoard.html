@@ -27,7 +27,7 @@
 					<td th:text="${list.boardRegDate}">2023-08-21</td>
 					<td th:text="${list.boardReadCount}"></td>
 					<td>
-						<p style="display : none" class="toControllPath" value="/mypage/mySellBookDelete?boardNo=">모달에 컨트롤 경로지정</p>
+						<p style="display : none" class="toControllPath" value="/mypage/myBoardDelete?boardNo=">모달에 컨트롤 경로지정</p>
 						<!-- <button class="btn bc1 modal-open-btn deleteBtn" target="#delete-modal">삭제</button> -->
 						<button class="btn bc1 modal-open-btn deleteBtn" target="#delete-modal" th:value="${list.boardNo}">삭제</button>
 						
