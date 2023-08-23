@@ -12,13 +12,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.bo.FileUtil;
+import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.product.model.service.ProductService;
 import kr.or.bo.product.model.vo.Product;
 import kr.or.bo.product.model.vo.ProductFile;
 import kr.or.bo.product.model.vo.ProductListData;
+import kr.or.bo.product.model.vo.ProductViewData;
 
 @Controller
 @RequestMapping(value="/product")
@@ -106,6 +109,25 @@ public class ProductController {
 			e.printStackTrace();
 		}
 		return "/editor/"+filepath;
+	}
+	
+	@GetMapping("/productDetail")
+	public String productDetail(int productBoardNo, @SessionAttribute(required = false) Member m, Model model) {
+		int memberNo = (m == null) ? 0 : m.getMemberNo();
+		ProductViewData pvd = productService.selectOneProduct(productBoardNo, memberNo);
+		if(pvd != null) {
+			model.addAttribute("p", pvd.getP());
+			model.addAttribute("commentList", pvd.getCommentList());
+			model.addAttribute("reCommentList", pvd.getReCommentList());
+			// model.addAttribute("fileList", pvd.getFileList());
+			return "product/productDetail";
+		}else {
+			model.addAttribute("title", "조회 실패");
+			model.addAttribute("msg", "이미 삭제된 게시물입니다.");
+			model.addAttribute("icon", "info");
+			model.addAttribute("loc", "/product/board?reqPage=1");
+			return "common/msg";
+		}
 	}
 	
 }
