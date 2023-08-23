@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import kr.or.bo.member.model.service.MemberService;
 import kr.or.bo.member.model.vo.Member;
@@ -34,6 +35,7 @@ public class MypageController {
 		return "mypage/memberUpdateFrm";
 	}
 	
+	
 	@GetMapping(value = "/myBoard")
 	public String myBoard(HttpSession session,Model model,int reqPage) {
 		
@@ -52,6 +54,11 @@ public class MypageController {
 		
 		return "mypage/myBoard";
 	}
+	@GetMapping(value = "/myBoardDelete")
+	public String myBoardDelete() {
+		
+		return "redirect:/mypage/myBoard?reqPage=1";
+	}
 	
 	@GetMapping(value = "/myComment")
 	public String myComment() {
@@ -69,6 +76,24 @@ public class MypageController {
 		
 		return "mypage/memberUpdateFrm";//에러땜에 임시로 여기로감
 	}
+	@GetMapping(value = "/delete")
+	public String memberDelete(@SessionAttribute(required = false)Member m, Model model) {//로그인로직 내가 안만들었는데 세션멤버m 써도 되는건가? 위에 set어트리뷰트 하긴했는데// 써지긴하네
+		System.out.println(m);
+		
+		int result = mypageService.deleteMember(m.getMemberNo());
+		if(result>0) {//회원탈퇴 성공한 경우
+			return "redirect:/member/logout";//로그아웃해
+			
+		}else {
+			model.addAttribute("title", "회원 탈퇴 실패");
+			model.addAttribute("msg", "회원 정보 삭제 실패했습니다.");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/mypage/memberUpdateFrm");
+		}
+		return "common/msg";
+		
+	}
+	
 	
 	@GetMapping(value = "/myWishList")
 	public String myWishList() {
@@ -88,6 +113,16 @@ public class MypageController {
 		model.addAttribute("pageNavi", mld.getPageNavi());
 		
 		return "mypage/mySellBook";
+	}
+	
+	@GetMapping(value = "/mySellBookDelete")
+	public String mySellBookDelete(int productBoardNo) {
+		System.out.println("MypageController 삭제할 판매도서 번호 : "+productBoardNo);
+		
+		//int result = mypageService.mySellBookDelete(productBoardNo); //메소드 가져오는게 나을지도?
+		
+		
+		return "redirect:/mypage/mySellBook?reqPage=1";
 	}
 	
 }
