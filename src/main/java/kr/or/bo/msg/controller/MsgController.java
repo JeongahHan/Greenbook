@@ -28,7 +28,6 @@ public class MsgController {
 		if(m == null) {
 			model.addAttribute("title", "접근 권한 없음");
 			model.addAttribute("msg", "로그인 후 볼 수 있습니다.");
-			model.addAttribute("icon", "warning");
 			model.addAttribute("loc", "/");
 			return "common/msg";
 		//로그인이 된 경우
@@ -53,12 +52,10 @@ public class MsgController {
 		if(result > 0) {
 			model.addAttribute("title", "전송 완료");
 			model.addAttribute("msg", "관리자에게 쪽지가 성공적으로 전송되었습니다.");
-			model.addAttribute("icon", "success");
 		//쪽지 전송 실패
 		}else {
 			model.addAttribute("title", "전송 실패");
 			model.addAttribute("msg", "관리자에게 쪽지 전송을 실패하였습니다.");
-			model.addAttribute("icon", "error");
 		}
 		model.addAttribute("loc", "/msg/receiveList");
 		return "common/msg";
@@ -83,11 +80,9 @@ public class MsgController {
 		if(result>0) {
 			model.addAttribute("title", "삭제 완료");
 			model.addAttribute("msg", "쪽지가 성공적으로 삭제되었습니다.");
-			model.addAttribute("icon", "success");
 		}else {
 			model.addAttribute("title", "삭제 실패");
 			model.addAttribute("msg", "쪽지 삭제에 실패하였습니다.");
-			model.addAttribute("icon", "error");
 		}
 		model.addAttribute("loc", "/msg/receiveList");
 		return "common/msg";
@@ -101,12 +96,10 @@ public class MsgController {
 		if(result > 0) {
 			model.addAttribute("title", "전송 완료");
 			model.addAttribute("msg", "쪽지가 성공적으로 전송되었습니다.");
-			model.addAttribute("icon", "success");
 		//쪽지 전송 실패
 		}else {
 			model.addAttribute("title", "전송 실패");
 			model.addAttribute("msg", "쪽지 전송에 실패하였습니다.");
-			model.addAttribute("icon", "error");
 		}
 		model.addAttribute("loc", "/msg/receiveList");
 		return "common/msg";
