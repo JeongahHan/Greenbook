@@ -27,7 +27,7 @@
 		 <button class="btn bc1 bc1-1 findbtn" id="findjQ">회원정보 추가 조회</button>
 		                
 		
-		<table class="tbl tbl-hover">
+		<table class="tbl tbl-hover" id="admintbl">
 			<tr class="tr-3 .green">
 				<th>선택</th>
 				<th>회원번호</th>
@@ -124,6 +124,7 @@ $("#findjQ").on("click",function(){
 			dataType : "json",
 			success : function(data){
 				console.log(data);
+					
 				/*
 				$("#result").empty();
 				$("#result").append(data.memberId +"<br>");
@@ -133,54 +134,62 @@ $("#findjQ").on("click",function(){
 				$("#result").append(data.enrollDate +"<br>");
 				$("#result").append(data.memberLevel +"<br>"); 
 				*/
-				const inputTd = $("<td>");
-				const input = $("<input type='checkbox'>");
-				input.addClass("chk");
-				inputTd.append(td);
+				
 			
 				const tr = $("<tr>");
 				tr.addClass("tr-1");
 				
+				const inputTd = $("<td>");
+				const input = $("<input type='checkbox'>");
+				input.addClass("chk");
+				inputTd.append(input);
+				
 				const memberNoTd = $("<td>");
 				memberNoTd.text(data.memberNo);
-				memberNoTd.append(td);
 				
 				const memberIdTd = $("<td>");
 				memberIdTd.text(data.memberId);
-				memberIdTd.append(td);
 				
 				const memberPwTd = $("<td>");
 				memberPwTd.text(data.memberPw);
-				memberPwTd.append(td);
 				
 				const memberNameTd = $("<td>");
 				memberNameTd.text(data.memberName);
-				memberNameTd.append(td);
 				
 				const memberPhoneTd = $("<td>");
 				memberPhoneTd.text(data.memberPhone);
-				memberPhoneTd.append(td);
 				
 				const memberEmailTd = $("<td>");
 				memberEmailTd.text(data.memberEmail);
-				memberEmailTd.append(td);
 				
 				const enrollDateTd = $("<td>");
 				enrollDateTd.text(data.enrollDate);
-				enrollDateTd.append(td);
+				
 				
 				const memberLevelTd = $("<td>");
-				memberLevelTd.text(data.memberLevel);
-				memberLevelTd.append(td);
-				//<select id ='level' class='input-form'><option value='1'>관리자</option><option value='2'>그린이</option><option value='3'>블랙이</option></select>
+				const select = $("<select>");
+				select.addClass("input-form");
+				
+				
+				const option1 = $("<option value='1'>");
+				option1.text("관리자");
+				const option2 = $("<option value='2'>");
+				option2.text("그린이");
+				const option3 = $("<option value='3'>");
+				option3.text("블랙이");
+				select.append(option1).append(option2).append(option3);
+				select.children().eq(data.memberLevel-1).prop("selected", true);
+				
+				memberLevelTd.append(select);
+				
 				
 				const btnTd = $("<td>");
 				const btn = $("<button>");
 				btn.addClass("btn bc1 bc1-1 changeLevel");
 				btn.text("회원등급변경");
-				btnTd.append(td);
+				btnTd.append(btn);
 				
-				btnTd.on("click", function(){
+				btn.on("click", function(){
 					const memberLevel = $(this).parent().prev().children().val();
 					const memberNo = $(this).parent().parent().children().eq(1).text();
 					console.log(memberLevel,memberNo);
@@ -190,16 +199,25 @@ $("#findjQ").on("click",function(){
 				
 				
 				tr.append(inputTd).append(memberNoTd).append(memberIdTd).append(memberPwTd).append(memberNameTd).append(memberPhoneTd).append(memberEmailTd).append(enrollDateTd).append(memberLevelTd).append(btnTd);
-				$(".tbl>table").append(tr);
-				
+				$("#admintbl>tbody").append(tr);
 				
 				
 		}
 			
-		});
+		})
+		.fail(function() {
+		    console.log( "error" );
+		    alert("없는 회원입니다~!다시 검색해주세요~!");
+		    
+		  })
+
 		
 	
 	});
+	
+	
+	
+//<select id ='level' class='input-form'><option value='1'>관리자</option><option value='2'>그린이</option><option value='3'>블랙이</option></select>
 	/*
 const tr = $("<tr>");
 tr.addClass("tr-1");

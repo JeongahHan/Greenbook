@@ -167,3 +167,23 @@
 .s-bc2:hover {
     cursor: pointer;
 }
+/*쪽지 상세보기 모달*/
+.modal-title{
+    overflow: hidden;
+}
+#sender{
+	padding-left: 20px;
+    display: block;
+    width: 90%;
+    float: left;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+.modal-title>.material-icons{
+    color: red;
+    font-size: 20px;
+    display: block;
+    width: 10%;
+    float: right;
+    margin-top: 5px;
+}

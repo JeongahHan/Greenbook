@@ -105,8 +105,8 @@
 				data : {mid : mid},
 				success : function(data){
 					console.log(data);
-					$("#sender").append(data.sender);
-					$("#message").append(data.message);
+					$("#sender").text(data.sender);
+					$("#message").val(data.message);
 					$(".msgView-modal-wrap").css("display","flex");
 					$("#close").on("click", function(){
 						$(".msgView-modal-wrap").css("display","none");
