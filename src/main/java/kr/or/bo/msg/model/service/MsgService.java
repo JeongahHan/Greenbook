@@ -35,4 +35,10 @@ public class MsgService {
 		int result = msgDao.readMsg(mid);
 		return result;
 	}
+	
+	@Transactional
+	public int deleteMsg(int mid) {
+		int result = msgDao.deleteMsg(mid);
+		return result;
+	}
 }

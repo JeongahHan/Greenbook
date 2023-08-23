@@ -74,5 +74,23 @@ public class MsgController {
 		int result = msgService.readMsg(mid);
 		return msg;
 	}
+	
+	//쪽지 삭제하기
+	@ResponseBody
+	@GetMapping(value = "/deleteMsg")
+	public String deleteMsg(int mid, Model model) {
+		int result = msgService.deleteMsg(mid);
+		if(result>0) {
+			model.addAttribute("title", "삭제 완료");
+			model.addAttribute("msg", "쪽지가 성공적으로 삭제되었습니다.");
+			model.addAttribute("icon", "success");
+		}else {
+			model.addAttribute("title", "삭제 실패");
+			model.addAttribute("msg", "쪽지 삭제에 실패하였습니다.");
+			model.addAttribute("icon", "error");
+		}
+		model.addAttribute("loc", "/msg/receiveList");
+		return "common/msg";
+	}
 
 }

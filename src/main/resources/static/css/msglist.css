@@ -179,7 +179,7 @@
     padding-left: 20px;
     box-sizing: border-box;
 }
-.modal-title .material-icons{
+.modal-title>.material-icons{
     color: red;
     font-size: 20px;
     display: block;
@@ -187,6 +187,6 @@
     float: right;
     margin-top: 5px;
 }
-.modal-title .material-icons:hover{
+.modal-title>.material-icons:hover{
 	cursor: pointer;
 }
