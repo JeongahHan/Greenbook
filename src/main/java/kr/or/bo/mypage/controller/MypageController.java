@@ -110,4 +110,11 @@ public class MypageController {
 		return "mypage/mySellBook";
 	}
 	
+	@GetMapping(value = "/mySellBookDelete")
+	public String mySellBookDelete(int productBoardNo) {
+		System.out.println("삭제할 판매도서 번호 : "+productBoardNo);
+		
+		return "redirect:/mypage/mySellBook?reqPage=1";
+	}
+	
 }
