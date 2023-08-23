@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
@@ -43,5 +44,40 @@ public class MsgController {
 		return "msg/msglist";
 	}
 	
+	//관리자에게 쪽지 보내기
+	@PostMapping(value = "/sendMsgToAdmin")
+	public String sendMsgToAdmin(Msg msg, Model model) {
+		int result = msgService.sendMsgToAdmin(msg);
+		//쪽지 전송 성공
+		if(result > 0) {
+			model.addAttribute("title", "전송 완료");
+			model.addAttribute("msg", "관리자에게 쪽지가 성공적으로 전송되었습니다.");
+			model.addAttribute("icon", "success");
+		//쪽지 전송 실패
+		}else {
+			model.addAttribute("title", "전송 실패");
+			model.addAttribute("msg", "관리자에게 쪽지가 성공적으로 전송되었습니다.");
+			model.addAttribute("icon", "error");
+		}
+		model.addAttribute("loc", "/msg/receiveList");
+		return "common/msg";
+	}
 	
+	//쪽지 상세 보기
+	@GetMapping(value = "/receiveView")
+	public String receiveView(int mid, Model model) {
+		Msg msg = msgService.selectReceiveView(mid);
+		if(msg != null) {
+			model.addAttribute("msg", msg);
+			return "msg/receiveView";
+		}else {
+			model.addAttribute("title", "조회 실패");
+			model.addAttribute("msg", "쪽지 상세 조회에 실패하였습니다.");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/msg/receiveList");
+			return "common/msg";
+		}
+		
+	}
+
 }
