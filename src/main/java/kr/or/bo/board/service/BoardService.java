@@ -1,5 +1,6 @@
 package kr.or.bo.board.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.bo.board.dao.BoardDao;
 import kr.or.bo.board.vo.Board;
+import kr.or.bo.board.vo.BoardFile;
 import kr.or.bo.board.vo.BoardListData;
 import kr.or.bo.board.vo.BoardViewData;
 
@@ -247,6 +249,31 @@ public class BoardService {
 		
 	}
 
+
+/////////////////////////////////글 작성
+	
+	@Transactional  //커밋 롤백
+	public int insertBoard(Board b, ArrayList<BoardFile> fileList) {
+		//b는 무조건 존재 . fileList는 파일이 없으면 null. 있으면  Arraylist 객체
+		
+		int result = boardDao.insertBoard(b);
+		
+		if(fileList != null) {
+			//notice_file 테이블에 insert할 notice_no 조회
+			//-> 방금 if 문위에서 insert 된 notice의 notice_no를 조회
+			int boardNo =  boardDao.getBoard();
+			
+			for(BoardFile file : fileList) {
+				//바로 insert를 하게되면 file 객체 내부의 notice no 0
+				//=> 0인 상태로 insert 하게되면 외래키 제약 조건 위배 
+				file.setBoardNo(boardNo);
+			result += boardDao.insertBoardFile(file);
+			}
+		}
+		return result;
+		
+	}
+/////////////////////////////////////////////////////
 
 	
 

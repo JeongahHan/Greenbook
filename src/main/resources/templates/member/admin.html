@@ -161,17 +161,19 @@
 	//쪽지 쓰기
 	$(".sendMsg").on("click", function(){
 		const receiver = $(this).text();
-		//쪽지쓰기 모달 열기
-		$(".sendMsg-modal-wrap").css("display","flex");
-		//textarea 초기화
-		$("#sendMsgTextarea").val("");
-		//받는 사람 데이터 넣어주기
-		$(".receiver").text(receiver);
-		$("#receiver").val(receiver);
-		//답장 쪽지 모달 닫기
-		$("#sendMsgCancel").on("click", function(){
-			$(".sendMsg-modal-wrap").css("display","none");
-		});
+		if(receiver != "admin"){
+			//쪽지쓰기 모달 열기
+			$(".sendMsg-modal-wrap").css("display","flex");
+			//textarea 초기화
+			$("#sendMsgTextarea").val("");
+			//받는 사람 데이터 넣어주기
+			$(".receiver").text(receiver);
+			$("#receiver").val(receiver);
+			//답장 쪽지 모달 닫기
+			$("#sendMsgCancel").on("click", function(){
+				$(".sendMsg-modal-wrap").css("display","none");
+			});			
+		}
 	});
 	
 	</script>

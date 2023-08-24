@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>게시글 상세보기</title>
 
 
 <!-- 구글 아이콘 -->
@@ -24,16 +24,16 @@
 		</div>
 		<table class="tbl noticeView">
 			<tr class="tr-3">
-				<th colspan="6" th:text="${b.boardTitle}"></th>
+				<th colspan="6" th:text="${b.boardTitle}" id="board-title" style="padding:2rem;"></th>
 			</tr>
 			
 			<tr class="tr-1">
 				<th class="td-3" style="width:15%;">작성자</th>
-				<td th:text="${b.boardWriter}"></td>
+				<td th:text="${b.boardWriter}" style="font-family:ns-light;"></td>
 				<th class="td-3" style="width:10%;">작성일</th>
-				<td th:text="${b.boardRegDate}"></td>
+				<td th:text="${b.boardRegDate}" style="font-family:ns-light;"></td>
 				<th class="td-3" style="width:10%;">조회수</th>
-				<td th:text="${b.boardReadCount}"></td>
+				<td th:text="${b.boardReadCount}" style="font-family:ns-light;"></td>
 			</tr>
 			
 			<tr class="tr-1">
@@ -41,26 +41,29 @@
 				<td colspan="5">
 					<th:block th:each="file : ${b.fileList}">
 						<img src="/img/file.png" width="16px">
-						<a th:href="@{/board/filedown(filename=${file.filename},filepath=${file.filepath})}" th:text="${file.filename}"></a>  <!-- file 값 두개보내기 -->
+						<a th:href="@{/board/filedown(filename=${file.filename},filepath=${file.filepath})}" th:text="${file.filename}" style="font-family:ns-light;"></a>  <!-- file 값 두개보내기 -->
 					</th:block>
 				</td>
 			</tr>
 			
 			<tr class="tr-1">
-				<td colspan="6">
-					<div class="noticeContent" th:utext="${b.boardContent}"></div>  <!-- utext로 태그 : 입력한 엔터기호를 출력할때는 <br>태그로 인식  -->
+				<td colspan="6" id="boardContentSize">
+					<div class="boardContent" th:utext="${b.boardContent}"></div> 
+					<!-- utext로 태그 : 입력한 엔터기호를 출력할때는 <br>태그로 인식  -->
 					<!-- textarea, 사람이 입력하는 기준으로는 엔터가 \r\n >>html 에서는 한칸으로 처리 -->
 				</td>
 			</tr>
 			
 			<!-- 수정 삭제 버튼 -->
-			<tr class="tr-1" th:if="${session.m != null && session.m.memberId == b.boardWriter}"> <!-- 로그인한상태이고 세션의아이디와 글쓴이가 같을때 -->
-				<th colspan = "6">
-					<a class="btn bc44" th:href="@{/board/updateFrm(boardNo=${b.boardNo})}">수정</a>
-					<button class="btn bc44" th:onclick="boardDelete([[${b.board}]])">삭제</button><!-- 실제 진짜 삭제할건지 물어보기위해 버튼 처리 -->
+			<tr class="tr-1" th:if="${session.m != null && session.m.memberId == b.boardWriter}" id="modbtn-tr"> <!--로그인한상태이고 세션의아이디와 글쓴이가 같을때 -->
+				<th colspan = "6" id="modbtn-th">
+					<a class="modbtn commentbc44" th:href="@{/board/updateFrm(boardNo=${b.boardNo})}">게시글 수정</a> 
+					<button class="modbtn commentbc44" th:onclick="boardDelete([[${b.boardNo}]])">게시글 삭제</button><!-- 실제 진짜 삭제할건지 물어보기위해 버튼 처리 --> 
 					<!-- boardeNo 를  통해 자바스크립트 진행하기위해 대괄호 두개 처리 -->
 				</th>
 			</tr>
+			
+			
 		</table>
 		
 		<!-- 댓글 (로그인해야 작성가능) -->
@@ -77,7 +80,7 @@
 						<textarea name="boardCommentContent" class="input-form"></textarea>
 					</li>
 					<li>
-						<button type="submit" class="btn bc1 bs4">등록</button>
+						<button type="submit" class="commentbtn commentbc1 commentbs4">등록</button>
 					</li>
 				</ul>
 			</form>
@@ -107,7 +110,7 @@
 						
 						<p class="comment-content" th:text="${bc.boardCommentContent}"></p>
 						
-						<textarea name="noticeCommentContent" class="input-form" style="min-height:96px;display:none;" th:text="${bc.boardCommentContent}"></textarea>
+						<textarea name="boardCommentContent" class="input-form" style="min-height:96px;display:none;" th:text="${bc.boardCommentContent}"></textarea>
 						
 						<p class="comment-link">
 							<th:block th:if="${session.m !=null}">
@@ -121,7 +124,7 @@
 					</li>
 				</ul>
 				<!-- 대댓글 출력 -->
-				<th:block th:each="bcc : ${reCommentList}">        <!-- nc 와 ncc 구분 중요 -->
+				<th:block th:each="bcc : ${reCommentList}">        <!-- bc 와 bcc 구분 중요 -->
 					<ul class="posting-comment reply" th:if="${bc.boardCommentNo == bcc.boardCommentRef}">
 						<li>
 							<span class="material-icons">subdirectory_arrow_right</span>
@@ -179,6 +182,9 @@
 		
 	</div>
 	<th:block th:include="common/footer"></th:block>
+	
+	
+	
 	<style>
 		.comment-info{
 			display:flex;
@@ -323,6 +329,7 @@
 		}
 		
 	</script>
+	
 	
 </body>
 </html>
