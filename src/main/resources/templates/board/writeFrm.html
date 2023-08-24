@@ -11,7 +11,7 @@
 <!-- 기본 CSS -->
 <link rel="stylesheet" href="/css/board.css">
 
-
+  
 </head>
 <body>
 	<th:block th:include="common/header"></th:block>
@@ -42,7 +42,7 @@
 					</td>
 					<th class="td-3" style="border-left: 1px solid #005A0D;">첨부파일</th>
 					<td>
-						<input type="file" name="upfile" multiple> <!-- multiple이라는 option을 넣어 첨부파일 여러개 업로드 가능하게 함 -->
+						<input type="file" accept="image/*" name="upfile" multiple> <!-- multiple이라는 option을 넣어 첨부파일 여러개 업로드 가능하게 함 -->
 					</td>
 				</tr>
 				
@@ -54,7 +54,7 @@
 				
 				<tr class="tr-1" style="border-top: none;">
 					<td colspan="4">
-						<button type ="submit" class ="writingbtn writingbc1 writingbs4">공지사항작성</button>
+						<button type ="submit" class ="writingbtn writingbc1 writingbs4">게시판 작성</button>
 					</td>
 				</tr>
 				
@@ -104,6 +104,10 @@
 			//우리는 문자열을 보낼게 아니라 파일을 보내야해서 -> 기본전송값 문자열을 해제
 			//contentType : enctype ="application/x-www-form-urlencoded; charset = UTF-8"
 			//-> 파일 전송을 위해서 enctype 기본값 제거
+		}
+		
+		function isFileImage(file) {
+		    return file && file['type'].split('/')[0] === 'image';
 		}
 		
 	</script>
