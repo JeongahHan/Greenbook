@@ -46,7 +46,7 @@
 				<div class="board-search-center">
 				<form action="/board/getSearchList" method="get">
 					<div class="board-search-choice-square1">
-						<input type="hidden" name="reqPage" id="currentPage">
+						<input type="hidden" name="reqPage" id="currentPage" value="1">
  						<select name="type" class="board-type" id="option">
 							<option value="title">제목</option>
 							<option value="content">내용</option>
@@ -56,7 +56,7 @@
 					<div class="board-board-search">
 						<div class="board-board-search-box">
 							<input type="text" name="keyword" id="keyword" placeholder="검색어를 입력해주세요" required>
-							<button type="button" class="boardSearchBtn" id="board-enter">
+							<button class="boardSearchBtn" id="board-enter">
 								<span class="material-icons">search</span>
 							</button>
 						</div>
@@ -71,7 +71,26 @@
 	</div>
 	<th:block th:include="common/footer"></th:block>
 	
+	
+	
 		<script>
+		
+		/////페이지 1로 초기화		
+		//$("#board-enter").on("click",function(){
+		//	$("#currentPage").val(1);
+		//});
+
+		
+	///////엔터키
+		document.getElementById("keyword")
+	    .addEventListener("keyup", function(e) {
+	        if (e.keyCode === 13) {
+	            document.getElementById("board-enter").click();
+	        }
+	    });
+	
+		/*
+		/////현재 페이지 값  -- 중요!
 		const currentPage = window.location.search;
 		let bset = currentPage.split('=');
 
@@ -86,57 +105,67 @@
 			$("#currentPage").val(bsetStr);
 		}
 		
-		
-	///////엔터키
-		document.getElementById("keyword")
-	    .addEventListener("keyup", function(e) {
-	        if (e.keyCode === 13) {
-	            document.getElementById("board-enter").click();
-	        }
-	    });
-		
+		*/
 
+		/*
+		///////게시판 내 검색
 		
-	///////게시판 내 검색
-		$("#board-enter").on("click",function(){
 			
-			const reqPage = $("#currentPage").val();
-			const type = $("#option").val();
-			const keyword = $("#keyword").val();
+			$("#board-enter").on("click",function(){
 			
-			/*
 			$.ajax({
-				url:"/board/getSearchList",
-				type:"GET",
-				data :  {reqPage:reqPage,type:type,keyword:keyword}, 
-				dataType : "json",
-				success : function(data){
-					console.log(data);
-					
-					
-					//테이블 초기화
-					$(".tr-1").empty();
-					$("#pageNavi").empty();
-					
-					if(data.length>=1){
-						data.forEach(function(item){
-							str="<tr class='tr-1'>";
-							str+= "<td>"+item.boardNo+"</td>";
-							str+="<td>"+item.boardTitle+"</td>";
-							str+="<td>"+item.boardWriter+"</td>";
-							str+="<td>"+item.boardRegDate+"</td>";
-							str+="<td>"+item.boardReadCount+"</td>";
-							str+="</tr>";
-							$('#boardtable').append(str);
-		        			});
+					url:"/board/getSearchList",
+					type:"GET",
+					data :  {reqPage:reqPage,type:type,keyword:keyword}, 
+					dataType : "json",
+					success : function(data){
+						console.log(data);
 						
-							//$(".board-search").next().append(str)
-					};
-					
-				}
-			});
-			*/
-		}); //function 종료
+						
+						//테이블 초기화
+						$(".tr-1").empty();
+						$("#pageNavi").empty();
+						
+						if(data.length>=1){
+							data.forEach(function(item){
+								str="<tr class='tr-1'>";
+								str+= "<td>"+item.boardNo+"</td>";
+								str+="<td>"+item.boardTitle+"</td>";
+								str+="<td>"+item.boardWriter+"</td>";
+								str+="<td>"+item.boardRegDate+"</td>";
+								str+="<td>"+item.boardReadCount+"</td>";
+								str+="</tr>";
+								$('#boardtable').append(str);
+			        			});
+							
+								$(".board-search").next().append(str)
+						};
+						
+					}
+				});
+			
+			}); 
+		*/
+			
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	</script>
+	
+	
+	
+	
+	
+	
 </body>
 </html>

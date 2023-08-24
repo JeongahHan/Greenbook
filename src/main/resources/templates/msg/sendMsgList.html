@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>쪽지함</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet" href="/css/msglist.css">
+<script src="/js/jquery-3.7.0.js"></script>
+</head>
+<body>
+<th:block th:include="common/header"></th:block>
+    <div class="total-wrap">
+        <ul class="tabs">
+            <a href="/msg/receiveList"><h4><li>받은 쪽지함</li></h4></a>
+            <h4><li>보낸 쪽지함</li></h4>
+            <hr>
+        </ul>
+        <div class="msg-wrap" th:each="msg : ${list}">
+        	<input type="hidden" id=mid th:value="${msg.mid}">
+        	<div class="first-line">
+	             <div class="who">
+	                <span th:text="${msg.receiver}"></span>
+	             </div>
+	             <div class="date">
+	                <span th:text="${msg.sendDate}"></span>
+	             </div>
+         	</div>
+	        <div class="second-line">
+	            <div class="title">
+	                <span th:text="${msg.message}"></span>
+	            </div>
+	            <div class="read">
+
+	            </div>
+	        </div>
+        </div>
+    </div>
+	<!-- 쪽지 상세보기 모달 -->
+    <div class="msgView-modal-wrap">
+    	<div class="adminMsg-modal">
+	        <div class="modal-title">
+	            <h3><span id="sender"></span></h3>
+	        </div>
+	        <div class="modal-content">
+	            <hr>
+	            <textarea class="s-input-form" id="message" readonly></textarea>
+	        </div>
+	        <button type="button" class="modalBtn s-bc1" id="close">닫기</button>
+        </div>
+    </div>
+    <th:block th:include="common/footer"></th:block>
+    <script>
+	    const tabs = $(".tabs li");
+	    tabs.on("click",function(){
+	        tabs.removeClass("active-tab");
+	        $(this).addClass("active-tab");
+	        const msg = $(".msg-wrap");
+	        msg.show();
+	    });
+	
+	    $(function(){
+	        tabs.eq(1).click();
+	    });
+	    
+	  	//쪽지 상세보기
+	  	$(".msg-wrap").on("click", function(){
+	  		const mid = $(this).children().eq(0).val();
+	  		const msgwrap = $(this);
+	  		const receiver = $(this).find("span").eq(0).text();
+	  		$.ajax({
+				url : "/msg/sendView",
+				type : "get",
+				data : {mid : mid},
+				success : function(data){
+					//쪽지 상세보기 모달 내 데이터 넣기
+					$("#sender").text(data.receiver);
+					$("#message").val(data.message);
+					//쪽지 상세보기 모달 열기
+					$(".msgView-modal-wrap").css("display","flex");
+					//쪽지 상세보기 모달 닫기
+					$("#close").on("click", function(){
+						$(".msgView-modal-wrap").css("display","none");
+					});
+				}
+			});
+	  	});
+    </script>
+</body>
+</html>

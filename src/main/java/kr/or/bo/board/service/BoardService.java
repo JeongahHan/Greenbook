@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.bo.board.dao.BoardDao;
 import kr.or.bo.board.vo.Board;
 import kr.or.bo.board.vo.BoardListData;
+import kr.or.bo.board.vo.BoardViewData;
 
 @Service
 public class BoardService {
@@ -26,7 +28,7 @@ public class BoardService {
 		//reqPage가 1이면 -> 1~10
 		//reqPage가 2이면 -> 11~20
 		//reqPage가 3이면 -> 21~30
-		
+
 		int end = reqPage * numPerPage;
 		int start = (end-numPerPage)+1;
 		
@@ -214,6 +216,36 @@ public class BoardService {
 				
 				return bld;
 			}
+
+
+	/////////////////////////////////////////////////////////////
+	//자유게시판 글 상세보기
+	
+	@Transactional
+	public BoardViewData selectOneBoard(int boardNo, int memberNo) {
+		int result = boardDao.updateReadCount(boardNo); //조회수 업데이트
+		
+		if(result > 0) {
+			Board b = boardDao.selectOneBoard(boardNo); // 게시판 번호로 게시글 (한 개) 찾기
+					
+			List fileList = boardDao.selectBoardFile(boardNo); //첨부파일도 보일수 있도록 추가
+			b.setFileList(fileList);
+			
+			//댓글 조회(일반댓글 -> 대댓글을 제외한 댓글)
+			List commentList = boardDao.selectCommentList(boardNo,memberNo); //해당 게시물에 대한 댓글을 조회하기 위해 boardNo 넘김
+			//대댓글만 조회
+			List reCommentList = boardDao.selectReCommentList(boardNo,memberNo);
+			
+			BoardViewData bvd = new BoardViewData(b, commentList , reCommentList);
+			
+			return bvd;
+		
+		}else {
+			return null;
+		}
+		
+		
+	}
 
 
 	

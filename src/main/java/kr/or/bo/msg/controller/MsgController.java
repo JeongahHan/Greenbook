@@ -36,12 +36,12 @@ public class MsgController {
 		}
 	}
 	
-	//쪽지 리스트
+	//받은 쪽지 리스트
 	@GetMapping(value = "/receiveList")
 	public String receiveList(Model model, @SessionAttribute(required = false) Member m) {
 		List list = msgService.selectReceiveList(m.getMemberId());
 		model.addAttribute("list", list);
-		return "msg/msglist";
+		return "msg/receiveMsgList";
 	}
 	
 	//관리자에게 쪽지 보내기
@@ -61,7 +61,7 @@ public class MsgController {
 		return "common/msg";
 	}
 	
-	//쪽지 상세 보기
+	//받은 쪽지 상세 보기
 	@ResponseBody
 	@GetMapping(value = "/receiveView")
 	public Msg receiveView(int mid, Model model) {
@@ -69,6 +69,15 @@ public class MsgController {
 		Msg msg = msgService.selectReceiveView(mid);
 		//쪽지 번호로 해당 쪽지 열람 여부 바꾸기(미열람 -> 열람)
 		int result = msgService.readMsg(mid);
+		return msg;
+	}
+	
+	//보낸 쪽지 상세 보기 -> 열람 여부 update하지 않음
+	@ResponseBody
+	@GetMapping(value = "/sendView")
+	public Msg sendView(int mid, Model model) {
+		//쪽지 번호로 해당 쪽지 정보 가져오기
+		Msg msg = msgService.selectReceiveView(mid);
 		return msg;
 	}
 	
@@ -104,5 +113,12 @@ public class MsgController {
 		model.addAttribute("loc", "/msg/receiveList");
 		return "common/msg";
 	}
-
+	
+	//보낸 쪽지 리스트
+	@GetMapping(value = "/sendList")
+	public String sendList(Model model, @SessionAttribute(required = false) Member m) {
+		List list = msgService.selectSendList(m.getMemberId());
+		model.addAttribute("list", list);
+		return "msg/sendMsgList";
+	}
 }

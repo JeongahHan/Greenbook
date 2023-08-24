@@ -60,4 +60,10 @@ public class MsgDao {
 		int result = jdbc.update(query, params);
 		return result;
 	}
+
+	public List selectSendList(String memberId) {
+		String query = "select * from message where sender = ? order by 1 desc";
+		List list = jdbc.query(query, msgRowMapper, memberId);
+		return list;
+	}
 }
