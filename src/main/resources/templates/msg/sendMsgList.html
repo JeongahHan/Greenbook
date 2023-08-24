@@ -30,7 +30,7 @@
 	                <span th:text="${msg.message}"></span>
 	            </div>
 	            <div class="read">
-	                <span th:if="${msg.readChk == 0}" class="material-symbols-outlined">looks_one</span>
+
 	            </div>
 	        </div>
         </div>
@@ -45,8 +45,7 @@
 	            <hr>
 	            <textarea class="s-input-form" id="message" readonly></textarea>
 	        </div>
-	        <button type="button" class="modalBtn s-bc1" id="replyMsg">답장하기</button>
-	        <button type="button" class="modalBtn s-bc2" id="close">취소</button>
+	        <button type="button" class="modalBtn s-bc1" id="close">닫기</button>
         </div>
     </div>
     <th:block th:include="common/footer"></th:block>
@@ -66,11 +65,10 @@
 	  	//쪽지 상세보기
 	  	$(".msg-wrap").on("click", function(){
 	  		const mid = $(this).children().eq(0).val();
-	  		const readChk = $(this).find("span").eq(3);
 	  		const msgwrap = $(this);
 	  		const receiver = $(this).find("span").eq(0).text();
 	  		$.ajax({
-				url : "/msg/receiveView",
+				url : "/msg/sendView",
 				type : "get",
 				data : {mid : mid},
 				success : function(data){
@@ -79,8 +77,6 @@
 					$("#message").val(data.message);
 					//쪽지 상세보기 모달 열기
 					$(".msgView-modal-wrap").css("display","flex");
-					//안 읽음 표시 삭제하기
-					readChk.hide();
 					//쪽지 상세보기 모달 닫기
 					$("#close").on("click", function(){
 						$(".msgView-modal-wrap").css("display","none");

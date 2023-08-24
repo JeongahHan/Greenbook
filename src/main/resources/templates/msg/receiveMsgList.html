@@ -157,6 +157,8 @@
 					$("#replyMsg").on("click", function(){
 						//답장 쪽지 모달 열기
 						$(".replyMsg-modal-wrap").css("display","flex");
+						//쪽지 상세 보기 닫기
+						$(".msgView-modal-wrap").css("display","none");
 						//textarea 초기화
 						$("#replyTextarea").val("");
 						//받는 사람 데이터 넣어주기

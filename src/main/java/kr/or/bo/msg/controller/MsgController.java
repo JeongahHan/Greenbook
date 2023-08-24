@@ -61,7 +61,7 @@ public class MsgController {
 		return "common/msg";
 	}
 	
-	//쪽지 상세 보기
+	//받은 쪽지 상세 보기
 	@ResponseBody
 	@GetMapping(value = "/receiveView")
 	public Msg receiveView(int mid, Model model) {
@@ -69,6 +69,15 @@ public class MsgController {
 		Msg msg = msgService.selectReceiveView(mid);
 		//쪽지 번호로 해당 쪽지 열람 여부 바꾸기(미열람 -> 열람)
 		int result = msgService.readMsg(mid);
+		return msg;
+	}
+	
+	//보낸 쪽지 상세 보기 -> 열람 여부 update하지 않음
+	@ResponseBody
+	@GetMapping(value = "/sendView")
+	public Msg sendView(int mid, Model model) {
+		//쪽지 번호로 해당 쪽지 정보 가져오기
+		Msg msg = msgService.selectReceiveView(mid);
 		return msg;
 	}
 	
