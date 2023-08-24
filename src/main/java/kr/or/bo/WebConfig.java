@@ -15,6 +15,9 @@ public class WebConfig implements WebMvcConfigurer{
 		registry.addResourceHandler("/**").addResourceLocations("classpath:/templates/", "classpath:/static/");
 		registry.addResourceHandler("/product/**").addResourceLocations("file:///C:/Temp/upload/product/");
 		registry.addResourceHandler("/editor/**").addResourceLocations("file:///C:/Temp/upload/editor/");
+		
+		registry.addResourceHandler("/photo/**").addResourceLocations("file:///C:/Temp/upload/photo/"); //내가 PHOTO 라는 게시판을 쓰게되면 여깄는 자원 가져다 쓰라고 선언해줌 
+		registry.addResourceHandler("/boardEditor/**").addResourceLocations("file:///C:/Temp/upload/boardEditor/");
 	}
 
 	
