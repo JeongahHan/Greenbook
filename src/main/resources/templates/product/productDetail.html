@@ -62,7 +62,7 @@
 									<textarea name="productCommentContent" class="commentInput-form"></textarea>
 								</li>
 								<li>
-									<button type="submit" class="btn bc1 bs4">등록</button>
+									<button type="submit" class="btn bc1 bs4 commentInsert">등록</button>
 								</li>
 							</ul>
 						</form>
@@ -124,6 +124,14 @@
 			const result = confirm("삭제하시겠습니까?");
 			if(result){
 				alert("성공");
+			}
+		});
+		
+		
+		$(".commentInsert").on("click",function(){
+			const result = confirm("댓글을 등록하시겠습니까??");
+			if(result){
+				
 			}
 		});
 	
