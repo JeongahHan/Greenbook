@@ -118,7 +118,7 @@ public class MypageController {
 		System.out.println(m.getMemberId());
 		
 		//내가 판매중인 도서 select 해오기
-		MypageListData mld =mypageService.selectMySellBook(m.getMemberId(), reqPage);
+		MypageListData mld =mypageService.selectMySellBook(m, reqPage);
 		
 		model.addAttribute("mySellBookList", mld.getMypageList());
 		model.addAttribute("pageNavi", mld.getPageNavi());
