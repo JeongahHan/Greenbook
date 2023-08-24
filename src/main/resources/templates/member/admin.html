@@ -16,7 +16,11 @@
 
 	<th:block th:include="common/header"></th:block>
 	<div class="page-content">
-		<div class="page-title">회원관리</div>
+		<div class="page-title admintitle">
+            <p>홈</p>
+            <p>></p>
+            <p>관리자페이지</p>
+        </div>
 
 		
 		<button class="btn bc1 bc1-1 modal-open-btn findbtn" target="#find-modal">회원찾기</button>
@@ -24,7 +28,7 @@
   <!--회원찾기 모달 -->	
 		 <div id="find-modal" class="modal-bg">
    		<div class="modal-wrap">
-       		<div class="modal-head headcss" >
+       		<div class="modal-head headcss">
        			<h2>Find Member:)</h2>
        			<span class="material-icons close-icon modal-close">close</span>
        		</div>
@@ -55,11 +59,11 @@
 				<th>선택</th>
 				<th>회원번호</th>
 				<th>아이디</th>
-				<th>비밀번호</th>
 				<th>이름</th>
 				<th>전화번호</th>
-				<th>주소</th>
+				<th>이메일</th>
 				<th>가입일</th>
+				<th>신뢰도</th>
 				<th>회원등급</th>
 				<th>등급변경</th>
 			</tr>
@@ -67,11 +71,11 @@
 				<td><input type="checkbox" class="chk"></td>
 				<td th:text="${m.memberNo}"></td>
 				<td th:text="${m.memberId}"></td>
-				<td th:text="${m.memberPw}"></td>
 				<td th:text="${m.memberName}"></td>
 				<td th:text="${m.memberPhone}"></td>
 				<td th:text="${m.memberEmail}"></td>
 				<td th:text="${m.enrollDate}"></td>
+				<td th:text="${m.grade}"></td>
 				<td th:switch=${m.memberLevel}>
 				<select th:case="1"class="input-form">
 						<option value="1" selected>관리자</option>
@@ -96,7 +100,7 @@
 			
 		</table>
 		
-		<button class="bc1 bs5 checkedchangeLevel">선택회원등급변경</button>
+		<button class="bc1 bs5 checkedchangeLevel">선택회원 등급변경</button>
         
 	</div>
 	<th:block th:include="common/footer"></th:block>
