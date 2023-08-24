@@ -150,6 +150,23 @@ public class MsgController {
 		return "common/msg";
 	}
 	
+	//자유게시판에서 쪽지 보내기
+	@PostMapping(value = "/boardSendMsg")
+	public String boardSendMsg(Msg msg, int boardNo, Model model) {
+		int result = msgService.boardSendMsg(msg);
+		//쪽지 전송 성공
+		if(result > 0) {
+			model.addAttribute("title", "전송 완료");
+			model.addAttribute("msg", "쪽지가 성공적으로 전송되었습니다.");
+		//쪽지 전송 실패
+		}else {
+			model.addAttribute("title", "전송 실패");
+			model.addAttribute("msg", "쪽지 전송에 실패하였습니다.");
+		}
+		model.addAttribute("loc", "/board/view?boardNo="+boardNo);
+		return "common/msg";
+	}
+	
 	//받은 쪽지 중 읽지 않은 쪽지 갯수 구해오기
 	@ResponseBody
 	@GetMapping(value = "/notReadMsgCount")
