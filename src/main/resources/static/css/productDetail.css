@@ -403,6 +403,7 @@
 
 .posting-comment > li:last-child > .comment-link > a {
   margin: 0px 5px;
+    font-family: ns-m;
 }
 
 .posting-comment > li:last-child > .comment-link > a:hover {
