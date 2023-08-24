@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import kr.or.bo.board.vo.Board;
+import kr.or.bo.board.vo.BoardComment;
 import kr.or.bo.board.vo.BoardCommentRowMapper;
 import kr.or.bo.board.vo.BoardFile;
 import kr.or.bo.board.vo.BoardFileRowMapper;
@@ -146,7 +147,49 @@ public class BoardDao {
 		}
 
 
+/////////////////////게시글 삭제
+		public int deleteBoard(int boardNo) {
+			String query = "delete from board where board_no=?";
+			Object[] params = {boardNo};
+			int result = jdbc.update(query,params);
+			return result;
+		}
 		
+//////////////////////게시글 수정
+
+		public int updateBoard(Board b) {
+			String query = "update board set board_title=?,board_content=? where board_no =? ";
+			Object[] params = {b.getBoardTitle(), b.getBoardContent(), b.getBoardNo()};
+			int result = jdbc.update(query,params);
+			return result;
+		}
+		
+		//파일조회
+		public BoardFile selectOneFile(int fileNo) {
+			String query = "select * from board_file where file_no=?";
+			List list = jdbc.query(query, boardFileRowMapper, fileNo);
+			return (BoardFile)list.get(0);
+		}
+		//파일 삭제
+		public int deleteFile(int fileNo) {
+			String query = "delete from board_file where file_no=?";
+			Object[] params = {fileNo};
+			int result = jdbc.update(query,params);
+			return result;
+		}
+
+		
+/////////////////////댓글 등록
+		public int insertComment(BoardComment bc) {
+			String query = "insert into board_comment values(board_comment_seq.nextval,?,?,to_char(sysdate,'yyyy-mm-dd'),?,?)";
+			String boardCommentRef = bc.getBoardCommentRef()==0? null:String.valueOf(bc.getBoardCommentRef());
+			Object[] params = {bc.getBoardCommentWriter(),bc.getBoardCommentContent(),bc.getBoardRef(),boardCommentRef};
+			int result = jdbc.update(query,params);
+			return result;
+		}
+
+
+/////////////////////////////////////////////////		
 		
 		
 		

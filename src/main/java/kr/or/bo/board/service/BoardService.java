@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.bo.board.dao.BoardDao;
 import kr.or.bo.board.vo.Board;
+import kr.or.bo.board.vo.BoardComment;
 import kr.or.bo.board.vo.BoardFile;
 import kr.or.bo.board.vo.BoardListData;
 import kr.or.bo.board.vo.BoardViewData;
@@ -274,8 +275,81 @@ public class BoardService {
 		
 	}
 /////////////////////////////////////////////////////
+//게시글 삭제
 
+
+	public List deleteBoard(int boardNo) {
+		
+		List list = boardDao.selectBoardFile(boardNo);
+		int result = boardDao.deleteBoard(boardNo);
+		
+		if(result == 0) {
+			return null;
+		}
+		return list;
+	}
+
+///////////////////////////////////////////////////////////
+//게시글 수정
 	
+	//업데이트 하기 위해 조회 
+	public Board getBoard(int boardNo) {
+		Board b = boardDao.selectOneBoard(boardNo);
+		List fileList = boardDao.selectBoardFile(boardNo);
+		b.setFileList(fileList);
+		return b;
+	}
+
+	@Transactional
+	public List updateBoard(Board b, ArrayList<BoardFile> fileList, int[] delFileNo) {
+		//1.board 테이블 update, 2.board_file 테이블에 insert, 3.board_file 에 delete, 4.board_file 에 select (=조회)
+		//순서 : 1(업데이트) >>> 4(조회) >>> 3(삭제) >>>2(삽입)
+		
+		int result = boardDao.updateBoard(b);
+		
+		List delFileList = new ArrayList<BoardFile>();
+		
+		if(result>0) {
+			
+			//삭제파일이 있는 경우에만 진행(삭제파일 조회 -> 삭제파일 삭제)
+			if(delFileNo !=null) {
+				for(int fileNo : delFileNo) {
+					
+					//삭제할 파일 정보를 조회해서 리턴할 리스트에 추가
+					BoardFile boardFile = boardDao.selectOneFile(fileNo);
+					delFileList.add(boardFile);
+					
+					//db에서 파일 삭제
+					result += boardDao.deleteFile(fileNo);
+				}
+			}
+			//추가한파일이 있는 경우 파일 insert
+			if(fileList != null) {
+				for(BoardFile file : fileList) {
+					result += boardDao.insertBoardFile(file);
+				}
+			}
+		}
+		
+		int updateTotal = 1; //board 를 업데이트 해야하니까 기본 1개 확보
+		updateTotal += delFileNo==null? 0:delFileNo.length; //삼항연산자 (배열이라 length)
+		updateTotal += fileList==null? 0:fileList.size(); //새로들어온 파일 예상결과 추가 (ArrayList라서 size)
+		
+		if(result == updateTotal) {
+			return delFileList;
+		}else {
+			return null;
+		}
+	}
+
+//////////////////////////////////////////////////////////////////
+////댓글 등록
+	
+	@Transactional
+	public int insertComment(BoardComment bc) {
+		int result = boardDao.insertComment(bc);
+		return result;
+	}
 
 
 
