@@ -260,6 +260,10 @@ B31312 빨강
     border-radius: 20px;
     margin: 10px 0px;
 }
+.myComment-wrap{
+    overflow: hidden;
+}
+
 .myComment{
     width: 700px;
     float: left;
@@ -288,7 +292,10 @@ B31312 빨강
     font-weight: 900;
     color: red;
     float: left;
-    
+}
+.myComment-date{
+    /* 댓글 작성일 p태그 선택자 */
+    padding-right: 33%;
 }
 
 
@@ -307,6 +314,10 @@ B31312 빨강
 .wishList-imgBox img{
     width: 100%;
 }
+
+
+/* -------------- */
+
 
 
 
