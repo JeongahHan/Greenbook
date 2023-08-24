@@ -156,4 +156,10 @@ public class MsgService {
 		int letterCount = msgDao.selectNotReadMsgCount(memberId);
 		return letterCount;
 	}
+	
+	@Transactional
+	public int adminSendMsg(Msg msg) {
+		int result = msgDao.adminSendMsg(msg);
+		return result;
+	}
 }
