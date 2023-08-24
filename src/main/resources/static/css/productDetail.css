@@ -25,6 +25,7 @@
     margin: 0;
     padding: 0;
     outline: none;
+    list-style-type: none;
 }
 
 /* main-top */
@@ -115,15 +116,14 @@
 }
 
 .Grade{
-	font-size: 20px;
 	line-height: 50px;
-	color: gray;
+	font-family: ns-m;
 }
 
 .Grade > span{
-	font-size: 20px;
+	font-size: 15px;
 	line-height: 50px;
-	color: gray;
+	font-family: ns-m;
 }
 
 .box2{
@@ -157,7 +157,7 @@
 	height:45px;
 	font-size:15px;
 	text-align:center;
-	padding-top:8px;
+	padding-top:10px;
 	box-sizing: border-box;
 	transition-duration: 0.5s;
 	background-color: #005A0D;
@@ -224,6 +224,7 @@
 
 .readCount{
 	border-bottom: 1px solid #ccc;
+	position: relative;
 }
 
 .readCount, .readCount > span{
@@ -232,6 +233,25 @@
 	font-size: 12px;
 	padding: 20px 0;
 	font-family: ns-l;
+}
+
+.update, .delete{
+	color: gray;
+	position: absolute;
+	bottom: 18px;
+	font-family: ns-l;
+	font-size: 12px;
+	cursor: pointer;
+}
+
+.update{
+	right: 40px;
+}
+
+.delete{
+	right: 0;
+	border: none;
+	background-color: transparent;
 }
 
 /*
