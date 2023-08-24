@@ -143,5 +143,9 @@ public class MypageController {
 		
 		return "redirect:/mypage/mySellBook?reqPage=1";
 	}
+	@GetMapping(value = "/byRequest")
+	public String byRequest(int reqPage) {
+		return "mypage/byRequest";
+	}
 	
 }
