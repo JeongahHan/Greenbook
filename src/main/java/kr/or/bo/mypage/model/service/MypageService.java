@@ -11,6 +11,7 @@ import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.mypage.model.dao.MypageDao;
 import kr.or.bo.mypage.model.vo.MypageListData;
 import kr.or.bo.product.model.vo.Product;
+import kr.or.bo.product.model.vo.ProductFile;
 
 @Service
 public class MypageService {
@@ -114,19 +115,17 @@ public class MypageService {
 		int end = reqPage * numPerPage;
 		int start = end - numPerPage + 1;
 		List mySellBookList = mypageDao.selectMySellBook(m.getMemberId(), start, end);
-		System.out.println("멤버객체 : "+m);
-		System.out.println("0번째 리스트"+mySellBookList.get(0));
-		//Product p = (Product)mySellBookList.get(0);
-		//System.out.println("프로덕트 객체 : "+p.getProductBoardNo());
-		System.out.println(mySellBookList.size());
-		
-		for(int i =0 ;i<mySellBookList.size();i++) {
-			List mySellBookImgList = mypageDao.selectMySellBookImgList(m.getMemberId(), start, end);
-			Product p = (Product)mySellBookImgList.get(i);
-			mySellBookList.add(p);
 
-			System.out.println("여기는 서비스 판매도서 이미지 : "+mySellBookImgList);
+		
+		List mySellBookImgList = mypageDao.selectMySellBookImgList(m.getMemberId(), start, end);
+		for(int i =0 ;i<mySellBookList.size();i++) {
+			Product p = (Product)mySellBookList.get(i);
+			ProductFile pf = (ProductFile)mySellBookImgList.get(0);
+			p.setProductFile(pf);
+			//p.set
+
 		}
+		System.out.println("여기는 서비스 판매도서 이미지 포함한 리스트 : "+mySellBookList);
 		
 		
 		// 2. 페이지 네비게이션 제작
