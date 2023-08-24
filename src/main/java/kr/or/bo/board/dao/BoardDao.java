@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import kr.or.bo.board.vo.Board;
 import kr.or.bo.board.vo.BoardRowMapper;
 
 @Repository
@@ -15,6 +16,8 @@ public class BoardDao {
 	@Autowired 
 	private BoardRowMapper boardRowMapper;
 
+//////////////////////////////////////////////////////////////////////////
+//게시물 페이지 전체보기
 	
 	/*
 	public List selectBoardList() {
@@ -38,9 +41,10 @@ public class BoardDao {
 		return totalCount;
 	}
 	
-	////////////////////////////////////////////////////////////
 	
-	//제목:내용 찾기
+////////////////////////////////////////////////////////////	
+//제목:내용 찾기
+	//1.한 페이지당 게시물 수 지정  ->> 10개
 	public List getSearchList(int start, int end, String type, String keyword) {
 			
 		String query = null;
@@ -72,9 +76,39 @@ public class BoardDao {
 			int totalCount = jdbc.queryForObject(query,Integer.class,keyword);
 			return totalCount;
 	}
-	
-		//////////////////////////////////////////////////////////////////////////////////
 
+	
+		
+//////////////////////////////////////////////////////////////////////////////////
+//자유게시판 글 상세보기
+		
+		
+		public int updateReadCount(int boardNo) {
+			String query ="update board set read_count = read_count+1 where board_no=?";
+			Object [] params = {boardNo};
+			int result = jdbc.update(query,params);
+			return result;
+		}
+
+		public Board selectOneBoard(int boardNo) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		public List selectBoardFile(int boardNo) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		public List selectCommentList(int boardNo, int memberNo) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		public List selectReCommentList(int boardNo, int memberNo) {
+			// TODO Auto-generated method stub
+			return null;
+		}		
 		
 		
 		

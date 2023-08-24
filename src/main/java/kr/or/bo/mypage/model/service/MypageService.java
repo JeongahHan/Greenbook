@@ -97,13 +97,13 @@ public class MypageService {
 
 		pageNavi += "</ul>";
 		
-		MypageListData mld = new MypageListData(mySellBookList,pageNavi);
+		MypageListData mld = new MypageListData(mySellBookList,pageNavi,null);
 		
 		return mld;
 	}//selectMyBoardList()종료
 	
 	//내가 판매중인 도서 조회해오기
-	public MypageListData selectMySellBook(String memberId, int reqPage) {
+	public MypageListData selectMySellBook(Member m, int reqPage) {
 		// TODO Auto-generated method stub
 		
 		
@@ -113,12 +113,14 @@ public class MypageService {
 		int numPerPage = 10;
 		int end = reqPage * numPerPage;
 		int start = end - numPerPage + 1;
-		List mySellBookList = mypageDao.selectMySellBook(memberId, start, end);
+		List mySellBookList = mypageDao.selectMySellBook(m.getMemberId(), start, end);
 		
+		List mySellBookImgList = mypageDao.selectMySellBookImgList(m.getMemberId(), start, end);
+		System.out.println("여기는 서비스 판매도서 이미지 : "+mySellBookImgList);
 		
 		// 2. 페이지 네비게이션 제작
 		// 총 페이지 수 계산을 위해서는 총 게시물 수를 알아야함 -> DB에서 그룹함수로 조회
-		int totalCount = mypageDao.selectMySellBookTotalCount(memberId);		
+		int totalCount = mypageDao.selectMySellBookTotalCount(m.getMemberId());		
 		System.out.println("MypageService 총 내가 판매하는 도서 수 : " + totalCount);
 		// 총 페이지 수 계산
 		// 총 게시물수 130
@@ -175,7 +177,7 @@ public class MypageService {
 
 		pageNavi += "</ul>";
 		
-		MypageListData mld = new MypageListData(mySellBookList,pageNavi);
+		MypageListData mld = new MypageListData(mySellBookList,pageNavi,mySellBookImgList);
 		
 		return mld;
 	}//selectMySellBook() 종료

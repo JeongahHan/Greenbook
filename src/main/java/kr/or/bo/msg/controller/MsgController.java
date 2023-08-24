@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.msg.model.service.MsgService;
 import kr.or.bo.msg.model.vo.Msg;
+import kr.or.bo.msg.model.vo.MsgListData;
 
 @Controller
 @RequestMapping(value = "/msg")
@@ -32,16 +33,26 @@ public class MsgController {
 			return "common/msg";
 		//로그인이 된 경우
 		}else {
-			return "redirect:/msg/receiveList";
+			return "redirect:/msg/receiveList?reqPage=1";	
 		}
 	}
 	
 	//받은 쪽지 리스트
 	@GetMapping(value = "/receiveList")
-	public String receiveList(Model model, @SessionAttribute(required = false) Member m) {
-		List list = msgService.selectReceiveList(m.getMemberId());
-		model.addAttribute("list", list);
+	public String receiveList(Model model, int reqPage, @SessionAttribute(required = false) Member m) {
+		MsgListData mld = msgService.selectReceiveList(m.getMemberId(), reqPage);
+		model.addAttribute("list", mld.getMsgList());
+		model.addAttribute("pageNavi", mld.getPageNavi());
 		return "msg/receiveMsgList";
+	}
+	
+	//보낸 쪽지 리스트
+	@GetMapping(value = "/sendList")
+	public String sendList(Model model, int reqPage, @SessionAttribute(required = false) Member m) {
+		MsgListData mld = msgService.selectSendList(m.getMemberId(), reqPage);
+		model.addAttribute("list", mld.getMsgList());
+		model.addAttribute("pageNavi", mld.getPageNavi());
+		return "msg/sendMsgList";
 	}
 	
 	//관리자에게 쪽지 보내기
@@ -61,7 +72,7 @@ public class MsgController {
 		return "common/msg";
 	}
 	
-	//쪽지 상세 보기
+	//받은 쪽지 상세 보기
 	@ResponseBody
 	@GetMapping(value = "/receiveView")
 	public Msg receiveView(int mid, Model model) {
@@ -69,6 +80,15 @@ public class MsgController {
 		Msg msg = msgService.selectReceiveView(mid);
 		//쪽지 번호로 해당 쪽지 열람 여부 바꾸기(미열람 -> 열람)
 		int result = msgService.readMsg(mid);
+		return msg;
+	}
+	
+	//보낸 쪽지 상세 보기 -> 열람 여부 update하지 않음
+	@ResponseBody
+	@GetMapping(value = "/sendView")
+	public Msg sendView(int mid, Model model) {
+		//쪽지 번호로 해당 쪽지 정보 가져오기
+		Msg msg = msgService.selectReceiveView(mid);
 		return msg;
 	}
 	
@@ -105,11 +125,11 @@ public class MsgController {
 		return "common/msg";
 	}
 	
-	//보낸 쪽지 리스트
-	@GetMapping(value = "/sendList")
-	public String sendList(Model model, @SessionAttribute(required = false) Member m) {
-		List list = msgService.selectSendList(m.getMemberId());
-		model.addAttribute("list", list);
-		return "msg/sendMsgList";
+	//받은 쪽지 중 읽지 않은 쪽지 갯수 구해오기
+	@ResponseBody
+	@GetMapping(value = "/NotReadMsgCount")
+	public int selectNotReadMsgCount(Model model, @SessionAttribute(required = false) Member m) {
+		int letterCount = msgService.selectNotReadMsgCount(m.getMemberId());
+		return letterCount;
 	}
 }

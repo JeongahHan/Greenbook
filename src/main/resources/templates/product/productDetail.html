@@ -38,14 +38,35 @@
 					
 					<div class="main-box">
 						<div class="title" th:text="${p.getProductBoardTitle}"></div>
+						
+						<div class="cart"><a class="cart-btn">찜하기</a></div>
+						<div class="buy"><a class="buy-btn">구매하기</a></div>
 						<div class="author" th:text="${p.getProductAuthor}"></div>
 						<div class="price"><span th:text="${p.getProductPrice}"></span> 원</div>
 						<div class="content" th:utext="${p.getProductBoardContent}"></div>
-						<div class="readCount">조회수</div>
+						<div class="readCount">조회수 <span th:text="${p.getReadCount}"></span></div>
+						<a class="update" th:if="${session.m != null && session.m.memberId == p.productBoardWriter}">수정</a>
+						<button class="delete" th:if="${session.m != null && session.m.memberId == p.productBoardWriter}">삭제</button>
 					</div>
 					
-					<div class="btn-box"></div>
-					<div class="comment-box"></div>
+					<!-- 댓글 리스트 -->
+					<div class="comment-box" th:if="${session.m != null}"> <!-- th:if="${session.m != null}" -->
+						<form action="/product/insertComment" method="post">
+							<ul>
+								<li>
+									<span class="material-symbols-outlined userMainImage">account_circle</span>
+								</li>
+								<li>
+									<input type="hidden" name="productCommentWriter" th:value="${session.m.memberId}">
+									<input type="hidden" name="productBoardNo" th:value="${p.productBoardNo}">
+									<textarea name="productCommentContent" class="commentInput-form"></textarea>
+								</li>
+								<li>
+									<button type="submit" class="btn bc1 bs4">등록</button>
+								</li>
+							</ul>
+						</form>
+					</div>
 					
                 </div>
                 
@@ -58,6 +79,36 @@
 		
 	<th:block th:include="common/footer"></th:block>
 
-	<script src="/javascript/productBoard.js"></script>
+	<script>
+	
+		$(".cart").on("click",function(){
+			const result = confirm("장바구니에 등록하시겠습니까?");
+			if(result){
+				alert("성공");
+			}
+		});
+		
+		$(".buy").on("click",function(){
+			const result = confirm("구매하시겠습니까?");
+			if(result){
+				alert("성공");
+			}
+		});
+		
+		$(".update").on("click",function(){
+			const result = confirm("게시물을 수정하시겠습니까?");
+			if(result){
+				alert("성공");
+			}
+		});
+		
+		$(".delete").on("click",function(){
+			const result = confirm("삭제하시겠습니까?");
+			if(result){
+				alert("성공");
+			}
+		});
+	
+	</script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-const checkArr = [false,false,false];
+const checkArr = [false,false,false,false];
 
 //아이디 유효성 검사 & 중복체크
 $("#memberId").on("change",function(){
@@ -26,7 +26,7 @@ $("#memberId").on("change",function(){
             }
         });
     }else{
-        $("#ajaxCheckId").text("아이디는 영어/숫자로 4~8글자입니다.");
+        $("#ajaxCheckId").text("아이디는 영문/숫자로 4~8글자입니다.");
         $("#ajaxCheckId").css("color","red");
         $(this).css("border","1px solid red");
         checkArr[0] = false;
@@ -34,7 +34,24 @@ $("#memberId").on("change",function(){
 });
 
 $("#memberPw").on("change",function(){
-	if($("#memberPwRe") != ""){
+    //비밀번호 : 영어 소문자+대문자+숫자로 8~12글자
+    const pwReg = /^[a-zA-Z0-9]{8,12}$/;
+    const inputPw = $("#memberPw").val();
+    const check = pwReg.test(inputPw);
+    if(check){
+        //정규표현식 만족한 경우
+        $("#checkPw").text("사용 가능한 비밀번호입니다.");
+        $("#checkPw").css("color","blue");
+        $(this).css("border","1px solid blue");
+        checkArr[1] = true;
+    }else{
+        //정규표현식 만족하지 못한 경우
+        $("#checkPw").text("비밀번호는 영어 소문자/대문자/숫자로 8~12글자입니다.");
+        $("#checkPw").css("color","red");
+        $(this).css("border","1px solid red");
+        checkArr[1] = false;
+    }
+	if($("#checkPwRe").text() != ""){
     	pwDupCHECK();
     }
 });
@@ -48,15 +65,15 @@ function pwDupCHECK(){
 	const pwValue = $("#memberPw").val();
     const pwReValue = $("#memberPwRe").val();
     if(pwValue == pwReValue){
-        $("#checkPw").text("비밀번호가 일치합니다.");
-        $("#checkPw").css("color","blue");
+        $("#checkPwRe").text("비밀번호가 일치합니다.");
+        $("#checkPwRe").css("color","blue");
         $("#memberPwRe").css("border","1px solid blue");
-        checkArr[1] = true;
+        checkArr[2] = true;
     }else{
-        $("#checkPw").text("비밀번호가 일치하지 않습니다.");
-        $("#checkPw").css("color","red");
+        $("#checkPwRe").text("비밀번호가 일치하지 않습니다.");
+        $("#checkPwRe").css("color","red");
         $("#memberPwRe").css("border","1px solid red");
-        checkArr[1] = false;
+        checkArr[2] = false;
     }
 }
 
@@ -95,7 +112,7 @@ $("#memberEmail").on("change", function(){
 			        $("#checkEmail").text("중복된 메일 주소입니다.");
 			        $("#checkEmail").css("color","red");
 			        $("#memberEmail").css("border","1px solid red");
-			        checkArr[2] = false;
+			        checkArr[3] = false;
                 }
             }
         });
@@ -104,7 +121,7 @@ $("#memberEmail").on("change", function(){
         $("#checkEmail").text("메일 주소가 유효하지 않습니다.");
         $("#checkEmail").css("color","red");
         $("#memberEmail").css("border","1px solid red");
-        checkArr[2] = false;
+        checkArr[3] = false;
     }
 });
 
@@ -121,7 +138,7 @@ function authTime() {
                 authCode = null;
                 $("#authMsg").text("인증 시간 만료");
                 $("#authMsg").css("color", "red");
-                checkArr[2] = false;
+                checkArr[3] = false;
             }else{
                 const newMin = Number(min) - 1;
                 $("#min").text(newMin);
@@ -146,11 +163,11 @@ $("#authBtn").on("click",function(){
             $("#authMsg").css("color","blue");
             window.clearInterval(intervalId);
             $("#timeZone").empty();
-        	checkArr[2] = true;
+        	checkArr[3] = true;
         }else{
             $("#authMsg").text("메일코드를 확인하세요");
             $("#authMsg").css("color","red");
-            checkArr[2] = false;
+            checkArr[3] = false;
         }
     }
 });
@@ -226,7 +243,7 @@ $("button[type=submit]").on("click",function(event){
 		event.preventDefault();
 	}
 	
-    const check = checkArr[0] && checkArr[1] && checkArr[2];
+    const check = checkArr[0] && checkArr[1] && checkArr[2] && checkArr[3];
     if(!check){
         event.preventDefault();
     }

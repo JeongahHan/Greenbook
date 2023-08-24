@@ -46,7 +46,7 @@
 		<a href="#"><span class="material-icons headericon">favorite_border</span></a><!--찜-->	
 		<a href="/msg/loginCheck"><span class="material-icons headericon" id="mail-icon">mail_outline</span></a> <!--쪽지-->							
 	</div>
-	<p class="letter-count">0</p><!--숫자는 안읽은 쪽지 개수 받아오려고함-->
+	<p th:if="${session.m !=null}" class="letter-count">0</p><!--숫자는 안읽은 쪽지 개수 받아오려고함-->
 </header>
 
 
@@ -69,6 +69,16 @@
 </div>
 
 
-
-
+<!-- 안 읽은 쪽지 갯수 불러오기 -->
+<script>
+  window.onload = function () {
+	  $.ajax({
+          url : "/msg/NotReadMsgCount",
+          type : "get",
+          success : function(data){
+              $(".letter-count").text(data);
+          }
+      });
+  };
+</script>
 </html>
