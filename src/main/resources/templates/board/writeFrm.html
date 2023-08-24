@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>게시판 작성</title>
+
+<!-- 구글 아이콘 -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!-- jquery -->
+<script src="/js/jquery-3.7.0.js"></script>
+<!-- 기본 CSS -->
+<link rel="stylesheet" href="/css/board.css">
+
+
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+	
+ 	<script src="/summernote/summernote-lite.js"></script>
+    <script src="/summernote/lang/summernote-ko-KR.js"></script>
+    <link rel="stylesheet" href="/summernote/summernote-lite.css">
+	
+	<div class="page-content">
+		<div class="page-title">
+		<p>게시판 작성</p>
+		</div>
+		<form action ="/board/write" method="post" enctype="multipart/form-data"> <!-- multipart 라벨링 반드시 해야함 ! 파일을 받기 위해 -->
+			<!-- url get 으로 보낼때 , 용량 한계 있어서 컨텐츠있기때문에 post 로보내기-->
+			<table class="tbl noticeWrite" style="border-left: 1px solid #005A0D; border-right: 1px solid #005A0D;">
+				<tr class="tr-1">
+					<th class="td-3">제목</th>
+					<td colspan="3" style="border-left: 1px solid #005A0D;">
+						<input type="text" name="boardTitle" class="board-input-form">
+					</td>
+				</tr>
+				
+				<tr class="tr-1">
+					<th class="td-3" >작성자</th>
+					<td style="border-left: 1px solid #005A0D;">
+						<span th:text = "${session.m.memberId}" ></span>
+						<input type="hidden" name="boardWriter" th:value="${session.m.memberId}"> <!-- controller 에 보내줄려고 hidden  -->
+					</td>
+					<th class="td-3" style="border-left: 1px solid #005A0D;">첨부파일</th>
+					<td>
+						<input type="file" name="upfile" multiple> <!-- multiple이라는 option을 넣어 첨부파일 여러개 업로드 가능하게 함 -->
+					</td>
+				</tr>
+				
+				<tr class="tr-1" style="border-bottom: none;">
+					<td colspan="4" style="text-align:left;">
+						<textarea class="input-form" name="boardContent" id="boardContent"></textarea>
+					</td>
+				</tr>
+				
+				<tr class="tr-1" style="border-top: none;">
+					<td colspan="4">
+						<button type ="submit" class ="writingbtn writingbc1 writingbs4">공지사항작성</button>
+					</td>
+				</tr>
+				
+				
+			</table>
+		</form>  <!-- 폼 종료 -->
+	</div>
+	<th:block th:include="common/footer"></th:block>
+	<script>
+		$("#boardContent").summernote({
+			height:400,
+			lang:"ko-KR",
+			callbacks : {
+				onImageUpload : function(files){
+					//에디터 본문에 이미지를 삽입하면 동작하는 함수 
+					uploadImage(files[0],this);
+				}
+			}
+		});
+		function uploadImage(file,editor){
+			//이미지 데이터를 바로 본문에 삽입하면 용량이 너무 큼 (db기준)
+			//이미지를 ajax로 업로드 하고 그 경로를 받아옴
+		
+			const form = new FormData();// form태그 역할
+			
+			form.append("file",file); //form 내부에 <input type = file , name =file> 추가
+			
+			/*
+				<form>
+					<input type ="file" name="file">
+				</form>
+			*/
+			
+			$.ajax({
+				url : "/board/editor",
+				type : "post", //이때는 무조건 post
+				data : form,
+				processData : false,
+				contentType : false,
+				success : function(data){
+					$(editor).summernote("insertImage",data);//insertImage에 매개변수(data)로 받은 것을 넣기
+					//이거때문에 바로바로 이미지 뜸
+				}
+			});
+			
+			//processData: 기본설정 : 전송하는 데이터를 기본적으로 문자열(string)을 전송하게 세팅,
+			//우리는 문자열을 보낼게 아니라 파일을 보내야해서 -> 기본전송값 문자열을 해제
+			//contentType : enctype ="application/x-www-form-urlencoded; charset = UTF-8"
+			//-> 파일 전송을 위해서 enctype 기본값 제거
+		}
+		
+	</script>
+</body>
+</html>

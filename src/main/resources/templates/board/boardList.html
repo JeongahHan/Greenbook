@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>게시판 리스트</title>
+<title>자유게시판</title>
 
 <!-- 구글 아이콘 -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -21,9 +21,6 @@
             <p>></p>
             <p>자유게시판</p>
         </div>
-		
-		<!-- 로그인이 되어있으면서 && 관리자일때만 -->
-		<!--<a th:if="${session.m !=null && (session.m.memberLevel == 1 || session.m.memberLevel == 2)}" href="/board/writeFrm" class="btn bc4">글쓰기</a>-->
 		
 		<table class="tbl tbl-hover notice-tbl" id="boardtable">
 			<tr class="tr-2">
@@ -63,8 +60,10 @@
 					</div>
 					</form>
 				</div>
+			<!-- 글쓰기 버튼 -->
 			<div class="board-write-button">
-				<a href="#" class="board-btn">글쓰기</a>
+				<!-- 로그인되어있으면서 회원일때 -->
+				<a th:if="${session.m !=null && (session.m.memberLevel == 1 || session.m.memberLevel == 2)}" href="/board/writeFrm" class="board-btn board-write-button">글쓰기</a>
 			</div>
 		</div>
 		<div id="pageNavi" th:utext="${pageNavi}"></div>   <!-- 태그로 동작시킬려고 utext 로 가져옴 -->
