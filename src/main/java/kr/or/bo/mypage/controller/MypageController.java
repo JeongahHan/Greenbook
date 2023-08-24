@@ -122,7 +122,7 @@ public class MypageController {
 		
 		model.addAttribute("mySellBookList", mld.getMypageList());
 		model.addAttribute("pageNavi", mld.getPageNavi());
-		model.addAttribute("mySellBookImgList", mld.getMySellBookImgList());
+		//model.addAttribute("mySellBookImgList", mld.getMySellBookImgList());
 		
 		
 		return "mypage/mySellBook";

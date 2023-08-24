@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.or.bo.product.model.vo.Product;
+import kr.or.bo.product.model.vo.ProductComment;
 import kr.or.bo.product.model.vo.ProductCommentRowMapper;
 import kr.or.bo.product.model.vo.ProductFile;
 import kr.or.bo.product.model.vo.ProductFileRowMapper;
@@ -95,6 +96,14 @@ public class ProductDao {
 		String query = "select * from PRODUCT_COMMENT where PRODUCT_REF = ? and PRODUCT_COMMENT_REF is not null order by 1";
 		List list = jdbc.query(query, productCommentRowmapper, productBoardNo);
 		return list;
+	}
+
+	public int insertComment(ProductComment pc) {
+		String query = "INSERT INTO PRODUCT_COMMENT VALUES(PRODUCT_COMMENT_SEQ.NEXTVAL, ?, ?, TO_CHAR(SYSDATE, 'YYYY-MM-DD'), ?, ?)";
+		String productCommentRef = pc.getProductCommentRef() == 0 ? null : String.valueOf(pc.getProductCommentRef());
+		Object[] params = {pc.getProductCommentWriter(), pc.getProductCommentContent(), pc.getProductRef(), productCommentRef};
+		int result = jdbc.update(query, params);
+		return result;
 	}
 	
 }

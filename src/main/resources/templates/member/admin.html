@@ -70,7 +70,7 @@
 			<tr class="tr-1" th:each="m : ${list}">
 				<td><input type="checkbox" class="chk"></td>
 				<td th:text="${m.memberNo}"></td>
-				<td th:text="${m.memberId}"></td>
+				<td class="sendMsg" th:text="${m.memberId}"></td>
 				<td th:text="${m.memberName}"></td>
 				<td th:text="${m.memberPhone}"></td>
 				<td th:text="${m.memberEmail}"></td>
@@ -103,6 +103,26 @@
 		<button class="bc1 bs5 checkedchangeLevel">선택회원 등급변경</button>
         
 	</div>
+	<!-- 쪽지 쓰기 모달 -->
+	<div class="sendMsg-modal-wrap">
+    	<div class="sendMsg-modal">
+	        <div class="modal-title">
+	            <h3>쪽지 쓰기</h3>
+	           	<hr>
+	        </div>
+	        <form action="/msg/adminSendMsg" method="post">
+	            <div class="sendMsg-modal-content">
+	                <span><strong>받는 사람</strong></span>
+	                <span class="receiver"></span>
+	                <input type="hidden" name="sender" th:value="${session.m.memberId}">
+	                <input type="hidden" name="receiver" id="receiver">
+	                <textarea name="message" class="s-input-form" id="sendMsgTextarea"></textarea>
+	            </div>
+	            <button type="submit" class="modalBtn s-bc1">보내기</button>
+	            <button type="button" class="modalBtn s-bc2" id="sendMsgCancel">취소</button>	        
+	        </form>
+    	</div>
+    </div>
 	<th:block th:include="common/footer"></th:block>
 	
 	
@@ -138,8 +158,21 @@
 		location.href="/member/changeLevel?memberNo="+memberNo+"&memberLevel="+memberLevel;
 	});
 	
-	
-
+	//쪽지 쓰기
+	$(".sendMsg").on("click", function(){
+		const receiver = $(this).text();
+		//쪽지쓰기 모달 열기
+		$(".sendMsg-modal-wrap").css("display","flex");
+		//textarea 초기화
+		$("#sendMsgTextarea").val("");
+		//받는 사람 데이터 넣어주기
+		$(".receiver").text(receiver);
+		$("#receiver").val(receiver);
+		//답장 쪽지 모달 닫기
+		$("#sendMsgCancel").on("click", function(){
+			$(".sendMsg-modal-wrap").css("display","none");
+		});
+	});
 	
 	</script>
 

@@ -45,6 +45,9 @@
 		
 		/*글쓰기 버튼*/
 		.board-write-button{
+		}
+		
+		.board-btn{
 			margin-right: 30px;
 			float: right;
 			
@@ -60,16 +63,17 @@
 			
 			background-color: #005A0D;
 		
-		}
-		.board-btn{
 			color: #fff;
 			transition-duration: 0.5s;
 		}
+		
 		.board-write-button:hover{
-			background-color: #fff;
-		  	cursor: pointer;
 		}
+		
 		.board-write-button:hover>.board-btn{
+			background-color: #fff;
+					
+		  	cursor: pointer;
 			color: #005A0D;
 		}
 
