@@ -276,6 +276,21 @@
   box-sizing: border-box;
 }
 
+.commentUpdateInput-form{
+  width: 100%;
+  display: block;
+  padding: 0.8rem;
+  background-color: #fff;
+  outline: none;
+  border: 1px solid #ccc;
+
+  box-sizing: border-box;
+  
+  height: 96px;
+  min-height: 96px;
+  resize: none;
+}
+
 .comment-box{
 	width: 80%;
 	margin: 0 auto;
@@ -415,6 +430,68 @@
   display: flex;
   flex-direction: column;
   width: 80%;
+}
+
+.posting-comment.reply > li:last-child {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+/* 대댓글 입력 */
+.inputCommentBox{
+	width: 80%;
+	margin: 0 auto;
+}
+
+.inputCommentBox > form > ul{
+	padding-top: 20px;
+}
+
+.inputCommentBox > form > ul > li{
+	width: 80%;
+	margin: 0 auto;
+}
+
+.inputCommentBox > form > ul > li:first-child > span{
+	width: 10%;
+	font-size: 60px;
+	color: #ccc;
+}
+
+.inputCommentBox .material-symbols-outlined,
+.inputCommentBox .commentInput-form,
+.inputCommentBox .commentInsert{
+	float: left;	
+}
+
+.inputCommentBox .material-symbols-outlined{
+	width: 15%;
+}
+
+.inputCommentBox .commentInput-form{
+	min-height: 96px;
+	width: 70%;
+	resize: none;
+	margin-bottom: 25px;
+}
+
+.inputCommentBox .commentInsert{
+	width: 15%;	
+}
+
+.inputRecommentBox{
+	display: none;
+}
+
+/* 대댓글 출력 */
+.posting-comment.reply > li:first-child {
+  width: 20%;
+}
+
+.posting-comment.reply > li:first-child .material-symbols-outlined:first-child {
+  font-size: 40px;
+  color: #ccc;
 }
 
 .posting-comment.reply > li:last-child {
