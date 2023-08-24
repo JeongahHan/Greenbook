@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.msg.model.service.MsgService;
 import kr.or.bo.msg.model.vo.Msg;
+import kr.or.bo.msg.model.vo.MsgListData;
 
 @Controller
 @RequestMapping(value = "/msg")
@@ -32,16 +33,26 @@ public class MsgController {
 			return "common/msg";
 		//로그인이 된 경우
 		}else {
-			return "redirect:/msg/receiveList";
+			return "redirect:/msg/receiveList?reqPage=1";	
 		}
 	}
 	
 	//받은 쪽지 리스트
 	@GetMapping(value = "/receiveList")
-	public String receiveList(Model model, @SessionAttribute(required = false) Member m) {
-		List list = msgService.selectReceiveList(m.getMemberId());
-		model.addAttribute("list", list);
+	public String receiveList(Model model, int reqPage, @SessionAttribute(required = false) Member m) {
+		MsgListData mld = msgService.selectReceiveList(m.getMemberId(), reqPage);
+		model.addAttribute("list", mld.getMsgList());
+		model.addAttribute("pageNavi", mld.getPageNavi());
 		return "msg/receiveMsgList";
+	}
+	
+	//보낸 쪽지 리스트
+	@GetMapping(value = "/sendList")
+	public String sendList(Model model, int reqPage, @SessionAttribute(required = false) Member m) {
+		MsgListData mld = msgService.selectSendList(m.getMemberId(), reqPage);
+		model.addAttribute("list", mld.getMsgList());
+		model.addAttribute("pageNavi", mld.getPageNavi());
+		return "msg/sendMsgList";
 	}
 	
 	//관리자에게 쪽지 보내기
@@ -112,13 +123,5 @@ public class MsgController {
 		}
 		model.addAttribute("loc", "/msg/receiveList");
 		return "common/msg";
-	}
-	
-	//보낸 쪽지 리스트
-	@GetMapping(value = "/sendList")
-	public String sendList(Model model, @SessionAttribute(required = false) Member m) {
-		List list = msgService.selectSendList(m.getMemberId());
-		model.addAttribute("list", list);
-		return "msg/sendMsgList";
 	}
 }
