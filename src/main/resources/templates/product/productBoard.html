@@ -312,8 +312,8 @@
 						</form>
 					</div>
 					
-					<div class="board-write-button">
-						<a th:if="${session.m != null && session.m.memberLevel != 3}" href="/product/writeFrm" class="board-btn">글쓰기</a>
+					<div class="board-write-button"  th:if="${session.m != null && session.m.memberLevel != 3}">
+						<a href="/product/writeFrm" class="board-btn">글쓰기</a>
 					</div>
 				
 				</div>

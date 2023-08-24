@@ -38,10 +38,13 @@
 					
 					<div class="main-box">
 						<div class="title" th:text="${p.getProductBoardTitle}"></div>
+						
+						<div class="cart"><a class="cart-btn">장바구니</a></div>
+						<div class="buy"><a class="buy-btn">구매하기</a></div>
 						<div class="author" th:text="${p.getProductAuthor}"></div>
 						<div class="price"><span th:text="${p.getProductPrice}"></span> 원</div>
 						<div class="content" th:utext="${p.getProductBoardContent}"></div>
-						<div class="readCount">조회수</div>
+						<div class="readCount">조회수 <span th:text="${p.getReadCount}"></span></div>
 					</div>
 					
 					<div class="btn-box"></div>
@@ -58,6 +61,28 @@
 		
 	<th:block th:include="common/footer"></th:block>
 
-	<script src="/javascript/productBoard.js"></script>
+	<script>
+	
+		$(".cart").on("click",function(){
+			
+			const result = confirm("장바구니에 등록하시겠습니까?");
+			
+			if(result){
+				alert("성공");
+			}
+			
+		});
+		
+		$(".buy").on("click",function(){
+			
+			const result = confirm("구매하시겠습니까?");
+			
+			if(result){
+				alert("성공");
+			}
+			
+		});
+	
+	</script>
 </body>
 </html>
