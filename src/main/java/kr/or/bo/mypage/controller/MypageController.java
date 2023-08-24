@@ -69,6 +69,12 @@ public class MypageController {
 		
 		return "mypage/myComment";
 	}
+	@GetMapping(value = "/myProductBoardComment")
+	public String myProductBoardComment() {
+		return "mypage/myProductBoardComment";
+	}
+	
+	
 	@PostMapping(value = "/update")
 	public String update(Member member, HttpSession session) {
 		// disabled 때문인거 같은데 멤버 비밀번호, 휴대폰, 이메일만 넘겨받음
