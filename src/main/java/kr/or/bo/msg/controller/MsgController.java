@@ -43,6 +43,7 @@ public class MsgController {
 		MsgListData mld = msgService.selectReceiveList(m.getMemberId(), reqPage);
 		model.addAttribute("list", mld.getMsgList());
 		model.addAttribute("pageNavi", mld.getPageNavi());
+		model.addAttribute("reqPage", reqPage);
 		return "msg/receiveMsgList";
 	}
 	
@@ -57,7 +58,7 @@ public class MsgController {
 	
 	//관리자에게 쪽지 보내기
 	@PostMapping(value = "/sendMsgToAdmin")
-	public String sendMsgToAdmin(Msg msg, Model model, int reqPage) {
+	public String sendMsgToAdmin(Msg msg, Model model) {
 		int result = msgService.sendMsgToAdmin(msg);
 		//쪽지 전송 성공
 		if(result > 0) {
@@ -112,7 +113,7 @@ public class MsgController {
 			model.addAttribute("title", "전송 실패");
 			model.addAttribute("msg", "쪽지 전송에 실패하였습니다.");
 		}
-		model.addAttribute("loc", "/msg/receiveList?reqPage=1");
+		model.addAttribute("loc", "/msg/receiveList?reqPage="+reqPage);
 		return "common/msg";
 	}
 	
