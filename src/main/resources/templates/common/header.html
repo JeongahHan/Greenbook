@@ -69,6 +69,16 @@
 </div>
 
 
-
-
+<!-- 안 읽은 쪽지 갯수 불러오기 -->
+<script>
+  window.onload = function () {
+	  $.ajax({
+          url : "/msg/NotReadMsgCount",
+          type : "get",
+          success : function(data){
+              $(".letter-count").text(data);
+          }
+      });
+  };
+</script>
 </html>

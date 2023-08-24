@@ -136,6 +136,14 @@
 					$(".msgView-modal-wrap").css("display","flex");
 					//안 읽음 표시 삭제하기
 					readChk.hide();
+					//헤더-안 읽은 쪽지 갯수 바꾸기
+					$.ajax({
+			              url : "/msg/NotReadMsgCount",
+			              type : "get",
+			              success : function(data){
+			                  $(".letter-count").text(data);
+			              }
+	         		 });
 					//쪽지 상세보기 모달 닫기
 					$("#close").on("click", function(){
 						$(".msgView-modal-wrap").css("display","none");
