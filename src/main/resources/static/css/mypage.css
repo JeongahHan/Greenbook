@@ -127,7 +127,7 @@ B31312 빨강
     display: block;
 
 }
-.mypage-menu>li>a:hover{
+.mypage-menu>li>a:hover {
 	background-color: #005A0D;
     color: #fff;
     cursor: pointer;
@@ -142,9 +142,16 @@ B31312 빨강
 /* 마이페이지 컨텐츠 제목 디자인 */
 .mypage-content-title{
     font-family: ns-bold;
-    padding: 20px 0;
+    padding: 20px 0px;
     font-size: 30px;
-    
+    font-weight: 900px;
+}
+.mypage-content-title a{
+    /* 나의 댓글, 중고책방 댓글 선택자 */
+    padding: 10px 20px;
+}
+.mypage-content-title-hover{
+    background-color: #ccc;
 }
 
 
@@ -268,7 +275,7 @@ B31312 빨강
     height: 100%;
 }
 
-.myComment-one>.material-icons{
+.myComment-one .material-icons{
     /* 나의 댓글 삭제 아이콘*/
     display: block;
     font-weight: 900;
