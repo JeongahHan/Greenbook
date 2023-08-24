@@ -16,22 +16,26 @@
 
 	<th:block th:include="common/header"></th:block>
 	<div class="page-content">
-		<div class="page-title">회원관리</div>
+		<div class="page-title admintitle">
+            <p>홈</p>
+            <p>></p>
+            <p>관리자페이지</p>
+        </div>
+          <div class="plusfind">
+         <button class="btn bc1 bc1-1 findbtn" id="findjQ">회원정보 추가 조회</button>
+		 <input type="text" id="find" name="memberId" class="find inputid" placeholder="조회할 회원아이디" >
+		 </div>
 
-		 <input type="text" id="find" name="memberId" class="inputid" placeholder="조회할 회원아이디" >
-		 <button class="btn bc1 bc1-1 findbtn" id="findjQ">회원정보 추가 조회</button>
-		                
-		
 		<table class="tbl tbl-hover" id="admintbl">
 			<tr class="tr-3 .green">
 				<th>선택</th>
 				<th>회원번호</th>
 				<th>아이디</th>
-				<th>비밀번호</th>
 				<th>이름</th>
 				<th>전화번호</th>
 				<th>주소</th>
 				<th>가입일</th>
+				<th>신뢰도</th>
 				<th>회원등급</th>
 				<th>등급변경</th>
 			</tr>
@@ -39,11 +43,11 @@
 				<td><input type="checkbox" class="chk"></td>
 				<td th:text="${m.memberNo}"></td>
 				<td th:text="${m.memberId}"></td>
-				<td th:text="${m.memberPw}"></td>
 				<td th:text="${m.memberName}"></td>
 				<td th:text="${m.memberPhone}"></td>
 				<td th:text="${m.memberEmail}"></td>
 				<td th:text="${m.enrollDate}"></td>
+				<td th:text="${m.grade}"></td>
 				<td th:switch=${m.memberLevel}>
 				<select th:case="1"class="input-form">
 						<option value="1" selected>관리자</option>
@@ -142,9 +146,6 @@ $("#findjQ").on("click",function(){
 				const memberIdTd = $("<td>");
 				memberIdTd.text(data.memberId);
 				
-				const memberPwTd = $("<td>");
-				memberPwTd.text(data.memberPw);
-				
 				const memberNameTd = $("<td>");
 				memberNameTd.text(data.memberName);
 				
@@ -156,6 +157,9 @@ $("#findjQ").on("click",function(){
 				
 				const enrollDateTd = $("<td>");
 				enrollDateTd.text(data.enrollDate);
+				
+				const memberGradeTd = $("<td>");
+				memberGradeTd.text(data.grade);
 				
 				
 				const memberLevelTd = $("<td>");
@@ -190,7 +194,7 @@ $("#findjQ").on("click",function(){
 				
 				
 				
-				tr.append(inputTd).append(memberNoTd).append(memberIdTd).append(memberPwTd).append(memberNameTd).append(memberPhoneTd).append(memberEmailTd).append(enrollDateTd).append(memberLevelTd).append(btnTd);
+				tr.append(inputTd).append(memberNoTd).append(memberIdTd).append(memberNameTd).append(memberPhoneTd).append(memberEmailTd).append(enrollDateTd).append(memberGradeTd).append(memberLevelTd).append(btnTd);
 				$("#admintbl>tbody").append(tr);
 				
 				

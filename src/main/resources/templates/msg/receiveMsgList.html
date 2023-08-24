@@ -63,13 +63,14 @@
     	<div class="adminMsg-modal">
 	        <div class="modal-title">
 	            <h3><span id="sender"></span></h3>
-	            <span class="material-icons" id="deleteMsg">delete</span>
+	            <span class="material-icons" id="deleteMsg">delete_outline</span>
 	        </div>
 	        <div class="modal-content">
 	            <hr>
 	            <textarea class="s-input-form" id="message" readonly></textarea>
 	        </div>
 	        <button type="button" class="modalBtn s-bc1" id="replyMsg">답장하기</button>
+	        
 	        <button type="button" class="modalBtn s-bc2" id="close">취소</button>
         </div>
     </div>
@@ -78,7 +79,7 @@
     	<div class="adminMsg-modal">
 	        <div class="modal-title">
 	            <h3>쪽지 쓰기</h3>
-	            <hr>
+	           	<hr>
 	        </div>
 	        <form action="/msg/replyMsg" method="post">
 	            <div class="modal-content">
@@ -136,6 +137,14 @@
 					$(".msgView-modal-wrap").css("display","flex");
 					//안 읽음 표시 삭제하기
 					readChk.hide();
+					//헤더-안 읽은 쪽지 갯수 바꾸기
+					$.ajax({
+			              url : "/msg/NotReadMsgCount",
+			              type : "get",
+			              success : function(data){
+			                  $(".letter-count").text(data);
+			              }
+	         		 });
 					//쪽지 상세보기 모달 닫기
 					$("#close").on("click", function(){
 						$(".msgView-modal-wrap").css("display","none");

@@ -39,7 +39,7 @@
 					<div class="main-box">
 						<div class="title" th:text="${p.getProductBoardTitle}"></div>
 						
-						<div class="cart"><a class="cart-btn">장바구니</a></div>
+						<div class="cart"><a class="cart-btn">찜하기</a></div>
 						<div class="buy"><a class="buy-btn">구매하기</a></div>
 						<div class="author" th:text="${p.getProductAuthor}"></div>
 						<div class="price"><span th:text="${p.getProductPrice}"></span> 원</div>
@@ -49,17 +49,23 @@
 						<button class="delete" th:if="${session.m != null && session.m.memberId == p.productBoardWriter}">삭제</button>
 					</div>
 					
-					<div class="comment-box" th:if="${session.m != null}">
-					
+					<!-- 댓글 리스트 -->
+					<div class="comment-box" th:if="${session.m != null}"> <!-- th:if="${session.m != null}" -->
 						<form action="/product/insertComment" method="post">
 							<ul>
 								<li>
 									<span class="material-symbols-outlined userMainImage">account_circle</span>
 								</li>
-								<li></li>
+								<li>
+									<input type="hidden" name="productCommentWriter" th:value="${session.m.memberId}">
+									<input type="hidden" name="productBoardNo" th:value="${p.productBoardNo}">
+									<textarea name="productCommentContent" class="commentInput-form"></textarea>
+								</li>
+								<li>
+									<button type="submit" class="btn bc1 bs4">등록</button>
+								</li>
 							</ul>
 						</form>
-					
 					</div>
 					
                 </div>

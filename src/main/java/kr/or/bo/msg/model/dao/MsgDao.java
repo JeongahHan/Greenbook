@@ -78,4 +78,10 @@ public class MsgDao {
 		int totalCount = jdbc.queryForObject(query, Integer.class, memberId);
 		return totalCount;
 	}
+
+	public int selectNotReadMsgCount(String memberId) {
+		String query = "select count(*) as cnt from message where receiver = ? and read_chk = ?";
+		int letterCount = jdbc.queryForObject(query, Integer.class, memberId, 0);
+		return letterCount;
+	}
 }
