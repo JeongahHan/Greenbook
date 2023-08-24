@@ -15,6 +15,7 @@
 				<div class="wishList-one" th:each="list : ${mySellBookList}">
 					<div class="wishList-imgBox">
                     	<img src="/img/product-img/매미울음소리 그칠 무렵.jpg">
+                    	<!-- <img th:src="${list.filepath}"> -->
 					</div>
 					<p><span class="productBoardNo" th:text="${list.productBoardNo}"></span>글번호</p>
 					<p th:text="${list.productBoardTitle}"></p>

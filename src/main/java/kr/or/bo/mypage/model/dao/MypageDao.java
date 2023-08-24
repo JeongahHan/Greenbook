@@ -41,8 +41,19 @@ public class MypageDao {
 		// TODO Auto-generated method stub
 		
 		String query = "select * from(select ROWNUM AS RNUM,N.* from(select * from PRODUCT_BOARD where PRODUCT_BOARD_WRITER = ? order by 1 DESC)N) where rnum between ? and ?";
+		//String query = "select * from(select ROWNUM AS RNUM,N.* from(select * from PRODUCT_FILE full join PRODUCT_BOARD ON (PRODUCT_NO=PRODUCT_BOARD_NO) where PRODUCT_BOARD_writer=? order by 1 desc)N) where rnum between ? and ?";
 		
 		List list = jdbc.query(query, productRowMapper, memberId, start, end);
+		
+		
+		return list;
+	}
+	
+	//내가 판매중인 도서 이미지 파일경로 구해오기
+	public List selectMySellBookImgList(String memberId, int start, int end) {
+		// TODO Auto-generated method stub
+		String query = "select * from(select ROWNUM AS RNUM,N.* from(select * from PRODUCT_FILE full join PRODUCT_BOARD ON (PRODUCT_NO=PRODUCT_BOARD_NO) where PRODUCT_BOARD_writer=? order by 1 desc)N) where rnum between ? and ?";
+		List list = jdbc.query(query, productFileRowmapper, memberId, start, end);
 		
 		return list;
 	}
@@ -89,13 +100,6 @@ public class MypageDao {
 		return result;
 	}
 
-	//내가 판매중인 도서 이미지 파일경로 구해오기
-	public List selectMySellBookImgList(String memberId, int start, int end) {
-		// TODO Auto-generated method stub
-		String query = "select * from(select ROWNUM AS RNUM,N.* from(select * from PRODUCT_FILE full join PRODUCT_BOARD ON (PRODUCT_NO=PRODUCT_BOARD_NO) where PRODUCT_BOARD_writer=? order by 1 desc)N) where rnum between ? and ?";
-		List list = jdbc.query(query, productFileRowmapper, memberId, start, end);
-		
-		return list;
-	}
+
 	
 }

@@ -97,7 +97,7 @@ public class MypageService {
 
 		pageNavi += "</ul>";
 		
-		MypageListData mld = new MypageListData(mySellBookList,pageNavi,null);
+		MypageListData mld = new MypageListData(mySellBookList,pageNavi);
 		
 		return mld;
 	}//selectMyBoardList()종료
@@ -114,9 +114,20 @@ public class MypageService {
 		int end = reqPage * numPerPage;
 		int start = end - numPerPage + 1;
 		List mySellBookList = mypageDao.selectMySellBook(m.getMemberId(), start, end);
+		System.out.println("멤버객체 : "+m);
+		System.out.println("0번째 리스트"+mySellBookList.get(0));
+		//Product p = (Product)mySellBookList.get(0);
+		//System.out.println("프로덕트 객체 : "+p.getProductBoardNo());
+		System.out.println(mySellBookList.size());
 		
-		List mySellBookImgList = mypageDao.selectMySellBookImgList(m.getMemberId(), start, end);
-		System.out.println("여기는 서비스 판매도서 이미지 : "+mySellBookImgList);
+		for(int i =0 ;i<mySellBookList.size();i++) {
+			List mySellBookImgList = mypageDao.selectMySellBookImgList(m.getMemberId(), start, end);
+			Product p = (Product)mySellBookImgList.get(i);
+			mySellBookList.add(p);
+
+			System.out.println("여기는 서비스 판매도서 이미지 : "+mySellBookImgList);
+		}
+		
 		
 		// 2. 페이지 네비게이션 제작
 		// 총 페이지 수 계산을 위해서는 총 게시물 수를 알아야함 -> DB에서 그룹함수로 조회
@@ -177,7 +188,7 @@ public class MypageService {
 
 		pageNavi += "</ul>";
 		
-		MypageListData mld = new MypageListData(mySellBookList,pageNavi,mySellBookImgList);
+		MypageListData mld = new MypageListData(mySellBookList,pageNavi);
 		
 		return mld;
 	}//selectMySellBook() 종료
