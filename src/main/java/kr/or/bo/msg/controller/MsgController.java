@@ -124,4 +124,12 @@ public class MsgController {
 		model.addAttribute("loc", "/msg/receiveList");
 		return "common/msg";
 	}
+	
+	//받은 쪽지 중 읽지 않은 쪽지 갯수 구해오기
+	@ResponseBody
+	@GetMapping(value = "/NotReadMsgCount")
+	public int selectNotReadMsgCount(Model model, @SessionAttribute(required = false) Member m) {
+		int letterCount = msgService.selectNotReadMsgCount(m.getMemberId());
+		return letterCount;
+	}
 }
