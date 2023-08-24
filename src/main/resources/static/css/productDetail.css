@@ -1,4 +1,26 @@
 @charset "UTF-8";
+
+@font-face {
+    font-family: ns-thin;
+    src: url(../font/NotoSansKR-Thin.otf);
+  }
+  @font-face {
+    font-family: ns-light;
+    src: url(../font/NotoSansKR-Light.otf);
+  }
+  @font-face {
+    font-family: ns-m;
+    src: url(../font/NotoSansKR-Medium.otf);
+  }
+  @font-face {
+    font-family: ns-bold;
+    src: url(../font/NotoSansKR-Bold.otf);
+  }
+  @font-face {
+    font-family: ns-black;
+    src: url(../font/NotoSansKR-Black.otf);
+  }
+  
 *{
     margin: 0;
     padding: 0;
@@ -113,13 +135,74 @@
     margin: 0 auto;
     width: 80%;
     padding-top: 30px;
+    position: relative;
 }
 
-.title, .author, .price{
+.title, .author, .price, .cart, .buy{
 	padding-bottom: 2px;
 }
 
+.title, .cart, .buy{
+	display: inline-block;
+}
+
+/* 장바구니, 구매하기 버튼 */
+
+.cart, .buy{
+	position: absolute;
+	right: 0;
+	
+	border: 1px solid #005A0D;
+	width:200px;
+	height:45px;
+	font-size:15px;
+	text-align:center;
+	padding-top:8px;
+	box-sizing: border-box;
+	transition-duration: 0.5s;
+	background-color: #005A0D;
+}
+
+.cart{
+	background-color: #fff;
+}
+
+.buy{
+	top: 85px;
+}
+
+.cart-btn{
+	color: #005A0D;
+}
+
+.buy-btn{
+	color: #fff;
+}
+
+.cart-btn, .buy-btn{
+	transition-duration: 0.5s;
+}
+
+.cart:hover{
+	background-color: #005A0D;
+	cursor: pointer;
+}
+
+.cart:hover > .cart-btn{
+	color: #fff;
+}
+
+.buy:hover{
+	background-color: #fff;
+	cursor: pointer;
+}
+
+.buy:hover > .buy-btn{
+	color: #005A0D;
+}
+
 .title{
+	
 	font-size: 30px;
 	font-weight: 900;
 }
@@ -137,6 +220,18 @@
 
 .content{
 	padding-top: 30px;
+}
+
+.readCount{
+	border-bottom: 1px solid #ccc;
+}
+
+.readCount, .readCount > span{
+	color: gray;
+	font-weight: 0;
+	font-size: 12px;
+	padding: 20px 0;
+	font-family: ns-l;
 }
 
 /*
