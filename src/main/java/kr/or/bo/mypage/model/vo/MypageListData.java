@@ -12,4 +12,6 @@ import lombok.NoArgsConstructor;
 public class MypageListData {
 	private List mypageList;
 	private String pageNavi;
+	
+	private List mySellBookImgList;
 }

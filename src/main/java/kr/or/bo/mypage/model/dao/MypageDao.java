@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.or.bo.board.vo.BoardRowMapper;
 import kr.or.bo.member.model.vo.Member;
+import kr.or.bo.product.model.vo.ProductFileRowMapper;
 import kr.or.bo.product.model.vo.ProductRowMapper;
 
 @Repository
@@ -19,6 +20,8 @@ public class MypageDao {
 	private ProductRowMapper productRowMapper;
 	@Autowired
 	private BoardRowMapper boardRowMapper;
+	@Autowired
+	private ProductFileRowMapper productFileRowmapper;
 
 	//회원정보 수정
 	public int updateMember(Member member) {
@@ -84,6 +87,15 @@ public class MypageDao {
 		int result = jdbc.update(query,params);
 		
 		return result;
+	}
+
+	//내가 판매중인 도서 이미지 파일경로 구해오기
+	public List selectMySellBookImgList(String memberId, int start, int end) {
+		// TODO Auto-generated method stub
+		String query = "select * from(select ROWNUM AS RNUM,N.* from(select * from PRODUCT_FILE full join PRODUCT_BOARD ON (PRODUCT_NO=PRODUCT_BOARD_NO) where PRODUCT_BOARD_writer=? order by 1 desc)N) where rnum between ? and ?";
+		List list = jdbc.query(query, productFileRowmapper, memberId, start, end);
+		
+		return list;
 	}
 	
 }
