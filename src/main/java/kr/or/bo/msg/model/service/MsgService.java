@@ -151,4 +151,9 @@ public class MsgService {
 		int result = msgDao.replyMsg(msg);
 		return result;
 	}
+
+	public int selectNotReadMsgCount(String memberId) {
+		int letterCount = msgDao.selectNotReadMsgCount(memberId);
+		return letterCount;
+	}
 }
