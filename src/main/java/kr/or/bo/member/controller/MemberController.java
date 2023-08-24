@@ -38,7 +38,8 @@ public class MemberController {
 		if (m != null) {
 			if (m.getMemberLevel() == 3) {
 				// 블랙이인 경우
-				model.addAttribute("title", "로그인 권한 없음");
+				session.setAttribute("m", m);
+				model.addAttribute("title", "이용 제한 있음");
 				model.addAttribute("msg", "블랙이로 변경되었습니다. 쪽지함을 확인하세요.");
 				model.addAttribute("loc", "/");
 			} else {
