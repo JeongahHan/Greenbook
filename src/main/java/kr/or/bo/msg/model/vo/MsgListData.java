@@ -1,4 +1,4 @@
-package kr.or.bo.mypage.model.vo;
+package kr.or.bo.msg.model.vo;
 
 import java.util.List;
 
@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class MypageListData {
-	private List mypageList;
+public class MsgListData {
+	private List msgList;
 	private String pageNavi;
-	
-	//private List mySellBookImgList;
 }

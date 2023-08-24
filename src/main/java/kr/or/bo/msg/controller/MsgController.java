@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.msg.model.service.MsgService;
 import kr.or.bo.msg.model.vo.Msg;
+import kr.or.bo.msg.model.vo.MsgListData;
 
 @Controller
 @RequestMapping(value = "/msg")
@@ -32,16 +33,26 @@ public class MsgController {
 			return "common/msg";
 		//로그인이 된 경우
 		}else {
-			return "redirect:/msg/receiveList";
+			return "redirect:/msg/receiveList?reqPage=1";	
 		}
 	}
 	
 	//받은 쪽지 리스트
 	@GetMapping(value = "/receiveList")
-	public String receiveList(Model model, @SessionAttribute(required = false) Member m) {
-		List list = msgService.selectReceiveList(m.getMemberId());
-		model.addAttribute("list", list);
+	public String receiveList(Model model, int reqPage, @SessionAttribute(required = false) Member m) {
+		MsgListData mld = msgService.selectReceiveList(m.getMemberId(), reqPage);
+		model.addAttribute("list", mld.getMsgList());
+		model.addAttribute("pageNavi", mld.getPageNavi());
 		return "msg/receiveMsgList";
+	}
+	
+	//보낸 쪽지 리스트
+	@GetMapping(value = "/sendList")
+	public String sendList(Model model, int reqPage, @SessionAttribute(required = false) Member m) {
+		MsgListData mld = msgService.selectSendList(m.getMemberId(), reqPage);
+		model.addAttribute("list", mld.getMsgList());
+		model.addAttribute("pageNavi", mld.getPageNavi());
+		return "msg/sendMsgList";
 	}
 	
 	//관리자에게 쪽지 보내기
@@ -84,17 +95,8 @@ public class MsgController {
 	//쪽지 삭제하기
 	@ResponseBody
 	@GetMapping(value = "/deleteMsg")
-	public String deleteMsg(int mid, Model model) {
+	public void deleteMsg(int mid, Model model) {
 		int result = msgService.deleteMsg(mid);
-		if(result>0) {
-			model.addAttribute("title", "삭제 완료");
-			model.addAttribute("msg", "쪽지가 성공적으로 삭제되었습니다.");
-		}else {
-			model.addAttribute("title", "삭제 실패");
-			model.addAttribute("msg", "쪽지 삭제에 실패하였습니다.");
-		}
-		model.addAttribute("loc", "/msg/receiveList");
-		return "common/msg";
 	}
 	
 	//쪽지 답장하기
@@ -110,15 +112,49 @@ public class MsgController {
 			model.addAttribute("title", "전송 실패");
 			model.addAttribute("msg", "쪽지 전송에 실패하였습니다.");
 		}
-		model.addAttribute("loc", "/msg/receiveList");
+		model.addAttribute("loc", "/msg/receiveList?reqPage=1");
 		return "common/msg";
 	}
 	
-	//보낸 쪽지 리스트
-	@GetMapping(value = "/sendList")
-	public String sendList(Model model, @SessionAttribute(required = false) Member m) {
-		List list = msgService.selectSendList(m.getMemberId());
-		model.addAttribute("list", list);
-		return "msg/sendMsgList";
+	//관리자가 회원에게 쪽지 보내기
+	@PostMapping(value = "/adminSendMsg")
+	public String adminSendMsg(Msg msg, Model model) {
+		int result = msgService.adminSendMsg(msg);
+		//쪽지 전송 성공
+		if(result > 0) {
+			model.addAttribute("title", "전송 완료");
+			model.addAttribute("msg", "쪽지가 성공적으로 전송되었습니다.");
+		//쪽지 전송 실패
+		}else {
+			model.addAttribute("title", "전송 실패");
+			model.addAttribute("msg", "쪽지 전송에 실패하였습니다.");
+		}
+		model.addAttribute("loc", "/member/admin");
+		return "common/msg";
+	}
+	
+	//중고거래게시판에서 쪽지 보내기
+	@PostMapping(value = "/productSendMsg")
+	public String productSendMsg(Msg msg, int productRef, Model model) {
+		int result = msgService.productSendMsg(msg);
+		//쪽지 전송 성공
+		if(result > 0) {
+			model.addAttribute("title", "전송 완료");
+			model.addAttribute("msg", "쪽지가 성공적으로 전송되었습니다.");
+		//쪽지 전송 실패
+		}else {
+			model.addAttribute("title", "전송 실패");
+			model.addAttribute("msg", "쪽지 전송에 실패하였습니다.");
+		}
+		model.addAttribute("loc", "/product/productDetail?productBoardNo="+productRef);
+		return "common/msg";
+	}
+	
+	//받은 쪽지 중 읽지 않은 쪽지 갯수 구해오기
+	@ResponseBody
+	@GetMapping(value = "/notReadMsgCount")
+	public int selectNotReadMsgCount(Model model, @SessionAttribute(required = false) Member m) {
+		int letterCount = msgService.selectNotReadMsgCount(m.getMemberId());
+		return letterCount;
 	}
 }

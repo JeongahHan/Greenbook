@@ -12,7 +12,7 @@
     <div class="total-wrap">
         <ul class="tabs">
             <h4><li>받은 쪽지함</li></h4>
-            <a href="/msg/sendList"><h4><li>보낸 쪽지함</li></h4></a>
+            <a href="/msg/sendList?reqPage=1"><h4><li>보낸 쪽지함</li></h4></a>
             <hr>
         </ul>
         <div class="msg-wrap" th:each="msg : ${list}">
@@ -36,6 +36,7 @@
         </div>
         <!-- 관리자가 아닌 회원만 보이기 -->
         <button th:if="${session.m.memberLevel != 1}" type="button" class="s-btn s-bc1" id="adminMsg">관리자에게 쪽지</button>
+    	<div id="pageNavi" th:utext="${pageNavi}"></div>
     </div>
     <!-- 관리자에게 쪽지 쓰기 모달 -->
     <div class="adminMsg-modal-wrap">
@@ -62,13 +63,14 @@
     	<div class="adminMsg-modal">
 	        <div class="modal-title">
 	            <h3><span id="sender"></span></h3>
-	            <span class="material-icons" id="deleteMsg">delete</span>
+	            <span class="material-icons" id="deleteMsg">delete_outline</span>
 	        </div>
 	        <div class="modal-content">
 	            <hr>
 	            <textarea class="s-input-form" id="message" readonly></textarea>
 	        </div>
 	        <button type="button" class="modalBtn s-bc1" id="replyMsg">답장하기</button>
+	        
 	        <button type="button" class="modalBtn s-bc2" id="close">취소</button>
         </div>
     </div>
@@ -77,7 +79,7 @@
     	<div class="adminMsg-modal">
 	        <div class="modal-title">
 	            <h3>쪽지 쓰기</h3>
-	            <hr>
+	           	<hr>
 	        </div>
 	        <form action="/msg/replyMsg" method="post">
 	            <div class="modal-content">
@@ -135,6 +137,14 @@
 					$(".msgView-modal-wrap").css("display","flex");
 					//안 읽음 표시 삭제하기
 					readChk.hide();
+					//헤더-안 읽은 쪽지 갯수 바꾸기
+					$.ajax({
+			              url : "/msg/NotReadMsgCount",
+			              type : "get",
+			              success : function(data){
+			                  $(".letter-count").text(data);
+			              }
+	         		 });
 					//쪽지 상세보기 모달 닫기
 					$("#close").on("click", function(){
 						$(".msgView-modal-wrap").css("display","none");

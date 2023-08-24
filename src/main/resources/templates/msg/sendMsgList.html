@@ -11,7 +11,7 @@
 <th:block th:include="common/header"></th:block>
     <div class="total-wrap">
         <ul class="tabs">
-            <a href="/msg/receiveList"><h4><li>받은 쪽지함</li></h4></a>
+            <a href="/msg/receiveList?reqPage=1"><h4><li>받은 쪽지함</li></h4></a>
             <h4><li>보낸 쪽지함</li></h4>
             <hr>
         </ul>
@@ -34,6 +34,7 @@
 	            </div>
 	        </div>
         </div>
+        <div id="pageNavi" th:utext="${pageNavi}"></div>
     </div>
 	<!-- 쪽지 상세보기 모달 -->
     <div class="msgView-modal-wrap">

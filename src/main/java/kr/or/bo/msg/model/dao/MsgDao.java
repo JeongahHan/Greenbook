@@ -17,9 +17,15 @@ public class MsgDao {
 	@Autowired
 	private MsgRowMapper msgRowMapper;
 	
-	public List selectReceiveList(String memberId) {
-		String query = "select * from message where receiver = ? order by 1 desc";
-		List list = jdbc.query(query, msgRowMapper, memberId);
+	public List selectReceiveList(int start, int end, String memberId) {
+		String query = "select * from (select rownum as rnum, m.* from (select * from message where receiver = ? order by 1 desc)m) where rnum between ? and ?";
+		List list = jdbc.query(query, msgRowMapper, memberId, start, end);
+		return list;
+	}
+	
+	public List selectSendList(int start, int end, String memberId) {
+		String query = "select * from (select rownum as rnum, m.* from (select * from message where sender = ? order by 1 desc)m) where rnum between ? and ?";
+		List list = jdbc.query(query, msgRowMapper, memberId, start, end);
 		return list;
 	}
 
@@ -61,9 +67,35 @@ public class MsgDao {
 		return result;
 	}
 
-	public List selectSendList(String memberId) {
-		String query = "select * from message where sender = ? order by 1 desc";
-		List list = jdbc.query(query, msgRowMapper, memberId);
-		return list;
+	public int selectReceiveMsgTotalCount(String memberId) {
+		String query = "select count(*) as cnt from message where receiver = ?";
+		int totalCount = jdbc.queryForObject(query, Integer.class, memberId);
+		return totalCount;
+	}
+
+	public int selectSendMsgTotalCount(String memberId) {
+		String query = "select count(*) as cnt from message where sender = ?";
+		int totalCount = jdbc.queryForObject(query, Integer.class, memberId);
+		return totalCount;
+	}
+
+	public int selectNotReadMsgCount(String memberId) {
+		String query = "select count(*) as cnt from message where receiver = ? and read_chk = ?";
+		int letterCount = jdbc.queryForObject(query, Integer.class, memberId, 0);
+		return letterCount;
+	}
+
+	public int adminSendMsg(Msg msg) {
+		String query = "insert into message values(message_seq.nextval, ?, ?, ?, 0, TO_CHAR(SYSDATE, 'YYYY.MM.DD HH24:MI'))";
+		Object[] params = {msg.getSender(), msg.getReceiver(), msg.getMessage()};
+		int result = jdbc.update(query, params);
+		return result;
+	}
+
+	public int productSendMsg(Msg msg) {
+		String query = "insert into message values(message_seq.nextval, ?, ?, ?, 0, TO_CHAR(SYSDATE, 'YYYY.MM.DD HH24:MI'))";
+		Object[] params = {msg.getSender(), msg.getReceiver(), msg.getMessage()};
+		int result = jdbc.update(query, params);
+		return result;
 	}
 }

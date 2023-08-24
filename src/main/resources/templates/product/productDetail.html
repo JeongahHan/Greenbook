@@ -38,14 +38,68 @@
 					
 					<div class="main-box">
 						<div class="title" th:text="${p.getProductBoardTitle}"></div>
+						
+						<div class="cart"><a class="cart-btn">찜하기</a></div>
+						<div class="buy"><a class="buy-btn">구매하기</a></div>
 						<div class="author" th:text="${p.getProductAuthor}"></div>
 						<div class="price"><span th:text="${p.getProductPrice}"></span> 원</div>
 						<div class="content" th:utext="${p.getProductBoardContent}"></div>
-						<div class="readCount">조회수</div>
+						<div class="readCount">조회수 <span th:text="${p.getReadCount}"></span></div>
+						<a class="update" th:if="${session.m != null && session.m.memberId == p.productBoardWriter}">수정</a>
+						<button class="delete" th:if="${session.m != null && session.m.memberId == p.productBoardWriter}">삭제</button>
 					</div>
 					
-					<div class="btn-box"></div>
-					<div class="comment-box"></div>
+					<!-- 댓글 입력 -->
+					<div class="comment-box" th:if="${session.m != null}"> <!-- th:if="${session.m != null}" -->
+						<form action="/product/insertComment" method="post">
+							<ul>
+								<li>
+									<span class="material-symbols-outlined userMainImage">account_circle</span>
+								</li>
+								<li>
+									<input type="hidden" name="productCommentWriter" th:value="${session.m.memberId}">
+									<input type="hidden" name="productRef" th:value="${p.productBoardNo}">
+									<textarea name="productCommentContent" class="commentInput-form"></textarea>
+								</li>
+								<li>
+									<button type="submit" class="btn bc1 bs4 commentInsert">등록</button>
+								</li>
+							</ul>
+						</form>
+					</div>
+					
+					<!-- 댓글 출력 -->
+					<div class="comment-list-box">
+						<th:block th:each="pc : ${commentList}">
+						
+							<ul class="posting-comment">
+								<li>
+									<span class="material-symbols-outlined userMainImage">account_circle</span>
+								</li>
+								<li>
+									<p class="comment-info">
+										<span th:text="${pc.productCommentWriter}"></span>
+										<span th:text="${pc.productCommentDate}"></span>
+									</p>
+									<p class="comment-content" th:text="${pc.productCommentContent}"></p>
+									
+									<!--  댓글 수정 -->
+									<textarea name="productCommentContent" class="commentInput-form" style="min-height:96px; display:none;" th:text="${pc.productCommentContent}"></textarea>
+									<p class="comment-link">
+										<th:block th:if="${session.m != null}">
+											<th:block th:if="${session.m.memberId == pc.productCommentWriter}">
+											<a href="javascript:void(0);" th:onclick="modifyComment(this,[[${pc.productCommentNo}]],[[${p.productBoardNo}]])">수정</a>
+											<a href="javascript:void(0);" th:onclick="deleteComment(this,[[${pc.productCommentNo}]],[[${p.productBoardNo}]])">삭제</a>
+										</th:block>
+										<a href="javascript(0)" class="recShow">답글달기</a>
+									</p>
+								</li>
+							</ul>
+							
+							<!-- 대댓글 -->
+							
+						</th:block>	
+					</div>
 					
                 </div>
                 
@@ -58,6 +112,93 @@
 		
 	<th:block th:include="common/footer"></th:block>
 
-	<script src="/javascript/productBoard.js"></script>
+	<script>
+	
+		$(".cart").on("click",function(){
+			const result = confirm("찜목록에 등록하시겠습니까?");
+			if(result){
+				alert("성공");
+			}
+		});
+		
+		$(".buy").on("click",function(){
+			const result = confirm("구매하시겠습니까?");
+			if(result){
+				alert("판매자에게 메세지를 전송하였습니다.");
+			}
+		});
+		
+		$(".update").on("click",function(){
+			const result = confirm("게시물을 수정하시겠습니까?");
+			if(result){
+				alert("성공");
+			}
+		});
+		
+		$(".delete").on("click",function(){
+			const result = confirm("삭제하시겠습니까?");
+			if(result){
+				alert("성공");
+			}
+		});
+		
+		
+		$(".commentInsert").on("click",function(){
+			const result = confirm("댓글을 등록하시겠습니까??");
+			if(result){
+				
+			}
+		});
+		
+		// 댓글 수정
+		function modifyComment(obj, productCommentNo, productBoardNo){
+			// 현재 보이는 p태그 숨기기
+			$(obj).parent().prev().prev().hide();
+			
+			// 숨겨져있는 textarea 보여주기
+			$(obj).parent().prev().show();
+			
+			// 수정 -> 수정완료로 바꾸기(이벤트도 수정완료 이벤트로 변경)
+			$(obj).text("수정완료");
+			$(obj).attr("onclick","modifyComplete(this,"+productCommentNo+","+productBoardNo+")");
+			
+			// 삭제 -> 수정취소로 바꾸기(이벤트도 수정취소 이벤트로 변경)
+			$(obj).next().text("수정취소");
+			$(obj).next().attr("onclick","modifyCancel(this,"+productCommentNo+","+productBoardNo+")");
+			
+			// 답글달기 버튼 숨기기
+			$(obj).next().next().hide();
+		}
+		
+		// 댓글 수정 취소
+		function modifyCancel(obj, productCommentNo, productBoardNo){
+			// 숨어있는 p태그를 보여줆(위와 반대)
+			$(obj).parent().prev().prev().show();
+			
+			// 보이는 textarea를 숨긺(위와 반대)
+			$(obj).parent().prev().hide();
+			
+			// 수정완료 -> 수정으로 바꾸기(이벤트도 변경)
+			$(obj).prev().text("수정");
+			$(obj).prev().attr("onclick","modifyComment(this,"+productCommentNo+","+productBoardNo+")");
+			
+			// 수정취소 -> 삭제로 바꾸기(이벤트도 변경)
+			$(obj).text("삭제");
+			$(obj).attr("onclick","deleteComment(this,"+productCommentNo+","+productBoardNo+")");
+			
+			// 답글달기 다시 보여줌
+			$(obj).next().show();
+		}
+		
+		// 댓글 수정 완료
+		function modifyComplete(obj, productCommentNo, productBoardNo){
+			// javascript에서 form태그를 생성해서 데이터를 넣어서 전송
+			// 보내야할 값 -> 수정한 댓글 내용(textarea), 댓글번호(where), 공지사항번호(완료 후 다시 이 번호의 페이지로)
+			
+			// 1. form태그 생성
+			const form = $("<form style='display:none' action='/product/updateComment' method='post'>");
+		}
+	
+	</script>
 </body>
 </html>
