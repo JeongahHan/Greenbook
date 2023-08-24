@@ -204,9 +204,10 @@ public class MemberController {
 
 	@ResponseBody
 	@PostMapping(value = "/find")
-	public Member find(String memberId) {
+	public Member find(String memberId, Model model) {
 		Member member = memberService.selectOneMember(memberId);
-		return member;
+		
+			return member;
 	}
 
 	@PostMapping(value = "/findresult")

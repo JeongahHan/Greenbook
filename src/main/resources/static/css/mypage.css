@@ -138,11 +138,16 @@ B31312 빨강
 	width: 1000px;
 	float: left;
 }
+.myComment-wrap{
+    overflow: hidden;
+}
 /* 마이페이지 컨텐츠 제목 디자인 */
 .mypage-content-title{
     font-family: ns-bold;
     padding: 20px 0;
     font-size: 30px;
+    background-color: #005A0D;
+    
 }
 
 

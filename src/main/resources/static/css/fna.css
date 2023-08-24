@@ -89,6 +89,7 @@ header {
 }
 
 footer {
+	margin-top:100px;
     padding-top: 40px;
     padding-bottom: 40px;
     padding-left: 20px;
@@ -603,7 +604,8 @@ textarea.input-form {
 }
 
 .title{
-	font-size: 30px;
+	font-size: 19px;
+	font-family: ns-bold;
 }
 
 
