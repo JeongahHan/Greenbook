@@ -666,3 +666,12 @@
 .s-bc2:hover {
     cursor: pointer;
 }
+.ProductBoardWriter:hover{
+	cursor: pointer;
+}
+.productCommentWriter:hover{
+	cursor: pointer;
+}
+.productReCommentWriter:hover{
+	cursor: pointer;
+}
