@@ -95,17 +95,8 @@ public class MsgController {
 	//쪽지 삭제하기
 	@ResponseBody
 	@GetMapping(value = "/deleteMsg")
-	public String deleteMsg(int mid, Model model) {
+	public void deleteMsg(int mid, Model model) {
 		int result = msgService.deleteMsg(mid);
-		if(result>0) {
-			model.addAttribute("title", "삭제 완료");
-			model.addAttribute("msg", "쪽지가 성공적으로 삭제되었습니다.");
-		}else {
-			model.addAttribute("title", "삭제 실패");
-			model.addAttribute("msg", "쪽지 삭제에 실패하였습니다.");
-		}
-		model.addAttribute("loc", "/msg/receiveList");
-		return "common/msg";
 	}
 	
 	//쪽지 답장하기
@@ -141,6 +132,24 @@ public class MsgController {
 		model.addAttribute("loc", "/member/admin");
 		return "common/msg";
 	}
+	
+	//중고거래게시판에서 쪽지 보내기
+	@PostMapping(value = "/productSendMsg")
+	public String productSendMsg(Msg msg, int productRef, Model model) {
+		int result = msgService.productSendMsg(msg);
+		//쪽지 전송 성공
+		if(result > 0) {
+			model.addAttribute("title", "전송 완료");
+			model.addAttribute("msg", "쪽지가 성공적으로 전송되었습니다.");
+		//쪽지 전송 실패
+		}else {
+			model.addAttribute("title", "전송 실패");
+			model.addAttribute("msg", "쪽지 전송에 실패하였습니다.");
+		}
+		model.addAttribute("loc", "/product/productDetail?productBoardNo="+productRef);
+		return "common/msg";
+	}
+	
 	//받은 쪽지 중 읽지 않은 쪽지 갯수 구해오기
 	@ResponseBody
 	@GetMapping(value = "/notReadMsgCount")

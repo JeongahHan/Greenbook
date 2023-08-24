@@ -162,4 +162,9 @@ public class MsgService {
 		int result = msgDao.adminSendMsg(msg);
 		return result;
 	}
+
+	public int productSendMsg(Msg msg) {
+		int result = msgDao.productSendMsg(msg);
+		return result;
+	}
 }
