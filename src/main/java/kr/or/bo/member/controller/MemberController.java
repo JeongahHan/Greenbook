@@ -204,9 +204,17 @@ public class MemberController {
 
 	@ResponseBody
 	@PostMapping(value = "/find")
-	public Member find(String memberId) {
+	public Member find(String memberId, Model model) {
 		Member member = memberService.selectOneMember(memberId);
-		return member;
+		
+		if(member == null) {
+			model.addAttribute("title", "존재하지 않는 회원!");
+			model.addAttribute("msg", "회원아이디를 재검색해보세요!");
+			return member;
+			
+		}else {
+			return member;
+		}
 	}
 
 	@PostMapping(value = "/findresult")

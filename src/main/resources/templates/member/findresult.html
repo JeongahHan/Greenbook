@@ -79,6 +79,7 @@
 	
 	
 	
+<script src="/js/sweetalert.min.js"></script>
 	<script>
 	
 	
@@ -203,14 +204,17 @@ $("#findjQ").on("click",function(){
 		})
 		.fail(function() {
 		    console.log( "error" );
-		    alert("없는 회원입니다~!다시 검색해주세요~!");
-		    /*
+		    //alert("없는 회원입니다~!다시 검색해주세요~!");
+		    
 		    $().ready(function () {
-	                Swal.fire({
-	                    title: 'Alert가 실행되었습니다.',
-	                    text: '이곳은 내용이 나타나는 곳입니다.',
-	                });
-	        });*/
+		    	swal({
+					title :  '존재하지않는 회원입니다.',
+					text : '회원아이디를 재검색 해주세요!',
+					icon : "info"
+				})
+		    	
+	        });
+	        
 		  })
 		  
 
