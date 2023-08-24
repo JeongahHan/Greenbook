@@ -105,5 +105,19 @@ public class ProductDao {
 		int result = jdbc.update(query, params);
 		return result;
 	}
+
+	public int updateComment(ProductComment pc) {
+		String query = "UPDATE PRODUCT_COMMENT SET PRODUCT_COMMENT_CONTENT = ? WHERE PRODUCT_COMMENT_NO = ?";
+		Object[] params = {pc.getProductCommentContent(), pc.getProductCommentNo()};
+		int result = jdbc.update(query, params);
+		return result;
+	}
+
+	public int deleteComment(int productCommentNo) {
+		String query = "delete from PRODUCT_COMMENT where PRODUCT_COMMENT_NO = ?";
+		Object[] params = {productCommentNo};
+		int result = jdbc.update(query, params);
+		return result;
+	}
 	
 }

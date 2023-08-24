@@ -679,4 +679,7 @@ textarea.input-form {
 .s-bc2:hover {
     cursor: pointer;
 }
+.sendMsg:hover {
+	cursor: pointer;
+}
 

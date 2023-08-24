@@ -39,7 +39,7 @@
 					<div class="main-box">
 						<div class="title" th:text="${p.getProductBoardTitle}"></div>
 						
-						<div class="cart"><a class="cart-btn">찜하기</a></div>
+						<div class="cart"><a class="cart-btn">관심상품 등록</a></div>
 						<div class="buy"><a class="buy-btn">구매하기</a></div>
 						<div class="author" th:text="${p.getProductAuthor}"></div>
 						<div class="price"><span th:text="${p.getProductPrice}"></span> 원</div>
@@ -78,25 +78,73 @@
 								</li>
 								<li>
 									<p class="comment-info">
-										<span th:text="${pc.productCommentWriter}"></span>
+										<span class="productCommentWriter" th:text="${pc.productCommentWriter}"></span>
 										<span th:text="${pc.productCommentDate}"></span>
 									</p>
 									<p class="comment-content" th:text="${pc.productCommentContent}"></p>
 									
 									<!--  댓글 수정 -->
-									<textarea name="productCommentContent" class="commentInput-form" style="min-height:96px; display:none;" th:text="${pc.productCommentContent}"></textarea>
+									<textarea name="productCommentContent" class="commentUpdateInput-form" style="min-height:96px; display:none;" th:text="${pc.productCommentContent}"></textarea>
 									<p class="comment-link">
 										<th:block th:if="${session.m != null}">
-											<th:block th:if="${session.m.memberId == pc.productCommentWriter}">
-											<a href="javascript:void(0);" th:onclick="modifyComment(this,[[${pc.productCommentNo}]],[[${p.productBoardNo}]])">수정</a>
-											<a href="javascript:void(0);" th:onclick="deleteComment(this,[[${pc.productCommentNo}]],[[${p.productBoardNo}]])">삭제</a>
-										</th:block>
-										<a href="javascript(0)" class="recShow">답글달기</a>
+											<th:block>
+												<a href="javascript:void(0);" th:onclick="modifyComment(this,[[${pc.productCommentNo}]],[[${p.productBoardNo}]])" th:if="${session.m.memberId == pc.productCommentWriter}">수정</a>
+												<a href="javascript:void(0);" th:onclick="deleteComment(this,[[${pc.productCommentNo}]],[[${p.productBoardNo}]])" th:if="${session.m.memberId == pc.productCommentWriter || session.m.memberLevel == 1}">삭제</a>
+											</th:block>
+											<a href="javascript:void(0);" class="recShow" th:if="${session.m != null}">답글달기</a>
+										</th:block>	
 									</p>
 								</li>
 							</ul>
 							
-							<!-- 대댓글 -->
+							<!-- 대댓글 출력 -->
+							<th:block th:each="pcc : ${reCommentList}">
+								<ul class="posting-comment reply" th:if="${pc.productCommentNo} == pcc.productCommentRef">
+									<li>
+										<span class="material-symbols-outlined">subdirectory_arrow_right</span>
+										<span class="material-symbols-outlined userMainImage">account_circle</span>
+									</li>
+									<li>
+										<p class="comment-info">
+											<span class="productReCommentWriter" th:text="${pcc.productCommentWriter}"></span>
+											<span th:text="${pcc.productCommentDate}"></span>
+										</p>
+										<p class="comment-content" th:text="${pcc.productCommentContent}"></p>
+										
+										<!-- 대댓글 수정 -->
+										<textarea name="productCommentContent" class="commentUpdateInput-form" style="min-height:96px; display:none;" th:text="${pcc.productCommentContent}"></textarea>
+										
+										<p class="comment-link">
+											<th:block th:if="${session.m != null}">
+												<th:block>
+													<a href="javascript:void(0);" th:onclick="modifyComment(this,[[${pcc.productCommentNo}]],[[${p.productBoardNo}]])" th:if="${session.m.memberId == pcc.productCommentWriter}">수정</a>
+													<a href="javascript:void(0);" th:onclick="deleteComment(this,[[${pcc.productCommentNo}]],[[${p.productBoardNo}]])" th:if="${session.m.memberId == pcc.productCommentWriter || session.m.memberLevel == 1}">삭제</a>
+												</th:block>
+											</th:block>	
+										</p>
+									</li>
+								</ul>
+							</th:block>
+							
+							<!-- 대댓글 등록 -->
+							<div class="inputCommentBox inputRecommentBox" th:if="${session.m != null}">
+								<form action="/product/insertComment" method="post">
+									<ul>
+										<li>
+											<span class="material-symbols-outlined">subdirectory_arrow_right</span>
+										</li>
+										<li>
+											<input type="hidden" name="productCommentWriter" th:value="${session.m.memberId}">
+											<input type="hidden" name="productRef" th:value="${p.productBoardNo}">
+											<input type="hidden" name="productCommentRef" th:value="${pc.productCommentNo}">
+											<textarea name="productCommentContent" class="commentInput-form"></textarea>
+										</li>
+										<li>
+											<button type="submit" class="btn bc1 bs4 commentInsert">등록</button>
+										</li>
+									</ul>
+								</form>
+							</div>
 							
 						</th:block>	
 					</div>
@@ -108,14 +156,34 @@
         </div>
     </div>
 	
-		
+	<!-- 쪽지 쓰기 모달 -->
+	<div class="sendMsg-modal-wrap">
+    	<div class="sendMsg-modal">
+	        <div class="modal-title">
+	            <h3>쪽지 쓰기</h3>
+	           	<hr>
+	        </div>
+	        <form action="/msg/productSendMsg" method="post">
+	            <div class="sendMsg-modal-content">
+	                <span><strong>받는 사람</strong></span>
+	                <span class="receiver"></span>
+	                <input type="hidden" name="sender" class="memberId" th:value="${session.m.memberId}">
+	                <input type="hidden" name="receiver" id="receiver">
+		    <input type="hidden" name="productRef" th:value="${p.productBoardNo}">
+	                <textarea name="message" class="s-input-form" id="sendMsgTextarea"></textarea>
+	            </div>
+	            <button type="submit" class="modalBtn s-bc1">보내기</button>
+	            <button type="button" class="modalBtn s-bc2" id="sendMsgCancel">취소</button>	        
+	        </form>
+    	</div>
+    </div>	
 		
 	<th:block th:include="common/footer"></th:block>
 
 	<script>
 	
 		$(".cart").on("click",function(){
-			const result = confirm("찜목록에 등록하시겠습니까?");
+			const result = confirm("관심상품에 등록하시겠습니까?");
 			if(result){
 				alert("성공");
 			}
@@ -192,13 +260,110 @@
 		
 		// 댓글 수정 완료
 		function modifyComplete(obj, productCommentNo, productBoardNo){
+			if(confirm("댓글을 수정하시겠습니까?")){
 			// javascript에서 form태그를 생성해서 데이터를 넣어서 전송
 			// 보내야할 값 -> 수정한 댓글 내용(textarea), 댓글번호(where), 공지사항번호(완료 후 다시 이 번호의 페이지로)
 			
 			// 1. form태그 생성
 			const form = $("<form style='display:none' action='/product/updateComment' method='post'>");
+			
+			// 2. input태그 생성해서 댓글번호, 공지사항번호 넣기
+			const commentNoInput = $("<input type='text' name='productCommentNo'>");
+			commentNoInput.val(productCommentNo);
+			const productNoInput = $("<input type='text' name='productRef'>");
+			productNoInput.val(productBoardNo);
+			
+			// 3. 변경한 내용이 들어있는 textarea
+			const textArea = $(obj).parent().prev().clone();
+			
+			// 4. form태그 내부에 input 2개와 textarea태그를 포함
+			form.append(commentNoInput).append(productNoInput).append(textArea);
+			
+			// 5. 완성된 form태그를 body에 추가
+			$("body").append(form);
+			
+			// 6. form submit
+			form.submit();
+			}
 		}
-	
+		
+		// 댓글 삭제
+		function deleteComment(obj, productCommentNo, productBoardNo){
+			if(confirm("댓글을 삭제하시겠습니까?")){
+				location.href="/product/deleteComment?productCommentNo="+productCommentNo+"&productBoardNo="+productBoardNo;
+			}
+		}
+		
+		// 대댓글
+		$(".recShow").on("click",function(){
+			// 몇번째 답글달기 버튼을 클릭한지 구하기
+			const index = $(".recShow").index(this);
+			if($(this).text() == "답글달기"){
+				$(this).text("취소");
+			}else{
+				$(this).text("답글달기");
+			}
+			
+			// 대댓글 양식 중에 해당번째 양식을 화면에 출력
+			$(".inputRecommentBox").eq(index).toggle();
+			$(".inputRecommentBox").eq(index).find("textarea").focus();
+		});
+		
+		//쪽지쓰기 시작
+		const memberId = $(".memberId").val();
+		//게시물 작성자에게 쪽지 쓰기
+		$(".ProductBoardWriter").on("click", function(){
+			const receiver = $(this).text();
+			if(receiver != memberId){
+				//쪽지쓰기 모달 열기
+				$(".sendMsg-modal-wrap").css("display","flex");
+				//textarea 초기화
+				$("#sendMsgTextarea").val("");
+				//받는 사람 데이터 넣어주기
+				$(".receiver").text(receiver);
+				$("#receiver").val(receiver);
+				//쪽지쓰기 모달 닫기
+				$("#sendMsgCancel").on("click", function(){
+					$(".sendMsg-modal-wrap").css("display","none");
+				});
+			}
+		});
+		
+		//댓글 작성자에게 쪽지 쓰기
+		$(".productCommentWriter").on("click", function(){
+			const receiver = $(this).text();
+			if(receiver != memberId){
+				//쪽지쓰기 모달 열기
+				$(".sendMsg-modal-wrap").css("display","flex");
+				//textarea 초기화
+				$("#sendMsgTextarea").val("");
+				//받는 사람 데이터 넣어주기
+				$(".receiver").text(receiver);
+				$("#receiver").val(receiver);
+				//쪽지쓰기 모달 닫기
+				$("#sendMsgCancel").on("click", function(){
+					$(".sendMsg-modal-wrap").css("display","none");
+				});
+			}
+		});
+		
+		//대댓글 작성자에게 쪽지 쓰기
+		$(".productReCommentWriter").on("click", function(){
+			const receiver = $(this).text();
+			if(receiver != memberId){
+				//쪽지쓰기 모달 열기
+				$(".sendMsg-modal-wrap").css("display","flex");
+				//textarea 초기화
+				$("#sendMsgTextarea").val("");
+				//받는 사람 데이터 넣어주기
+				$(".receiver").text(receiver);
+				$("#receiver").val(receiver);
+				//쪽지쓰기 모달 닫기
+				$("#sendMsgCancel").on("click", function(){
+					$(".sendMsg-modal-wrap").css("display","none");
+				});
+			}
+		});
 	</script>
 </body>
 </html>

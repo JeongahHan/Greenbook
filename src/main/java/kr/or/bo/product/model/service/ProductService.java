@@ -120,9 +120,19 @@ public class ProductService {
 		}
 	}
 
+	@Transactional
 	public int insertComment(ProductComment pc) {
 		int result = productDao.insertComment(pc);
 		return result;
+	}
+
+	public int updateComment(ProductComment pc) {
+		int result = productDao.updateComment(pc);
+		return result;
+	}
+
+	public int deleteComment(int productCommentNo) {
+		return productDao.deleteComment(productCommentNo);
 	}
 	
 }

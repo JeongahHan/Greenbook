@@ -117,7 +117,6 @@ public class ProductController {
 		int memberNo = (m == null) ? 0 : m.getMemberNo();
 		ProductViewData pvd = productService.selectOneProduct(productBoardNo, memberNo);
 		if(pvd != null) {
-			System.out.println(pvd);
 			model.addAttribute("p", pvd.getP());
 			model.addAttribute("commentList", pvd.getCommentList());
 			model.addAttribute("reCommentList", pvd.getReCommentList());
@@ -136,15 +135,47 @@ public class ProductController {
 	public String insertComment(ProductComment pc, Model model) {
 		int result = productService.insertComment(pc);
 		if(result > 0) {
-			model.addAttribute("title", "등록완료");
+			model.addAttribute("title", "등록 완료");
 			model.addAttribute("msg", "댓글이 등록되었습니다.");
 			model.addAttribute("icon", "");
 		}else {
-			model.addAttribute("title", "등록실패");
+			model.addAttribute("title", "등록 실패");
 			model.addAttribute("msg", "댓글 등록에 실패하였습니다");
 			model.addAttribute("icon", "");
 		}
 		model.addAttribute("loc", "/product/productDetail?productBoardNo="+pc.getProductRef());
+		return "common/msg";
+	}
+	
+	@PostMapping(value="/updateComment")
+	public String updateComment(ProductComment pc, Model model) {
+		int result = productService.updateComment(pc);
+		if(result > 0) {
+			model.addAttribute("title", "수정 완료");
+			model.addAttribute("msg", "댓글이 수정되었습니다.");
+			model.addAttribute("icon", "");
+		}else {
+			model.addAttribute("title", "수정 실패");
+			model.addAttribute("msg", "댓글이 수정에 실패했습니다.");
+			model.addAttribute("icon", "");
+		}
+		model.addAttribute("loc", "/product/productDetail?productBoardNo="+pc.getProductRef());
+		return "common/msg";
+	}
+	
+	@GetMapping(value="/deleteComment")
+	public String deleteComment(int productCommentNo, int productBoardNo, Model model) {
+		int result = productService.deleteComment(productCommentNo);
+		if(result > 0) {
+			model.addAttribute("title", "삭제 완료");
+			model.addAttribute("msg", "댓글이 삭제되었습니다.");
+			model.addAttribute("icon", "");
+		}else {
+			model.addAttribute("title", "삭제 실패");
+			model.addAttribute("msg", "댓글 삭제에 실패했습니다.");
+			model.addAttribute("icon", "");
+		}
+		model.addAttribute("loc", "/product/productDetail?productBoardNo="+productBoardNo);
 		return "common/msg";
 	}
 	
