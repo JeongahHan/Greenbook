@@ -57,7 +57,7 @@ public class MsgController {
 	
 	//관리자에게 쪽지 보내기
 	@PostMapping(value = "/sendMsgToAdmin")
-	public String sendMsgToAdmin(Msg msg, Model model) {
+	public String sendMsgToAdmin(Msg msg, Model model, int reqPage) {
 		int result = msgService.sendMsgToAdmin(msg);
 		//쪽지 전송 성공
 		if(result > 0) {
@@ -68,7 +68,7 @@ public class MsgController {
 			model.addAttribute("title", "전송 실패");
 			model.addAttribute("msg", "관리자에게 쪽지 전송을 실패하였습니다.");
 		}
-		model.addAttribute("loc", "/msg/receiveList");
+		model.addAttribute("loc", "/msg/receiveList?reqPage=1");
 		return "common/msg";
 	}
 	
@@ -101,7 +101,7 @@ public class MsgController {
 	
 	//쪽지 답장하기
 	@PostMapping(value = "/replyMsg")
-	public String replyMsg(Msg msg, Model model) {
+	public String replyMsg(Msg msg, Model model, int reqPage) {
 		int result = msgService.replyMsg(msg);
 		//쪽지 전송 성공
 		if(result > 0) {
@@ -152,7 +152,7 @@ public class MsgController {
 	
 	//자유게시판에서 쪽지 보내기
 	@PostMapping(value = "/boardSendMsg")
-	public String boardSendMsg(Msg msg, int boardNo, Model model) {
+	public String boardSendMsg(Msg msg, int boardRef, Model model) {
 		int result = msgService.boardSendMsg(msg);
 		//쪽지 전송 성공
 		if(result > 0) {
@@ -163,7 +163,7 @@ public class MsgController {
 			model.addAttribute("title", "전송 실패");
 			model.addAttribute("msg", "쪽지 전송에 실패하였습니다.");
 		}
-		model.addAttribute("loc", "/board/view?boardNo="+boardNo);
+		model.addAttribute("loc", "/board/view?boardNo="+boardRef);
 		return "common/msg";
 	}
 	
