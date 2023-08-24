@@ -121,10 +121,26 @@ public class MsgController {
 			model.addAttribute("title", "전송 실패");
 			model.addAttribute("msg", "쪽지 전송에 실패하였습니다.");
 		}
-		model.addAttribute("loc", "/msg/receiveList");
+		model.addAttribute("loc", "/msg/receiveList?reqPage=1");
 		return "common/msg";
 	}
 	
+	//관리자가 회원에게 쪽지 보내기
+	@PostMapping(value = "/adminSendMsg")
+	public String adminSendMsg(Msg msg, Model model) {
+		int result = msgService.adminSendMsg(msg);
+		//쪽지 전송 성공
+		if(result > 0) {
+			model.addAttribute("title", "전송 완료");
+			model.addAttribute("msg", "쪽지가 성공적으로 전송되었습니다.");
+		//쪽지 전송 실패
+		}else {
+			model.addAttribute("title", "전송 실패");
+			model.addAttribute("msg", "쪽지 전송에 실패하였습니다.");
+		}
+		model.addAttribute("loc", "/member/admin");
+		return "common/msg";
+	}
 	//받은 쪽지 중 읽지 않은 쪽지 갯수 구해오기
 	@ResponseBody
 	@GetMapping(value = "/NotReadMsgCount")

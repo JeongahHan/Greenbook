@@ -78,7 +78,6 @@
 
 .mid-content{
 	margin: 50px auto;
-	text-align: center;
 }
 
 .img-box{
@@ -265,7 +264,7 @@
 	background-color: transparent;
 }
 
-/* 댓글리스트 */
+/* 댓글 입력창 */
 .commentInput-form {
   width: 100%;
   display: block;
@@ -309,7 +308,7 @@
 	resize: none;
 }
 
-/* 댓글 버튼 */
+/* 댓글 입력창 버튼 */
 .btn {
   border: none;
   padding: 1rem;
@@ -335,6 +334,92 @@
   width: 100%;
   padding: 2rem;
   font-size: 1.2em;
+}
+
+/* 댓글 출력창 */
+.comment-list-box{
+	margin:50px;
+}
+
+.posting-comment { 
+  margin: 0 auto;
+  width: 80%;
+  display: flex;
+  border-top: 2px solid #ccc;
+
+  list-style-type: none;
+}
+
+.posting-comment > li {
+  box-sizing: border-box;
+}
+
+.posting-comment > li:first-child {
+  width: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100px;
+  border-right: 1px solid #ccc;
+}
+
+.posting-comment.reply > li:first-child {
+  width: 20%;
+}
+
+.posting-comment > li:first-child .material-symbols-outlined {
+  font-size: 80px;
+  color: #ccc;
+}
+
+.posting-comment > li:last-child {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+}
+
+.posting-comment > li:last-child > p {
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.posting-comment > li:last-child > .comment-info > span {
+  color: gray;
+  padding: 0px 10px;
+}
+
+.posting-comment > li:last-child > .comment-info > span:not(:last-child) {
+  border-right: 2px solid #ccc;
+}
+
+.posting-comment > li:last-child > .comment-content {
+  padding: 0px 15px;
+}
+
+.posting-comment > li:last-child > .comment-link {
+  text-align: right;
+}
+
+.posting-comment > li:last-child > .comment-link > a {
+  margin: 0px 5px;
+}
+
+.posting-comment > li:last-child > .comment-link > a:hover {
+  text-decoration: underline;
+}
+
+/* 대댓글 */
+.posting-comment.reply > li:last-child {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.posting-comment.reply > li:last-child {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
 }
 
 /*

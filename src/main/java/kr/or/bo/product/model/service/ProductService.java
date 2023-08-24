@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.bo.product.model.dao.ProductDao;
 import kr.or.bo.product.model.vo.Product;
+import kr.or.bo.product.model.vo.ProductComment;
 import kr.or.bo.product.model.vo.ProductFile;
 import kr.or.bo.product.model.vo.ProductListData;
 import kr.or.bo.product.model.vo.ProductViewData;
@@ -117,6 +118,11 @@ public class ProductService {
 		}else {
 			return null;
 		}
+	}
+
+	public int insertComment(ProductComment pc) {
+		int result = productDao.insertComment(pc);
+		return result;
 	}
 	
 }
