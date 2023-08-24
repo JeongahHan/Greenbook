@@ -78,7 +78,7 @@
 								</li>
 								<li>
 									<p class="comment-info">
-										<span th:text="${pc.productCommentWriter}"></span>
+										<span class="productCommentWriter" th:text="${pc.productCommentWriter}"></span>
 										<span th:text="${pc.productCommentDate}"></span>
 									</p>
 									<p class="comment-content" th:text="${pc.productCommentContent}"></p>
@@ -106,7 +106,7 @@
 									</li>
 									<li>
 										<p class="comment-info">
-											<span th:text="${pcc.productCommentWriter}"></span>
+											<span class="productReCommentWriter" th:text="${pcc.productCommentWriter}"></span>
 											<span th:text="${pcc.productCommentDate}"></span>
 										</p>
 										<p class="comment-content" th:text="${pcc.productCommentContent}"></p>
@@ -156,7 +156,27 @@
         </div>
     </div>
 	
-		
+	<!-- 쪽지 쓰기 모달 -->
+	<div class="sendMsg-modal-wrap">
+    	<div class="sendMsg-modal">
+	        <div class="modal-title">
+	            <h3>쪽지 쓰기</h3>
+	           	<hr>
+	        </div>
+	        <form action="/msg/productSendMsg" method="post">
+	            <div class="sendMsg-modal-content">
+	                <span><strong>받는 사람</strong></span>
+	                <span class="receiver"></span>
+	                <input type="hidden" name="sender" class="memberId" th:value="${session.m.memberId}">
+	                <input type="hidden" name="receiver" id="receiver">
+		    <input type="hidden" name="productRef" th:value="${p.productBoardNo}">
+	                <textarea name="message" class="s-input-form" id="sendMsgTextarea"></textarea>
+	            </div>
+	            <button type="submit" class="modalBtn s-bc1">보내기</button>
+	            <button type="button" class="modalBtn s-bc2" id="sendMsgCancel">취소</button>	        
+	        </form>
+    	</div>
+    </div>	
 		
 	<th:block th:include="common/footer"></th:block>
 
@@ -288,7 +308,62 @@
 			$(".inputRecommentBox").eq(index).toggle();
 			$(".inputRecommentBox").eq(index).find("textarea").focus();
 		});
-	
+		
+		//쪽지쓰기 시작
+		const memberId = $(".memberId").val();
+		//게시물 작성자에게 쪽지 쓰기
+		$(".ProductBoardWriter").on("click", function(){
+			const receiver = $(this).text();
+			if(receiver != memberId){
+				//쪽지쓰기 모달 열기
+				$(".sendMsg-modal-wrap").css("display","flex");
+				//textarea 초기화
+				$("#sendMsgTextarea").val("");
+				//받는 사람 데이터 넣어주기
+				$(".receiver").text(receiver);
+				$("#receiver").val(receiver);
+				//쪽지쓰기 모달 닫기
+				$("#sendMsgCancel").on("click", function(){
+					$(".sendMsg-modal-wrap").css("display","none");
+				});
+			}
+		});
+		
+		//댓글 작성자에게 쪽지 쓰기
+		$(".productCommentWriter").on("click", function(){
+			const receiver = $(this).text();
+			if(receiver != memberId){
+				//쪽지쓰기 모달 열기
+				$(".sendMsg-modal-wrap").css("display","flex");
+				//textarea 초기화
+				$("#sendMsgTextarea").val("");
+				//받는 사람 데이터 넣어주기
+				$(".receiver").text(receiver);
+				$("#receiver").val(receiver);
+				//쪽지쓰기 모달 닫기
+				$("#sendMsgCancel").on("click", function(){
+					$(".sendMsg-modal-wrap").css("display","none");
+				});
+			}
+		});
+		
+		//대댓글 작성자에게 쪽지 쓰기
+		$(".productReCommentWriter").on("click", function(){
+			const receiver = $(this).text();
+			if(receiver != memberId){
+				//쪽지쓰기 모달 열기
+				$(".sendMsg-modal-wrap").css("display","flex");
+				//textarea 초기화
+				$("#sendMsgTextarea").val("");
+				//받는 사람 데이터 넣어주기
+				$(".receiver").text(receiver);
+				$("#receiver").val(receiver);
+				//쪽지쓰기 모달 닫기
+				$("#sendMsgCancel").on("click", function(){
+					$(".sendMsg-modal-wrap").css("display","none");
+				});
+			}
+		});
 	</script>
 </body>
 </html>
