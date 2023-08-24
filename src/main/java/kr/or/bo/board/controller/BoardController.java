@@ -9,10 +9,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import kr.or.bo.FileUtil;
 import kr.or.bo.board.service.BoardService;
 import kr.or.bo.board.vo.BoardListData;
+import kr.or.bo.board.vo.BoardViewData;
+import kr.or.bo.member.model.vo.Member;
 
 
 @Controller
@@ -58,8 +61,29 @@ public class BoardController {
 	//자유게시판 글 상세보기
 	
 	//로그인한 회원만 글 작성가능. //로그인 안한회원은 볼수만 있음
-	//@GetMapping(value="/view")
-	//public String boardView(int boardNo,)
+	@GetMapping(value="/view")
+	public String view(int boardNo,@SessionAttribute(required=false) Member m,Model model) { //세션에 있는거 없으면 null 로 주라는 거 넣어놓음,
+		//로그인 되어있으면 m에는 로그인한 회원 정보 들어있음 
+		//로그인 안되어있으면 m에는 null;
+		
+		int memberNo = (m==null)? 0:m.getMemberNo();
+		
+		BoardViewData bvd = boardService.selectOneBoard(boardNo,memberNo);
+		
+		if(bvd != null) {
+			model.addAttribute("n",bvd.getB());  //n : 작성자 작성일 조회수 ~~~
+			model.addAttribute("commentList",bvd.getCommentList());
+			model.addAttribute("reCommentList",bvd.getReCommentList());
+			
+			return "board/boardView";
+		}else {
+			model.addAttribute("title","조회실패");
+			model.addAttribute("msg","이미 삭제된 게시물 입니다.");
+			model.addAttribute("icon","info");
+			model.addAttribute("loc","/board/list?reqPage=1");
+			return "common/msg";
+		}
+	}
 	
 	
 	
