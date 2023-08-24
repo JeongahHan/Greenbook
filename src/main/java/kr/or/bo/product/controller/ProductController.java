@@ -19,6 +19,7 @@ import kr.or.bo.FileUtil;
 import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.product.model.service.ProductService;
 import kr.or.bo.product.model.vo.Product;
+import kr.or.bo.product.model.vo.ProductComment;
 import kr.or.bo.product.model.vo.ProductFile;
 import kr.or.bo.product.model.vo.ProductListData;
 import kr.or.bo.product.model.vo.ProductViewData;
@@ -129,6 +130,22 @@ public class ProductController {
 			model.addAttribute("loc", "/product/board?reqPage=1");
 			return "common/msg";
 		}
+	}
+	
+	@PostMapping(value="/insertComment")
+	public String insertComment(ProductComment pc, Model model) {
+		int result = productService.insertComment(pc);
+		if(result > 0) {
+			model.addAttribute("title", "등록완료");
+			model.addAttribute("msg", "댓글이 등록되었습니다.");
+			model.addAttribute("icon", "");
+		}else {
+			model.addAttribute("title", "등록실패");
+			model.addAttribute("msg", "댓글 등록에 실패하였습니다");
+			model.addAttribute("icon", "");
+		}
+		model.addAttribute("loc", "/product/productDetail?productBoardNo="+pc.getProductRef());
+		return "common/msg";
 	}
 	
 }
