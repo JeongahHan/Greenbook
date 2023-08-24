@@ -13,19 +13,25 @@
 			<div class="mypage-content-title">내가 판매 중 인 도서</div>
 			<div class="wishList-wrap">
 				<div class="wishList-one" th:each="list : ${mySellBookList}">
-					<div class="wishList-imgBox">
-                    	<img src="/img/product-img/매미울음소리 그칠 무렵.jpg">
-                    	<img th:src="${list.productFile.getFilepath}">
+				<!-- a태그나 다름 없는데 th:onclick 에서 ||써보고 싶었음 -->
+					<div th:onclick="|location.href='@{/product/productDetail(productBoardNo=${list.productBoardNo})}'|">
+						<div class="wishList-imgBox" >
+	                    	<img src="/img/product-img/매미울음소리 그칠 무렵.jpg">
+	                    	<img th:src="${list.productFile.getFilepath}">
+						</div>
+						<p><span class="productBoardNo" th:text="${list.productBoardNo}"></span>글번호</p>
+						<a th:href="@{/product/productDetail(productBoardNo=${list.productBoardNo})}" th:text="${list.productBoardTitle}" class="productBoardTitle"></a>
+						<p>저자 : <span th:text="${list.productAuthor}"></span></p>
+						<p th:text="${list.productBoardWriter}">판매자user01</p>
+						<p><span th:text="${list.productPrice}"></span>원</p>
 					</div>
-					<p><span class="productBoardNo" th:text="${list.productBoardNo}"></span>글번호</p>
-					<p th:text="${list.productBoardTitle}"></p>
-					<p>저자 : <span th:text="${list.productAuthor}"></span></p>
-					<p th:text="${list.productBoardWriter}">판매자user01</p>
-					<p><span th:text="${list.productPrice}"></span>원</p>
-					<a class="btn bc1">판매완료</a>
-					<!-- <a class="btn bc1 modal-open-btn" target="#delete-modal" th:href="@{/mypage/mySellBookDelete(productBoardNo=${list.productBoardNo})}" th:value="${list.productBoardNo}">판매취소</a> -->
-					<p style="display : none" class="toControllPath" value="/mypage/mySellBookDelete?productBoardNo=">모달에 컨트롤 경로지정</p>
-					<button class="btn bc1 modal-open-btn deleteBtn" target="#delete-modal" th:value="${list.productBoardNo}">판매취소</button>
+					
+					<div class="btn-box">
+						<a class="btn bc1">판매완료</a>
+						<!-- <a class="btn bc1 modal-open-btn" target="#delete-modal" th:href="@{/mypage/mySellBookDelete(productBoardNo=${list.productBoardNo})}" th:value="${list.productBoardNo}">판매취소</a> -->
+						<p style="display : none" class="toControllPath" value="/mypage/mySellBookDelete?productBoardNo=">모달에 컨트롤 경로지정</p>
+						<button class="btn bc1 modal-open-btn deleteBtn" target="#delete-modal" th:value="${list.productBoardNo}">판매취소</button>
+					</div>
 				</div>
 				<!-- 
 				${mySellBookList}에 담겨 있는 이름들
@@ -73,5 +79,21 @@
 	
 	<th:block th:include="common/footer"></th:block>
 	
+	
+	<script>
+		const wishListOne = $(".wishList-imgBox");
+		const productBoardTitle = $(".productBoardTitle");
+		
+		wishListOne.on("click",function(){
+			console.log("이미지 클릭이벤트 확인");
+			productBoardTitle.click();
+			productBoardTitle.trigger("click");
+		});
+		productBoardTitle.on("click",function(){
+			console.log("a태그 클릭이벤트 확인");
+
+		});
+
+	</script>
 </body>
 </html>
