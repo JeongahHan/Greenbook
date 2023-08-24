@@ -191,6 +191,13 @@
 		}
 		
 		// 댓글 수정 완료
+		function modifyComplete(obj, productCommentNo, productBoardNo){
+			// javascript에서 form태그를 생성해서 데이터를 넣어서 전송
+			// 보내야할 값 -> 수정한 댓글 내용(textarea), 댓글번호(where), 공지사항번호(완료 후 다시 이 번호의 페이지로)
+			
+			// 1. form태그 생성
+			const form = $("<form style='display:none' action='/product/updateComment' method='post'>");
+		}
 	
 	</script>
 </body>
