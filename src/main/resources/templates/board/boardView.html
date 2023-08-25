@@ -56,8 +56,8 @@
 				
 			<!-- 목록으로가기 , 수정 , 삭제 버튼 -->
 			<tr class="tr-1" id="modbtn-tr"> 
-				<th colspan = "6" id="modbtn-th" > <!--로그인한상태이고 세션의아이디와 글쓴이가 같을때 -->
-					<div class="modbtnfirst"><a class="modbtn commentbc44" href="/board/list?reqPage=1">목록으로 가기</a></div>
+				<th colspan = "6" id="modbtn-th" style="padding-top:30px;"> <!--로그인한상태이고 세션의아이디와 글쓴이가 같을때 -->
+					<div class="modbtnfirst"><a class="modbtn commentbc44" href="/board/list?reqPage=1" style="padding:14px 18px;">목록으로 가기</a></div>
 					<div class="modbtnSecond" th:if="${session.m != null && session.m.memberId == b.boardWriter}">
 					<a class="modbtn commentbc44" th:href="@{/board/updateFrm(boardNo=${b.boardNo})}">게시글 수정</a> 
 					<button class="modbtn commentbc44" th:onclick="boardDelete([[${b.boardNo}]])">게시글 삭제</button><!-- 실제 진짜 삭제할건지 물어보기위해 버튼 처리 --> 
