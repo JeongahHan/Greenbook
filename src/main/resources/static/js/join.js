@@ -64,11 +64,14 @@ $("#memberPw").on("change",function(){
     }else{
     	$("#checkPw").text("");
     	$("#memberPw").css("border","1px solid #ccc");
+    	$("#checkPwRe").text("");
+    	$("#memberPwRe").css("border","1px solid #ccc");
     }
 });
 
 $("#memberPwRe").on("change",function(){
     pwDupCHECK();
+    
 });
 
 //비밀번호, 비밀번호 확인 일치
@@ -91,6 +94,7 @@ function pwDupCHECK(){
     	$("#checkPwRe").text("");
     	$("#memberPwRe").css("border","1px solid #ccc");
     }
+
 }
 
 let authCode = null;
