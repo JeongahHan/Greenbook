@@ -43,6 +43,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    min-width: fit-content;
 }
 
 
@@ -94,6 +95,7 @@ footer {
     padding-left: 20px;
     border-top: 1px solid #252a34;
     background-color: antiquewhite;
+    min-width: fit-content;
     }
 footer > .footer-content {
     width: 1200px;
