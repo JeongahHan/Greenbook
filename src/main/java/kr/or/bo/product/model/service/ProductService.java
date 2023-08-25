@@ -163,7 +163,7 @@ public class ProductService {
 		
 		if(pageNo != 1) {
 			pageNavi += "<li>";
-			pageNavi += "<a class='page-item' href='/product/board?reqPage="+(pageNo-1)+"&type="+(type)+"&keyword="+(keyword)+"'>";
+			pageNavi += "<a class='page-item' href='/product/getSearchList?reqPage="+(pageNo-1)+"&type="+(type)+"&keyword="+(keyword)+"'>";
 			pageNavi += "<span class='material-icons'>chevron_left</span>";
 			pageNavi += "</a>";
 			pageNavi += "</li>";
@@ -172,13 +172,13 @@ public class ProductService {
 		for(int i=0; i<pageNaviSize; i++) {
 			if(pageNo == reqPage) {
 				pageNavi += "<li>";
-				pageNavi += "<a class='page-item active-page' href='/product/board?reqPage="+(pageNo)+"&type="+(type)+"&keyword="+(keyword)+"'>";
+				pageNavi += "<a class='page-item active-page' href='/product/getSearchList?reqPage="+(pageNo)+"&type="+(type)+"&keyword="+(keyword)+"'>";
 				pageNavi += pageNo;
 				pageNavi += "</a>";
 				pageNavi += "</li>";
 			}else {
 				pageNavi += "<li>";
-				pageNavi += "<a class='page-item' href='/product/board?reqPage="+(pageNo)+"&type="+(type)+"&keyword="+(keyword)+"'>";
+				pageNavi += "<a class='page-item' href='/product/getSearchList?reqPage="+(pageNo)+"&type="+(type)+"&keyword="+(keyword)+"'>";
 				pageNavi += pageNo;
 				pageNavi += "</a>";
 				pageNavi += "</li>";
@@ -193,7 +193,7 @@ public class ProductService {
 		
 		if(pageNo <= totalPage) {
 			pageNavi += "<li>";
-			pageNavi += "<a class='page-item' href='/product/board?reqPage="+(pageNo)+"&type="+(type)+"&keyword="+(keyword)+"'>";
+			pageNavi += "<a class='page-item' href='/product/getSearchList?reqPage="+(pageNo)+"&type="+(type)+"&keyword="+(keyword)+"'>";
 			pageNavi += "<span class='material-icons'>chevron_right</span>";
 			pageNavi += "</a>";
 			pageNavi += "</li>";

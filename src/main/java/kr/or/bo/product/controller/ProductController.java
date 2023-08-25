@@ -183,6 +183,7 @@ public class ProductController {
 	public String getSearchList(int reqPage, String type, String keyword, Model model) {
 		ProductListData pld = productService.getSearchList(reqPage, type, keyword);
 		
+//		model.addAttribute("p", pvd.getP());
 		model.addAttribute("productList", pld.getProductList());
 		model.addAttribute("pageNavi", pld.getPageNavi());
 		
