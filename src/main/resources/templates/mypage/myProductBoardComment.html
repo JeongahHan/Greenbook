@@ -22,10 +22,12 @@
 							<div class="myComment">
 								<p><span th:text="${list.product.productBoardTitle}">어느게시글에 달린 댓글인지</span> 에 남긴 댓글</p>
 								<p th:text="${list.productCommentContent}">여기는 중고책판 댓글내용</p>
+								<p th:text="${list.productFile.filepath}">임시로 파일패스 문자 확인</p>
 								
 							</div>
 							<div class="comment-imgBox">
-		                    	<img src="/img/product-img/매미울음소리 그칠 무렵.jpg">
+		                    	<img th:src="${list.productFile.filepath}">
+		                    	<!-- <img src="/img/product-img/매미울음소리 그칠 무렵.jpg"> -->
 							</div>
 						</a>
 						<a><span class="material-icons">clear</span></a>

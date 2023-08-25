@@ -29,7 +29,8 @@
 			
 			<tr class="tr-1">
 				<th class="td-3" style="width:15%;">작성자</th>
-				<td th:text="${b.boardWriter}" style="font-family:ns-light;"></td>
+				<!-- 쪽지 쓰기 위해 클래스 추가 -->
+				<td class="boardWriter" th:text="${b.boardWriter}" style="font-family:ns-light;"></td>
 				<th class="td-3" style="width:10%;">작성일</th>
 				<td th:text="${b.boardRegDate}" style="font-family:ns-light;"></td>
 				<th class="td-3" style="width:10%;">조회수</th>
@@ -98,7 +99,8 @@
 					</li>
 					<li>
 						<p class="comment-info">
-							<span th:text="${bc.boardCommentWriter}"></span>
+							<!-- 쪽지 쓰기 위해 클래스 추가 -->
+							<span class="boardCommentWriter" th:text="${bc.boardCommentWriter}"></span>
 							<span th:text="${bc.boardCommentDate}"></span>
 							<!-- 좋아요, 좋아요 취소 기능 -->
 							<span class ="like-box">
@@ -135,7 +137,8 @@
 						
 						<li>
 							<p class="comment-info">
-								<span th:text = "${bcc.boardCommentWriter}"></span>
+								<!-- 쪽지 쓰기 위해 클래스 추가 -->
+								<span class="boardReCommentWriter" th:text = "${bcc.boardCommentWriter}"></span>
 								<span th:text = "${bcc.boardCommentDate}"></span>
 								<span class ="like-box">
 									<span class="material-icons" th:if="${session.m == null}" onclick="loginMsg();">thumb_up_off_alt</span>
@@ -187,6 +190,30 @@
 		</div>
 		
 	</div>
+	
+	<!-- 쪽지 쓰기 모달 -->
+	<div class="sendMsg-modal-wrap">
+    	<div class="sendMsg-modal">
+	        <div class="modal-title">
+	            <h3>쪽지 쓰기</h3>
+	           	<hr>
+	        </div>
+	        <form action="/msg/boardSendMsg" method="post">
+	            <div class="sendMsg-modal-content">
+	                <span><strong>받는 사람</strong></span>
+	                <span class="receiver"></span>
+		    		<th:block th:if="${session.m != null}">
+	                	<input type="hidden" name="sender" class="memberId" th:value="${session.m.memberId}">
+		    		</th:block>
+	                <input type="hidden" name="receiver" id="receiver">
+		    		<input type="hidden" name="boardRef" th:value="${b.boardNo}">
+	                <textarea name="message" class="s-input-form" id="sendMsgTextarea"></textarea>
+	            </div>
+	            <button type="submit" class="modalBtn s-bc1">보내기</button>
+	            <button type="button" class="modalBtn s-bc2" id="sendMsgCancel">취소</button>	        
+	        </form>
+    	</div>
+    </div>
 	<th:block th:include="common/footer"></th:block>
 	
 	
@@ -352,7 +379,63 @@
 			}
 		}
 		
-		    
+		//쪽지 쓰기 관련 스크립트 시작
+		const memberId = $(".memberId").val();
+		//게시물 작성자에게 쪽지 쓰기
+		$(".boardWriter").on("click", function(){
+			const receiver = $(this).text();
+			if(receiver != memberId){
+				//쪽지쓰기 모달 열기
+				$(".sendMsg-modal-wrap").css("display","flex");
+				//textarea 초기화
+				$("#sendMsgTextarea").val("");
+				//받는 사람 데이터 넣어주기
+				$(".receiver").text(receiver);
+				$("#receiver").val(receiver);
+				//쪽지쓰기 모달 닫기
+				$("#sendMsgCancel").on("click", function(){
+					$(".sendMsg-modal-wrap").css("display","none");
+				});
+			}
+		});
+		
+		//댓글 작성자에게 쪽지 쓰기
+		$(".boardCommentWriter").on("click", function(){
+			const receiver = $(this).text();
+			if(receiver != memberId){
+
+				//쪽지쓰기 모달 열기
+				$(".sendMsg-modal-wrap").css("display","flex");
+				//textarea 초기화
+				$("#sendMsgTextarea").val("");
+				//받는 사람 데이터 넣어주기
+				$(".receiver").text(receiver);
+				$("#receiver").val(receiver);
+				//쪽지쓰기 모달 닫기
+				$("#sendMsgCancel").on("click", function(){
+					$(".sendMsg-modal-wrap").css("display","none");
+				});
+			}
+		});
+		
+		//대댓글 작성자에게 쪽지 쓰기
+		$(".boardReCommentWriter").on("click", function(){
+			const receiver = $(this).text();
+			if(receiver != memberId){
+
+				//쪽지쓰기 모달 열기
+				$(".sendMsg-modal-wrap").css("display","flex");
+				//textarea 초기화
+				$("#sendMsgTextarea").val("");
+				//받는 사람 데이터 넣어주기
+				$(".receiver").text(receiver);
+				$("#receiver").val(receiver);
+				//쪽지쓰기 모달 닫기
+				$("#sendMsgCancel").on("click", function(){
+					$(".sendMsg-modal-wrap").css("display","none");
+				});
+			}
+		});
 	</script>
 	
 	
