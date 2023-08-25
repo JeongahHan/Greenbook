@@ -16,4 +16,6 @@ public class ProductComment {
 	private int productRef;
 	private int productCommentRef;
 	
+	private Product product;
+	
 }
