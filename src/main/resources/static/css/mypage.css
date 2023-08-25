@@ -308,14 +308,21 @@ B31312 빨강
 /* myWishList 디자인 */
 .wishList-wrap{
     /* width: 100%; */
-    background-color: bisque;
+    /* background-color: bisque; */
     overflow: hidden;
 }
 .wishList-one{
-    width: 170px;
-    background-color: #ccc;
+    width: 160px;
+    background-color: #f1f1f1;
     float: left;
-    padding: 10px 15px;
+    padding: 15px 15px;
+    margin: 5px 5px;
+}
+.wishList-one:hover{
+    background-color: #e7e7e7;
+    border-radius: 10px;
+    cursor: pointer;
+
 }
 .wishList-imgBox img{
     width: 100%;
