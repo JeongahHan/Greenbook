@@ -216,7 +216,8 @@ public class MypageService {
 		for(int i =0 ; i<selectMyProductBoardCommentList.size();i++) {
 			ProductComment pc = (ProductComment) selectMyProductBoardCommentList.get(i);
 			List selectMyProductBoardList = mypageDao.selectMyProductBoard(pc.getProductRef());			
-			selectMyProductBoardCommentList.add(i, selectMyProductBoardList);
+			//selectMyProductBoardCommentList.add(i, selectMyProductBoardList); 이건 왜 무한루프가 돌지?
+			pc.setProduct((Product)selectMyProductBoardList.get(0));
 			
 			
 		}
