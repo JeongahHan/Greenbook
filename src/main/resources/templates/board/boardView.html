@@ -53,13 +53,16 @@
 					<!-- textarea, 사람이 입력하는 기준으로는 엔터가 \r\n >>html 에서는 한칸으로 처리 -->
 				</td>
 			</tr>
-			
-			<!-- 수정 삭제 버튼 -->
-			<tr class="tr-1" th:if="${session.m != null && session.m.memberId == b.boardWriter}" id="modbtn-tr"> <!--로그인한상태이고 세션의아이디와 글쓴이가 같을때 -->
-				<th colspan = "6" id="modbtn-th">
+				
+			<!-- 목록으로가기 , 수정 , 삭제 버튼 -->
+			<tr class="tr-1" id="modbtn-tr"> 
+				<th colspan = "6" id="modbtn-th" > <!--로그인한상태이고 세션의아이디와 글쓴이가 같을때 -->
+					<div class="modbtnfirst"><a class="modbtn commentbc44" href="/board/list?reqPage=1">목록으로 가기</a></div>
+					<div class="modbtnSecond" th:if="${session.m != null && session.m.memberId == b.boardWriter}">
 					<a class="modbtn commentbc44" th:href="@{/board/updateFrm(boardNo=${b.boardNo})}">게시글 수정</a> 
 					<button class="modbtn commentbc44" th:onclick="boardDelete([[${b.boardNo}]])">게시글 삭제</button><!-- 실제 진짜 삭제할건지 물어보기위해 버튼 처리 --> 
 					<!-- boardeNo 를  통해 자바스크립트 진행하기위해 대괄호 두개 처리 -->
+					</div>
 				</th>
 			</tr>
 			
@@ -89,8 +92,8 @@
 		<!-- 댓글 출력 창 -->
 		<div class="commentBox">
 			<th:block th:each="bc : ${commentList}">
-				<ul class="posting-comment">
-					<li>
+				<ul class="posting-comment" style="border-top:none;">
+					<li style="border-right:none;">
 						<span class="material-icons">account_box</span>
 					</li>
 					<li>
@@ -102,8 +105,8 @@
 								<span class="material-icons" th:if="${session.m == null}" onclick="loginMsg();">thumb_up_off_alt</span>
 								<!--로그인을 했는데 내가 눌렀으면 removeLike 표시-->
 								<!--로그인을 했는데 내가 안눌렀으면 addLike 표시-->
-								<span class="material-icons" th:if="${session.m != null && nc.isLike == 1}" th:onclick="removeLike(this,[[${bc.boardCommentNo}]],[[${session.m.memberNo}]]);">thumb_up_alt</span> 
-								<span class="material-icons" th:if="${session.m != null && nc.isLike == 0}" th:onclick="addLike(this,[[${bc.boardCommentNo}]],[[${session.m.memberNo}]]);">thumb_up_off_alt</span>
+								<span class="material-icons" th:if="${session.m != null && bc.isLike == 1}" th:onclick="removeLike(this,[[${bc.boardCommentNo}]],[[${session.m.memberNo}]]);">thumb_up_alt</span> 
+								<span class="material-icons" th:if="${session.m != null && bc.isLike == 0}" th:onclick="addLike(this,[[${bc.boardCommentNo}]],[[${session.m.memberNo}]]);">thumb_up_off_alt</span>
 								<span th:text="${bc.likeCount}"></span> 
 							</span>
 						</p>

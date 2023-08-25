@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>게시판 수정</title>
+
+<!-- 구글 아이콘 -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!-- jquery -->
+<script src="/js/jquery-3.7.0.js"></script>
+<!-- 기본 CSS -->
+<link rel="stylesheet" href="/css/board.css">
+
+
+</head>
+<body>
+<th:block th:include="common/header"></th:block>
+
+	<script src="/summernote/summernote-lite.js"></script>
+    <script src="/summernote/lang/summernote-ko-KR.js"></script>
+    <link rel="stylesheet" href="/summernote/summernote-lite.css">
+    
+    
+		<div class="page-content">
+			<div class="page-title">
+			<p>게시판 수정</p>
+			</div>
+			<form action="/board/update" class="boardUpdateFrm" method="post" enctype="multipart/form-data"> <!-- 파일 넘겨야해서 이거 추가 enctype -->
+				
+				<table class="tbl">
+					<tr class="tr-1">
+						<th class="td-3" style="width:15%;">제목</th>
+						<td>
+							<input type="text" name="boardTitle" class="input-form" th:value="${b.boardTitle}" style="border:1px solid #005A0D;">
+							<input type="hidden" name="boardNo" th:value="${b.boardNo}">
+						</td>
+					</tr>
+					
+					
+					<tr class="tr-1">
+						<th class="td-3">첨부파일</th>
+						<td>
+							<div class="file-wrap">
+								<div th:each="file : ${b.fileList}" class="files">
+									<span class="delFilename" th:text="${file.filename}"></span>
+									<span class="material-icons delBtn fc-6" th:onclick="deleteFile(this,[[${file.fileNo}]])">remove_circle</span>
+								</div>
+							</div>
+							<input type="file" name="addfile" multiple>
+						</td>
+					</tr>
+					
+					<tr class="tr-1">
+						<th class="td-3">내용</th>
+						<td>
+							<textarea class="input-form" id="boardContent" name="boardContent" th:text="${b.boardContent}" style="border:1px solid #005A0D;"></textarea>
+						</td>
+					</tr>
+					
+					<tr class="tr-2">
+						<th colspan="2">
+							<button type="submit" class="writingbtn writingbc1 writingbs4">수정하기</button>
+						</th>
+					</tr>
+				</table>
+				
+				
+				
+			</form>
+		</div>
+		<th:block th:include="common/footer"></th:block>
+		<script>
+		function deleteFile(obj,fileNo){  //obj = this
+			if(confirm("파일을 삭제하시겠습니까?")){ //<input name = "delFilfeNo" ....> <<<<이거만들어주는거임
+				const input = $("<input>");
+				input.attr("name","delFileNo");
+				input.attr("type","hidden");
+				input.val(fileNo);
+				
+				$(".boardUpdateFrm").append(input); // 위에 있는 클래스와 관련 됨
+				$(obj).parent().remove(); //화면에서 없애는 로직.
+			}
+		}
+		
+		
+		//썸머노트
+		$("#boardContent").summernote({
+			height:400,
+			lang:"ko-KR",
+			callbacks : {
+				onImageUpload : function(files){
+					//에디터 본문에 이미지를 삽입하면 동작하는 함수 
+					uploadImage(files[0],this);
+				}
+			}
+		});
+		
+		function uploadImage(file,editor){
+			//이미지 데이터를 바로 본문에 삽입하면 용량이 너무 큼 (db기준)
+			//이미지를 ajax로 업로드 하고 그 경로를 받아옴
+		
+			const form = new FormData();// form태그 역할
+			
+			form.append("file",file); //form 내부에 <input type = file , name =file> 추가
+			
+			/*
+				<form>
+					<input type ="file" name="file">
+				</form>
+			*/
+			
+			$.ajax({
+				url : "/board/editor",
+				type : "post", //이때는 무조건 post
+				data : form,
+				processData : false,
+				contentType : false,
+				success : function(data){
+					$(editor).summernote("insertImage",data);//insertImage에 매개변수(data)로 받은 것을 넣기
+					//이거때문에 바로바로 이미지 뜸
+				}
+			});
+			
+			//processData: 기본설정 : 전송하는 데이터를 기본적으로 문자열(string)을 전송하게 세팅,
+			//우리는 문자열을 보낼게 아니라 파일을 보내야해서 -> 기본전송값 문자열을 해제
+			//contentType : enctype ="application/x-www-form-urlencoded; charset = UTF-8"
+			//-> 파일 전송을 위해서 enctype 기본값 제거
+		}
+		
+		
+	</script>
+</body>
+</html>

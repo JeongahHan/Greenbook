@@ -35,7 +35,7 @@
 	        </div>
         </div>
         <!-- 관리자가 아닌 회원만 보이기 -->
-        <button th:if="${session.m.memberLevel != 1}" type="button" class="s-btn s-bc1" id="adminMsg">관리자에게 쪽지</button>
+        <button th:if="${session.m.memberLevel != 1 && reqPage == 1}" type="button" class="s-btn s-bc1" id="adminMsg">관리자에게 쪽지</button>
     	<div id="pageNavi" th:utext="${pageNavi}"></div>
     </div>
     <!-- 관리자에게 쪽지 쓰기 모달 -->
@@ -70,7 +70,6 @@
 	            <textarea class="s-input-form" id="message" readonly></textarea>
 	        </div>
 	        <button type="button" class="modalBtn s-bc1" id="replyMsg">답장하기</button>
-	        
 	        <button type="button" class="modalBtn s-bc2" id="close">취소</button>
         </div>
     </div>
@@ -87,6 +86,7 @@
 	                <span class="receiver replyReceiver"></span>
 	                <input type="hidden" name="sender" th:value="${session.m.memberId}">
 	                <input type="hidden" name="receiver" id="replyReceiver">
+	                <input type="hidden" name="reqPage" th:value="${reqPage}">
 	                <textarea name="message" class="s-input-form" id="replyTextarea"></textarea>
 	            </div>
 	            <button type="submit" class="modalBtn s-bc1">보내기</button>
@@ -118,7 +118,7 @@
 		$("#cancel").on("click", function(){
 			$(".adminMsg-modal-wrap").css("display","none");
 		});
-	  	
+	  	console.log($("#pageNavi"));
 	  	//쪽지 상세보기
 	  	$(".msg-wrap").on("click", function(){
 	  		const mid = $(this).children().eq(0).val();
