@@ -48,6 +48,7 @@
 					</div>
 					<div class="msg">
 						<span id="authMsg"></span>
+						<button type="button" class="s-bc1" id="close">닫기</button>    
 					</div>
             	</div>
             	<div class="success">
@@ -62,7 +63,6 @@
             			</div>
             			<div class="btn-box">
                 			<button type="submit" class="s-btn s-bc1">확인</button>
-                			<button type="button" class="s-btn s-bc2 close">닫기</button>
             			</div>
             		</form>
             	</div>
@@ -96,13 +96,20 @@
 							$(".emailAuth").hide();
 							$(".success").hide();
 							$("#searchPw").text("일치하는 회원 정보가 없습니다.");
+			   				$(".close").on("click", function(){
+			   					$(".modal-wrap").css("display","none");
+			   				});
 							
 						//일치하는 회원 정보가 있는 경우 -> 이메일 인증 & 새 비밀번호로 변경
 						}else{
 							$("#memberNo").val(data.memberNo);
 							$(".fail").hide();
 							$(".success").hide();
+							$("#authMsg").empty();
+							$("#authCode").val("");
+							$("#timeZone").empty();
 							$(".emailAuth").show();
+
 							//이메일 인증
 				        	$.ajax({
 						        url : "/member/auth",
@@ -149,6 +156,9 @@
 							                    $("#authMsg").text("메일코드를 확인하세요");
 							                    $("#authMsg").css("color","red");
 							                    checkArr[0] = false;
+							   	   				$("#close").on("click", function(){
+							   	   					$(".modal-wrap").css("display","none");
+							   	   				});
 							                }//완료
 							            }//완료
 				    				});
@@ -161,11 +171,7 @@
 							        event.preventDefault();
 							    }//완료
 							});//완료
-				        	
-	    				//닫기 버튼 클릭 시 모달 닫기
-	    				$(".close").on("click", function(){
-	    					$(".modal-wrap").css("display","none");
-	    				});//완료    				
+				        				
 	    			}
 	    		});
 			}else{
@@ -210,6 +216,9 @@
    	                $("#authMsg").text("인증 시간 만료");
    	                $("#authMsg").css("color", "red");
    	                checkArr[0] = false;
+   	   				$("#close").on("click", function(){
+   	   					$(".modal-wrap").css("display","none");
+   	   				});
    	            }else{
    	                const newMin = Number(min) - 1;
    	                $("#min").text(newMin);
@@ -223,7 +232,7 @@
    	                $("#sec").text(newSec);						
    	            }
    	        }
-   	    }, 1000);
+   	    }, 100);
    	}
     </script>
 </body>
