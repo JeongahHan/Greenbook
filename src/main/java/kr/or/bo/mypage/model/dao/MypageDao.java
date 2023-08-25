@@ -116,10 +116,19 @@ public class MypageDao {
 	}
 
 	//중고책방 댓글 단 게시글의 제목받아오기
-	public List selectMyProductBoard(int productRef) {
+	public List selectMyProductBoardList(int productRef) {
 		// TODO Auto-generated method stub
 		String query ="select * from PRODUCT_BOARD where product_board_no=?";
 		List list = jdbc.query(query, productRowMapper, productRef);
+		
+		return list;
+	}
+
+	//중고책방 댓글 단 게시글으 썸네일 받아오기
+	public List selectProductFile(int productRef) {
+		// TODO Auto-generated method stub
+		String query ="select * from PRODUCT_FILE where PRODUCT_NO=?";
+		List list =jdbc.query(query, productFileRowmapper, productRef);
 		
 		return list;
 	}

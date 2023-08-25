@@ -127,11 +127,10 @@
 					</li>
 				</ul>
 				<!-- 대댓글 출력 -->
-				<th:block th:each="bcc : ${reCommentList}">        <!-- bc 와 bcc 구분 중요 -->
-					<ul class="posting-comment reply" th:if="${bc.boardCommentNo == bcc.boardCommentRef}">
-						<li>
+				<th:block th:each="bcc : ${reCommentList}">        <!-- nc 와 ncc 구분 중요 -->
+					<ul class="posting-comment reply" style="border-top:none;" th:if="${bc.boardCommentNo == bcc.boardCommentRef}">
+						<li style="border-right:none;">
 							<span class="material-icons">subdirectory_arrow_right</span>
-							<span class="material-icons">account_box</span>
 						</li>
 						
 						<li>
@@ -142,8 +141,8 @@
 									<span class="material-icons" th:if="${session.m == null}" onclick="loginMsg();">thumb_up_off_alt</span>
 									<!--로그인을 했는데 내가 눌렀으면 removeLike 표시-->
 									<!--로그인을 했는데 내가 안눌렀으면 addLike 표시-->
-									<span class="material-icons" th:if="${session.m != null && ncc.isLike == 1}" th:onclick="removeLike(this,[[${bcc.boardCommentNo}]],[[${session.m.memberNo}]]);">thumb_up_alt</span> 
-									<span class="material-icons" th:if="${session.m != null && ncc.isLike == 0}" th:onclick="addLike(this,[[${bcc.boardCommentNo}]],[[${session.m.memberNo}]]);">thumb_up_off_alt</span>
+									<span class="material-icons" th:if="${session.m != null && bcc.isLike == 1}" th:onclick="removeLike(this,[[${bcc.boardCommentNo}]],[[${session.m.memberNo}]]);">thumb_up_alt</span> 
+									<span class="material-icons" th:if="${session.m != null && bcc.isLike == 0}" th:onclick="addLike(this,[[${bcc.boardCommentNo}]],[[${session.m.memberNo}]]);">thumb_up_off_alt</span>
 									<span th:text="${bcc.likeCount}"></span> 
 								</span>
 							</p>
@@ -165,21 +164,25 @@
 				<div class="inputCommentBox inputRecommentBox" th:if="${session.m != null}"> <!-- 위에 inputcomment 와 비슷  -->
 					<form action = "/board/insertComment" method="post">
 						<ul>
-							<li>
-								<span class="material-icons">subdirectory_arrow_right</span>
+							<li style="padding-left: 40px;">
+								<span class="material-icons" style="font-size: 40px;">subdirectory_arrow_right</span>
 							</li>
 							<li>
 								<input type="hidden" name="boardCommentWriter" th:value="${session.m.memberId}">
 								<input type="hidden" name="boardRef" th:value="${b.boardNo}">
 								<input type="hidden" name="boardCommentRef" th:value="${bc.boardCommentNo}">
-								<textarea name = "boardCommentContent" class="input-form"></textarea>
+								<textarea name="boardCommentContent" class="input-form"></textarea>
 							</li>
 							<li>
-								<button type="submit" class="btn bc1 bs4">등록</button>
+								<button type="submit" class="commentbtn commentbc1 commentbs4">등록</button>
 							</li>
 						</ul>
 					</form>
 				</div>
+				
+
+
+
 			</th:block>
 		</div>
 		
@@ -202,10 +205,16 @@
 		}	
 	</style>
 
+
+
+<script src="/js/sweetalert.min.js"></script>
 	<script>
 	//좋아요, 좋아요취소
 		function loginMsg(){
-			alert("로그인 후 이용해주세요")
+			swal({
+				  title: '로그인 후 이용해주세요',
+				  icon: 'warning'
+				})
 		}
 	
 	
@@ -242,11 +251,19 @@
 		
 	 //게시글삭제
 		function boardDelete(boardNo){
-			if(confirm("게시글을 삭제하시겠습니까?")){
+			swal({
+			  title: '글을 삭제하시겠습니까?',
+			  text: "삭제하시면 다시 복구시킬 수 없습니다.",
+			  icon: 'warning'
+			}).then(function(){
 				location.href = "/board/delete?boardNo="+boardNo;
-			}
+			});
 		}
-		
+	 
+	 
+	 
+	 
+	 
 		//답글달기
 		$(".recShow").on("click",function(){
 			//몇번째 답글달지 버튼을 클릭한지 구함
@@ -282,24 +299,6 @@
 		}
 		
 		
-		//수정취소 버튼
-		function modifyCancel(obj,boardCommentNo,boardNo){
-			//숨어있는 p태그를 보여줌 
-			$(obj).parent().prev().prev().show();
-			//보이는 textarea를 숨김
-			$(obj).parent().prev().hide();
-			
-			//수정완료 -> 수정(이벤트변경)
-			$(obj).prev().text("수정");
-			$(obj).prev().attr("onclick","modifyComment(this,"+boardCommentNo+","+boardNo+")");
-			//수정취소 -> 삭제(이벤트변경)
-			$(obj).text("삭제");
-			$(obj).prev().attr("onclick","deleteComment(this,"+boardCommentNo+","+boardNo+")");
-			
-			//답글달기 다시 보여줌 
-			$(obj).next().show();
-		}
-		
 		//수정완료 버튼
 		function modifyComplete(obj,boardCommentNo,boardNo){
 			//javascript에서 form을 생성해서 데이터를 넣어서 전송하는 방법
@@ -324,6 +323,28 @@
 			form.submit();
 		}
 		
+		
+		
+		
+		//수정취소 버튼
+		function modifyCancel(obj,boardCommentNo,boardNo){
+			//숨어있는 p태그를 보여줌 
+			$(obj).parent().prev().prev().show();
+			//보이는 textarea를 숨김
+			$(obj).parent().prev().hide();
+			
+			//수정완료 -> 수정(이벤트변경)
+			$(obj).prev().text("수정");
+			$(obj).prev().attr("onclick","modifyComment(this,"+boardCommentNo+","+boardNo+")");
+			//수정취소 -> 삭제(이벤트변경)
+			$(obj).text("삭제");
+			$(obj).attr("onclick","deleteComment(this,"+boardCommentNo+","+boardNo+")");
+			
+			//답글달기 다시 보여줌 
+			$(obj).next().show();
+		}
+		
+		
 		//삭제
 		function deleteComment(obj,boardCommentNo,boardNo){
 			if(confirm("댓글을 삭제하시겠습니까?")){
@@ -331,6 +352,7 @@
 			}
 		}
 		
+		    
 	</script>
 	
 	
