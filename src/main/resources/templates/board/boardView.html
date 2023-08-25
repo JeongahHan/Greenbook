@@ -205,10 +205,16 @@
 		}	
 	</style>
 
+
+
+<script src="/js/sweetalert.min.js"></script>
 	<script>
 	//좋아요, 좋아요취소
 		function loginMsg(){
-			alert("로그인 후 이용해주세요")
+			swal({
+				  title: '로그인 후 이용해주세요',
+				  icon: 'warning'
+				})
 		}
 	
 	
@@ -243,18 +249,21 @@
 		
 		
 		
-		
-		
-		
-		
-		
 	 //게시글삭제
 		function boardDelete(boardNo){
-			if(confirm("게시글을 삭제하시겠습니까?")){
+			swal({
+			  title: '글을 삭제하시겠습니까?',
+			  text: "삭제하시면 다시 복구시킬 수 없습니다.",
+			  icon: 'warning'
+			}).then(function(){
 				location.href = "/board/delete?boardNo="+boardNo;
-			}
+			});
 		}
-		
+	 
+	 
+	 
+	 
+	 
 		//답글달기
 		$(".recShow").on("click",function(){
 			//몇번째 답글달지 버튼을 클릭한지 구함
@@ -343,6 +352,7 @@
 			}
 		}
 		
+		    
 	</script>
 	
 	
