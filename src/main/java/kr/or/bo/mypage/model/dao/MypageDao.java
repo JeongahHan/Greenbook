@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import kr.or.bo.board.vo.BoardCommentRowMapper;
 import kr.or.bo.board.vo.BoardRowMapper;
 import kr.or.bo.member.model.vo.Member;
+import kr.or.bo.mypage.model.vo.BoardCommentRowMapperForMypage;
 import kr.or.bo.product.model.vo.Product;
 import kr.or.bo.product.model.vo.ProductCommentRowMapper;
 import kr.or.bo.product.model.vo.ProductFileRowMapper;
@@ -28,7 +28,7 @@ public class MypageDao {
 	@Autowired
 	private ProductCommentRowMapper productCommentRowMapper;
 	@Autowired
-	private BoardCommentRowMapper boardCommentRowMapper;
+	private BoardCommentRowMapperForMypage boardCommentRowMapperForMypage;
 
 	//회원정보 수정
 	public int updateMember(Member member) {
@@ -138,7 +138,17 @@ public class MypageDao {
 	public List selectMyComment(String memberId, int start, int end) {
 		// TODO Auto-generated method stub
 		String query = "select * from(select ROWNUM AS RNUM, N.* from (select * from BOARD_COMMENT where board_comment_writer=? order by 1 desc)N) where rnum between ? and ?";
-		List list = jdbc.query(query, boardCommentRowMapper, memberId, start, end);
+		List list = jdbc.query(query, boardCommentRowMapperForMypage, memberId, start, end);
+		
+		return list;
+	}
+
+	//자유게시판 댓글 단 게시글의 제목받아오기
+	public List selectMyBoardList(int boardRef) {
+		// TODO Auto-generated method stub
+		String query ="select * from board where board_no=?";
+		List list = jdbc.query(query, boardRowMapper, boardRef);
+		
 		
 		return list;
 	}

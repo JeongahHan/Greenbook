@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import kr.or.bo.board.vo.BoardComment;
 import kr.or.bo.member.model.service.MemberService;
 import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.mypage.model.service.MypageService;
@@ -35,7 +36,7 @@ public class MypageController {
 		return "mypage/memberUpdateFrm";
 	}
 	
-	
+	//내가작성한 자유게시판 게시물
 	@GetMapping(value = "/myBoard")
 	public String myBoard(HttpSession session,Model model,int reqPage) {
 		
@@ -62,11 +63,15 @@ public class MypageController {
 	
 	//나의 댓글
 	@GetMapping(value = "/myComment")
-	public String myComment(HttpSession session, int reqPage) {
+	public String myComment(HttpSession session,Model model, int reqPage) {
 		//내가 작성한 댓글 조회해서 넘겨주기
 		Member m = (Member) session.getAttribute("m");
 		MypageListData mld = mypageService.selectMyComment(m, reqPage);
 		
+		//서비스에서 제목받아오기
+		model.addAttribute("myBoardCommentList",mld.getMypageList()); //리스트넘김
+		model.addAttribute("pageNavi", mld.getPageNavi());
+
 		return "mypage/myComment";
 	}
 	
@@ -76,7 +81,7 @@ public class MypageController {
 		//멤버 아이디 받아서 select해온걸 넘긴다
 		Member m = (Member) session.getAttribute("m");
 		MypageListData mld =  mypageService.selectMyProductBoardComment(m, reqPage);
-		
+
 		//서비스에서 제목처럼 이미지 파일패스 추가
 		model.addAttribute("myProductBoardCommentList", mld.getMypageList());
 		model.addAttribute("pageNavi", mld.getPageNavi());
@@ -84,6 +89,7 @@ public class MypageController {
 		
 		return "mypage/myProductBoardComment";
 	}
+	
 	
 	
 	@PostMapping(value = "/update")
@@ -136,10 +142,11 @@ public class MypageController {
 		
 		//내가 판매중인 도서 select 해오기
 		MypageListData mld =mypageService.selectMySellBook(m, reqPage);
-		
+
 		model.addAttribute("mySellBookList", mld.getMypageList());
 		model.addAttribute("pageNavi", mld.getPageNavi());
 		//model.addAttribute("mySellBookImgList", mld.getMySellBookImgList());
+		
 		
 		
 		return "mypage/mySellBook";
@@ -157,6 +164,10 @@ public class MypageController {
 	@GetMapping(value = "/byRequest")
 	public String byRequest(int reqPage) {
 		return "mypage/byRequest";
+	}
+	@GetMapping(value = "/showConsumer")
+	public String showConsumer () {
+		return"mypage/showConsumer";
 	}
 	
 }

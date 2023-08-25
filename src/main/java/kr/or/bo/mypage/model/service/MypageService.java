@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.or.bo.board.vo.Board;
+import kr.or.bo.board.vo.BoardComment;
 import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.mypage.model.dao.MypageDao;
 import kr.or.bo.mypage.model.vo.MypageListData;
@@ -126,7 +128,7 @@ public class MypageService {
 			//p.set
 
 		}
-		System.out.println("여기는 서비스 판매도서 이미지 포함한 리스트 : "+mySellBookList);
+		
 		
 		
 		// 2. 페이지 네비게이션 제작
@@ -147,6 +149,7 @@ public class MypageService {
 		// reqPage 11 ~ 15 : 11 12 13 14 15
 		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
 
+		
 		// 페이지 네비게이션 제작 시작
 		String pageNavi = "<ul class='pagination circle-style'>";
 		// 이전버튼 제작 < 1 2
@@ -218,6 +221,7 @@ public class MypageService {
 			List selectMyProductBoardList = mypageDao.selectMyProductBoardList(pc.getProductRef());			
 			//selectMyProductBoardCommentList.add(i, selectMyProductBoardList); 이건 왜 무한루프가 돌지?
 			pc.setProduct((Product)selectMyProductBoardList.get(0));
+			
 
 		}
 		//중고책방 댓글 단 게시글의 이미지 파일패스 담아오기
@@ -228,7 +232,6 @@ public class MypageService {
 			pc.setProductFile((ProductFile)selectProductFile.get(0));
 			
 		}
-		ProductComment pc = (ProductComment) selectMyProductBoardCommentList.get(0);
 
 		
 		// 2. 페이지 네비게이션 제작
@@ -291,7 +294,7 @@ public class MypageService {
 		pageNavi += "</ul>";		
 		
 		MypageListData mld = new MypageListData(selectMyProductBoardCommentList, pageNavi);
-		
+
 		
 		return mld;
 	}//selectMyProductBoardComment()종료
@@ -307,6 +310,14 @@ public class MypageService {
 		int end = reqPage * numPerPage;
 		int start = end - numPerPage + 1;		
 		List selectMyCommentList = mypageDao.selectMyComment(m.getMemberId(), start, end);
+		//자유게시판 댓글 단 게시글 담아오고 댓글객체()에 board객체 추가
+		for(int i=0 ; i<selectMyCommentList.size();i++) {
+			BoardComment bc = (BoardComment) selectMyCommentList.get(i);
+			List selectMyBoardList = mypageDao.selectMyBoardList(bc.getBoardRef());
+			bc.setBoard((Board)selectMyBoardList.get(0));
+			
+		}
+		
 		
 		// 2. 페이지 네비게이션 제작
 		// 총 페이지 수 계산을 위해서는 총 게시물 수를 알아야함 -> DB에서 그룹함수로 조회
@@ -367,10 +378,11 @@ public class MypageService {
 
 		pageNavi += "</ul>";
 		
-		//MypageListData mld = new MypageListData(selectMyCommentList);
+		MypageListData mld = new MypageListData(selectMyCommentList, pageNavi);
 		
-		return null;
-	}
+		
+		return mld;
+	}//selectMyComment()종료
 
 	
 	

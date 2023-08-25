@@ -219,9 +219,40 @@ public class ProductService {
 		return p;
 	}
 
-	public int updateProduct(Product p, ArrayList<ProductFile> fileList, int[] delFileNo) {
+	public List updateProduct(Product p, ArrayList<ProductFile> fileList, int[] delFileNo) {
+		int result = productDao.updateProduct(p);
+		List delFileList = new ArrayList<ProductFile>();
+		if(result > 0) {
+			if(delFileNo != null) {
+				for(int fileNo : delFileNo) {
+					ProductFile productFile = productDao.selectOneFile(fileNo);
+					delFileList.add(productFile);	
+				}
+			}
+		}
 		
-		return 0;
+		if(fileList != null) {
+			for(ProductFile file : fileList) {
+				result += productDao.insertPhotoFile(file);
+			}
+		}
+		int updateTotal = 1;
+		updateTotal += delFileNo == null ? 0 : delFileNo.length;
+		
+		updateTotal += fileList == null ? 0 : fileList.size();
+		if(result == updateTotal) {
+			return delFileList;
+		}else
+			return null;
 	}
-	
+
+	public List deleteProduct(int productBoardNo) {
+		List list = productDao.selectProductFile(productBoardNo);
+		int result = productDao.deleteProduct(productBoardNo);
+		if(result == 0) {
+			return null;
+		}
+		return list;
+	}
+
 }
