@@ -317,6 +317,7 @@ B31312 빨강
     float: left;
     padding: 15px 15px;
     margin: 5px 5px;
+    border-radius: 10px;
 }
 .wishList-one:hover{
     background-color: #e7e7e7;
