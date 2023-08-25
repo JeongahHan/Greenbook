@@ -324,6 +324,32 @@ B31312 빨강
 
 /* -------------- */
 
+/* byRequest */
 
+.post-btn{
+	font-size: 15px;
+}
 
+.byRequestBtn{
+    border: none;
+    padding: 0.5rem;
+    display: inline-block;
+    box-sizing: border-box;
+    transition-duration: 0.5s;
+    font-size: 14px;
+    font-family: ns-light;
+}
 
+.byRequestBc1 {
+    color: #005A0D;
+    background-color: #fff;
+    border: 2px solid #005A0D;
+    height: 35px;
+    line-height: 5px;
+}
+
+.byRequestBc1:hover {
+    background-color: #005A0D;
+    color: #fff;
+    cursor: pointer;
+}
