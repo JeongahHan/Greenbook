@@ -71,9 +71,7 @@ public class MypageController {
 		//서비스에서 제목받아오기
 		model.addAttribute("myBoardCommentList",mld.getMypageList()); //리스트넘김
 		model.addAttribute("pageNavi", mld.getPageNavi());
-		//댓글 정보 잘 담겨왔나 확인 // bc는 댓글객체
-		//BoardComment bc = 	(BoardComment) mld.getMypageList().get(0);
-		//System.out.println("댓글 제목확인용 : "+bc.getBoard());
+
 		return "mypage/myComment";
 	}
 	
