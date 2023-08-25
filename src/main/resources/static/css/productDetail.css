@@ -191,7 +191,10 @@
 }
 
 .buy-btn{
+	background-color: transparent;
+	border: none;
 	color: #fff;
+	font-size: 15px;
 }
 
 .cart-btn, .buy-btn{

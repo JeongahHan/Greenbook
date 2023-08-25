@@ -79,7 +79,7 @@
 						
 						<tr class="tr-1">
 							<th colspan="4">
-								<button type="submit" class="btn bc2 bs4">등록하기</button>
+								<button type="submit" class="register btn bc2 bs4">등록하기</button>
 							</th>
 						</tr>
                 		
@@ -94,6 +94,13 @@
 
 	<script>
 	
+		// 게시물 등록
+		$(".register").on("click",function(){
+			const result = confirm("게시물을 등록하시겠습니까?");
+			if(result){
+			}
+		});
+		
 		$("[name=imageFile]").on("change",function(){
 			if(this.files.length != 0 && this.files[0] != 0){
 				const reader = new FileReader();
@@ -132,6 +139,7 @@
 				}
 			});
 		}
+
 	
 	</script>
 

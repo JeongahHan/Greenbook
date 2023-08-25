@@ -40,8 +40,19 @@
 					<div class="main-box">
 						<div class="title" th:text="${p.getProductBoardTitle}"></div>
 						
-						<div class="cart"><a class="cart-btn">관심상품 등록</a></div>
-						<div class="buy"><a class="buy-btn">구매요청</a></div>
+						<div class="cart" th:if="${session.m != null}"><a class="cart-btn">관심상품 등록</a></div>
+						<form action="/mypage/byRequest" class="byRequest" method="post">
+							<div class="buy" th:if="${session.m != null}"><button type="submit" class="buy-btn">구매요청</button></div>
+							<input type="hidden" name="session" th:value="${session.m}">
+							<input type="hidden" name="productBoardNo" th:value="${p.productBoardNo}">
+							<input type="hidden" name="productBoardTitle" th:value="${p.productBoardTitle}">
+							<input type="hidden" name="productBoardWriter" th:value="${p.productBoardWriter}">
+							<input type="hidden" name="productPrice" th:value="${p.productPrice}">
+							<input type="hidden" name="productAuthor" th:value="${p.productAuthor}">
+							<input type="hidden" name="productCondition" th:value="${p.productCondition}">
+							<input type="hidden" name="productSellCheck" th:value="${p.productSellCheck}">
+							<input type="hidden" name="productFile" th:value="${p.productFile}">
+						</form>
 						<div class="author" th:text="${p.getProductAuthor}"></div>
 						<div class="price"><span th:text="${p.getProductPrice}"></span> 원</div>
 						<div class="content" th:utext="${p.getProductBoardContent}"></div>
@@ -200,7 +211,7 @@
 		});
 		
 		$(".buy").on("click",function(){
-			const result = confirm("구매하시겠습니까?");
+			const result = confirm("구매를 요청하시겠습니까?");
 			if(result){
 				alert("판매자에게 메세지를 전송하였습니다.");
 			}
