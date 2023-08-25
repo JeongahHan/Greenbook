@@ -179,4 +179,14 @@ public class ProductController {
 		return "common/msg";
 	}
 	
+	@GetMapping(value="/getSearchList")
+	public String getSearchList(int reqPage, String type, String keyword, Model model) {
+		ProductListData pld = productService.getSearchList(reqPage, type, keyword);
+		
+		model.addAttribute("productList", pld.getProductList());
+		model.addAttribute("pageNavi", pld.getPageNavi());
+		
+		return "product/productBoard";
+	}
+	
 }
