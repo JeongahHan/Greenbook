@@ -142,10 +142,11 @@ public class MypageController {
 		
 		//내가 판매중인 도서 select 해오기
 		MypageListData mld =mypageService.selectMySellBook(m, reqPage);
-		
+
 		model.addAttribute("mySellBookList", mld.getMypageList());
 		model.addAttribute("pageNavi", mld.getPageNavi());
 		//model.addAttribute("mySellBookImgList", mld.getMySellBookImgList());
+		
 		
 		
 		return "mypage/mySellBook";
@@ -163,6 +164,10 @@ public class MypageController {
 	@GetMapping(value = "/byRequest")
 	public String byRequest(int reqPage) {
 		return "mypage/byRequest";
+	}
+	@GetMapping(value = "/showConsumer")
+	public String showConsumer () {
+		return"mypage/showConsumer";
 	}
 	
 }

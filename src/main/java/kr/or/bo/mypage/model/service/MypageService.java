@@ -124,11 +124,11 @@ public class MypageService {
 		for(int i =0 ;i<mySellBookList.size();i++) {
 			Product p = (Product)mySellBookList.get(i);
 			ProductFile pf = (ProductFile)mySellBookImgList.get(0);
-			//p.setProductFile(pf);
+			p.setProductFile(pf);
 			//p.set
 
 		}
-		System.out.println("여기는 서비스 판매도서 이미지 포함한 리스트 : "+mySellBookList);
+		
 		
 		
 		// 2. 페이지 네비게이션 제작
@@ -149,6 +149,7 @@ public class MypageService {
 		// reqPage 11 ~ 15 : 11 12 13 14 15
 		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
 
+		
 		// 페이지 네비게이션 제작 시작
 		String pageNavi = "<ul class='pagination circle-style'>";
 		// 이전버튼 제작 < 1 2
