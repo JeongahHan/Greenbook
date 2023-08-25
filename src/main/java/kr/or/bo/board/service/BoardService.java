@@ -13,6 +13,9 @@ import kr.or.bo.board.vo.BoardComment;
 import kr.or.bo.board.vo.BoardFile;
 import kr.or.bo.board.vo.BoardListData;
 import kr.or.bo.board.vo.BoardViewData;
+import kr.or.bo.product.model.vo.Product;
+import kr.or.bo.product.model.vo.ProductFile;
+import kr.or.bo.product.model.vo.ProductListData;
 
 @Service
 public class BoardService {
@@ -384,10 +387,89 @@ public class BoardService {
 	}
 
 
+	
+	
+	
+	
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+	//메인 서치 기능
 
-	public BoardListData mainSearchList(int reqPage, String keyword) {
-		// TODO Auto-generated method stub
-		return null;
+
+	public ProductListData mainSearchList2(int reqPage, String keyword) {
+		int numPerPage = 15;
+		
+		int end = reqPage * numPerPage;
+		
+		int start = (end - numPerPage) + 1;
+		
+		List productList = boardDao.mainSearchList2(start, end, keyword);
+		
+		for(Object obj : productList) {
+			Product p = (Product)obj;
+			ProductFile pf = boardDao.selectProductImgList(p.getProductBoardNo());
+			p.setProductFile(pf);
+		}
+		
+		int totalCount = boardDao.getSearchListTotalCount(keyword);
+		
+		int totalPage;
+
+		if(totalCount%numPerPage == 0) {
+			totalPage = totalCount/numPerPage;
+		}else {
+			totalPage = (totalCount/numPerPage)+1;
+		}
+		
+		int pageNaviSize = 10;
+		
+		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize + 1;
+		
+		String pageNavi2 = "<ul class='pagination'>";
+		
+		if(pageNo != 1) {
+			pageNavi2 += "<li>";
+			pageNavi2 += "<a class='page-item' href='/board/mainSearchList?reqPage="+(pageNo-1)+"&keyword="+(keyword)+"'>";
+			pageNavi2 += "<span class='material-icons'>chevron_left</span>";
+			pageNavi2 += "</a>";
+			pageNavi2 += "</li>";
+		}
+		
+		for(int i=0; i<pageNaviSize; i++) {
+			if(pageNo == reqPage) {
+				pageNavi2 += "<li>";
+				pageNavi2 += "<a class='page-item active-page' href='/board/mainSearchList?reqPage="+(pageNo)+"&keyword="+(keyword)+"'>";
+				pageNavi2 += pageNo;
+				pageNavi2 += "</a>";
+				pageNavi2 += "</li>";
+			}else {
+				pageNavi2 += "<li>";
+				pageNavi2 += "<a class='page-item' href='/board/mainSearchList?reqPage="+(pageNo)+"&keyword="+(keyword)+"'>";
+				pageNavi2 += pageNo;
+				pageNavi2 += "</a>";
+				pageNavi2 += "</li>";
+			}
+			
+			pageNo++;
+			
+			if(pageNo>totalPage) {
+				break;
+			}
+		}
+		
+		if(pageNo <= totalPage) {
+			pageNavi2 += "<li>";
+			pageNavi2 += "<a class='page-item' href='/board/mainSearchList?reqPage="+(pageNo)+"&keyword="+(keyword)+"'>";
+			pageNavi2 += "<span class='material-icons'>chevron_right</span>";
+			pageNavi2 += "</a>";
+			pageNavi2 += "</li>";
+		}
+		
+		pageNavi2 += "</ul>";
+		
+		ProductListData pld = new ProductListData(productList, pageNavi2);
+		
+		return pld;
 	}
 
 	
