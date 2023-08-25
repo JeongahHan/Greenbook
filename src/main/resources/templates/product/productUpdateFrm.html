@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>게시물 수정</title>
+	<script src="/summernote/summernote-lite.js"></script>
+	<script src="/summernote/lang/summernote-ko-KR.js"></script>
+	<link rel="stylesheet" href="/summernote/summernote-lite.css">
+	<link rel="stylesheet" href="/css/productDefault.css">
+	<link rel="stylesheet" href="/css/productBoardWriteFrm.css">
+</head>
+<body>
+
+	<th:block th:include="common/header"></th:block>
+	
+	<div class="main">
+		<div class="main-wrap">
+
+			<!-- 글쓰기 -->
+			<div class="page-title">게시물 수정</div>
+			<div class="main-mid">
+			
+				<form action="/product/update" class="productUpdateFrm" method="post" enctype="multipart/form-data">
+					<table class="tbl productWrite">
+					
+					
+					
+					</table>
+				</form>
+			
+			</div>
+		
+		</div>
+	</div>
+
+</body>
+</html>
