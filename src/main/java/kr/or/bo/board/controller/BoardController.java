@@ -362,10 +362,31 @@ public class BoardController {
 			int likeCount = boardService.removeCommentLike(boardCommentNo,memberNo);
 			return likeCount;
 		}
-	
-	
-	
-	
-	
+		
+		
+		
+		
+		
+		
+		
+////////////////////////////////////////////////////////////
+//메인 서치 기능		
+
+		@GetMapping(value="/mainSearchList")
+		public String mainSearchList(int reqPage,String keyword,Model model) {
+			
+			BoardListData bld = boardService.mainSearchList(reqPage,keyword);
+			
+			model.addAttribute("boardList",bld.getBoardList());
+			model.addAttribute("pageNavi",bld.getPageNavi());
+			
+			return "mainSearch/mainSearch";
+		}			
+		
+		
+		
+		
+		
+		
 	
 } //컨트롤러 종료

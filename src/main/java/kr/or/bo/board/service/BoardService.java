@@ -383,6 +383,13 @@ public class BoardService {
 		return likeCount;
 	}
 
+
+
+	public BoardListData mainSearchList(int reqPage, String keyword) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	
 
