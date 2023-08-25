@@ -131,6 +131,13 @@ public class ProductController {
 		}
 	}
 	
+	@GetMapping(value="/updateFrm")
+	public String updateFrm(int productBoardNo, Model model) {
+		Product p = productService.getProduct(productBoardNo);
+		model.addAttribute("p", p);
+		return "product/productUpdateFrm";
+	}
+	
 	@PostMapping(value="/insertComment")
 	public String insertComment(ProductComment pc, Model model) {
 		int result = productService.insertComment(pc);

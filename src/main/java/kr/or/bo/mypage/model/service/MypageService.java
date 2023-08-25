@@ -225,7 +225,10 @@ public class MypageService {
 			ProductComment pc = (ProductComment) selectMyProductBoardCommentList.get(i);
 			List selectProductFile = mypageDao.selectProductFile(pc.getProductRef());
 			//ProductComment 객체에 파일객체 추가
+			pc.setProductFile((ProductFile)selectProductFile.get(0));
+			
 		}
+		ProductComment pc = (ProductComment) selectMyProductBoardCommentList.get(0);
 
 		
 		// 2. 페이지 네비게이션 제작
@@ -288,6 +291,7 @@ public class MypageService {
 		pageNavi += "</ul>";		
 		
 		MypageListData mld = new MypageListData(selectMyProductBoardCommentList, pageNavi);
+		
 		
 		return mld;
 	}//selectMyProductBoardComment()종료
