@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import kr.or.bo.board.vo.BoardCommentRowMapper;
 import kr.or.bo.board.vo.BoardRowMapper;
 import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.product.model.vo.Product;
@@ -26,6 +27,8 @@ public class MypageDao {
 	private ProductFileRowMapper productFileRowmapper;
 	@Autowired
 	private ProductCommentRowMapper productCommentRowMapper;
+	@Autowired
+	private BoardCommentRowMapper boardCommentRowMapper;
 
 	//회원정보 수정
 	public int updateMember(Member member) {
@@ -110,8 +113,6 @@ public class MypageDao {
 		String query = "select * from(select ROWNUM AS RNUM,N.* from(select * from PRODUCT_COMMENT where PRODUCT_COMMENT_WRITER=? order by 1 desc)N) where rnum between ? and ?";
 		List list = jdbc.query(query, productCommentRowMapper, memberId, start, end);
 		
-		
-		
 		return list;
 	}
 
@@ -129,6 +130,15 @@ public class MypageDao {
 		// TODO Auto-generated method stub
 		String query ="select * from PRODUCT_FILE where PRODUCT_NO=?";
 		List list =jdbc.query(query, productFileRowmapper, productRef);
+		
+		return list;
+	}
+
+	//내가 작성한 자유게시판 댓글 조회
+	public List selectMyComment(String memberId, int start, int end) {
+		// TODO Auto-generated method stub
+		String query = "select * from(select ROWNUM AS RNUM, N.* from (select * from BOARD_COMMENT where board_comment_writer=? order by 1 desc)N) where rnum between ? and ?";
+		List list = jdbc.query(query, boardCommentRowMapper, memberId, start, end);
 		
 		return list;
 	}
