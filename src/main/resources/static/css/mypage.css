@@ -154,7 +154,7 @@ B31312 빨강
 }
 .mypage-content-title-hover{
     height: 100%;
-    background-color: #ccc;
+    background-color: rgba(110, 110, 110, 0.2);
     border-radius: 10px;
 }
 .mypage-content-title-hover h2{
@@ -256,10 +256,14 @@ B31312 빨강
 
 .myComment-one{
     overflow: hidden;
-    background-color: rgba(110, 110, 110, 0.15);
+    background-color: rgba(110, 110, 110, 0.07);
     padding: 10px 0;
     border-radius: 20px;
     margin: 10px 0px;
+}
+.myComment-one:hover{
+    background-color: rgba(110, 110, 110, 0.2);
+
 }
 .myComment-wrap{
     overflow: hidden;
@@ -277,8 +281,8 @@ B31312 빨강
 }
 .comment-imgBox{
     /* 댓글작성한 게시글의 이미지박스 선택자 */
-    width: 270px;
-    height: 300px;
+    width: 200px;
+    height: 230px;
     
     /* background-color: darkorange; */
     float: left;
@@ -292,7 +296,8 @@ B31312 빨강
     display: block;
     font-weight: 900;
     color: red;
-    float: left;
+    float: right;
+    padding: 0 20px;
 }
 .myComment-date{
     /* 댓글 작성일 p태그 선택자 */
