@@ -18,4 +18,7 @@ public class BoardComment {
 	private int isLike; //해당하는 회원이 좋아요를 눌렀는지
 	private int likeCount; //좋아요 총 갯수
 	
+	private Board board;
+	private BoardFile boardFile;
+	
 }
