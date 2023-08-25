@@ -104,6 +104,15 @@
 .s-bc2:hover {
     cursor: pointer;
 }
+.id-wrap{
+	display: flex;
+}
+.id-wrap>input{
+	width: 80%;	
+}
+.id-wrap>button{
+	width:20%;
+}
 /*모달*/
 .modal-wrap{
     width: 100vw;
