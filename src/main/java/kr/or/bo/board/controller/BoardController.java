@@ -26,6 +26,7 @@ import kr.or.bo.board.vo.BoardFile;
 import kr.or.bo.board.vo.BoardListData;
 import kr.or.bo.board.vo.BoardViewData;
 import kr.or.bo.member.model.vo.Member;
+import kr.or.bo.product.model.vo.ProductListData;
 
 
 @Controller
@@ -375,10 +376,10 @@ public class BoardController {
 		@GetMapping(value="/mainSearchList")
 		public String mainSearchList(int reqPage,String keyword,Model model) {
 			
-			BoardListData bld = boardService.mainSearchList(reqPage,keyword);
+			ProductListData pld = boardService.mainSearchList2(reqPage, keyword);
 			
-			model.addAttribute("boardList",bld.getBoardList());
-			model.addAttribute("pageNavi",bld.getPageNavi());
+			model.addAttribute("productList", pld.getProductList());
+			model.addAttribute("pageNavi2", pld.getPageNavi());
 			
 			return "mainSearch/mainSearch";
 		}			
