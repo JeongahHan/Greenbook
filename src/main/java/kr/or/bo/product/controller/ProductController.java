@@ -3,6 +3,7 @@ package kr.or.bo.product.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -168,17 +169,22 @@ public class ProductController {
 		pf.setProductNo(p.getProductBoardNo());
 		fileList.add(pf);
 		
-		int result = productService.updateProduct(p, fileList, delFileNo);
-		if(result > 0) {
-			model.addAttribute("title", "수정 완료");
-			model.addAttribute("msg", "게시글 수정이 완료되었습니다.");
-			model.addAttribute("icon", "");
-		}else {
+		List list = productService.updateProduct(p, fileList, delFileNo);
+		if(list == null) {
 			model.addAttribute("title", "수정 실패");
 			model.addAttribute("msg", "게시글 수정 중 문제가 발생했습니다.");
 			model.addAttribute("icon", "");
+		}else {
+			for(Object item : list) {
+				ProductFile file = (ProductFile)item;
+				File delFile = new File(savepath+file.getFilepath());
+				delFile.delete();
+			}
+			model.addAttribute("title", "수정 완료");
+			model.addAttribute("msg", "게시글이 수정되었습니다.");
+			model.addAttribute("icon", "");
 		}
-		model.addAttribute("loc", "/product/board?reqPage=1");
+		model.addAttribute("loc", "/product/productDetail?productBoardNo="+p.getProductBoardNo());
 		return "common/msg";
 	}
 	

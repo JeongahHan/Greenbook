@@ -152,5 +152,25 @@ public class ProductDao {
 		int totalCount = jdbc.queryForObject(query, Integer.class, keyword);
 		return totalCount;
 	}
+
+	public int updateProduct(Product p) {
+		String query = "update PRODUCT_BOARD set PRODUCT_BOARD_TITLE = ?, PRODUCT_BOARD_CONTENT = ?, PRODUCT_PRICE = ?, PRODUCT_AUTHOR = ?, PRODUCT_CONDITION = ? where PRODUCT_BOARD_NO = ?";
+		Object[] params = {p.getProductBoardTitle(), p.getProductBoardContent(), p.getProductPrice(), p.getProductAuthor(), p.getProductCondition(), p.getProductBoardNo()};
+		int result = jdbc.update(query, params);
+		return result;
+	}
+
+	public ProductFile selectOneFile(int fileNo) {
+		String query = "select * from PRODUCT_FILE where file_no = ?";
+		List list = jdbc.query(query, productFileRowmapper, fileNo);
+		return (ProductFile)list.get(0);
+	}
+
+	public int deleteFile(int fileNo) {
+		String query = "delete from product_file where file_no = ?";
+		Object[] params = {fileNo};
+		int result = jdbc.update(query, params);
+		return result;
+	}
 	
 }
