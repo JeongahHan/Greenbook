@@ -124,7 +124,7 @@ public class MypageService {
 		for(int i =0 ;i<mySellBookList.size();i++) {
 			Product p = (Product)mySellBookList.get(i);
 			ProductFile pf = (ProductFile)mySellBookImgList.get(0);
-			p.setProductFile(pf);
+			//p.setProductFile(pf);
 			//p.set
 
 		}
@@ -220,6 +220,7 @@ public class MypageService {
 			List selectMyProductBoardList = mypageDao.selectMyProductBoardList(pc.getProductRef());			
 			//selectMyProductBoardCommentList.add(i, selectMyProductBoardList); 이건 왜 무한루프가 돌지?
 			pc.setProduct((Product)selectMyProductBoardList.get(0));
+			
 
 		}
 		//중고책방 댓글 단 게시글의 이미지 파일패스 담아오기
@@ -230,7 +231,6 @@ public class MypageService {
 			pc.setProductFile((ProductFile)selectProductFile.get(0));
 			
 		}
-		ProductComment pc = (ProductComment) selectMyProductBoardCommentList.get(0);
 
 		
 		// 2. 페이지 네비게이션 제작
