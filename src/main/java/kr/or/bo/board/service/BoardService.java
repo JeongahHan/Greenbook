@@ -407,11 +407,11 @@ public class BoardService {
 		
 		for(Object obj : productList) {
 			Product p = (Product)obj;
-			ProductFile pf = boardDao.selectProductImgList(p.getProductBoardNo());
+			ProductFile pf = boardDao.selectProductImgList2(p.getProductBoardNo());
 			p.setProductFile(pf);
 		}
 		
-		int totalCount = boardDao.getSearchListTotalCount(keyword);
+		int totalCount = boardDao.getSearchListTotalCount2(keyword);
 		
 		int totalPage;
 
