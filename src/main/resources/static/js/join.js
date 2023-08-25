@@ -27,7 +27,7 @@ $("#memberId").on("change",function(){
 	            }
 	        });
 	    }else{
-	        $("#ajaxCheckId").text("아이디는 영문/숫자로 4~8글자입니다.");
+	        $("#ajaxCheckId").text("아이디는 영어 대문자, 소문자, 숫자로 4-8글자입니다.");
 	        $("#ajaxCheckId").css("color","red");
 	        $(this).css("border","1px solid red");
 	        checkArr[0] = false;
@@ -53,7 +53,7 @@ $("#memberPw").on("change",function(){
 	        checkArr[1] = true;
 	    }else{
 	        //정규표현식 만족하지 못한 경우
-	        $("#checkPw").text("비밀번호는 영어 대+소문자+숫자로 8~12글자입니다.");
+	        $("#checkPw").text("비밀번호는 영어 대문자, 소문자, 숫자로 8~12글자입니다.");
 	        $("#checkPw").css("color","red");
 	        $(this).css("border","1px solid red");
 	        checkArr[1] = false;
