@@ -198,7 +198,14 @@ public class MypageService {
 		// TODO Auto-generated method stub
 		int result = mypageDao.deleteMember(memberNo);
 		return result;
-	}
+	}//회원탈퇴 종료
+
+	//중고책방 댓글
+	public MypageListData selectMyProductBoardComment(Member m, int reqPage) {
+		// TODO Auto-generated method stub
+		
+		return null;
+	}//selectMyProductBoardComment()종료
 
 	
 	

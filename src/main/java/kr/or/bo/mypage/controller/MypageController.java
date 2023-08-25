@@ -69,8 +69,14 @@ public class MypageController {
 		
 		return "mypage/myComment";
 	}
+	
+	//중고책방 댓글
 	@GetMapping(value = "/myProductBoardComment")
-	public String myProductBoardComment() {
+	public String myProductBoardComment(HttpSession session, int reqPage) {
+		//멤버 아이디 받아서 select해온걸 넘긴다
+		Member m = (Member) session.getAttribute("m");
+		MypageListData mld =  mypageService.selectMyProductBoardComment(m, reqPage);
+		
 		return "mypage/myProductBoardComment";
 	}
 	
