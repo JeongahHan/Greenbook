@@ -123,8 +123,8 @@ public class MypageService {
 		List mySellBookImgList = mypageDao.selectMySellBookImgList(m.getMemberId(), start, end);
 		for(int i =0 ;i<mySellBookList.size();i++) {
 			Product p = (Product)mySellBookList.get(i);
-			ProductFile pf = (ProductFile)mySellBookImgList.get(0);
-			p.setProductFile(pf);
+			//ProductFile pf = (ProductFile)mySellBookImgList.get(0);
+			//p.setProductFile(pf);
 			//p.set
 
 		}
@@ -219,7 +219,8 @@ public class MypageService {
 			ProductComment pc = (ProductComment) selectMyProductBoardCommentList.get(i);
 			List selectMyProductBoardList = mypageDao.selectMyProductBoardList(pc.getProductRef());			
 			//selectMyProductBoardCommentList.add(i, selectMyProductBoardList); 이건 왜 무한루프가 돌지?
-			pc.setProduct((Product)selectMyProductBoardList.get(0));
+			//pc.setProduct((Product)selectMyProductBoardList.get(0));
+			
 
 		}
 		//중고책방 댓글 단 게시글의 이미지 파일패스 담아오기
@@ -227,10 +228,10 @@ public class MypageService {
 			ProductComment pc = (ProductComment) selectMyProductBoardCommentList.get(i);
 			List selectProductFile = mypageDao.selectProductFile(pc.getProductRef());
 			//ProductComment 객체에 파일객체 추가
-			pc.setProductFile((ProductFile)selectProductFile.get(0));
+			//pc.setProductFile((ProductFile)selectProductFile.get(0));
 			
 		}
-		ProductComment pc = (ProductComment) selectMyProductBoardCommentList.get(0);
+		//ProductComment pc = (ProductComment) selectMyProductBoardCommentList.get(0);
 
 		
 		// 2. 페이지 네비게이션 제작
@@ -313,7 +314,7 @@ public class MypageService {
 		for(int i=0 ; i<selectMyCommentList.size();i++) {
 			BoardComment bc = (BoardComment) selectMyCommentList.get(i);
 			List selectMyBoardList = mypageDao.selectMyBoardList(bc.getBoardRef());
-			bc.setBoard((Board)selectMyBoardList.get(0));
+			//bc.setBoard((Board)selectMyBoardList.get(0));
 			
 		}
 		
