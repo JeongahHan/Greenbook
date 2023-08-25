@@ -36,7 +36,7 @@ public class MypageController {
 		return "mypage/memberUpdateFrm";
 	}
 	
-	
+	//내가작성한 자유게시판 게시물
 	@GetMapping(value = "/myBoard")
 	public String myBoard(HttpSession session,Model model,int reqPage) {
 		
@@ -68,11 +68,12 @@ public class MypageController {
 		Member m = (Member) session.getAttribute("m");
 		MypageListData mld = mypageService.selectMyComment(m, reqPage);
 		
-		model.addAttribute("myBoardCommentList",mld.getMypageList());
+		//서비스에서 제목받아오기
+		model.addAttribute("myBoardCommentList",mld.getMypageList()); //리스트넘김
 		model.addAttribute("pageNavi", mld.getPageNavi());
-		//댓글 정보 잘 담겨왔나 확인
-		BoardComment bc = 	(BoardComment) mld.getMypageList().get(1);
-		System.out.println("댓글 내용 잘 담겨 왔나? : "+bc.getBoardCommentContent());
+		//댓글 정보 잘 담겨왔나 확인 // bc는 댓글객체
+		BoardComment bc = 	(BoardComment) mld.getMypageList().get(0);
+		System.out.println("댓글 제목확인용 : "+bc.getBoard());
 		return "mypage/myComment";
 	}
 	
@@ -82,7 +83,7 @@ public class MypageController {
 		//멤버 아이디 받아서 select해온걸 넘긴다
 		Member m = (Member) session.getAttribute("m");
 		MypageListData mld =  mypageService.selectMyProductBoardComment(m, reqPage);
-		
+
 		//서비스에서 제목처럼 이미지 파일패스 추가
 		model.addAttribute("myProductBoardCommentList", mld.getMypageList());
 		model.addAttribute("pageNavi", mld.getPageNavi());

@@ -138,8 +138,17 @@ public class MypageDao {
 	public List selectMyComment(String memberId, int start, int end) {
 		// TODO Auto-generated method stub
 		String query = "select * from(select ROWNUM AS RNUM, N.* from (select * from BOARD_COMMENT where board_comment_writer=? order by 1 desc)N) where rnum between ? and ?";
-		System.out.println("여기까지 잘오나 dao");
 		List list = jdbc.query(query, boardCommentRowMapperForMypage, memberId, start, end);
+		
+		return list;
+	}
+
+	//자유게시판 댓글 단 게시글의 제목받아오기
+	public List selectMyBoardList(int boardRef) {
+		// TODO Auto-generated method stub
+		String query ="select * from board where board_no=?";
+		List list = jdbc.query(query, boardRowMapper, boardRef);
+		
 		
 		return list;
 	}

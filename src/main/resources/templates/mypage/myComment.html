@@ -20,7 +20,7 @@
 					<div class="myComment-wrap">
 						<a href="#">
 							<div class="myComment">
-								<p><span>th문법</span> 에 남긴 댓글</p>
+								<p><span th:text="${list.board.boardTitle}">th문법 제목 달릴곳</span> 에 남긴 댓글</p>
 								<p th:text="${list.boardCommentContent}"></p>
 							</div>
 							<div class="comment-imgBox">
@@ -30,9 +30,7 @@
 						<a><span class="material-icons">clear</span></a>
 					</div>
 					<p class="myComment-date">작성일 : <span th:text="${list.boardCommentDate}"></span> </p>
-					
 				</div>
-				
 			</div>
 		</div>
 	</div>
