@@ -97,7 +97,7 @@
 }
 .board-search-center{
   margin: 0 auto;
-  width:424px;
+  width: fit-content;
 }
 .board-search-choice-square1{
   width:120px;

@@ -248,13 +248,13 @@ public class BoardDao {
 			return productList;
 		}
 
-		public ProductFile selectProductImgList(int productBoardNo) {
+		public ProductFile selectProductImgList2(int productBoardNo) {
 			String query = "select * from product_file where product_no=?";
 			List list = jdbc.query(query, productFileRowmapper, productBoardNo);
 			return (ProductFile)list.get(0);
 		}
 
-		public int getSearchListTotalCount(String keyword) {
+		public int getSearchListTotalCount2(String keyword) {
 			String query = "select count(*) from (select rownum as snum, s.* from ((select * from (select * from (select rownum as rnum, n.* from (select * from PRODUCT_BOARD order by 1 desc)n) where (PRODUCT_BOARD_TITLE || PRODUCT_AUTHOR) like UPPER('%'||?||'%')))s))";
 			int totalCount = jdbc.queryForObject(query, Integer.class, keyword);
 			return totalCount;
