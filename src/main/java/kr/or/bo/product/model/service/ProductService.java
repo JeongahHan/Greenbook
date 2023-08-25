@@ -134,5 +134,76 @@ public class ProductService {
 	public int deleteComment(int productCommentNo) {
 		return productDao.deleteComment(productCommentNo);
 	}
+
+	public ProductListData getSearchList(int reqPage, String type, String keyword) {
+		
+		int numPerPage = 15;
+		
+		int end = reqPage * numPerPage;
+		
+		int start = (end - numPerPage) + 1;
+		
+		List productList = productDao.getSearchList(start, end, type, keyword);
+		
+		int totalCount = productDao.getSearchListTotalCount(type, keyword);
+		
+		int totalPage;
+
+		if(totalCount%numPerPage == 0) {
+			totalPage = totalCount/numPerPage;
+		}else {
+			totalPage = (totalCount/numPerPage)+1;
+		}
+		
+		int pageNaviSize = 10;
+		
+		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize + 1;
+		
+		String pageNavi = "<ul class='pagination'>";
+		
+		if(pageNo != 1) {
+			pageNavi += "<li>";
+			pageNavi += "<a class='page-item' href='/product/board?reqPage="+(pageNo-1)+"&type="+(type)+"&keyword="+(keyword)+"'>";
+			pageNavi += "<span class='material-icons'>chevron_left</span>";
+			pageNavi += "</a>";
+			pageNavi += "</li>";
+		}
+		
+		for(int i=0; i<pageNaviSize; i++) {
+			if(pageNo == reqPage) {
+				pageNavi += "<li>";
+				pageNavi += "<a class='page-item active-page' href='/product/board?reqPage="+(pageNo)+"&type="+(type)+"&keyword="+(keyword)+"'>";
+				pageNavi += pageNo;
+				pageNavi += "</a>";
+				pageNavi += "</li>";
+			}else {
+				pageNavi += "<li>";
+				pageNavi += "<a class='page-item' href='/product/board?reqPage="+(pageNo)+"&type="+(type)+"&keyword="+(keyword)+"'>";
+				pageNavi += pageNo;
+				pageNavi += "</a>";
+				pageNavi += "</li>";
+			}
+			
+			pageNo++;
+			
+			if(pageNo>totalPage) {
+				break;
+			}
+		}
+		
+		if(pageNo <= totalPage) {
+			pageNavi += "<li>";
+			pageNavi += "<a class='page-item' href='/product/board?reqPage="+(pageNo)+"&type="+(type)+"&keyword="+(keyword)+"'>";
+			pageNavi += "<span class='material-icons'>chevron_right</span>";
+			pageNavi += "</a>";
+			pageNavi += "</li>";
+		}
+		
+		pageNavi += "</ul>";
+		
+		ProductListData pld = new ProductListData(productList, pageNavi);
+		
+		return pld;
+	}
 	
 }

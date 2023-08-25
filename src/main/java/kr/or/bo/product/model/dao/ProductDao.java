@@ -119,5 +119,38 @@ public class ProductDao {
 		int result = jdbc.update(query, params);
 		return result;
 	}
+
+	public List getSearchList(int start, int end, String type, String keyword) {
+		
+		String query = null;
+		
+		if(type.equals("title")) {
+			query = "select * from (select rownum as snum, s.* from ((select * from (select* from (select rownum as rnum, n.* from(select * from PRODUCT_BOARD order by 1 desc)n) where PRODUCT_BOARD_TITLE like UPPER('%'||?||'%')))s)) where snum between ? and ?";
+		}else if(type.equals("author")) {
+			query = "select * from (select rownum as snum, s.* from ((select * from (select* from (select rownum as rnum, n.* from(select * from PRODUCT_BOARD order by 1 desc)n) where PRODUCT_AUTHOR like ('%'||?||'%')))s)) where snum between ? and ?";
+		}else if(type.equals("content")) {
+			query = "select * from (select rownum as snum, s.* from ((select * from (select* from (select rownum as rnum, n.* from(select * from PRODUCT_BOARD order by 1 desc)n) where PRODUCT_BOARD_CONTENT like UPPER('%'||?||'%')))s)) where snum between ? and ?";
+		}else if(type.equals("writer")) {
+			query = "select * from (select rownum as snum, s.* from ((select * from (select* from (select rownum as rnum, n.* from(select * from PRODUCT_BOARD order by 1 desc)n) where PRODUCT_BOARD_WRITER like ('%'||?||'%')))s)) where snum between ? and ?";
+		}
+		List productList = jdbc.query(query, productRowmapper, keyword, start, end);
+		return productList;
+	}
+
+	public int getSearchListTotalCount(String type, String keyword) {
+		
+		String query = null;
+		if(type.equals("title")) {
+			query = "select count(*) from (select rownum as snum, s.* from ((select * from (select * from (select rownum as rnum, n.* from (select * from PRODUCT_BOARD order by 1 desc)n) where PRODUCT_BOARD_TITLE like UPPER('%'||?||'%')))s))";
+		}else if(type.equals("author")) {
+			query = "select count(*) from (select rownum as snum, s.* from ((select * from (select * from (select rownum as rnum, n.* from (select * from PRODUCT_BOARD order by 1 desc)n) where PRODUCT_AUTHOR like('%'||?||'%')))s))";
+		}else if(type.equals("content")) {
+			query = "select count(*) from (select rownum as snum, s.* from ((select * from (select * from (select rownum as rnum, n.* from (select * from PRODUCT_BOARD order by 1 desc)n) where PRODUCT_BOARD_CONTENT like UPPER('%'||?||'%')))s))";
+		}else if(type.equals("writer")) {
+			query = "select count(*) from (select rownum as snum, s.* from ((select * from (select * from (select rownum as rnum, n.* from (select * from PRODUCT_BOARD order by 1 desc)n) where PRODUCT_BOARD_WRITER like('%'||?||'%')))s))";
+		}
+		int totalCount = jdbc.queryForObject(query, Integer.class, keyword);
+		return totalCount;
+	}
 	
 }
