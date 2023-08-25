@@ -62,10 +62,10 @@ public class MypageController {
 	
 	//나의 댓글
 	@GetMapping(value = "/myComment")
-	public String myComment() {
-		
+	public String myComment(HttpSession session, int reqPage) {
 		//내가 작성한 댓글 조회해서 넘겨주기
-		
+		Member m = (Member) session.getAttribute("m");
+		MypageListData mld = mypageService.selectMyComment(m, reqPage);
 		
 		return "mypage/myComment";
 	}

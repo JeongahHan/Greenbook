@@ -12,6 +12,9 @@ import kr.or.bo.board.vo.BoardCommentRowMapper;
 import kr.or.bo.board.vo.BoardFile;
 import kr.or.bo.board.vo.BoardFileRowMapper;
 import kr.or.bo.board.vo.BoardRowMapper;
+import kr.or.bo.product.model.vo.ProductFile;
+import kr.or.bo.product.model.vo.ProductFileRowMapper;
+import kr.or.bo.product.model.vo.ProductRowMapper;
 
 @Repository
 public class BoardDao {
@@ -23,6 +26,11 @@ public class BoardDao {
 	private BoardFileRowMapper boardFileRowMapper;
 	@Autowired
 	private BoardCommentRowMapper boardCommentRowMapper;
+	
+	@Autowired
+	private ProductRowMapper productRowMapper;
+	@Autowired
+	private ProductFileRowMapper productFileRowmapper;
 
 //////////////////////////////////////////////////////////////////////////
 //게시물 페이지 전체보기
@@ -227,6 +235,29 @@ public class BoardDao {
 			String query = "select count(*) from board_comment_like where board_comment_no=?";
 			int likeCount = jdbc.queryForObject(query, Integer.class,boardCommentNo);
 			return likeCount ; 
+		}
+
+		
+		
+/////////////////////////////////////////////////////////////
+//메인서치기능		
+
+		public List mainSearchList2(int start, int end, String keyword) {
+			String query = "select * from (select rownum as snum, s.* from ((select * from (select* from (select rownum as rnum, n.* from(select * from PRODUCT_BOARD order by 1 desc)n) where (PRODUCT_BOARD_TITLE || PRODUCT_AUTHOR) like UPPER('%'||?||'%')))s)) where snum between ? and ?";
+			List productList = jdbc.query(query, productRowMapper, keyword, start, end);
+			return productList;
+		}
+
+		public ProductFile selectProductImgList(int productBoardNo) {
+			String query = "select * from product_file where product_no=?";
+			List list = jdbc.query(query, productFileRowmapper, productBoardNo);
+			return (ProductFile)list.get(0);
+		}
+
+		public int getSearchListTotalCount(String keyword) {
+			String query = "select count(*) from (select rownum as snum, s.* from ((select * from (select * from (select rownum as rnum, n.* from (select * from PRODUCT_BOARD order by 1 desc)n) where (PRODUCT_BOARD_TITLE || PRODUCT_AUTHOR) like UPPER('%'||?||'%')))s))";
+			int totalCount = jdbc.queryForObject(query, Integer.class, keyword);
+			return totalCount;
 		}		
 		
 		

@@ -135,3 +135,13 @@ textarea.input-form {
   box-shadow: 0 0 0 0.1rem #eee;
 }
 */
+
+/* 게시물 수정 */
+.delBtn{
+	cursor:pointer;
+	margin-left:5px;
+	font-size:18px;	
+}
+.fc-6 {
+  color: #ff2e63;
+}

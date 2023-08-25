@@ -218,5 +218,10 @@ public class ProductService {
 		p.setFileList(fileList);
 		return p;
 	}
+
+	public int updateProduct(Product p, ArrayList<ProductFile> fileList, int[] delFileNo) {
+		
+		return 0;
+	}
 	
 }

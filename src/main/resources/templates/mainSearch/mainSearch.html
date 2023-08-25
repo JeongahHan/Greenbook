@@ -21,10 +21,7 @@
 	<div class="main">
         <div class="page-content">
 
-            <!-- 홈 > 중고거래게시판 -->
             <div class="page-title">
-				<p>홈</p>
-				<p>></p>
 				<p>중고거래게시판</p>
             </div>
 
@@ -35,60 +32,32 @@
                 </div>
                 <div class="mid-content">
                     <ul>
-                    	<li class="product" th:each="product : ${productList}">
-                    		<a th:href="@{/product/productDetail(productBoardNo=${product.productBoardNo})}">
-                    			<div class="img-box">
-                    				<img th:src="${product.productFile.getFilepath}">
-                    			</div>
+                    
+                    <li class="product" th:each="product : ${productList}">
+                    	<a th:href="@{/product/productDetail(productBoardNo=${product.productBoardNo})}">
+                    		<div class="img-box">
+                    			<img th:src="${product.productFile.getFilepath}">
+                    		</div>
                     		<div class="info">
 								<div class="book-title" th:text="${product.productBoardTitle}"></div>
 								<div class="book-writer">저자 | <span th:text="${product.productAuthor}"></span></div>
 								<div class="book-price"><span th:text="${product.productPrice}"></span> 원</div>
                     		</div>
-                    		</a>
-                    	</li>
+                    	</a>
+                    </li>
                     </ul>
                 </div>                
             </div>
 			
 			<div>
-				<div id="pageNavi1" th:utext="${pageNavi1}"></div>
+				<div id="pageNavi2" th:utext="${pageNavi2}"></div>
 			</div>
 
         </div>
     </div>
     
     
-    <hr>
     
-
-    
-	<div class="page-content">
-		<div class="page-title">
-            <p>홈</p>
-            <p>></p>
-            <p>자유게시판</p>
-        </div>
-		
-		<table class="tbl tbl-hover notice-tbl" id="boardtable">
-			<tr class="tr-2">
-				<th style="width:10%">번호</th>
-				<th style="width:45%">제목</th>
-				<th style="width:15%">작성자</th>
-				<th style="width:20%">작성일</th>
-				<th style="width:10%">조회수</th>
-			</tr>
-			<tr class="tr-1" th:each="board : ${boardList}">
-				<td th:text ="${board.boardNo}"></td>
-				<td><a th:href ="@{/board/view(boardNo=${board.boardNo})}" th:text="${board.boardTitle}" id="titleLine"></a></td> <!-- board/view?boardNo=105 -->
-				<td th:text="${board.boardWriter}"></td>
-				<td th:text="${board.boardRegDate}"></td>
-				<td th:text="${board.boardReadCount}"></td>
-			</tr>
-		</table>
-		<div id="pageNavi2" th:utext="${pageNavi2}"></div>   <!-- 태그로 동작시킬려고 utext 로 가져옴 -->
-	</div>
-	
 	
 	<th:block th:include="common/footer"></th:block>		
 		
