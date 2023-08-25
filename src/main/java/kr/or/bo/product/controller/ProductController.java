@@ -188,6 +188,27 @@ public class ProductController {
 		return "common/msg";
 	}
 	
+	@GetMapping(value="/delete")
+	public String deleteProduct(int productBoardNo, Model model) {
+		List list = productService.deleteProduct(productBoardNo);
+		if(list != null) {
+			String savepath = root+"product/";
+			for(Object obj : list) {
+				ProductFile file = (ProductFile)obj;
+				File delFile = new File(savepath+file.getFilepath());
+				delFile.delete();
+			}
+			model.addAttribute("title", "삭제 완료");
+			model.addAttribute("msg", "게시물이 삭제되었습니다.");
+			model.addAttribute("loc", "/product/board?reqPage=1");
+		}else {
+			model.addAttribute("title", "삭제 실패");
+			model.addAttribute("msg", "게시물 삭제에 실패했습니다.");
+			model.addAttribute("loc", "/product/productDetail?productBoardNo="+productBoardNo);
+		}
+		return "common/msg";
+	}
+	
 	@PostMapping(value="/insertComment")
 	public String insertComment(ProductComment pc, Model model) {
 		int result = productService.insertComment(pc);

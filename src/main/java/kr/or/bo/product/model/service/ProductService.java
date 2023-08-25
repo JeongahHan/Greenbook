@@ -245,5 +245,14 @@ public class ProductService {
 		}else
 			return null;
 	}
-	
+
+	public List deleteProduct(int productBoardNo) {
+		List list = productDao.selectProductFile(productBoardNo);
+		int result = productDao.deleteProduct(productBoardNo);
+		if(result == 0) {
+			return null;
+		}
+		return list;
+	}
+
 }
