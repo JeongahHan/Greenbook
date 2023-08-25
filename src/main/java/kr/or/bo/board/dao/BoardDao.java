@@ -179,7 +179,8 @@ public class BoardDao {
 		}
 
 		
-/////////////////////댓글 등록
+/////////////////////
+//댓글 등록
 		public int insertComment(BoardComment bc) {
 			String query = "insert into board_comment values(board_comment_seq.nextval,?,?,to_char(sysdate,'yyyy-mm-dd'),?,?)";
 			String boardCommentRef = bc.getBoardCommentRef()==0? null:String.valueOf(bc.getBoardCommentRef());
@@ -187,11 +188,46 @@ public class BoardDao {
 			int result = jdbc.update(query,params);
 			return result;
 		}
-
-
 /////////////////////////////////////////////////		
+//댓글 대댓글 수정		
+		public int updateComment(BoardComment bc) {
+			String query = "update board_comment set board_comment_content=? where board_comment_no=?";
+			Object[] params = {bc.getBoardCommentContent(),bc.getBoardCommentNo()};
+			int result = jdbc.update(query,params);
+			return result;
+		}
+/////////////////////////////////////////////////		
+//댓글 대댓글 삭제		
+		public int deleteComment(int boardCommentNo) {
+			String query = "delete from board_comment where board_comment_no=?";
+			Object[] params = {boardCommentNo};
+			int result = jdbc.update(query,params);
+			return result;
+		}
+
+//////////////////////////////////////////////////
+//댓글 좋아요/좋아요취소	
 		
 		
+		public int insertCommentLike(int boardCommentNo, int memberNo) {
+			String query = "insert into board_comment_like values(?,?)";
+			Object[] params = {boardCommentNo,memberNo};
+			int result = jdbc.update(query,params);
+			return result;
+		}
+
+		public int removeCommentLike(int boardCommentNo, int memberNo) {
+			String query = "delete from board_comment_like where board_comment_no=? and member_no=?";
+			Object[] params = {boardCommentNo,memberNo};
+			int result = jdbc.update(query,params);
+			return result;
+		}
+
+		public int likeCount(int boardCommentNo) {
+			String query = "select count(*) from board_comment_like where board_comment_no=?";
+			int likeCount = jdbc.queryForObject(query, Integer.class,boardCommentNo);
+			return likeCount ; 
+		}		
 		
 		
 }//다오 종료
