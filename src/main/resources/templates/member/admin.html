@@ -114,7 +114,9 @@
 	            <div class="sendMsg-modal-content">
 	                <span><strong>받는 사람</strong></span>
 	                <span class="receiver"></span>
-	                <input type="hidden" name="sender" th:value="${session.m.memberId}">
+	                <th:block th:if="${session.m != null}">
+	                	<input type="hidden" name="sender" th:value="${session.m.memberId}">
+	                </th:block>
 	                <input type="hidden" name="receiver" id="receiver">
 	                <textarea name="message" class="s-input-form" id="sendMsgTextarea"></textarea>
 	            </div>
