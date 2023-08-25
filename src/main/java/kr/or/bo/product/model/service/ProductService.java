@@ -145,6 +145,12 @@ public class ProductService {
 		
 		List productList = productDao.getSearchList(start, end, type, keyword);
 		
+		for(Object obj : productList) {
+			Product p = (Product)obj;
+			ProductFile pf = productDao.selectProductImgList(p.getProductBoardNo());
+			p.setProductFile(pf);
+		}
+		
 		int totalCount = productDao.getSearchListTotalCount(type, keyword);
 		
 		int totalPage;
@@ -204,6 +210,13 @@ public class ProductService {
 		ProductListData pld = new ProductListData(productList, pageNavi);
 		
 		return pld;
+	}
+
+	public Product getProduct(int productBoardNo) {
+		Product p = productDao.selectOneProduct(productBoardNo);
+		List fileList = productDao.selectProductFile(productBoardNo);
+		p.setFileList(fileList);
+		return p;
 	}
 	
 }

@@ -46,8 +46,12 @@
 						<div class="price"><span th:text="${p.getProductPrice}"></span> 원</div>
 						<div class="content" th:utext="${p.getProductBoardContent}"></div>
 						<div class="readCount">조회수 <span th:text="${p.getReadCount}"></span></div>
-						<a class="update" th:if="${session.m != null && session.m.memberId == p.productBoardWriter}">수정</a>
-						<button class="delete" th:if="${session.m != null && session.m.memberId == p.productBoardWriter}">삭제</button>
+						<a class="update" th:if="${session.m != null && session.m.memberId == p.productBoardWriter}"
+												th:href="@{/product/updateFrm(productBoardNo=${p.productBoardNo})}">수정</a>
+						<button class="delete" th:if="${(session.m != null && session.m.memberId == p.productBoardWriter) 
+														|| session.m != null && session.m.memberLevel == 1}"
+														th:onclick="">삭제</button>
+						
 					</div>
 					
 					<!-- 댓글 입력 -->
@@ -205,7 +209,6 @@
 		$(".update").on("click",function(){
 			const result = confirm("게시물을 수정하시겠습니까?");
 			if(result){
-				alert("성공");
 			}
 		});
 		

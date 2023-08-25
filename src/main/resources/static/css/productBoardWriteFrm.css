@@ -27,6 +27,23 @@
     background-color: #f0f8ef;
 }
 
+  .page-title {
+    padding-top: 20px;
+    font-size: 20px;
+    color: #005A0D;
+    overflow: hidden;
+  }
+
+.page-title>p{
+    float: left;
+    font-family: ns-bold;
+    font-size: 20px;
+    margin-right:10px;
+}
+.page-title>p:last-child{
+    color:#005A0D;
+}
+
 .main-mid{
     margin: 20px auto;
     width: 1200px;
@@ -47,7 +64,7 @@
     width: 100%;
     border-spacing: 0px;
     border-collapse: collapse;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 
