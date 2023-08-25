@@ -77,8 +77,10 @@ public class MypageController {
 		Member m = (Member) session.getAttribute("m");
 		MypageListData mld =  mypageService.selectMyProductBoardComment(m, reqPage);
 		
+		//서비스에서 제목처럼 이미지 파일패스 추가
 		model.addAttribute("myProductBoardCommentList", mld.getMypageList());
 		model.addAttribute("pageNavi", mld.getPageNavi());
+		
 		
 		return "mypage/myProductBoardComment";
 	}

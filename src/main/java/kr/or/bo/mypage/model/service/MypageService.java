@@ -212,16 +212,21 @@ public class MypageService {
 		int end = reqPage * numPerPage;
 		int start = end - numPerPage + 1;		
 		List selectMyProductBoardCommentList = mypageDao.selectMyProductBoardComment(m.getMemberId(),start,end);
-		//중고책방 댓글 단 게시글 담아오기 //내가 댓글단 게시글만 조회해서
+		//중고책방 댓글 단 게시글 담아오고 댓글객체(ProductComment)에 추가 //내가 댓글단 게시글만 조회해서
 		for(int i =0 ; i<selectMyProductBoardCommentList.size();i++) {
 			ProductComment pc = (ProductComment) selectMyProductBoardCommentList.get(i);
-			List selectMyProductBoardList = mypageDao.selectMyProductBoard(pc.getProductRef());			
+			List selectMyProductBoardList = mypageDao.selectMyProductBoardList(pc.getProductRef());			
 			//selectMyProductBoardCommentList.add(i, selectMyProductBoardList); 이건 왜 무한루프가 돌지?
 			pc.setProduct((Product)selectMyProductBoardList.get(0));
-			
+
+		}
+		//중고책방 댓글 단 게시글의 이미지 파일패스 담아오기
+		for(int i =0 ; i<selectMyProductBoardCommentList.size();i++) {
+			ProductComment pc = (ProductComment) selectMyProductBoardCommentList.get(i);
+			List selectProductFile = mypageDao.selectProductFile(pc.getProductRef());
 			
 		}
-		
+
 		
 		// 2. 페이지 네비게이션 제작
 		// 총 페이지 수 계산을 위해서는 총 게시물 수를 알아야함 -> DB에서 그룹함수로 조회
