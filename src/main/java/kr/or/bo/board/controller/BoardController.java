@@ -26,6 +26,7 @@ import kr.or.bo.board.vo.BoardFile;
 import kr.or.bo.board.vo.BoardListData;
 import kr.or.bo.board.vo.BoardViewData;
 import kr.or.bo.member.model.vo.Member;
+import kr.or.bo.product.model.vo.ProductListData;
 
 
 @Controller
@@ -362,10 +363,31 @@ public class BoardController {
 			int likeCount = boardService.removeCommentLike(boardCommentNo,memberNo);
 			return likeCount;
 		}
-	
-	
-	
-	
-	
+		
+		
+		
+		
+		
+		
+		
+////////////////////////////////////////////////////////////
+//메인 서치 기능		
+
+		@GetMapping(value="/mainSearchList")
+		public String mainSearchList(int reqPage,String keyword,Model model) {
+			
+			ProductListData pld = boardService.mainSearchList2(reqPage, keyword);
+			
+			model.addAttribute("productList", pld.getProductList());
+			model.addAttribute("pageNavi2", pld.getPageNavi());
+			
+			return "mainSearch/mainSearch";
+		}			
+		
+		
+		
+		
+		
+		
 	
 } //컨트롤러 종료

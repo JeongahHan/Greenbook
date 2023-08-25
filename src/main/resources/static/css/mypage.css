@@ -119,11 +119,12 @@ B31312 빨강
 /* 마이페이지 메뉴 */
 .mypage-menu{
     list-style: none;
-    width: 200px;
+    width: 150px;
     float: left;
+    margin-right: 50px;
 }
 .mypage-menu>li>a{
-    padding: 20px 20px;
+    padding: 10px 20px;
     display: block;
 
 }
@@ -153,7 +154,7 @@ B31312 빨강
 }
 .mypage-content-title-hover{
     height: 100%;
-    background-color: #ccc;
+    background-color: rgba(110, 110, 110, 0.2);
     border-radius: 10px;
 }
 .mypage-content-title-hover h2{
@@ -165,10 +166,10 @@ B31312 빨강
 /* 회원정보 */
 .updateForm{
     width: 500px;
-    background-color: blanchedalmond;
+    /* background-color: blanchedalmond; */
     float: left;
     font-size: 20px;
-    
+    margin-left: 200px;
 }
 .user-box{
     text-align: center;
@@ -239,13 +240,13 @@ B31312 빨강
     /* 게시글 td 선택자 */
     text-align: center;
     border-top: 1px solid #005A0D;
-    padding: 10px 0px;
+    padding: 7px 0px;
 
 }
 
 .mypageTr:hover {
     /* 임시 호버색 */
-    background-color: #D0F5BE;
+    background-color: #f0f0f0;
     cursor: pointer;
 
 }
@@ -255,10 +256,14 @@ B31312 빨강
 
 .myComment-one{
     overflow: hidden;
-    background-color: rgba(110, 110, 110, 0.15);
+    background-color: rgba(110, 110, 110, 0.07);
     padding: 10px 0;
     border-radius: 20px;
     margin: 10px 0px;
+}
+.myComment-one:hover{
+    background-color: rgba(110, 110, 110, 0.2);
+
 }
 .myComment-wrap{
     overflow: hidden;
@@ -276,8 +281,8 @@ B31312 빨강
 }
 .comment-imgBox{
     /* 댓글작성한 게시글의 이미지박스 선택자 */
-    width: 270px;
-    height: 300px;
+    width: 200px;
+    height: 230px;
     
     /* background-color: darkorange; */
     float: left;
@@ -291,7 +296,8 @@ B31312 빨강
     display: block;
     font-weight: 900;
     color: red;
-    float: left;
+    float: right;
+    padding: 0 20px;
 }
 .myComment-date{
     /* 댓글 작성일 p태그 선택자 */

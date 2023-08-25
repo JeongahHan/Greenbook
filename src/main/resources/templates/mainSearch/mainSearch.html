@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>자유게시판</title>
+
+<!-- 구글 아이콘 -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!-- jquery -->
+<script src="/js/jquery-3.7.0.js"></script>
+<!-- 기본 CSS -->
+<link rel="stylesheet" href="/css/board.css">
+<link rel="stylesheet" href="/css/productBoard.css">
+<link rel="stylesheet" href="/css/productDefault.css">
+
+	
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+
+	<div class="main">
+        <div class="page-content">
+
+            <div class="page-title">
+				<p>중고거래게시판</p>
+            </div>
+
+            <!-- 최신게시물 / 상품리스트 -->
+            <div class="main-mid">
+                <div>
+                    <span class="mid-text1">최신 게시물</span>
+                </div>
+                <div class="mid-content">
+                    <ul>
+                    
+                    <li class="product" th:each="product : ${productList}">
+                    	<a th:href="@{/product/productDetail(productBoardNo=${product.productBoardNo})}">
+                    		<div class="img-box">
+                    			<img th:src="${product.productFile.getFilepath}">
+                    		</div>
+                    		<div class="info">
+								<div class="book-title" th:text="${product.productBoardTitle}"></div>
+								<div class="book-writer">저자 | <span th:text="${product.productAuthor}"></span></div>
+								<div class="book-price"><span th:text="${product.productPrice}"></span> 원</div>
+                    		</div>
+                    	</a>
+                    </li>
+                    </ul>
+                </div>                
+            </div>
+			
+			<div>
+				<div id="pageNavi2" th:utext="${pageNavi2}"></div>
+			</div>
+
+        </div>
+    </div>
+    
+    
+    
+	
+	<th:block th:include="common/footer"></th:block>		
+		
+		
+</body>
+</html>	    
