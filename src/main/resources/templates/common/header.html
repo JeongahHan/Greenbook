@@ -34,7 +34,7 @@
 			<form action="/board/mainSearchList" name="mainSearch">
 				<input type="hidden" name="reqPage" id="currentPage" value="1">
 				<input type="text" name="keyword" placeholder="검색어를 입력해주세요" required>
-				<button id="board-enter">
+				<button type="submit">
 					<span class="material-icons">search</span>
 				</button>
 			</form>
@@ -56,7 +56,7 @@
     <nav>
 		<ul class="navi">
 			<li><a href="/product/board?reqPage=1"><span>중고책방</span></a></li> 
-			<li><a href="#"><span>요즘 이 책</span></a></li>
+			<li><a href="/now/best"><span>요즘 이 책</span></a></li>
 			<li><a href="/board/list?reqPage=1"><span>자유게시판</span></a></li>
 			<li class="service">
 				<a><span>서비스</span></a>
@@ -86,15 +86,6 @@
   
   
 
-
-		///////엔터키
-		document.getElementById("keyword")
-	    .addEventListener("keyup", function(e) {
-	        if (e.keyCode === 13) {
-	            document.getElementById("board-enter").click();
-	        }
-	    });
-	    
 	   
 
 		
