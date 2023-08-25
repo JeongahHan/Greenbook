@@ -109,6 +109,11 @@
 	overflow: hidden;
 }
 
+.box1 > .userMainImage{
+	font-size: 40px;
+    line-height: 50px;
+}
+
 .userMainImage, .ProductBoardWriter{
 	float: left;
 	padding: 0 2px;
@@ -332,6 +337,7 @@
   transition-duration: 0.5s;
   font-size: 16px;
   font-family: ns-light;
+  margin-left: 10px;
 }
 
 .bc1 {
@@ -351,6 +357,19 @@
   font-size: 1.2em;
 }
 
+	.commentbc1{
+		background-color: #005A0D;
+		color: #fff;
+		border: 2px solid #005A0D;
+
+	}
+
+	.commentbc1:hover {
+	  background-color:  #fff;
+	  color: #005A0D;
+	  cursor: pointer;
+	}
+
 /* 댓글 출력창 */
 .comment-list-box{
 	margin:50px;
@@ -360,7 +379,6 @@
   margin: 0 auto;
   width: 80%;
   display: flex;
-  border-top: 2px solid #ccc;
 
   list-style-type: none;
 }
@@ -375,14 +393,13 @@
   justify-content: center;
   align-items: center;
   min-height: 100px;
-  border-right: 1px solid #ccc;
 }
 
 .posting-comment.reply > li:first-child {
   width: 20%;
 }
 
-.posting-comment > li:first-child .material-symbols-outlined {
+.posting-comment > li:first-child .material-icons {
   font-size: 80px;
   color: #ccc;
 }
@@ -459,13 +476,13 @@
 	color: #ccc;
 }
 
-.inputCommentBox .material-symbols-outlined,
+.inputCommentBox .material-icons,
 .inputCommentBox .commentInput-form,
 .inputCommentBox .commentInsert{
 	float: left;	
 }
 
-.inputCommentBox .material-symbols-outlined{
+.inputCommentBox .material-icons{
 	width: 15%;
 }
 
@@ -489,7 +506,7 @@
   width: 20%;
 }
 
-.posting-comment.reply > li:first-child .material-symbols-outlined:first-child {
+.posting-comment.reply > li:first-child .material-icons:first-child {
   font-size: 40px;
   color: #ccc;
 }
@@ -675,3 +692,15 @@
 .productReCommentWriter:hover{
 	cursor: pointer;
 }
+
+
+
+
+  .posting-comment > li:first-child .material-icons {
+    font-size: 80px;
+    color: #ccc;
+  }
+  .posting-comment.reply > li:first-child .material-icons:first-child {
+    font-size: 40px;
+    color: #ccc;
+  }
