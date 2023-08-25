@@ -104,15 +104,6 @@
 .s-bc2:hover {
     cursor: pointer;
 }
-.id-wrap{
-	display: flex;
-}
-.id-wrap>input{
-	width: 80%;	
-}
-.id-wrap>button{
-	width:20%;
-}
 /*모달*/
 .modal-wrap{
     width: 100vw;
@@ -144,6 +135,45 @@
 .success{
 	margin: 0 auto;
 }
+#auth,.msg{
+	margin-left: 40px;
+}
+#auth,.msg>*{
+	display: block;
+	float: left;
+}
 #checkPw{
 	font-size: 15px;
+}
+/*이메일 인증*/
+#authCode{
+	width: 200px;
+    height: 50px;
+    font-size: 18px;
+    outline: none;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    padding-left: 10px;
+    margin-top: 10px;
+}
+#authBtn{
+	width: 100px;
+    border-radius: 5px;
+    height: 50px;
+    box-sizing: border-box;
+    font-size: 18px;
+    font-family: ns-light;
+    border: 1px solid rgba(0, 90, 13, 0.9);
+    background-color: #fff;
+}
+#authBtn:hover{
+	cursor: pointer;
+}
+#timeZone{
+	width: 80px;
+	height: 50px;
+}
+#authMsg{
+	width: 380px;
+	height: 50px;
 }
