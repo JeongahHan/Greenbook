@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import kr.or.bo.board.vo.BoardRowMapper;
 import kr.or.bo.member.model.vo.Member;
+import kr.or.bo.product.model.vo.Product;
+import kr.or.bo.product.model.vo.ProductCommentRowMapper;
 import kr.or.bo.product.model.vo.ProductFileRowMapper;
 import kr.or.bo.product.model.vo.ProductRowMapper;
 
@@ -22,6 +24,8 @@ public class MypageDao {
 	private BoardRowMapper boardRowMapper;
 	@Autowired
 	private ProductFileRowMapper productFileRowmapper;
+	@Autowired
+	private ProductCommentRowMapper productCommentRowMapper;
 
 	//회원정보 수정
 	public int updateMember(Member member) {
@@ -98,6 +102,26 @@ public class MypageDao {
 		int result = jdbc.update(query,params);
 		
 		return result;
+	}
+
+	//중고책방 댓글
+	public List selectMyProductBoardComment(String memberId, int start, int end) {
+		// TODO Auto-generated method stub
+		String query = "select * from(select ROWNUM AS RNUM,N.* from(select * from PRODUCT_COMMENT where PRODUCT_COMMENT_WRITER=? order by 1 desc)N) where rnum between ? and ?";
+		List list = jdbc.query(query, productCommentRowMapper, memberId, start, end);
+		
+		
+		
+		return list;
+	}
+
+	//중고책방 댓글 단 게시글의 제목받아오기
+	public List selectMyProductBoard(int productRef) {
+		// TODO Auto-generated method stub
+		String query ="select * from PRODUCT_BOARD where product_board_no=?";
+		List list = jdbc.query(query, productRowMapper, productRef);
+		
+		return list;
 	}
 
 

@@ -72,10 +72,13 @@ public class MypageController {
 	
 	//중고책방 댓글
 	@GetMapping(value = "/myProductBoardComment")
-	public String myProductBoardComment(HttpSession session, int reqPage) {
+	public String myProductBoardComment(HttpSession session,Model model, int reqPage) {
 		//멤버 아이디 받아서 select해온걸 넘긴다
 		Member m = (Member) session.getAttribute("m");
 		MypageListData mld =  mypageService.selectMyProductBoardComment(m, reqPage);
+		
+		model.addAttribute("myProductBoardCommentList", mld.getMypageList());
+		model.addAttribute("pageNavi", mld.getPageNavi());
 		
 		return "mypage/myProductBoardComment";
 	}
