@@ -13,14 +13,14 @@
 		<div class="mypage-content-wrap">
 			<div class="myComment-wrap">
 				<div class="mypage-content-title">
-					<a href="/mypage/myComment" class="myBoardComment-title"><span>자유게시판 댓글</span></a>
+					<a href="/mypage/myComment?reqPage=1" class="myBoardComment-title"><span>자유게시판 댓글</span></a>
 					<a href="#" class="myProductBoardComment-title"><h2>중고책방 댓글</h2></a>
 				</div>
 				<div class="myComment-one" th:each="list : ${myProductBoardCommentList}">
 					<div class="myComment-wrap">
-						<a href="#">
+						<a th:href="@{/product/productDetail(productBoardNo=${list.product.productBoardNo})}">
 							<div class="myComment">
-								<p><span>th문법</span> 에 남긴 댓글</p>
+								<p><span th:text="${list.product.productBoardTitle}">어느게시글에 달린 댓글인지</span> 에 남긴 댓글</p>
 								<p th:text="${list.productCommentContent}">여기는 중고책판 댓글내용</p>
 								
 							</div>

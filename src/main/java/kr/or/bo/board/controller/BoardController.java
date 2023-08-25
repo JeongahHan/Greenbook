@@ -292,7 +292,7 @@ public class BoardController {
 		return "common/msg";
 	}
 /////////////////////////////////////////////////////////////////////////
-/////댓글등록
+/////댓글, 대댓글 등록
 	@PostMapping(value="/insertComment")
 	public String insertComment(BoardComment bc,Model model) {
 		//매개변수로 받은 nc에 --  댓글작성자/댓글내용/공지사항번호/+대댓글인경우 댓글번호(그냥 댓글이면 0 , 대댓글이면 ~~)
@@ -308,5 +308,64 @@ public class BoardController {
 		return "common/msg";
 		
 	}
+	
+///////////////////////////////////////////////////////////////////////
+//댓글,대댓글 수정
+	@PostMapping(value="/updateComment")
+	public String updateComment(BoardComment bc,Model model) {
+		int result = boardService.updateComment(bc);
+		if(result > 0) {
+			model.addAttribute("title","수정완료");
+			model.addAttribute("msg","댓글이 수정되었습니다");
+			model.addAttribute("icon","success");
+		}else {
+			model.addAttribute("title","수정 실패");
+			model.addAttribute("msg","댓글 수정에 실패했습니다. 관리자에게 문의하세요");
+			model.addAttribute("icon","error");
+		}
+		
+		model.addAttribute("loc","/board/view?boardNo="+bc.getBoardRef());
+		return "common/msg";
+	}
+//////////////////////////////////////////////////////////////////////	
+//댓글,대댓글 삭제
+	@GetMapping(value="/deleteComment")
+	public String deleteComment(int boardCommentNo,int boardNo,Model model) {
+		int result = boardService.deleteComment(boardCommentNo);
+		if(result > 0) {
+			model.addAttribute("title","삭제 완료");
+			model.addAttribute("msg","댓글이 삭제되었습니다");
+			model.addAttribute("icon","success");
+		}else {
+			model.addAttribute("title","삭제 실패");
+			model.addAttribute("msg","댓글 삭제에 실패했습니다. 관리자에게 문의하세요");
+			model.addAttribute("icon","error");
+		}
+		
+		model.addAttribute("loc","/board/view?boardNo="+boardNo);
+		return "common/msg";
+	}
+//////////////////////////////////////////////////////////
+//좋아요 좋아요 취소
+	//좋아요 좋아요 취소
+		@ResponseBody
+		@PostMapping(value="/addLike")
+		public int addLike(int boardCommentNo,int memberNo) {
+			
+			int likeCount = boardService.insertCommentLike(boardCommentNo,memberNo);
+			return likeCount;
+			
+		}
+		@ResponseBody
+		@PostMapping(value="/removeLike")
+		public int removeLike(int boardCommentNo,int memberNo) {
+			int likeCount = boardService.removeCommentLike(boardCommentNo,memberNo);
+			return likeCount;
+		}
+	
+	
+	
+	
+	
 	
 } //컨트롤러 종료

@@ -352,6 +352,40 @@ public class BoardService {
 	}
 
 
+///////////////////////////////////////////////////////////////////
+//댓글 대댓글 수정
+	@Transactional
+	public int updateComment(BoardComment bc) {
+		int result = boardDao.updateComment(bc);
+		return result; 
+	}
+
+
+	@Transactional
+	public int deleteComment(int boardCommentNo) {
+		int result =boardDao.deleteComment(boardCommentNo);
+		return result;
+	}
+
+
+
+	public int insertCommentLike(int boardCommentNo, int memberNo) {
+		int result = boardDao.insertCommentLike(boardCommentNo, memberNo);
+		int likeCount = boardDao.likeCount(boardCommentNo);  //좋아요 수
+		return likeCount;
+	}
+
+
+
+	public int removeCommentLike(int boardCommentNo, int memberNo) {
+		int result = boardDao.removeCommentLike(boardCommentNo,memberNo);
+		int likeCount = boardDao.likeCount(boardCommentNo);  //좋아요 수
+		return likeCount;
+	}
+
+	
+	
+
 
 
 }//서비스 종료
