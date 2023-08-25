@@ -224,7 +224,7 @@ public class MypageService {
 		for(int i =0 ; i<selectMyProductBoardCommentList.size();i++) {
 			ProductComment pc = (ProductComment) selectMyProductBoardCommentList.get(i);
 			List selectProductFile = mypageDao.selectProductFile(pc.getProductRef());
-			
+			//ProductComment 객체에 파일객체 추가
 		}
 
 		
