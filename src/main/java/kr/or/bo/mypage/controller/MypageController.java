@@ -165,7 +165,7 @@ public class MypageController {
 	public String byRequest(int reqPage) {
 		return "mypage/byRequest";
 	}
-	@GetMapping(value = "/mypage/showConsumer")
+	@GetMapping(value = "/showConsumer")
 	public String showConsumer () {
 		return"mypage/showConsumer";
 	}
