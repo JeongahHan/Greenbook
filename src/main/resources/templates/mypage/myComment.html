@@ -18,7 +18,7 @@
 				</div>
 				<div class="myComment-one" th:each="list : ${myBoardCommentList}">
 					<div class="myComment-wrap">
-						<a href="#">
+						<a th:href="@{/board/view(boardNo=${list.board.boardNo})}">
 							<div class="myComment">
 								<p><span th:text="${list.board.boardTitle}">th문법 제목 달릴곳</span> 에 남긴 댓글</p>
 								<p th:text="${list.boardCommentContent}"></p>
