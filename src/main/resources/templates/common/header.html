@@ -46,6 +46,7 @@
 		<a th:if="${session.m !=null}" href="/mypage/memberUpdateFrm"><span class="material-icons headericon">person_outline</span></a> <!-- 로그인-->
 		<a href="#"><span class="material-icons headericon">favorite_border</span></a><!--찜-->	
 		<a href="/msg/loginCheck"><span class="material-icons headericon" id="mail-icon">mail_outline</span></a> <!--쪽지-->							
+		
 	</div>
 	<p th:if="${session.m !=null}" class="letter-count" style="color: red;"></p><!--숫자는 안읽은 쪽지 개수 받아오려고함-->
 </header>
