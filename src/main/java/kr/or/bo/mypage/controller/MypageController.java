@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import kr.or.bo.board.vo.BoardComment;
 import kr.or.bo.member.model.service.MemberService;
 import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.mypage.model.service.MypageService;
@@ -62,11 +63,16 @@ public class MypageController {
 	
 	//나의 댓글
 	@GetMapping(value = "/myComment")
-	public String myComment(HttpSession session, int reqPage) {
+	public String myComment(HttpSession session,Model model, int reqPage) {
 		//내가 작성한 댓글 조회해서 넘겨주기
 		Member m = (Member) session.getAttribute("m");
 		MypageListData mld = mypageService.selectMyComment(m, reqPage);
 		
+		model.addAttribute("myBoardCommentList",mld.getMypageList());
+		model.addAttribute("pageNavi", mld.getPageNavi());
+		//댓글 정보 잘 담겨왔나 확인
+		BoardComment bc = 	(BoardComment) mld.getMypageList().get(1);
+		System.out.println("댓글 내용 잘 담겨 왔나? : "+bc.getBoardCommentContent());
 		return "mypage/myComment";
 	}
 	

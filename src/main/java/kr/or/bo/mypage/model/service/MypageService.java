@@ -367,10 +367,10 @@ public class MypageService {
 
 		pageNavi += "</ul>";
 		
-		//MypageListData mld = new MypageListData(selectMyCommentList);
+		MypageListData mld = new MypageListData(selectMyCommentList, pageNavi);
 		
-		return null;
-	}
+		return mld;
+	}//selectMyComment()종료
 
 	
 	
