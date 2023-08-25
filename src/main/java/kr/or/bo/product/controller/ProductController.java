@@ -138,6 +138,50 @@ public class ProductController {
 		return "product/productUpdateFrm";
 	}
 	
+	@PostMapping(value="/update")
+	public String update(Product p, MultipartFile imageFile, int[] delFileNo, Model model) {
+		
+		ArrayList<ProductFile> fileList = null;
+		if(imageFile != null) {
+			fileList = new ArrayList<ProductFile>();
+		}
+		
+		String savepath = root+"product/";
+		String filename = imageFile.getOriginalFilename();
+		String filepath = fileUtil.getFilepath(savepath, imageFile.getOriginalFilename());
+		
+		File upfile = new File(savepath+filepath);
+		
+		try {
+			imageFile.transferTo(upfile);
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		ProductFile pf = new ProductFile();
+		pf.setFilename(filename);
+		pf.setFilepath(filepath);
+		pf.setProductNo(p.getProductBoardNo());
+		fileList.add(pf);
+		
+		int result = productService.updateProduct(p, fileList, delFileNo);
+		if(result > 0) {
+			model.addAttribute("title", "수정 완료");
+			model.addAttribute("msg", "게시글 수정이 완료되었습니다.");
+			model.addAttribute("icon", "");
+		}else {
+			model.addAttribute("title", "수정 실패");
+			model.addAttribute("msg", "게시글 수정 중 문제가 발생했습니다.");
+			model.addAttribute("icon", "");
+		}
+		model.addAttribute("loc", "/product/board?reqPage=1");
+		return "common/msg";
+	}
+	
 	@PostMapping(value="/insertComment")
 	public String insertComment(ProductComment pc, Model model) {
 		int result = productService.insertComment(pc);
