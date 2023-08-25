@@ -226,11 +226,9 @@ public class MypageService {
 			List selectProductFile = mypageDao.selectProductFile(pc.getProductRef());
 			//ProductComment 객체에 파일객체 추가
 			pc.setProductFile((ProductFile)selectProductFile.get(0));
-			//System.out.println("여기는 서비스 파일패스 들어가있나 확인"+pc.getProductFile().getFilepath());
 			
 		}
 		ProductComment pc = (ProductComment) selectMyProductBoardCommentList.get(0);
-		System.out.println("여기는 서비스 파일패스 들어가있나 확인"+pc.getProductFile().getFilepath());
 
 		
 		// 2. 페이지 네비게이션 제작
@@ -293,11 +291,7 @@ public class MypageService {
 		pageNavi += "</ul>";		
 		
 		MypageListData mld = new MypageListData(selectMyProductBoardCommentList, pageNavi);
-		ProductComment pc2 = (ProductComment) mld.getMypageList().get(0);
-		System.out.println(pc2.getProductFile().getFilepath());
-		//mld.getMypageList().get(i).getProductFile().getFilepath();
-		//pc2.getProductCommentContent();
-		//pc2.getProductFile();
+		
 		
 		return mld;
 	}//selectMyProductBoardComment()종료
