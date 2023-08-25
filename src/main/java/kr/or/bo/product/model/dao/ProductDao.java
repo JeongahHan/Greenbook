@@ -172,5 +172,12 @@ public class ProductDao {
 		int result = jdbc.update(query, params);
 		return result;
 	}
+
+	public int deleteProduct(int productBoardNo) {
+		String query = "delete from PRODUCT_BOARD where PRODUCT_BOARD_NO = ?";
+		Object[] params = {productBoardNo};
+		int result = jdbc.update(query, params);
+		return result;
+	}
 	
 }

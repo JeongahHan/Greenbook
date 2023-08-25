@@ -41,7 +41,7 @@
 						<div class="title" th:text="${p.getProductBoardTitle}"></div>
 						
 						<div class="cart"><a class="cart-btn">관심상품 등록</a></div>
-						<div class="buy"><a class="buy-btn">구매하기</a></div>
+						<div class="buy"><a class="buy-btn">구매요청</a></div>
 						<div class="author" th:text="${p.getProductAuthor}"></div>
 						<div class="price"><span th:text="${p.getProductPrice}"></span> 원</div>
 						<div class="content" th:utext="${p.getProductBoardContent}"></div>
@@ -50,7 +50,7 @@
 												th:href="@{/product/updateFrm(productBoardNo=${p.productBoardNo})}">수정</a>
 						<button class="delete" th:if="${(session.m != null && session.m.memberId == p.productBoardWriter) 
 														|| session.m != null && session.m.memberLevel == 1}"
-														th:onclick="">삭제</button>
+														th:onclick="productDelete([[${p.productBoardNo}]])">삭제</button>
 						
 					</div>
 					
@@ -212,12 +212,12 @@
 			}
 		});
 		
-		$(".delete").on("click",function(){
-			const result = confirm("삭제하시겠습니까?");
-			if(result){
-				alert("성공");
+		// 게시물 삭제
+		function productDelete(productBoardNo){
+			if(confirm("게시물을 삭제하시겠습니까?")){
+				location.href="/product/delete?productBoardNo="+productBoardNo;
 			}
-		});
+		}
 		
 		
 		$(".commentInsert").on("click",function(){
