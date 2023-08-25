@@ -98,6 +98,7 @@
 								</li>
 							</ul>
 							
+							ㅁㄴㅇㄹ
 							<!-- 대댓글 출력 -->
 							<th:block th:each="pcc : ${reCommentList}">
 								<ul class="posting-comment reply" th:if="${pc.productCommentNo} == pcc.productCommentRef">
@@ -169,9 +170,11 @@
 	            <div class="sendMsg-modal-content">
 	                <span><strong>받는 사람</strong></span>
 	                <span class="receiver"></span>
-	                <input type="hidden" name="sender" class="memberId" th:value="${session.m.memberId}">
+	                <th:block th:if="${session.m != null}">
+					<input type="hidden" name="sender" class="memberId" th:value="${session.m.memberId}">
+					</th:block>
 	                <input type="hidden" name="receiver" id="receiver">
-		    <input type="hidden" name="productRef" th:value="${p.productBoardNo}">
+		    		<input type="hidden" name="productRef" th:value="${p.productBoardNo}">
 	                <textarea name="message" class="s-input-form" id="sendMsgTextarea"></textarea>
 	            </div>
 	            <button type="submit" class="modalBtn s-bc1">보내기</button>
