@@ -413,11 +413,60 @@ footer > .footer-content > .footer-detail {
 .addr>div:last-child{
 	margin-left:85px;
 }
+.map-content{
+	margin-bottom: 100px;
+}
 
 .info{
-	height: 500px;
-	background-color: rgba(0, 0, 0, 0.05);
+	height: 600px;
+    background-color: rgba(0, 0, 0, 0.05); 
 	width: 100%;
     margin:0;
+    overflow: hidden;
 }
+.wrap{
+	padding-left: 20px;
+	/* padding-top: 150px; */
+}
+.infotitle{
+	margin-top: 65px;
+	font-size: 40px;
+	font-family: ns-bold;
+	margin-bottom: 50px;
+}
+.infotel{
+	font-family: ns-m;
+	font-size: 30px;
+	margin-bottom: 25px;
+}
+.infostay{
+	font-family: ns-light;
+	font-size: 15px;
+}
+.last{
+	margin-bottom: 25px;
+}
+.infoemail{
+	margin-bottom: 10px;
+	font-family: ns-m;
+	font-size: 30px;
+}
+pre{
+	font-family: ns-light;
+	float: left;
+	font-size: 20px;
+}
+.infoicon{
+  float : right;
+  padding-right: 20px;
+  /* margin-bottom: 100px; */
+  
+}
+td{
+	padding: 2rem;
+}
+td:hover{
+	
+}
+
 

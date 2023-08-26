@@ -192,7 +192,7 @@ public class MemberController {
 	@GetMapping(value = "/checkedchangeLevel")
 	public String checkedchangeLevel(String no, String level, Model model) {
 		boolean result = memberService.checkedChangeLevel(no, level);
-		if (result) { // 불린형으로 논리형이라 바로 가능!!
+		if (result) { 
 			return "redirect:/member/admin";
 		} else {
 			model.addAttribute("title", "등급변경실패하였습니다");
@@ -216,8 +216,6 @@ public class MemberController {
 		Member m = memberService.selectOneMember(memberId);
 		model.addAttribute("m", m);
 		return "member/findresult";
-		// Member member = memberService.selectOneMember(memberId);
-		// return member;
 	}
 
 }

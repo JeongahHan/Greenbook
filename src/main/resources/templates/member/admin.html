@@ -145,11 +145,28 @@
 			const memberLevel = $(item).parent().parent().find("select").val();
 			no.push(memberNo);
 			level.push(memberLevel);
+			
+			/*
+			$().ready(function () {
+		    	swal({
+					title : '회원등급변경 성공!!',
+					text : '회원등급이 변경되었습니다!'
+				})
+		    	
+	        });
+			*/
 		});
-		console.log(no);
-		console.log(level);
+		/*
+		$(".checkedchangeLevel").on("click",function () {
+	    	swal({
+				title : '회원등급변경 성공!!',
+				text : '회원등급이 변경되었습니다!'
+			})
+	    	
+        });
+		*/
 		location.href="/member/checkedchangeLevel?no="+no.join("/")+"&level="+level.join("/");
-		
+		//alert("회원등급변경 성공!!");
 	});
 	
 	
@@ -158,6 +175,7 @@
 		const memberNo = $(this).parent().parent().children().eq(1).text();
 		console.log(memberLevel,memberNo);
 		location.href="/member/changeLevel?memberNo="+memberNo+"&memberLevel="+memberLevel;
+		
 	});
 	
 	//쪽지 쓰기

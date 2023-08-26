@@ -189,7 +189,6 @@ $("#findjQ").on("click",function(){
 				btn.on("click", function(){
 					const memberLevel = $(this).parent().prev().children().val();
 					const memberNo = $(this).parent().parent().children().eq(1).text();
-					console.log(memberLevel,memberNo);
 					location.href="/member/changeLevel?memberNo="+memberNo+"&memberLevel="+memberLevel;
 				});
 				
@@ -208,7 +207,7 @@ $("#findjQ").on("click",function(){
 		    
 		    $().ready(function () {
 		    	swal({
-					title :  '존재하지않는 회원입니다.',
+					title : '존재하지않는 회원입니다.',
 					text : '회원아이디를 재검색 해주세요!',
 					icon : "info"
 				})
