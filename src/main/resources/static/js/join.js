@@ -102,47 +102,56 @@ let authCode = null;
 $("#memberEmail").on("change", function(){
 	const memberEmail = $("#memberEmail").val();
 	const emailReg = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-	//유효성 충족
-    if(emailReg.test(memberEmail)){
-    	//중복 체크
-    	$.ajax({
-            url : "/member/checkEmail",
-            type : "post",
-            data : {memberEmail : memberEmail},
-            success : function(data){
-            	//중복되지 않을 때
-                if(data == "0"){
-			        $("#checkEmail").text("인증을 완료하여 주세요.");
-			        $("#checkEmail").css("color","blue");
-			        $("#memberEmail").css("border","1px solid blue");
-			        $("#emailChkBtn").on("click",function(){
-			        	$.ajax({
-					        url : "/member/auth",
-					        data : {memberEmail : memberEmail},
-					        type : "post",
-					        success : function(data1) {
-					            authCode = data1;
-					            $("#auth").slideDown();
-					            authTime();
-					        }
-			    		});
-			        });
-                //중복될 때
-                }else{
-			        $("#checkEmail").text("중복된 메일 주소입니다.");
-			        $("#checkEmail").css("color","red");
-			        $("#memberEmail").css("border","1px solid red");
-			        checkArr[3] = false;
-                }
-            }
-        });
-    //유효성 불충족
-    }else{
-        $("#checkEmail").text("메일 주소가 유효하지 않습니다.");
-        $("#checkEmail").css("color","red");
-        $("#memberEmail").css("border","1px solid red");
-        checkArr[3] = false;
-    }
+	if($("#memberEmail").val() != ""){
+		//유효성 충족
+	    if(emailReg.test(memberEmail)){
+	    	//중복 체크
+	    	$.ajax({
+	            url : "/member/checkEmail",
+	            type : "post",
+	            data : {memberEmail : memberEmail},
+	            success : function(data){
+	            	//중복되지 않을 때
+	                if(data == "0"){
+				        $("#checkEmail").text("인증을 완료하여 주세요.");
+				        $("#checkEmail").css("color","blue");
+				        $("#memberEmail").css("border","1px solid blue");
+				        $("#emailChkBtn").on("click",function(){
+				        	$.ajax({
+						        url : "/member/auth",
+						        data : {memberEmail : memberEmail},
+						        type : "post",
+						        success : function(data1) {
+						            authCode = data1;
+								 	$("#authCode").val("");
+						        	$("#authMsg").text("");
+						        	$("#timeZone").empty();
+						            $("#auth").slideDown();
+						            authTime();
+						        }
+				    		});
+				        });
+	                //중복될 때
+	                }else{
+				        $("#checkEmail").text("중복된 메일 주소입니다.");
+				        $("#checkEmail").css("color","red");
+				        $("#memberEmail").css("border","1px solid red");
+				        checkArr[3] = false;
+	                }
+	            }
+	        });
+	    //유효성 불충족
+	    }else{
+	        $("#checkEmail").text("메일 주소가 유효하지 않습니다.");
+	        $("#checkEmail").css("color","red");
+	        $("#memberEmail").css("border","1px solid red");
+	        checkArr[3] = false;
+	    }
+	}else{
+		$("#checkEmail").text("");
+        $("#memberEmail").css("border","1px solid #ccc");
+	}
+	
 });
 
 //이메일 인증 타이머 시작

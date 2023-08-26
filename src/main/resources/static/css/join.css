@@ -43,6 +43,9 @@
     width: 800px;
     margin: 0 auto;
 }
+.hr{
+	margin-bottom: 30px;
+}
 .hr>*{
     margin-top: 5px;
 }
@@ -56,17 +59,21 @@
 }
 .s-tbl th,
 .s-tbl td{
-    padding: 1rem;
     text-align: left;
 }
 .s-tbl th{
     width: 20%;
+    padding-bottom: 30px;
 }
 .s-tbl th>label{
     font-size: 18px;
 }
 .s-tbl td{
     width: 80%;
+}
+.s-tbl td>span{
+	display: block;
+	height: 30px;
 }
 .s-input-form{
     width: 100%;
@@ -91,7 +98,7 @@
 	width:20%;
 }
 .btn-box{
-    margin-top: 20px;
+    margin-top: 30px;
     text-align: center;
     width: 100%;
 }
@@ -164,6 +171,12 @@
 }
 .close-icon:hover {
   cursor: pointer;
+}
+.use:hover {
+	cursor: pointer;
+}
+.privacy:hover {
+	cursor: pointer;
 }
 /*이메일 인증*/
 #authCode{

@@ -14,7 +14,7 @@
 @font-face {
     font-family: ns-bold;
     src: url(../font/NotoSansKR-Bold.otf);
-}
+}`
 @font-face {
     font-family: ns-black;
     src: url(../font/NotoSansKR-Black.otf);
@@ -142,8 +142,11 @@
 	display: block;
 	float: left;
 }
+.id-wrap{
+	height:30px;
+}
 #checkPw{
-	font-size: 15px;
+	font-size: 18px;
 }
 /*이메일 인증*/
 #authCode{
