@@ -1,0 +1,114 @@
+/* 사용할 font 선언 */
+@font-face {
+    font-family: ns-thin;
+    src: url(../font/NotoSansKR-Thin.otf);
+}
+@font-face {
+    font-family: ns-light;
+    src: url(../font/NotoSansKR-Light.otf);
+}
+@font-face {
+    font-family: ns-m;
+    src: url(../font/NotoSansKR-Medium.otf);
+}
+@font-face {
+    font-family: ns-bold;
+    src: url(../font/NotoSansKR-Bold.otf);
+}
+@font-face {
+    font-family: ns-black;
+    src: url(../font/NotoSansKR-Black.otf);
+}
+/*기본 설정*/
+*{
+    margin: 0;
+    padding: 0;
+    color: #252a34;
+    font-family: ns-m;
+}
+
+/* 마이페이지 디폴트 css */
+.page-content{
+    overflow: hidden;
+}
+.page-title{
+    font-family: ns-bold;
+    padding: 20px 0px;
+    font-size: 1.5rem;
+}
+/* 마이페이지 컨텐츠 쓰는 필드 */
+.mypage-content-wrap{
+	width: 1000px;
+	float: left;
+}
+
+/* 마이페이지 컨텐츠 제목 디자인 */
+.mypage-content-title{
+    font-family: ns-bold;
+    padding: 20px 0px;
+    font-size: 30px;
+    font-weight: 900px;
+}
+
+/* 관심 도서 디자인 */
+.wishList-wrap{
+    /* width: 100%; */
+    /* background-color: bisque; */
+    overflow: hidden;
+}
+.wishList-one{
+    width: 160px;
+    background-color: #F1F1F1;
+    float: left;
+    padding: 15px 15px;
+    margin: 5px 5px;
+    border-radius: 5px;
+}
+.wishList-one:hover{
+    background-color: #E7E7E7;
+    cursor: pointer;
+}
+.wishList-imgBox img{
+    width: 100%;
+}
+
+/* 게시판 페이징 디자인 */
+#pageNavi{
+	margin:100px 30px 30px 30px ;
+}
+.pagination{
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pagination > li {
+   width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    overflow: hidden;
+    color:#005A0D;
+}
+.pagination.square-style > li {
+    border-radius: 0%;
+}
+.pagination > li > a.page-item {
+    display: block;
+    width: 100%;
+    height: 100%;
+    font-size: 18px;
+}
+.pagination > li > a.page-item > span.material-icons {
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: 40px;
+    color:#005A0D;
+}
+.pagination .page-item.active-page {
+    background-color: #005A0D;
+    color: #fff;
+}
+
+
