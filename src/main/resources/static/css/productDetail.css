@@ -204,9 +204,6 @@
 .cart:hover{
 	background-color: #005A0D;
 	cursor: pointer;
-}
-
-.cart:hover > .cart-btn{
 	color: #fff;
 }
 
