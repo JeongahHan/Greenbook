@@ -23,13 +23,11 @@
                 <table class="s-tbl">
                     <tr>
                         <th>
-                            <label for="memberId">아이디<span class="red">*</label>
+                            <label for="memberId">아이디<span class="red">*</span></label>
                         </th>
-                        <td>
+                        <td>         
                             <input type="text" name="memberId" id="memberId" class="s-input-form" placeholder="영어 대문자, 소문자, 숫자 입력 가능 [4-8글자]">
-                            <div class="id-wrap">
-                            	<span id="ajaxCheckId"></span>
-                            </div>
+                            <span id="ajaxCheckId"></span>
                        	</td>                                
                     </tr>
                     <tr>
@@ -37,10 +35,8 @@
                             <label for="memberPw">비밀번호<span class="red">*</span></label>
                         </th>
                         <td>
-                            <input type="password" name="memberPw" id="memberPw" class="s-input-form" placeholder="비밀번호를 입력해주세요">
-                    		<div class="id-wrap">
-                       			<span id="checkPw"></span>
-                       		</div>
+                            <input type="password" name="memberPw" id="memberPw" class="s-input-form" placeholder="영어 대문자, 소문자, 숫자 입력 가능 [8-12글자]">
+                       		<span id="checkPw"></span>
                         </td>
                     </tr>
                     <tr>
@@ -49,9 +45,7 @@
                         </th>
                         <td>
                             <input type="password" name="memberPwRe" id="memberPwRe" class="s-input-form" placeholder="비밀번호를 한번 더 입력해주세요">	
-                       		<div class="id-wrap">
-                       			<span id="checkPwRe"></span>
-                       		</div>
+                       		<span id="checkPwRe"></span>
                         </td>
                     </tr>
                     <tr>
@@ -60,6 +54,7 @@
                         </th>
                         <td>
                             <input type="text" name="memberName" id="memberName" class="s-input-form" placeholder="이름을 입력해주세요">
+							<span></span>                        
                         </td>
                     </tr>
                     <tr>
@@ -68,6 +63,7 @@
                         </th>
                         <td>
                             <input type="text" name="memberPhone" id="memberPhone" class="s-input-form" placeholder="010-0000-0000">			
+                        	<span></span>
                         </td>
                     </tr>
                     <tr>
@@ -79,11 +75,9 @@
                                 <input type="text" name="memberEmail" id="memberEmail" class="s-input-form" placeholder="greenbook@green.com">
                                 <button type="button" id="emailChkBtn" class="s-btn s-bc1">인증코드</button>
                             </div>
-                            <div class="id-wrap">
-                            	<span id="checkEmail"></span>
-                            </div>
+                            <span id="checkEmail"></span>
 							<div id="auth" style="display:none;">
-								<input type="text" id="authCode" placeholder="인증번호입력">
+								<input type="text" id="authCode" placeholder="인증번호 입력">
 								<button type="button" id="authBtn">인증하기</button>
 								<span id="timeZone"></span>
 								<span id="authMsg"></span>
