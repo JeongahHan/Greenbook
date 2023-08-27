@@ -97,18 +97,31 @@
 			no.push(memberNo);
 			level.push(memberLevel);
 		});
-		console.log(no);
-		console.log(level);
 		location.href="/member/checkedchangeLevel?no="+no.join("/")+"&level="+level.join("/");
-		
+		$(function(){
+	    	/* swal({
+				title : '회원등급변경 성공!!',
+				text : '회원등급이 변경되었습니다!'
+			}) */
+			alert("회원등급변경 성공!!");
+
+	   }); 
 	});
 	
 	
 	$(".changeLevel").on("click",function(){
 		const memberLevel = $(this).parent().prev().children().val();
 		const memberNo = $(this).parent().parent().children().eq(1).text();
-		console.log(memberLevel,memberNo);
 		location.href="/member/changeLevel?memberNo="+memberNo+"&memberLevel="+memberLevel;
+		
+		$(function(){
+	    	/* swal({
+				title : '회원등급변경 성공!!',
+				text : '회원등급이 변경되었습니다!'
+			}) */
+			alert("회원등급변경 성공!!");
+
+	   }); 
 	});
 	
 ///////엔터키
@@ -190,6 +203,15 @@ $("#findjQ").on("click",function(){
 					const memberLevel = $(this).parent().prev().children().val();
 					const memberNo = $(this).parent().parent().children().eq(1).text();
 					location.href="/member/changeLevel?memberNo="+memberNo+"&memberLevel="+memberLevel;
+				
+					$(function(){
+				    	/* swal({
+							title : '회원등급변경 성공!!',
+							text : '회원등급이 변경되었습니다!'
+						}) */
+						alert("회원등급변경 성공!!");
+
+				   }); 
 				});
 				
 				
@@ -202,14 +224,14 @@ $("#findjQ").on("click",function(){
 			
 		})
 		.fail(function() {
-		    console.log( "error" );
+		    //console.log( "error" );
 		    //alert("없는 회원입니다~!다시 검색해주세요~!");
 		    
 		    $().ready(function () {
 		    	swal({
 					title : '존재하지않는 회원입니다.',
-					text : '회원아이디를 재검색 해주세요!',
-					icon : "info"
+					text : '회원아이디를 재검색 해주세요!'
+					//icon : "info"
 				})
 		    	
 	        });
