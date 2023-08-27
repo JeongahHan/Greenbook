@@ -206,23 +206,27 @@
 		const productBoardNo = $("input[name=productBoardNo]").val();
 		$(".cart").on("click",function(){
 			if($(this).text() == "관심상품 등록"){
-				//관심상품 삭제
+				//관심상품 등록
 				$.ajax({
 					url : "/wish/insertWish",
 					type : "get",
 					data : {productBoardNo : productBoardNo},
-					success : function(){
-						$(this).text("관심상품 해제");	
+					success : function(data){
+						if(data > 0){
+							$(".cart").text("관심상품 해제");								
+						}
 					}
 				});
 			}else{
-				//관심상품 등록
+				//관심상품 해제
 				$.ajax({
 					url : "/wish/deleteWish",
 					type : "get",
 					data : {productBoardNo : productBoardNo},
-					success : function(){
-						$(this).text("관심상품 등록");	
+					success : function(data){
+						if(data > 0){							
+							$(".cart").text("관심상품 등록");	
+						}
 					}
 				});
 			}
