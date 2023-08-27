@@ -193,12 +193,23 @@
 		    		<input type="hidden" name="productRef" th:value="${p.productBoardNo}">
 	                <textarea name="message" class="s-input-form" id="sendMsgTextarea"></textarea>
 	            </div>
-	            <button type="submit" class="modalBtn s-bc1">보내기</button>
+	            <button type="submit" class="modalBtn s-bc1" id="msgSubmit">보내기</button>
 	            <button type="button" class="modalBtn s-bc2" id="sendMsgCancel">취소</button>	        
 	        </form>
     	</div>
     </div>	
-		
+	
+	<!-- 쪽지 내용 없을 때 모달 -->
+    <div class="msg-modal-wrap">
+        <div class="sendMsg-modal">
+            <div class="msg-modal-top">
+                <h4>쪽지 내용을 입력해주시기 바랍니다.</h4>
+            </div>
+            <div class="msg-modal-content">
+				<button type="button" class="msgBtn s-bc2" id="msg-modal-close">닫기</button>
+            </div>
+        </div>
+    </div>	
 	<th:block th:include="common/footer"></th:block>
 
 	<script>
@@ -405,6 +416,20 @@
 					$(".sendMsg-modal-wrap").css("display","none");
 				});
 			}
+		});
+		
+		//쪽지 내용 없을 때 모달 띄우기
+		$("#msgSubmit").on("click", function(event){
+			if($("#sendMsgTextarea").val() == ""){
+				//쪽지 내용 입력하라는 모달 띄우기
+				$(".msg-modal-wrap").css("display","flex");
+				event.preventDefault();
+			}
+		});
+		
+		//쪽지 내용 입력하라는 모달 닫기
+		$("#msg-modal-close").on("click", function(){
+			$(".msg-modal-wrap").css("display","none");
 		});
 	</script>
 </body>

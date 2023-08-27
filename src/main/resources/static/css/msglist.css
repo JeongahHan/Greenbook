@@ -31,7 +31,6 @@
     margin: 0 auto;
     margin-top: 50px;
     margin-bottom: 50px;
-    
     flex-grow: 1;
 }
 .tabs{
@@ -107,7 +106,7 @@
     cursor: pointer;
 }
 /*관리자에게 쪽지쓰기 모달*/
-.adminMsg-modal-wrap,.msgView-modal-wrap,.replyMsg-modal-wrap{
+.adminMsg-modal-wrap,.msgView-modal-wrap,.replyMsg-modal-wrap,.msg-modal-wrap{
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
@@ -194,6 +193,23 @@
 .modal-title>.material-icons:hover{
 	cursor: pointer;
 }
+/*쪽지 내용 입력 모달*/
+.msg-modal-content{
+    margin-top: 10px;
+}
+.msgBtn{
+    border-radius: 5px;
+    width: 180px;
+    height: 40px;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: ns-light;
+    margin-top: 10px;
+}
+.msgBtn:hover{
+	cursor: pointer;
+}
+
 /*페이지 네비게이션*/
 #pageNavi{
   margin:100px 30px 30px 30px ;
