@@ -41,7 +41,7 @@ public class MemberController {
 				session.setAttribute("m", m);
 				model.addAttribute("title", "이용 제한 있음");
 				model.addAttribute("msg", "블랙이로 변경되었습니다. 쪽지함을 확인하세요.");
-				model.addAttribute("loc", "/");
+				model.addAttribute("loc", "/msg/receiveList?reqPage=1");
 			} else {
 				// session에 로그인한 회원 정보를 저장
 				session.setAttribute("m", m);
@@ -54,7 +54,7 @@ public class MemberController {
 			// 로그인 실패(아이디 or 비밀번호 불일치)
 			model.addAttribute("title", "로그인 실패");
 			model.addAttribute("msg", "아이디 또는 비밀번호를 확인하세요");
-			model.addAttribute("loc", "/");
+			model.addAttribute("loc", "/member/loginFrm");
 		}
 		return "common/msg";
 	}

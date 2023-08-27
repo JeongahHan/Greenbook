@@ -116,6 +116,7 @@ $("#memberEmail").on("change", function(){
 				        $("#checkEmail").text("인증을 완료하여 주세요.");
 				        $("#checkEmail").css("color","blue");
 				        $("#memberEmail").css("border","1px solid blue");
+				        checkArr[3] = false;
 				        $("#emailChkBtn").on("click",function(){
 				        	$.ajax({
 						        url : "/member/auth",
@@ -201,6 +202,13 @@ $("#authBtn").on("click",function(){
     }
 });
 
+$("#emailChkBtn").on("click",function(){
+	if($("#memberEmail").val() == ""){
+		$("#msg").text("이메일을 입력해주세요.");
+		$(".modal-wrap").css("display","flex");
+	}
+});
+
 //전체 동의 체크박스
 $("#allAgreement").click(function() {
     if($("#allAgreement").is(":checked")) $(".agreecheck").prop("checked", true);
@@ -232,6 +240,12 @@ $("button[type=submit]").on("click",function(event){
 	const agreeCheck = $("#useAgreement").is(":checked") && $("#privacyAgreement").is(":checked");
 	if(!agreeCheck){
 		$("#msg").text("약관동의는 필수입니다.");
+		$(".modal-wrap").css("display","flex");
+		event.preventDefault();
+	}
+	
+	if(!checkArr[3]){
+		$("#msg").text("이메일 인증을 완료해주세요.");
 		$(".modal-wrap").css("display","flex");
 		event.preventDefault();
 	}

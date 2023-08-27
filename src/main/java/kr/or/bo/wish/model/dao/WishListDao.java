@@ -12,4 +12,18 @@ public class WishListDao {
 	private JdbcTemplate jdbc;
 	@Autowired
 	private WishListRowMapper wishListRowMapper;
+	
+	public int insertWish(int productBoardNo, String memberId) {
+		String query = "insert into wish_list values(wish_list_seq.nextval, ?, ?)";
+		Object[] params = {productBoardNo, memberId};
+		int result = jdbc.update(query, params);
+		return result;
+	}
+
+	public int deleteWish(int productBoardNo, String memberId) {
+		String query = "delete from wish_list where product_board_no = ? and member_id = ?";
+		Object[] params = {productBoardNo, memberId}; 
+		int result = jdbc.update(query, params);
+		return result;
+	}
 }
