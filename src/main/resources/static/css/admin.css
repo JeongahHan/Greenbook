@@ -729,9 +729,11 @@ textarea.input-form {
   display: flex;
   width: 200px;
   height: 35px;
-  border: 1px solid #005A0D;
-  background-color: rgb(255, 255, 255);
-  box-shadow: rgb(247, 247, 247) 0px 0px 0px 1px inset;
+  padding-bottom: 4px;
+}
+.levelSearch-ChoiceBox input{
+	border: 1px solid #005A0D;
+	background-color: rgb(255, 255, 255);
 }
 
 .levelSearch-ChoiceBox button{
@@ -739,6 +741,7 @@ textarea.input-form {
   background-color: transparent;
   cursor:pointer;
   padding-top: 4px;
+  padding-left: 4px;
 }
 .levelSearch-ChoiceBox button>span{
   font-size:27px;
