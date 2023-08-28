@@ -202,6 +202,7 @@ public class MypageService {
 	public int deleteMember(int memberNo) {
 		// TODO Auto-generated method stub
 		int result = mypageDao.deleteMember(memberNo);
+
 		return result;
 	}//회원탈퇴 종료
 

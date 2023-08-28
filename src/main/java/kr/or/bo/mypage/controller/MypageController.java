@@ -123,7 +123,8 @@ public class MypageController {
 			model.addAttribute("msg", "회원 탈퇴후 로그아웃을 진행합니다.");
 			model.addAttribute("icon", "success");
 			model.addAttribute("loc", "/member/logout");//로그아웃해
-			
+			return "common/msg";
+
 			
 		}else {
 			model.addAttribute("title", "회원 탈퇴 실패");
