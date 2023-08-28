@@ -167,7 +167,7 @@ public class MypageController {
 		
 		return "redirect:/mypage/mySellBook?reqPage=1";
 	}
-	@GetMapping(value = "/show")
+	@GetMapping(value = "/buyRequestBtn")
 	public String byRequest(HttpSession session, Model model, Product p ) {
 		Member m = (Member)session.getAttribute("m");
 		int result = mypageService.tradeInsert(m,p);

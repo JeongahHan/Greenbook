@@ -12,10 +12,10 @@
 		<th:block th:include="mypage/mypageMenu"></th:block>
 		<div class="mypage-content-wrap">
 			<div class="mypage-content-title">관심도서</div>
-			<div class="wishList-wrap">
-				<div class="wishList-one" th:each="wishList : ${list}">
+			<div class="s-wishList-wrap">
+				<div class="s-wishList-one" th:each="wishList : ${list}">
 					<a th:href="@{/product/productDetail(productBoardNo=${wishList.productBoardNo})}">
-						<div class="wishList-imgBox">
+						<div class="s-wishList-imgBox">
 							<img src="/img/product-img/매미울음소리 그칠 무렵.jpg">
 	                    	<!-- <img th:src="${wishList.filepath}"> -->
 						</div>

@@ -51,30 +51,29 @@
 }
 
 /* 관심 도서 디자인 */
-.wishList-wrap{
+.s-wishList-wrap{
     width: 100%;
     overflow: hidden;
 }
-.wishList-one{
+.s-wishList-one{
     width: calc(100% / 5);
     box-sizing: border-box;
     float: left;
     padding: 15px 15px;
-    margin: 5px 5px;
     border-radius: 5px;
     height: 100%;
 }
-.wishList-one:hover{
+.s-wishList-one:hover{
     cursor: pointer;
 }
-.wishList-one:hover .title{
+.s-wishList-one:hover .title{
     cursor: pointer;
     text-decoration: underline;
 }
-.wishList-imgBox>img{
+.s-wishList-imgBox>img{
     display: block;
     height: 250px;
-    max-width: 100%;
+    width: 100%;
 }
 .selling{
 	color: blue;
