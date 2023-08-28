@@ -24,11 +24,21 @@ public class MemberDao {
 		}
 		return (Member)list.get(0);
 	}
-	
+	/*
 	public List selectAllMember() {
 		String query = "select * from MEMBER order by 1";
 		List list = jdbc.query(query, memberRowMapper);
 		return list;
+	}*/
+	public List selectAdminList(int start, int end) {
+		String query = "select * from (select rownum as rnum, n.* from (select * from member order by 1 desc)n)where rnum between ? and ?";
+		List list = jdbc.query(query, memberRowMapper, start, end);
+		return list;
+	}
+	public int selectAdminTotalCount() {
+		String query = "select count(*) from member";
+		int totalCount = jdbc.queryForObject(query, Integer.class);
+		return totalCount;
 	}
 	public int changeLevel(int memberNo, int memberLevel) {
 		String query = "update MEMBER set MEMBER_LEVEL=? where MEMBER_NO=?";
@@ -96,4 +106,18 @@ public class MemberDao {
 		}
 		return (Member)list.get(0);
 	}
+	
+	public List selectLevelList(int start, int end , String memberlevel) {
+		String query = null;
+		if(memberlevel.equals("1")) {
+		     query = "select * from (select rownum as rnum, n.* from (select * from member where member_level = 1 order by 1 desc)n)where rnum between ? and ?";
+		}else if(memberlevel.equals("2")) {
+			 query = "select * from (select rownum as rnum, n.* from (select * from member where member_level = 2 order by 1 desc)n)where rnum between ? and ?";
+		}else if(memberlevel.equals("3")) {
+			 query =  "select * from (select rownum as rnum, n.* from (select * from member where member_level = 3 order by 1 desc)n)where rnum between ? and ?";
+		}	
+		List list = jdbc.query(query, memberRowMapper, start, end);
+		return list;
+	}
+	
 }
