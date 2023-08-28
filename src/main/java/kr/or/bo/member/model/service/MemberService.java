@@ -136,7 +136,7 @@ public class MemberService {
 				}
 				pageNavi += "</ul>";
 				
-				adminListData nld = new adminListData(adminList,pageNavi); 
+				adminListData nld = new adminListData(adminList,pageNavi,reqPage); 
 				return nld;
 			}
 
@@ -191,7 +191,7 @@ public class MemberService {
 		}
 		pageNavi += "</ul>";
 		
-		adminListData nld = new adminListData(adminList,pageNavi); 
+		adminListData nld = new adminListData(adminList,pageNavi,reqPage); 
 		return nld;
 	}
 

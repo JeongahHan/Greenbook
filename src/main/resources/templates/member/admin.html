@@ -141,6 +141,7 @@
 	                <span><strong>받는 사람</strong></span>
 	                <span class="receiver"></span>
 	                <th:block th:if="${session.m != null}">
+	                	<input type="hidden" name="reqPage" th:value="${reqPage}">
 	                	<input type="hidden" name="sender" th:value="${session.m.memberId}">
 	                </th:block>
 	                <input type="hidden" name="receiver" id="receiver">

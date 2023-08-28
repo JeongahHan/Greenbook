@@ -13,4 +13,5 @@ public class adminListData {
 
 	private List adminList;
 	private String pageNavi;
+	private int reqPage;
 }

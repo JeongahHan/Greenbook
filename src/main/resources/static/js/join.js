@@ -71,7 +71,6 @@ $("#memberPw").on("change",function(){
 
 $("#memberPwRe").on("change",function(){
     pwDupCHECK();
-    
 });
 
 //비밀번호, 비밀번호 확인 일치
@@ -268,14 +267,32 @@ $("button[type=submit]").on("click",function(event){
 		event.preventDefault();
 	}
 	
+	if(!checkArr[2]){
+		$("#msg").text("비밀번호가 일치하지 않습니다.");
+		$(".modal-wrap").css("display","flex");
+		event.preventDefault();
+	}
+	
 	if($("#memberPwRe").val() == ""){
 		$("#msg").text("비밀번호를 한번 더 입력해주세요.");
 		$(".modal-wrap").css("display","flex");
 		event.preventDefault();
 	}
 	
+	if(!checkArr[1]){
+		$("#msg").text("비밀번호 확인 부탁 드립니다.");
+		$(".modal-wrap").css("display","flex");
+		event.preventDefault();
+	}
+	
 	if($("#memberPw").val() == ""){
 		$("#msg").text("비밀번호를 입력해주세요.");
+		$(".modal-wrap").css("display","flex");
+		event.preventDefault();
+	}
+	
+	if(!checkArr[0]){
+		$("#msg").text("아이디 확인 부탁 드립니다.");
 		$(".modal-wrap").css("display","flex");
 		event.preventDefault();
 	}

@@ -83,7 +83,6 @@
 		if(memberId != ""){
 			//유효한 메일 주소가 입력된 경우
 			if(emailReg.test(memberEmail)){
-				
 	    		$.ajax({
 	    			url : "/member/searchPw",
 	    			type : "post",
@@ -97,10 +96,6 @@
 							$(".emailAuth").hide();
 							$(".success").hide();
 							$("#searchPw").text("일치하는 회원 정보가 없습니다.");
-			   				$(".close").on("click", function(){
-			   					$(".modal-wrap").css("display","none");
-			   				});
-							
 						//일치하는 회원 정보가 있는 경우 -> 이메일 인증 & 새 비밀번호로 변경
 						}else{
 							$("#memberNo").val(data.memberNo);
@@ -111,7 +106,6 @@
 							$("#timeZone").empty();
 							$(".modal-top>h2").text("이메일 인증");
 							$(".emailAuth").show();
-
 							//이메일 인증
 				        	$.ajax({
 						        url : "/member/auth",
@@ -120,65 +114,10 @@
 						        success : function(data1) {
 						            authCode = data1;
 						            $("#auth").slideDown();
-				   	   				$("#close").on("click", function(){
-				   	   					$(".modal-wrap").css("display","none");
-				   	   				});
 						            authTime();
-						            $("#authBtn").on("click",function(){
-							            if(authCode != null){
-							                const inputCode = $("#authCode").val();
-							                
-							                if(authCode == inputCode){
-							                    $("#authMsg").text("인증완료");
-							                    $("#authMsg").css("color","blue");
-							                    window.clearInterval(intervalId);
-							                    $("#timeZone").empty();
-							                	checkArr[0] = true;
-							                	//비밀번호 변경
-												$(".fail").hide();
-												$(".emailAuth").hide();
-												$(".modal-top>h2").text("비밀번호 변경");
-												$(".success").show();
-												$("#memberPw").on("change",function(){
-										    	    //비밀번호 : 영어 소문자+대문자+숫자로 8~12글자
-										    	    const pwReg = /^[a-zA-Z0-9]{8,12}$/;
-										    	    const inputPw = $("#memberPw").val();
-										    	    const check = pwReg.test(inputPw);
-										    	    if($("#memberPw").val() != ""){
-											    	    if(check){
-											    	        //정규표현식 만족한 경우
-											    	        $("#checkPw").text("사용 가능한 비밀번호입니다.");
-											    	        $("#checkPw").css("color","blue");
-											    	        $(this).css("border","1px solid blue");
-											    	        checkArr[1] = true;
-											    	    }else{
-											    	        //정규표현식 만족하지 못한 경우
-											    	        $("#checkPw").text("비밀번호는 영어 대문자, 소문자, 숫자로 8~12글자입니다.");
-											    	        $("#checkPw").css("color","red");
-											    	        $(this).css("border","1px solid red");
-											    	        checkArr[1] = false;
-											    	    }
-										    	    }else{
-										    	        $("#checkPw").text("");
-										    	        $(this).css("border","1px solid #ccc");
-										    	    }
-										    	});
-							                }else{
-							                    $("#authMsg").text("메일코드를 확인하세요");
-							                    $("#authMsg").css("color","red");
-							                    checkArr[0] = false;
-							                }
-							            }
-				    				});
 						        }
 				        	});
 						}
-							$("button[type=submit]").on("click", function(event){
-							    const check = checkArr[0] && checkArr[1];
-							    if(!check){
-							        event.preventDefault();
-							    }
-							});				
 	    			}
 	    		});
 			}else{
@@ -190,10 +129,6 @@
 				$(".fail").show();
 				$(".emailAuth").hide();
 				$(".success").hide();
-   				//닫기 버튼 클릭 시 모달 닫기
-   				$(".close").on("click", function(){
-   					$(".modal-wrap").css("display","none");
-   				});
 			}
 		}else{
 			//아이디가 입력되지 않은 경우
@@ -204,13 +139,8 @@
 			$(".fail").show();
 			$(".emailAuth").hide();
 			$(".success").hide();
-			//닫기 버튼 클릭 시 모달 닫기
-			$(".close").on("click", function(){
-				$(".modal-wrap").css("display","none");
-			});
 		}
    	});
-    	
    	//이메일 인증 타이머 시작
    	let intervalId = null;
    	function authTime() {
@@ -225,9 +155,6 @@
    	                $("#authMsg").text("인증 시간 만료");
    	                $("#authMsg").css("color", "red");
    	                checkArr[0] = false;
-   	   				$("#close").on("click", function(){
-   	   					$(".modal-wrap").css("display","none");
-   	   				});
    	            }else{
    	                const newMin = Number(min) - 1;
    	                $("#min").text(newMin);
@@ -243,6 +170,67 @@
    	        }
    	    }, 1000);
    	}
+   	//이메일 인증 버튼
+    $("#authBtn").on("click",function(){
+        if(authCode != null){
+            const inputCode = $("#authCode").val();
+            if(authCode == inputCode){
+                $("#authMsg").text("인증완료");
+                $("#authMsg").css("color","blue");
+                window.clearInterval(intervalId);
+                $("#timeZone").empty();
+            	checkArr[0] = true;
+            	//비밀번호 변경
+				$(".fail").hide();
+				$(".emailAuth").hide();
+				$(".modal-top>h2").text("비밀번호 변경");
+				$(".success").show();
+				$("#memberPw").on("change",function(){
+		    	    //비밀번호 : 영어 소문자+대문자+숫자로 8~12글자
+		    	    const pwReg = /^[a-zA-Z0-9]{8,12}$/;
+		    	    const inputPw = $("#memberPw").val();
+		    	    const check = pwReg.test(inputPw);
+		    	    if($("#memberPw").val() != ""){
+			    	    if(check){
+			    	        //정규표현식 만족한 경우
+			    	        $("#checkPw").text("사용 가능한 비밀번호입니다.");
+			    	        $("#checkPw").css("color","blue");
+			    	        $(this).css("border","1px solid blue");
+			    	        checkArr[1] = true;
+			    	    }else{
+			    	        //정규표현식 만족하지 못한 경우
+			    	        $("#checkPw").text("비밀번호는 영어 대문자, 소문자, 숫자로 8~12글자입니다.");
+			    	        $("#checkPw").css("color","red");
+			    	        $(this).css("border","1px solid red");
+			    	        checkArr[1] = false;
+			    	    }
+		    	    }else{
+		    	        $("#checkPw").text("");
+		    	        $(this).css("border","1px solid #ccc");
+		    	    }
+		    	});
+            }else{
+                $("#authMsg").text("메일코드를 확인하세요");
+                $("#authMsg").css("color","red");
+                checkArr[0] = false;
+            }
+        }
+	});
+   	//새 비밀번호로 변경
+	$("button[type=submit]").on("click", function(event){
+	    const check = checkArr[0] && checkArr[1];
+	    if(!check){
+	        event.preventDefault();
+	    }
+	});		
+   	//아이디나 이메일 불일치 시 모달 닫기
+	$(".close").on("click", function(){
+		$(".modal-wrap").css("display","none");
+	});
+   	//이메일 인증 실패 시 모달 닫기
+	$("#close").on("click", function(){
+		$(".modal-wrap").css("display","none");
+	});
     </script>
 </body>
 </html>

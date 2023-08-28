@@ -183,6 +183,7 @@ public class MemberController {
 		adminListData nld = memberService.selectAdminList(reqPage);
 		model.addAttribute("adminList", nld.getAdminList());
 		model.addAttribute("pageNavi", nld.getPageNavi());
+		model.addAttribute("reqPage", nld.getReqPage());
 		return "member/admin";
 	}
 	
