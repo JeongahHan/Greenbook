@@ -90,16 +90,18 @@ header {
 }
 
 footer {
+	margin-top:100px;
+	
     padding-top: 40px;
     padding-bottom: 40px;
     padding-left: 20px;
-    border-top: 1px solid #252a34;
-    background-color: antiquewhite;
+    border-top: 1px solid #005A0D;
+
     min-width: fit-content;
     }
 footer > .footer-content {
     width: 1200px;
-    margin: 0px;
+    margin: 0px auto;
     padding: 0px 10px;
     }
 footer > .footer-content > .footer-title {
@@ -113,6 +115,10 @@ footer > .footer-content > .footer-detail {
     font-family: ns-light;
     font-weight: 580;
     }
+
+
+
+
 
 .page-content {
     width: 1200px;
