@@ -43,12 +43,8 @@
 
 						<div class="cart cart-btn" th:if="${session.m != null && session.m.memberId != p.productBoardWriter && isWished == 1}" th:onclick="deleteWish(this,[[${p.productBoardNo}]],[[${session.m.memberId}]]);">관심상품 해제</div>
 						<div class="cart cart-btn" th:if="${session.m != null && session.m.memberId != p.productBoardWriter && isWished == 0}" th:onclick="insertWish(this,[[${p.productBoardNo}]],[[${session.m.memberId}]]);">관심상품 등록</div>
-						<form action="/mypage/byRequest" class="byRequest" method="get">
-
-						<div class="cart cart-btn" th:if="${session.m != null && session.m.memberId != p.productBoardWriter}" th:onclick="deleteWish(this,[[${p.productBoardNo}]],[[${session.m.memberId}]]);">관심상품 등록</div>
-						<div class="cart cart-btn" th:if="${session.m != null && session.m.memberId != p.productBoardWriter}" th:onclick="insertWish(this,[[${p.productBoardNo}]],[[${session.m.memberId}]]);">관심상품 해제</div>
+						
 						<form action="/mypage/show" class="byRequest" method="get">
-
 							<div class="buy" th:if="${session.m != null}"><button type="submit" class="buy-btn">구매요청</button></div>
 							<input type="hidden" name="session" th:value="${session.m}">
 							<input type="hidden" name="productBoardNo" th:value="${p.productBoardNo}">
