@@ -401,7 +401,7 @@ public class MypageService {
 		int numPerPage = 10;
 		int end = reqPage * numPerPage;
 		int start = end - numPerPage + 1;	
-		//List list = mypageDao.selectConsumer(p,m, start, end);
+		List selectConsumerList = mypageDao.selectConsumer(p,m, start, end);
 
 	}
 

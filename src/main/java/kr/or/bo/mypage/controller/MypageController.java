@@ -182,7 +182,6 @@ public class MypageController {
 		System.out.println(p);
 		Member m = (Member)session.getAttribute("m");
 		System.out.println(m);
-		reqPage=1;
 		mypageService.selectConsumer(p,m,reqPage);
 		
 		return"mypage/showConsumer";
