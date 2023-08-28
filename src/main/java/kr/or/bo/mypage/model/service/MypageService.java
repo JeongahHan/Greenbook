@@ -394,9 +394,15 @@ public class MypageService {
 	}
 
 	//고객정보보기 조회
-	public void selectConsumer(Product p, Member m) {
-		// TODO Auto-generated method stub
-		
+	public void selectConsumer(Product p, Member m, int reqPage) {
+		//여기서 페이지 나비 만들기
+		// 1. 한페이지당 게시물 수 지정 -> 10개
+
+		int numPerPage = 10;
+		int end = reqPage * numPerPage;
+		int start = end - numPerPage + 1;	
+		//List list = mypageDao.selectConsumer(p,m, start, end);
+
 	}
 
 	
