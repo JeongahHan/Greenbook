@@ -110,6 +110,18 @@
             </div>
         </div>
     </div>
+    <!-- 쪽지 삭제 확인 모달 -->
+    <div class="delete-modal-wrap">
+        <div class="adminMsg-modal">
+            <div class="msg-modal-top">
+                <h4>쪽지를 정말로 삭제하시겠습니까?</h4>
+            </div>
+            <div class="msg-modal-content">
+            	<button type="button" class="delMsgBtn s-bc1" id="delete">삭제</button>
+				<button type="button" class="delMsgBtn s-bc2" id="delete-modal-close">취소</button>
+            </div>
+        </div>
+    </div>
     <th:block th:include="common/footer"></th:block>
     <script>
 	    const tabs = $(".tabs li");
@@ -124,13 +136,13 @@
 	        tabs.eq(0).click();
 	    });
 	    
-		//'관리자에게 쪽지' 클릭 시 '관리자에게 쪽지 쓰기' 모달 띄우기
+		//'관리자에게 쪽지'클릭 시 '관리자에게 쪽지 쓰기'모달 띄우기
 	    $("#adminMsg").on("click", function(){
 	    	$(".adminMsg-modal-wrap").css("display","flex");
 	    	$("#sendMsg").val("");
 	    });
 		
-	  	//'관리자에게 쪽지 쓰기' 모달에서 '취소'버튼 클릭 시 모달 닫기
+	  	//'관리자에게 쪽지 쓰기'모달에서 '취소'버튼 클릭 시 모달 닫기
 		$("#cancel").on("click", function(){
 			$(".adminMsg-modal-wrap").css("display","none");
 		});
@@ -187,18 +199,26 @@
 			$(".replyMsg-modal-wrap").css("display","none");
 		});	
 		
-		//삭제 버튼 클릭 시 해당 쪽지 삭제하기
+		//휴지통 버튼 클릭 시 삭제 확인 모달 띄우기
 		$("#deleteMsg").on("click", function(){
 			const mid = $("#msg-mid").val();
-			$.ajax({
-				url : "/msg/deleteMsg",
-				type : "get",
-				data : {mid : mid},
-				success : function(){
-					//쪽지 상세보기 모달 닫기
-					$(".msgView-modal-wrap").css("display","none");
-					location.href = "/msg/loginCheck";
-				}
+			$(".delete-modal-wrap").css("display","flex");
+			//삭제 버튼 클릭 시 삭제
+			$("#delete").on("click", function(){
+				$.ajax({
+					url : "/msg/deleteMsg",
+					type : "get",
+					data : {mid : mid},
+					success : function(){
+						//쪽지 상세보기 모달 닫기
+						$(".msgView-modal-wrap").css("display","none");
+						location.href = "/msg/loginCheck";
+					}
+				});
+			});
+			//취소 버튼 클릭 시 닫기
+			$("#delete-modal-close").on("click", function(){
+				$(".delete-modal-wrap").css("display","none");
 			});
 		});
 		
