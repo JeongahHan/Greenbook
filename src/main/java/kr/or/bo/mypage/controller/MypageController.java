@@ -18,7 +18,9 @@ import kr.or.bo.member.model.service.MemberService;
 import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.mypage.model.service.MypageService;
 import kr.or.bo.mypage.model.vo.MypageListData;
+import kr.or.bo.product.model.service.ProductService;
 import kr.or.bo.product.model.vo.Product;
+import kr.or.bo.product.model.vo.ProductListData;
 
 @Controller
 @RequestMapping(value = "/mypage")
@@ -28,6 +30,10 @@ public class MypageController {
 	//내가만든거 아님
 	@Autowired
 	private MemberService memberService;
+	
+	// 명훈
+	@Autowired
+	private ProductService productService;
 	
 	@GetMapping(value = "/memberUpdateFrm")
 	public String memberUpdateFrm () {
@@ -171,13 +177,14 @@ public class MypageController {
 
 	}
 	@GetMapping(value = "/showConsumer")
-	public String showConsumer (Product p , HttpSession session, int reqPage) {
+	public String showConsumer (Product p , HttpSession session, int reqPage, Model model) {
 		
 		System.out.println(p);
 		Member m = (Member)session.getAttribute("m");
 		System.out.println(m);
-		reqPage=1;
-		mypageService.selectConsumer(p,m,reqPage);
+		MypageListData mld = mypageService.selectConsumer(p,m,reqPage);
+		
+		model.addAttribute("selectConsumerList",mld.getMypageList());
 		
 		return"mypage/showConsumer";
 	}
