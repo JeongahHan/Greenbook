@@ -111,11 +111,11 @@ public class MemberDao {
 	public List selectLevelList(int start, int end , String memberlevel) {
 		String query = null;
 		if(memberlevel.equals("1")) {
-		     query = "select * from (select rownum as rnum, n.* from (select * from member where member_level = 1 order by 1 desc)n)where rnum between ? and ?";
+		     query = "select * from (select rownum as rnum, n.* from (select * from member where member_level = 1 )n)where rnum between ? and ?";
 		}else if(memberlevel.equals("2")) {
-			 query = "select * from (select rownum as rnum, n.* from (select * from member where member_level = 2 order by 1 desc)n)where rnum between ? and ?";
+			 query = "select * from (select rownum as rnum, n.* from (select * from member where member_level = 2 )n)where rnum between ? and ?";
 		}else if(memberlevel.equals("3")) {
-			 query =  "select * from (select rownum as rnum, n.* from (select * from member where member_level = 3 order by 1 desc)n)where rnum between ? and ?";
+			 query =  "select * from (select rownum as rnum, n.* from (select * from member where member_level = 3 order by 1 asc)n)where rnum between ? and ?";
 		}	
 		List list = jdbc.query(query, memberRowMapper, start, end);
 		return list;
