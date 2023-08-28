@@ -7,34 +7,39 @@
     border-style: none;
     
     width: calc(100%/4);
-    height: 545px;
-    
-    margin-bottom:150px;
+
+    margin-bottom:100px;
 }
 .table>.tr1{
     border-style: none;
-     height: 410px;
 }
 .table>.tr2{
     border-style: none;
-     height: 75px;
 }
 .table>.tr3{
     border-style: none;
-     height: 25px;
 }
 
 
 .table td{
     border-style: none;
+    padding-left:10px;
+    padding-right:10px;
 }
 .table .td1{
     height: 410px;
+    vertical-align: top;
 }
 .table .td2{
-    height: 75px;
+    height: 100px;
+    vertical-align: top;
+	
+	font-size:17px;
 }
 .table .td3{
-    height: 25px;
+    height: 100px;
+    vertical-align: top;
+    
     font-family:ns-light;
+    font-size:15px;
 }

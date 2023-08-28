@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+	<title>회사 소개</title>
+
+	<!-- 구글 아이콘 -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!-- jquery -->
+	<script src="/js/jquery-3.7.0.js"></script>
+	<!-- 기본 CSS -->
+	<link rel="stylesheet" href="/css/company.css">
+	<link rel="stylesheet" href="/css/default.css">
+	
+	
+
+    <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
+
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+
+    <link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg" color="#111">
+
+
+
+  
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+
+
+  <title>CodePen - Animate on Scroll with Vanilla JS</title>
+
+    <link rel="canonical" href="https://codepen.io/eddyerburgh/pen/VaVraj">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans">
+
+
+</head>
+
+<th:block th:include="common/header"></th:block>
+
+<body translate="no" style="all:unset;">        
+  <div class="full-screen background-primary" style="background-color:#fff;">
+  <div class="center" style="top:40%;">
+    <div class="center__inner">
+      <h1 class="fade-in" style="font-size: 1.9em;">
+      	<p>사람들의 일상을 조금 더 가치 있고 즐겁게</p>
+		</h1><a href="#2">
+        <div class="fa fa-caret-down fa-3x fade-in bounce" style="color:#005A0D;"></div></a>
+    </div>
+  </div>
+</div>
+<div class="full-screen background-secondary" id="2" style="background-color:#fff; overflow: hidden;">
+  <img src="/img/company2.jpg">
+  <div class="center">
+    <div class="center__inner" id="fade-in-container">
+      <h2 class="hidden" style="font-size: 1.9em;">
+      	<p>책이 주는 기쁨을 다함께</p>
+      </h2>
+    </div>
+  </div>
+</div>
+<div class="full-screen" id="3">
+  <div class="center">
+    <div class="center__inner">
+      <h2 class="color-primary hidden" style="font-size:1.3em;     line-height: 2;" >
+      	<p>책과 함께 일상을 조금 더 가치 있게 만드는 모든 일,</p>
+		<p>바로 그린북이 생각하는 독서입니다.</p>
+      </h2>
+    </div>
+  </div>
+</div>
+<div class="full-screen background-primary" id="3" style="height:150%;">
+  <div class="center">
+    <div class="center__inner" target="newwindow">     
+        <div class="hidden">
+        	<img src="/img/company.jpg" style="width: -webkit-fill-available;">
+        </div>
+        <div class="last1">
+        	<div class="last2">
+        		<p class="p1">                      
+        			사람들은 요즘 무슨 책에 관심이 많은지 서점을 둘러보는 것도,
+        			<br>
+					모임이나 새로운 만남의 대화 소재를 찾기 위해 책을 들춰보는 것도,
+					<br>
+					좋은 아이디어를 찾으려고 멋지게 디자인된 책 표지를 살펴보는 것도,
+					<br>
+					심지어 지하철에서 좀 더 ‘있어 보이게’ 졸기 위해 책을 이용하는 것도,
+					<br>
+					모두 그린북이 생각하는 독서의 모습입니다.
+        		</p>
+        		
+        		<p class="p2">
+        			밀리가 생각하는 독서와 함께라면,
+        			<br>
+        			독서가 습관이 되는 것도 어려운 일이 아니겠죠.
+        			<br>
+        			그렇게 우리의 일상은 독서하지 않던 전보다
+        			<br>
+        			조금 더 가치 있고 즐거워지지 않을까요?
+        		</p>
+        	</div>
+        </div>	
+    </div>
+  </div>
+</div>
+        
+<footer style="margin-top:0px;">
+      <div class="footer-content">
+        <p style="font-size:20px; padding-bottom:30px;">
+          (주) 그린북 컴퍼니
+        </p>
+        <p style="font-size:15px; padding-bottom:5px;">
+          	대표 : 그린이 | 개인정보책임관리자 : 그린이 | 사업자 등록번호 : 111-22-33333
+        </p>
+        <p style="font-size:15px; padding-bottom:5px;">
+          07222 서울특별시 영등포구 당산동6가 311-1 이레빌딩 19F (1544-9970)
+        </p>
+      </div>
+</footer>
+
+<script id="rendered-js">
+var animateHTML = function () {
+  var elems,
+  windowHeight;
+
+  var init = function () {
+    elems = document.getElementsByClassName("hidden");
+    windowHeight = window.innerHeight;
+    _addEventHandlers();
+  };
+
+  var _addEventHandlers = function () {
+    window.addEventListener("scroll", _checkPosition);
+    window.addEventListener("resize", init);
+  };
+  var _checkPosition = function () {
+    for (var i = 0; i < elems.length; i++) {if (window.CP.shouldStopExecution(0)) break;
+      var posFromTop = elems[i].getBoundingClientRect().top;
+      if (posFromTop - windowHeight <= 0) {
+        elems[i].className = elems[i].className.replace("hidden", "fade-in");
+      }
+    }window.CP.exitedLoop(0);
+  };
+
+  return {
+    init: init };
+
+};
+
+animateHTML().init();
+
+</script>
+</body>
+
+
+
+
+</html>
