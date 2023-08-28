@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import kr.or.bo.board.vo.BoardRowMapper;
 import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.mypage.model.vo.BoardCommentRowMapperForMypage;
+import kr.or.bo.mypage.model.vo.TradeListRowMapper;
 import kr.or.bo.product.model.vo.Product;
 import kr.or.bo.product.model.vo.ProductCommentRowMapper;
 import kr.or.bo.product.model.vo.ProductFileRowMapper;
@@ -29,6 +30,8 @@ public class MypageDao {
 	private ProductCommentRowMapper productCommentRowMapper;
 	@Autowired
 	private BoardCommentRowMapperForMypage boardCommentRowMapperForMypage;
+	@Autowired
+	private TradeListRowMapper tradeListRowMapper;
 
 	//회원정보 수정
 	public int updateMember(Member member) {
@@ -168,9 +171,9 @@ public class MypageDao {
 		// TODO Auto-generated method stub
 		String query = "SELECT * FROM TRADE_LIST WHERE PRODUCT_BOARD_NO=?";
 		
-		//List list = jdbc.query(query, rowMapper);
+		List list = jdbc.query(query, tradeListRowMapper,p.getProductBoardNo());
 		
-		return null;
+		return list;
 	}
 
 
