@@ -247,15 +247,20 @@ public class BoardDao {
 			List productList = jdbc.query(query, productRowMapper, keyword, start, end);
 			return productList;
 		}
-
-		public ProductFile selectProductImgList2(int productBoardNo) {
-			String query = "select * from product_file where product_no=?";
-			List list = jdbc.query(query, productFileRowmapper, productBoardNo);
-			return (ProductFile)list.get(0);
+		
+		public List mainSearchList1(int start, int end, String keyword) {
+			String query = "select * from (select rownum as snum, s.* from ((select * from (select* from (select rownum as rnum, n.* from(select * from BOARD order by 1 desc)n) where (BOARD_TITLE || BOARD_CONTENT) like UPPER('%'||?||'%')))s)) where snum between ? and ?";
+			List productList = jdbc.query(query, boardRowMapper, keyword, start, end);
+			return productList;
 		}
 
 		public int getSearchListTotalCount2(String keyword) {
 			String query = "select count(*) from (select rownum as snum, s.* from ((select * from (select * from (select rownum as rnum, n.* from (select * from PRODUCT_BOARD order by 1 desc)n) where (PRODUCT_BOARD_TITLE || PRODUCT_AUTHOR) like UPPER('%'||?||'%')))s))";
+			int totalCount = jdbc.queryForObject(query, Integer.class, keyword);
+			return totalCount;
+		}		
+		public int getSearchListTotalCount1(String keyword) {
+			String query = "select count(*) from (select rownum as snum, s.* from ((select * from (select * from (select rownum as rnum, n.* from (select * from BOARD order by 1 desc)n) where (BOARD_TITLE || BOARD_CONTENT) like UPPER('%'||?||'%')))s))";
 			int totalCount = jdbc.queryForObject(query, Integer.class, keyword);
 			return totalCount;
 		}		
