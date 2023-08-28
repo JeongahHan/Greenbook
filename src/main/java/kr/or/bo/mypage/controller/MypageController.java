@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import kr.or.bo.board.vo.BoardComment;
@@ -167,7 +168,7 @@ public class MypageController {
 		
 		return "redirect:/mypage/mySellBook?reqPage=1";
 	}
-	@GetMapping(value = "/buyRequestBtn")
+	@GetMapping(value = "/byRequest")
 	public String byRequest(HttpSession session, Model model, Product p ) {
 		Member m = (Member)session.getAttribute("m");
 		int result = mypageService.tradeInsert(m,p);
@@ -181,12 +182,18 @@ public class MypageController {
 		
 		System.out.println(p);
 		Member m = (Member)session.getAttribute("m");
-		System.out.println(m);
 		MypageListData mld = mypageService.selectConsumer(p,m,reqPage);
-		
+			
 		model.addAttribute("selectConsumerList",mld.getMypageList());
 		
+		
 		return"mypage/showConsumer";
+	}
+	
+	@GetMapping(value="/byRequestList")
+	public String byRequestList(int reqPage, Model model) {
+		
+		return "mypage/byRequestList";
 	}
 	
 }

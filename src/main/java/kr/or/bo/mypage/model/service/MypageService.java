@@ -12,6 +12,7 @@ import kr.or.bo.board.vo.BoardComment;
 import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.mypage.model.dao.MypageDao;
 import kr.or.bo.mypage.model.vo.MypageListData;
+import kr.or.bo.mypage.model.vo.TradeList;
 import kr.or.bo.product.model.vo.Product;
 import kr.or.bo.product.model.vo.ProductComment;
 import kr.or.bo.product.model.vo.ProductFile;
@@ -402,6 +403,18 @@ public class MypageService {
 		int end = reqPage * numPerPage;
 		int start = end - numPerPage + 1;	
 		List selectConsumerList = mypageDao.selectConsumer(p,m, start, end);
+		System.out.println(selectConsumerList);
+		System.out.println("진행 상황 체크");
+
+		//신뢰도 가져오기
+		for(int i =0 ; i<selectConsumerList.size();i++) {
+			TradeList tradeList= (TradeList)selectConsumerList.get(i);
+			List list = mypageDao.selectOneMember(tradeList.getConsumer());
+			tradeList.setMember((Member)list.get(0)); 
+
+		}
+		
+
 		
 		
 		// 2. 페이지 네비게이션 제작

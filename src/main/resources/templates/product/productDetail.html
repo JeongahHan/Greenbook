@@ -43,10 +43,10 @@
 						<div class="cart cart-btn" th:if="${session.m != null && session.m.memberId != p.productBoardWriter && isWished == 1}" th:onclick="deleteWish(this,[[${p.productBoardNo}]],[[${session.m.memberId}]]);">관심상품 해제</div>
 						<div class="cart cart-btn" th:if="${session.m != null && session.m.memberId != p.productBoardWriter && isWished == 0}" th:onclick="insertWish(this,[[${p.productBoardNo}]],[[${session.m.memberId}]]);">관심상품 등록</div>
 						
-						<form action="/mypage/show" class="byRequest" method="get">
+						<form action="/mypage/byRequest" class="byRequest" method="get">
 							<button type="submit" class="buy-btn"
 									th:if="${session.m != null && session.m.memberId != p.productBoardWriter}">
-								<div class="buy" th:if="${session.m != null}">구매요청</div>
+								<div class="buy" th:if="${session.m != null}" th:onclick="orderRequest(this,[[${p.productBoardNo}]],[[${session.m.memberId}]])">구매요청</div>
 							</button>
 							<input type="hidden" name="session" th:value="${session.m}">
 							<input type="hidden" name="productBoardNo" th:value="${p.productBoardNo}">
@@ -251,12 +251,23 @@
 			});
 		}
 		
-		$(".buy").on("click",function(){
-			const result = confirm("구매를 요청하시겠습니까?");
-			if(result){
+		function orderRequest(obj, productBoardNo, memberId){
+			if(confirm("구매요청를 요청하시겠습니까?")){
+				const orderBtn = $(obj);
+				$.ajax({
+					url : "/mypage/byRequest",
+					type : "get",
+					data : {productBoardNo:productBoardNo, memberId:memberId},
+					success:function(data){
+						if(data > 0){
+							orderBtn.text("구매요청 취소");
+							orderBtn.attr("onclick", "orderCancel(this,"+productBoardNo+",'"+memberId+"')");
+						}
+					}
+				});
 				alert("판매자에게 구매요청이 전송되었습니다.");
 			}
-		});
+		}
 		
 		$(".update").on("click",function(){
 			const result = confirm("게시물을 수정하시겠습니까?");
