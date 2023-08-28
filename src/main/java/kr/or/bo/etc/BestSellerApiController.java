@@ -63,4 +63,15 @@ public class BestSellerApiController {
 		return list;
 		
 	}
+	
+	
+	@GetMapping(value="/company")
+	public String company() {
+		return "company/company";
+	}
+	
+	
+	
+	
+	
 }
