@@ -41,7 +41,7 @@
 						<div class="title" th:text="${p.getProductBoardTitle}"></div>
 						<!-- 관심상품 등록/해제 -->
 						<div class="cart cart-btn" th:if="${session.m != null}">관심상품 등록</div>
-						<form action="/mypage/byRequest" class="byRequest" method="post">
+						<form action="/mypage/byRequest" class="byRequest" method="get">
 							<div class="buy" th:if="${session.m != null}"><button type="submit" class="buy-btn">구매요청</button></div>
 							<input type="hidden" name="session" th:value="${session.m}">
 							<input type="hidden" name="productBoardNo" th:value="${p.productBoardNo}">
@@ -246,7 +246,6 @@
 		$(".buy").on("click",function(){
 			const result = confirm("구매를 요청하시겠습니까?");
 			if(result){
-				alert("판매자에게 메세지를 전송하였습니다.");
 			}
 		});
 		
