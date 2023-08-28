@@ -123,7 +123,8 @@ public class MypageController {
 			model.addAttribute("msg", "회원 탈퇴후 로그아웃을 진행합니다.");
 			model.addAttribute("icon", "success");
 			model.addAttribute("loc", "/member/logout");//로그아웃해
-			
+			return "common/msg";
+
 			
 		}else {
 			model.addAttribute("title", "회원 탈퇴 실패");
@@ -153,7 +154,6 @@ public class MypageController {
 		model.addAttribute("mySellBookList", mld.getMypageList());
 		model.addAttribute("pageNavi", mld.getPageNavi());
 		//model.addAttribute("mySellBookImgList", mld.getMySellBookImgList());
-		
 		
 		
 		return "mypage/mySellBook";
@@ -187,6 +187,8 @@ public class MypageController {
 		MypageListData mld = mypageService.selectConsumer(p,m,reqPage);
 			
 		model.addAttribute("selectConsumerList",mld.getMypageList());
+		model.addAttribute("pageNavi", mld.getPageNavi());
+		model.addAttribute("product", p);
 		
 		return"mypage/showConsumer";
 	}

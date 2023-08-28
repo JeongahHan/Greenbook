@@ -151,6 +151,8 @@
 	});
 
 	
+	
+	//회원등급 바꾸기
 	$(".changeLevel").on("click",function(){
 		const memberLevel = $(this).parent().prev().children().val();
 		const memberNo = $(this).parent().parent().children().eq(1).text();
@@ -243,12 +245,63 @@ $("#findjQ").on("click",function(){
 				
 				});
 				
+				memberIdTd.on("click", function(){
+					const receiver = $(this).text();
+					console.log(receiver);
+					if(receiver != "admin"){
+						//쪽지쓰기 모달 열기
+						$(".sendMsg-modal-wrap").css("display","flex");
+						//textarea 초기화
+						$("#sendMsgTextarea").val("");
+						//받는 사람 데이터 넣어주기
+						$(".receiver").text(receiver);
+						$("#receiver").val(receiver);
+					}
+					
+					
+				});
+				
+				/*
+				//쪽지 쓰기
+				$(".sendMsg").on("click", function(){
+					const receiver = $(this).text();
+					console.log(receiver);
+					if(receiver != "admin"){
+						//쪽지쓰기 모달 열기
+						$(".sendMsg-modal-wrap").css("display","flex");
+						//textarea 초기화
+						$("#sendMsgTextarea").val("");
+						//받는 사람 데이터 넣어주기
+						$(".receiver").text(receiver);
+						$("#receiver").val(receiver);
+					}
+				});
+
+				//쪽지 쓰기 모달 닫기
+				$("#sendMsgCancel").on("click", function(){
+					$(".sendMsg-modal-wrap").css("display","none");
+				});		
+
+				//쪽지 내용 없을 때 모달 띄우기
+				$("#msgSubmit").on("click", function(event){
+					if($("#sendMsgTextarea").val() == ""){
+						//쪽지 내용 입력하라는 모달 띄우기
+						$(".msg-modal-wrap").css("display","flex");
+						event.preventDefault();
+					}
+				});
+
+				//쪽지 내용 입력하라는 모달 닫기
+				$("#msg-modal-close").on("click", function(){
+					$(".msg-modal-wrap").css("display","none");
+				});
+
+				*/
 				
 				
 				tr.append(inputTd).append(memberNoTd).append(memberIdTd).append(memberNameTd).append(memberPhoneTd).append(memberEmailTd).append(enrollDateTd).append(memberGradeTd).append(memberLevelTd).append(btnTd);
 				$("#admintbl>tbody").append(tr);
 				
-				$("#find").val(null);
 				
 				
 		}

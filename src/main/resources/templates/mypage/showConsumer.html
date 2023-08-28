@@ -17,10 +17,10 @@
 	                    <img src="/img/product-img/매미울음소리 그칠 무렵.jpg">
 					</div>
 					<div class="book-content">
-						<h2 class="book-title">매미 울음소리 프로덕트보드</h2>
-						<p class="book-author">저자 프로덕트보드</p>
-						<p class="book-condition">책상태 프로덕트보드</p>
-						<p class="book-price"><span>th문법span</span> 가격 프로덕트보드</p>
+						<h2 class="book-title" th:text="${product.productBoardTitle}">매미 울음소리 프로덕트보드</h2>
+						<p class="book-author" th:text="${product.productAuthor}">저자 프로덕트보드</p>
+						<p class="book-condition" th:text="${product.productCondition}">책상태 프로덕트보드</p>
+						<p class="book-price"><span th:text="${product.productPrice}">th문법span</span> 원</p>
 						
 					</div>
 				</div>
@@ -45,7 +45,7 @@
 									<p style="display : none" class="toControllPath" value="/mypage/myBoardDelete?boardNo=">모달에 컨트롤 경로지정</p>
 									<!-- <button class="btn bc1 modal-open-btn deleteBtn" target="#delete-modal">삭제</button> -->
 									<button class="btn bc1 modal-open-btn deleteBtn" target="#delete-modal" >쪽지보내기</button>
-									<button class="btn bc1 modal-open-btn deleteBtn">판매 결정</button>
+									<button class="btn bc1 modal-open-btn deleteBtn">판매 완료</button>
 								</td>
 							</tr>
 							
@@ -54,7 +54,9 @@
 					</div>
 					
 					
+					<div id="pageNavi" th:utext="${pageNavi}"></div>
 				</div>
+				
 			</div>
 		</div>
 	</div>
