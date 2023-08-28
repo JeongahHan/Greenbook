@@ -22,16 +22,16 @@ public class WishListController {
 	//관심 도서 등록
 	@ResponseBody
 	@GetMapping(value = "/insertWish")
-	public int insertWish(int productBoardNo, @SessionAttribute(required = false) Member m, Model model) {
-		int result = wishListService.insertWish(productBoardNo, m.getMemberId());
+	public int insertWish(int productBoardNo, String memberId, Model model) {
+		int result = wishListService.insertWish(productBoardNo, memberId);
 		return result;
 	}
 	
 	//관심 도서 해제
 	@ResponseBody
 	@GetMapping(value = "/deleteWish")
-	public int deleteWish(int productBoardNo, @SessionAttribute(required = false) Member m, Model model) {
-		int result = wishListService.deleteWish(productBoardNo, m.getMemberId());
+	public int deleteWish(int productBoardNo, String memberId, Model model) {
+		int result = wishListService.deleteWish(productBoardNo, memberId);
 		return result;
 	}
 	
