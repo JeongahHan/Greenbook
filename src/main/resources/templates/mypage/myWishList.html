@@ -13,63 +13,18 @@
 		<div class="mypage-content-wrap">
 			<div class="mypage-content-title">관심도서</div>
 			<div class="wishList-wrap">
-				<div class="wishList-one">
+				<div class="wishList-one" th:each="wishList : ${list}">
 					<div class="wishList-imgBox">
                     	<img src="/img/product-img/매미울음소리 그칠 무렵.jpg">
 					</div>
-					<p>제목</p>
-					<p>저자</p>
-					<p>작성자</p>
-					<p>3000원</p>
+					<p th:text="${wishList.productSellCheck}"></p>
+					<p th:text="${wishList.productBoardTitle}"></p>
+					<p th:text="${wishList.productBoarWriter}"></p>
+					<p th:text="${wishList.productPrice}"></p>
 				</div>
-				<div class="wishList-one">
-					<div class="wishList-imgBox">
-                    	<img src="/img/product-img/매미울음소리 그칠 무렵.jpg">
-					</div>
-					<p>제목</p>
-					<p>저자</p>
-					<p>작성자</p>
-					<p>3000원</p>
-				</div>
-				<div class="wishList-one">
-					<div class="wishList-imgBox">
-                    	<img src="/img/product-img/매미울음소리 그칠 무렵.jpg">
-					</div>
-					<p>제목</p>
-					<p>저자</p>
-					<p>작성자</p>
-					<p>3000원</p>
-				</div>
-				<div class="wishList-one">
-					<div class="wishList-imgBox">
-                    	<img src="/img/product-img/매미울음소리 그칠 무렵.jpg">
-					</div>
-					<p>제목</p>
-					<p>저자</p>
-					<p>작성자</p>
-					<p>3000원</p>
-				</div>
-				<div class="wishList-one">
-					<div class="wishList-imgBox">
-                    	<img src="/img/product-img/매미울음소리 그칠 무렵.jpg">
-					</div>
-					<p>제목</p>
-					<p>저자</p>
-					<p>작성자</p>
-					<p>3000원</p>
-				</div>
-				<div class="wishList-one">
-					<div class="wishList-imgBox">
-                    	<img src="/img/product-img/매미울음소리 그칠 무렵.jpg">
-					</div>
-					<p>제목</p>
-					<p>저자</p>
-					<p>작성자</p>
-					<p>3000원</p>
-				</div>
-				
 			</div>
 		</div>
+		<div id="pageNavi" th:utext="${pageNavi}"></div>
 	</div>
 	<th:block th:include="common/footer"></th:block>
 	
