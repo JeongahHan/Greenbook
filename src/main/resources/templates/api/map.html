@@ -80,7 +80,16 @@
 	
 	
 	<script>
-/*
+
+	
+
+	
+	const map = new naver.maps.Map("map",{
+		center : new naver.maps.LatLng(37.5337816, 126.8967783),
+		zoom : 16,
+		
+	});
+	/*
 	var CustomOverlay = function(options) {
 	    this._element = $('<div style="position:absolute;left:0;top:0;width:120px;height:30px;line-height:30px;text-align:center;background-color:#fff;border:2px solid #f00;">커스텀오버레이</div>')
 
@@ -101,24 +110,27 @@
 	    if (!this.getMap()) {
 	        return;
 	    }
-	    var center = new naver.maps.LatLng(37.5337816, 126.8967783);
-	    var map = new naver.maps.Map("map", {
-	        center: center,
-	        zoom: 12
-	    });
+	    
+	    marker = new naver.maps.Marker({
+			position : new naver.maps.LatLng(37.5337816, 126.8967783),
+			map : map,
+			title: "Green Book company",
+			
+			icon: {
+		        url:'/img/mapimg/bookicon.png', 
+		        size: new naver.maps.Size(50, 50), 
+		        origin: new naver.maps.Point(0, 0),
+		        anchor: new naver.maps.Point(11, 35),
+		        animation: naver.maps.Animation.BOUNCE
+		    } 
+		});
 	    var overlay = new CustomOverlay({
 	        position: center1,
 	        map: map
 	    });
 */
 	  
-
 	
-	const map = new naver.maps.Map("map",{
-		center : new naver.maps.LatLng(37.5337816, 126.8967783),
-		zoom : 16,
-		
-	});
 	
 	const marker = new naver.maps.Marker({
 		position : new naver.maps.LatLng(37.5337816, 126.8967783),
@@ -129,28 +141,47 @@
 	        url:'/img/mapimg/bookicon.png', //아이콘 경로
 	        size: new naver.maps.Size(50, 50), 
 	        origin: new naver.maps.Point(0, 0),
-	        anchor: new naver.maps.Point(11, 35),
-	        animation: naver.maps.Animation.DROP
-	    } 
+	        anchor: new naver.maps.Point(11, 35)},
+	    animation: naver.maps.Animation.BOUNCE
 	});
 	
+
 	let infoWindow = new naver.maps.InfoWindow();
 	let contentString = [
-		"<div class='iw_inner' style='border: none;'"  ,
-		"	<h3>Green Book company</h3>",
-		"	<p>서울 영등포구 선유동2로 57 이레빌딩</p>",
+		"<div class='iw_inner'"  ,
+		"	<h3 class='companytitle' style='color:#005A0D;'>Green Book company</h3>",
+		"<br>",
+		"<hr>",
+		"<p>오시는길  : </p>",
+		"<p>서울 영등포구 선유동2로 57 이레빌딩</p>",
 		"</div>"
 	].join("");
+	
+	
 	
 	naver.maps.Event.addListener(marker,"click",function(e){
 		infoWindow = new naver.maps.InfoWindow({
 			content : contentString
 		});
 		infoWindow.open(map,marker);
+ 
+		/*
+		var markers = [];
+        var infowindows = [];
+		
+		
+		for(let i=0; i<markers.length; i++){
+		    naver.maps.Event.addListener(markers[i], "click", function(e) {
+		        if (infowindows[i].getMap()) {
+		        	infowindows[i].close();
+		        } else {
+		        	infowindows[i].open(map, markers[i]);
+		        }
+		    });
+		}*/
+		
 	}); 
 	
-	
-
 
 
 	
