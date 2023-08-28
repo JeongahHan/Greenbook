@@ -609,7 +609,7 @@ textarea.input-form {
 }
 
 /*쪽지 쓰기 모달*/
-.sendMsg-modal-wrap{
+.sendMsg-modal-wrap,.msg-modal-wrap{
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
@@ -680,6 +680,22 @@ textarea.input-form {
     cursor: pointer;
 }
 .sendMsg:hover {
+	cursor: pointer;
+}
+/*쪽지 내용 없을 때 모달*/
+.msg-modal-content{
+    margin-top: 10px;
+}
+.msgBtn{
+    border-radius: 5px;
+    width: 180px;
+    height: 40px;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: ns-light;
+    margin-top: 10px;
+}
+.msgBtn:hover{
 	cursor: pointer;
 }
 
