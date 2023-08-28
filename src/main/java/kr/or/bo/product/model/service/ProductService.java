@@ -15,6 +15,8 @@ import kr.or.bo.product.model.vo.ProductComment;
 import kr.or.bo.product.model.vo.ProductFile;
 import kr.or.bo.product.model.vo.ProductListData;
 import kr.or.bo.product.model.vo.ProductViewData;
+import kr.or.bo.wish.model.dao.WishListDao;
+import kr.or.bo.wish.model.vo.WishList;
 
 @Service
 public class ProductService {
@@ -24,6 +26,9 @@ public class ProductService {
 	
 	@Autowired
 	private MemberDao memberDao;
+	
+	@Autowired
+	private WishListDao wishListDao;
 
 	@Transactional
 	public int insertPhoto(Product p, ArrayList<ProductFile> fileList) {
@@ -105,7 +110,7 @@ public class ProductService {
 	}
 
 	@Transactional
-	public ProductViewData selectOneProduct(int productBoardNo, int memberNo) {
+	public ProductViewData selectOneProduct(int productBoardNo, int memberNo, String memberId) {
 		int result = productDao.updateReadCount(productBoardNo);
 		if(result > 0) {
 			Product p = productDao.selectOneProduct(productBoardNo);
@@ -119,7 +124,9 @@ public class ProductService {
 			
 			Member m = memberDao.selectMemberGrade(productBoardNo);
 			
-			ProductViewData pvd = new ProductViewData(p, commentList, reCommentList, m);
+			int isWished = wishListDao.selectIsWished(productBoardNo, memberId);
+			
+			ProductViewData pvd = new ProductViewData(p, commentList, reCommentList, m, isWished);
 			
 			
 			return pvd;
