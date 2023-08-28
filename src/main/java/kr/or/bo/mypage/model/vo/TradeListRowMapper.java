@@ -15,10 +15,13 @@ public class TradeListRowMapper implements RowMapper<TradeList>{
 		TradeList tl = new TradeList();
 		
 		tl.setTradeNo(rs.getInt("trade_no"));
-		//tl.setProductBoardNo(rs.getString("product_board_no"));
+		tl.setProductBoardNo(rs.getInt("product_board_no"));
+		tl.setConsumer(rs.getString("consumer"));
+		tl.setTradeRequestDate(rs.getString("trade_request_date"));
+		tl.setTradeCompleteDate(rs.getString("TRADE_COMPLETE_DATE"));
 		
 		
-		return null;
+		return tl;
 	}
 
 	
