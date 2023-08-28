@@ -164,9 +164,6 @@ public class MypageController {
 	@GetMapping(value = "/byRequest")
 	public String byRequest(HttpSession session, Model model, int reqPage) {
 		Member m = (Member)session.getAttribute("m");
-		System.out.println(reqPage);
-		System.out.println(m.getMemberId());
-		
 		
 		return "mypage/byRequest";
 	}

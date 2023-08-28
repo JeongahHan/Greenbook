@@ -14,17 +14,24 @@
 			<div class="mypage-content-title">관심도서</div>
 			<div class="wishList-wrap">
 				<div class="wishList-one" th:each="wishList : ${list}">
-					<div class="wishList-imgBox">
-                    	<img src="/img/product-img/매미울음소리 그칠 무렵.jpg">
-					</div>
-					<p th:text="${wishList.productSellCheck}"></p>
-					<p th:text="${wishList.productBoardTitle}"></p>
-					<p th:text="${wishList.productBoarWriter}"></p>
-					<p th:text="${wishList.productPrice}"></p>
+					<a th:href="@{/product/productDetail(productBoardNo=${wishList.productBoardNo})}">
+						<div class="wishList-imgBox">
+							<img src="/img/product-img/매미울음소리 그칠 무렵.jpg">
+	                    	<!-- <img th:src="${wishList.filepath}"> -->
+						</div>
+						<div class="title"><p class="bold" th:text="${wishList.productBoardTitle}"></p></div>
+						<div class="small">판매자 | <span th:text="${wishList.productBoarWriter}"></span></div>
+						<div class="bold">
+							<span th:if="${wishList.productSellCheck == 0}" class="selling">[판매중]</span>
+							<span th:if="${wishList.productSellCheck == 1}" class="sold">[거래완료]</span>
+							<span th:text="${wishList.productPrice}"></span><span> 원</span>						
+						</div>				
+					</a>
 				</div>
 			</div>
+			<div id="pageNavi" th:utext="${pageNavi}"></div>
 		</div>
-		<div id="pageNavi" th:utext="${pageNavi}"></div>
+		
 	</div>
 	<th:block th:include="common/footer"></th:block>
 	
