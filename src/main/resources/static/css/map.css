@@ -460,20 +460,21 @@ pre{
 .infoicon{
   float : right;
   padding-right: 20px;
-  padding-bottom: 100px;
+  overflow: hidden;
   
 }
 td{
-	width: 60px;
-	height:60px;
-	padding: 1rem;
+	width: 70px;
+	height:70px;
+	padding: 0.5rem;
 	
 }
 td>img{
-	width: 50px;
-	height:50px;
+	width: 65px;
+	height:65px;
 	 
 }
+
 .iw_inner{
 	width: 200px;
 	height:75px;
