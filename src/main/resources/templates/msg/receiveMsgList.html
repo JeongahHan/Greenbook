@@ -48,7 +48,7 @@
 	        <form action="/msg/sendMsgToAdmin" method="post">
 	            <div class="modal-content">
 	                <span><strong>받는 사람</strong></span>
-	                <span class="receiver">관리자</span>
+	                <span class="receiver">admin</span>
 	                <th:block th:if="${session.m != null}">
 	                	<input type="hidden" name="sender" th:value="${session.m.memberId}">
 	                </th:block>
@@ -233,7 +233,7 @@
 		
 		//답장하기 시 메세지 내용 없을 때 내용 입력하라는 모달 띄우기
 		$("#replySubmit").on("click", function(event){
-			if($("#sendMsg").val() == ""){
+			if($("#replyTextarea").val() == ""){
 				//쪽지 내용 입력하라는 모달 띄우기
 				$(".msg-modal-wrap").css("display","flex");
 				event.preventDefault();
