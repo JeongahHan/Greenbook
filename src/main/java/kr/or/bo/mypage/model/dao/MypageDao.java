@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.or.bo.board.vo.BoardRowMapper;
 import kr.or.bo.member.model.vo.Member;
+import kr.or.bo.member.model.vo.MemberRowMapper;
 import kr.or.bo.mypage.model.vo.BoardCommentRowMapperForMypage;
 import kr.or.bo.mypage.model.vo.TradeListRowMapper;
 import kr.or.bo.product.model.vo.Product;
@@ -32,7 +33,9 @@ public class MypageDao {
 	private BoardCommentRowMapperForMypage boardCommentRowMapperForMypage;
 	@Autowired
 	private TradeListRowMapper tradeListRowMapper;
-
+	@Autowired
+	private MemberRowMapper memberRowMapper;
+	
 	//회원정보 수정
 	public int updateMember(Member member) {
 		// TODO Auto-generated method stub
@@ -172,6 +175,17 @@ public class MypageDao {
 		String query = "SELECT * FROM TRADE_LIST WHERE PRODUCT_BOARD_NO=?";
 		
 		List list = jdbc.query(query, tradeListRowMapper,p.getProductBoardNo());
+		
+		return list;
+	}
+
+	//멤버 검색해오기
+	public List selectOneMember(String memberId) {
+		// TODO Auto-generated method stub
+		String query ="select * from member where member_id=?";
+		
+		List list = jdbc.query(query, memberRowMapper, memberId);
+		
 		
 		return list;
 	}
