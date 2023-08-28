@@ -42,7 +42,7 @@
 			<tr class="tr-1">
 				<td><input type="checkbox" class="chk"></td>
 				<td th:text="${m.memberNo}"></td>
-				<td th:text="${m.memberId}"></td>
+				<td class="sendMsg" th:text="${m.memberId}"></td>
 				<td th:text="${m.memberName}"></td>
 				<td th:text="${m.memberPhone}"></td>
 				<td th:text="${m.memberEmail}"></td>
@@ -75,6 +75,40 @@
 		<button class="bc1 bs5 checkedchangeLevel">선택회원등급변경</button>
         
 	</div>
+	<!-- 쪽지 쓰기 모달 -->
+	<div class="sendMsg-modal-wrap">
+    	<div class="sendMsg-modal">
+	        <div class="modal-title">
+	            <h3>쪽지 쓰기</h3>
+	           	<hr>
+	        </div>
+	        <form action="/msg/adminSendMsg" method="post">
+	            <div class="sendMsg-modal-content">
+	                <span><strong>받는 사람</strong></span>
+	                <span class="receiver"></span>
+	                <th:block th:if="${session.m != null}">
+	                	<input type="hidden" name="sender" th:value="${session.m.memberId}">
+	                </th:block>
+	                <input type="hidden" name="receiver" id="receiver">
+	                <textarea name="message" class="s-input-form" id="sendMsgTextarea"></textarea>
+	            </div>
+	            <button type="submit" class="modalBtn s-bc1" id="msgSubmit">보내기</button>
+	            <button type="button" class="modalBtn s-bc2" id="sendMsgCancel">취소</button>	        
+	        </form>
+    	</div>
+    </div>
+    
+    <!-- 쪽지 내용 없을 때 모달 -->
+    <div class="msg-modal-wrap">
+        <div class="sendMsg-modal">
+            <div class="msg-modal-top">
+                <h4>쪽지 내용을 입력해주시기 바랍니다.</h4>
+            </div>
+            <div class="msg-modal-content">
+				<button type="button" class="msgBtn s-bc2" id="msg-modal-close">닫기</button>
+            </div>
+        </div>
+    </div>	
 	<th:block th:include="common/footer"></th:block>
 	
 	
@@ -82,7 +116,40 @@
 <script src="/js/sweetalert.min.js"></script>
 	<script>
 	
-	
+	//쪽지 쓰기
+	$(".sendMsg").on("click", function(){
+		const receiver = $(this).text();
+		console.log(receiver);
+		if(receiver != "admin"){
+			//쪽지쓰기 모달 열기
+			$(".sendMsg-modal-wrap").css("display","flex");
+			//textarea 초기화
+			$("#sendMsgTextarea").val("");
+			//받는 사람 데이터 넣어주기
+			$(".receiver").text(receiver);
+			$("#receiver").val(receiver);
+		}
+	});
+
+	//쪽지 쓰기 모달 닫기
+	$("#sendMsgCancel").on("click", function(){
+		$(".sendMsg-modal-wrap").css("display","none");
+	});		
+
+	//쪽지 내용 없을 때 모달 띄우기
+	$("#msgSubmit").on("click", function(event){
+		if($("#sendMsgTextarea").val() == ""){
+			//쪽지 내용 입력하라는 모달 띄우기
+			$(".msg-modal-wrap").css("display","flex");
+			event.preventDefault();
+		}
+	});
+
+	//쪽지 내용 입력하라는 모달 닫기
+	$("#msg-modal-close").on("click", function(){
+		$(".msg-modal-wrap").css("display","none");
+	});
+
 	$(".checkedchangeLevel").on("click",function(){
 		const check = $(".chk:checked");
 		if(check.length == 0){
@@ -159,6 +226,7 @@ $("#findjQ").on("click",function(){
 				
 				const memberIdTd = $("<td>");
 				memberIdTd.text(data.memberId);
+				memberIdTd.attr('class','sendMsg');
 				
 				const memberNameTd = $("<td>");
 				memberNameTd.text(data.memberName);
@@ -244,7 +312,7 @@ $("#findjQ").on("click",function(){
 	});
 	
 
-	</script>
+</script>
 		
 
 </body>
