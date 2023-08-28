@@ -40,7 +40,6 @@
 					<div class="main-box">
 						<div class="title" th:text="${p.getProductBoardTitle}"></div>
 						<!-- 관심상품 등록/해제 -->
-
 						<div class="cart cart-btn" th:if="${session.m != null && session.m.memberId != p.productBoardWriter && isWished == 1}" th:onclick="deleteWish(this,[[${p.productBoardNo}]],[[${session.m.memberId}]]);">관심상품 해제</div>
 						<div class="cart cart-btn" th:if="${session.m != null && session.m.memberId != p.productBoardWriter && isWished == 0}" th:onclick="insertWish(this,[[${p.productBoardNo}]],[[${session.m.memberId}]]);">관심상품 등록</div>
 						
