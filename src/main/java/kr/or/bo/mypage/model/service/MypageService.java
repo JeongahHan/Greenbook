@@ -3,6 +3,8 @@ package kr.or.bo.mypage.model.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -388,9 +390,7 @@ public class MypageService {
 	//거래목록 인서트
 	@Transactional
 	public int tradeInsert(Member m, Product p) {
-		// TODO Auto-generated method stub
 		int result = mypageDao.tradeInsert(m,p);
-		
 		return result;
 	}
 
@@ -413,8 +413,6 @@ public class MypageService {
 			tradeList.setMember((Member)list.get(0)); 
 
 		}
-		
-
 		
 		
 		// 2. 페이지 네비게이션 제작
@@ -481,7 +479,5 @@ public class MypageService {
 		return mld;
 
 	}
-
-	
 	
 }

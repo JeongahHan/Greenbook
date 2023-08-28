@@ -168,14 +168,24 @@ public class MypageController {
 		
 		return "redirect:/mypage/mySellBook?reqPage=1";
 	}
+	
 	@GetMapping(value = "/byRequest")
-	public String byRequest(HttpSession session, Model model, Product p ) {
+	public String byRequest(HttpSession session, Model model, Product p) {
 		Member m = (Member)session.getAttribute("m");
-		int result = mypageService.tradeInsert(m,p);
-		
-		//return "mypage/byRequest";
-		return "redirect:/product/productDetail?productBoardNo="+p.getProductBoardNo();
-
+		int result = mypageService.tradeInsert(m, p);
+		if(result>0) {
+			model.addAttribute("title", "구매요청 성공");
+			model.addAttribute("msg", "판매자에게 구매요청이 전송되었습니다.");
+			model.addAttribute("icon", "");
+		}else {
+			model.addAttribute("title", "구매요청 실패");
+			model.addAttribute("msg", "관리자에게 문의하여주시기 바랍니다.");
+			model.addAttribute("icon", "");
+		}
+		model.addAttribute("loc", "/product/productDetail?productBoardNo="+p.getProductBoardNo());
+		return "common/msg";
+//		return "mypage/byRequestList";
+//		return "redirect:/product/productDetail?productBoardNo="+p.getProductBoardNo();
 	}
 	@GetMapping(value = "/showConsumer")
 	public String showConsumer (Product p , HttpSession session, int reqPage, Model model) {

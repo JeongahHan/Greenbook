@@ -2,6 +2,8 @@ package kr.or.bo.mypage.model.dao;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -189,7 +191,5 @@ public class MypageDao {
 		
 		return list;
 	}
-
-
 	
 }
