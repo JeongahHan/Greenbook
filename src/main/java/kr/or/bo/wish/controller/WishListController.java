@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.msg.model.vo.Msg;
-import kr.or.bo.msg.model.vo.MsgListData;
 import kr.or.bo.wish.model.service.WishListService;
 import kr.or.bo.wish.model.vo.WishListData;
 
