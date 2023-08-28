@@ -162,7 +162,12 @@ public class MypageController {
 		return "redirect:/mypage/mySellBook?reqPage=1";
 	}
 	@GetMapping(value = "/byRequest")
-	public String byRequest(int reqPage) {
+	public String byRequest(HttpSession session, Model model, int reqPage) {
+		Member m = (Member)session.getAttribute("m");
+		System.out.println(reqPage);
+		System.out.println(m.getMemberId());
+		
+		
 		return "mypage/byRequest";
 	}
 	@GetMapping(value = "/showConsumer")
