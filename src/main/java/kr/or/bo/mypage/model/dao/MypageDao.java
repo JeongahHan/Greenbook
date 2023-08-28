@@ -174,9 +174,12 @@ public class MypageDao {
 	//고객 정보 조회
 	public List selectConsumer(Product p, Member m, int start, int end) {
 		// TODO Auto-generated method stub
-		String query = "SELECT * FROM TRADE_LIST WHERE PRODUCT_BOARD_NO=?";
-		
-		List list = jdbc.query(query, tradeListRowMapper,p.getProductBoardNo());
+		//String query = "SELECT * FROM TRADE_LIST WHERE PRODUCT_BOARD_NO=?";
+		//String query = "select * from(select ROWNUM AS RNUM,N.* from(select * from TRADE_LIST where PRODUCT_BOARD_NO=? order by 1 DESC)N) where rnum between ? and ?";
+		//먼저 요청한사람이 먼저 뜨도록 desc로 순서 안뒤집음
+		String query = "select * from(select ROWNUM AS RNUM,N.* from(select * from TRADE_LIST full join PRODUCT_BOARD using (PRODUCT_BOARD_NO) where PRODUCT_BOARD_NO=? and PRODUCT_SELL_CHECK=0 order by 1 )N) where rnum between ? and ?";
+		Object params []= {p.getProductBoardNo(), start, end};
+		List list = jdbc.query(query, tradeListRowMapper,params);
 		
 		return list;
 	}
