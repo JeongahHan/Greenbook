@@ -62,14 +62,14 @@
         <div class="infoicon">
          <table>
            <tr>
-              <td><img src="/Users/yuna/Desktop/git/greenbookProject/map아이콘/free-icon-facebook-2956108.png"></td>
-              <td><img src="/Users/yuna/Desktop/git/greenbookProject/map아이콘/free-icon-facebook-2956108.png"></td>
-              <td><img src="/Users/yuna/Desktop/git/greenbookProject/map아이콘/free-icon-facebook-2956108.png"></td>
+              <td><img src="/img/mapimg/facebook.png"></td>
+              <td><img src="/img/mapimg/instagram.png"></td>
+              <td><img src="/img/mapimg/twitter.png"></td>
             </tr>
             <tr>
-              <td><img src="/Users/yuna/Desktop/git/greenbookProject/map아이콘/free-icon-facebook-2956108.png"></td>
-              <td><img src="/Users/yuna/Desktop/git/greenbookProject/map아이콘/free-icon-facebook-2956108.png"></td>
-              <td><img src="/Users/yuna/Desktop/git/greenbookProject/map아이콘/free-icon-facebook-2956108.png"></td>
+              <td><img src="/img/mapimg/line.png"></td>
+              <td><img src="/img/mapimg/pinterest.png"></td>
+              <td><img src="/img/mapimg/youtube.png"></td>
             </tr>
          </table>
         </div>
@@ -119,17 +119,19 @@
 		zoom : 16,
 		
 	});
+	
 	const marker = new naver.maps.Marker({
 		position : new naver.maps.LatLng(37.5337816, 126.8967783),
-		map : map
-		/*
+		map : map,
+		title: "greenbook company",
+		
 		icon: {
-	        url: './greenbookProject/map아이콘/mapicon.png', //아이콘 경로
-	        size: new naver.maps.Size(22, 36), 
+	        url:'/img/mapimg/bookicon.png', //아이콘 경로
+	        size: new naver.maps.Size(50, 50), 
 	        origin: new naver.maps.Point(0, 0),
 	        anchor: new naver.maps.Point(11, 35),
 	        animation: naver.maps.Animation.DROP
-	    } */
+	    } 
 	});
 	
 	let infoWindow = new naver.maps.InfoWindow();
