@@ -30,10 +30,11 @@ B31312 빨강
   flex-direction: column;
 }
 .modal-wrap {
-  margin-top: 150px;
+  margin-top: 350px;
   width: 600px;
   background: #fff;
   height: auto;
+  border-radius: 10px;
 }
 .modal-wrap div {
   padding: 1rem;
@@ -46,6 +47,7 @@ B31312 빨강
 }
 .modal-wrap div.modal-head {
   position: relative;
+  text-align: center;
 }
 .close-icon {
   position: absolute;

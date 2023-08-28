@@ -261,7 +261,7 @@ public class MypageService {
 		// 이전버튼 제작 < 1 2
 		if (pageNo != 1) {// 페이지 번호가 1이 아닌경우만 1이면 그 전이 없으니까
 			pageNavi += "<li>";
-			pageNavi += "<a class='page-item' href='/mypage/mySellBook?reqPage=" + (pageNo - 1) + "'>";
+			pageNavi += "<a class='page-item' href='/mypage/myProductBoardComment?reqPage=" + (pageNo - 1) + "'>";
 			pageNavi += "<span class='material-icons'>chevron_left</span>";
 			pageNavi += "</a>";
 			pageNavi += "</li>";
@@ -270,13 +270,13 @@ public class MypageService {
 		for (int i = 0; i < pageNaviSize; i++) {
 			if (pageNo == reqPage) {
 				pageNavi += "<li>";
-				pageNavi += "<a class='page-item active-page' href='/mypage/mySellBook?reqPage=" + (pageNo) + "'>";
+				pageNavi += "<a class='page-item active-page' href='/mypage/myProductBoardComment?reqPage=" + (pageNo) + "'>";
 				pageNavi += pageNo;
 				pageNavi += "</a>";
 				pageNavi += "</li>";
 			} else {
 				pageNavi += "<li>";
-				pageNavi += "<a class='page-item' href='/mypage/mySellBook?reqPage=" + (pageNo) + "'>";
+				pageNavi += "<a class='page-item' href='/mypage/myProductBoardComment?reqPage=" + (pageNo) + "'>";
 				pageNavi += pageNo;
 				pageNavi += "</a>";
 				pageNavi += "</li>";
@@ -289,7 +289,7 @@ public class MypageService {
 		// 다음버튼 제작 >> ...4 5 >>
 		if (pageNo <= totalPage) {
 			pageNavi += "<li>";
-			pageNavi += "<a class='page-item' href='/mypage/mySellBook?reqPage=" + (pageNo) + "'>";/// pageNo-1에서 바꿈
+			pageNavi += "<a class='page-item' href='/mypage/myProductBoardComment?reqPage=" + (pageNo) + "'>";/// pageNo-1에서 바꿈
 			pageNavi += "<span class='material-icons'>chevron_right</span>"; /// left를 right로
 			pageNavi += "</a>";
 			pageNavi += "</li>";
@@ -346,7 +346,7 @@ public class MypageService {
 		// 이전버튼 제작 < 1 2
 		if (pageNo != 1) {// 페이지 번호가 1이 아닌경우만 1이면 그 전이 없으니까
 			pageNavi += "<li>";
-			pageNavi += "<a class='page-item' href='/mypage/mySellBook?reqPage=" + (pageNo - 1) + "'>";
+			pageNavi += "<a class='page-item' href='/mypage/myComment?reqPage=" + (pageNo - 1) + "'>";
 			pageNavi += "<span class='material-icons'>chevron_left</span>";
 			pageNavi += "</a>";
 			pageNavi += "</li>";
@@ -355,13 +355,13 @@ public class MypageService {
 		for (int i = 0; i < pageNaviSize; i++) {
 			if (pageNo == reqPage) {
 				pageNavi += "<li>";
-				pageNavi += "<a class='page-item active-page' href='/mypage/mySellBook?reqPage=" + (pageNo) + "'>";
+				pageNavi += "<a class='page-item active-page' href='/mypage/myComment?reqPage=" + (pageNo) + "'>";
 				pageNavi += pageNo;
 				pageNavi += "</a>";
 				pageNavi += "</li>";
 			} else {
 				pageNavi += "<li>";
-				pageNavi += "<a class='page-item' href='/mypage/mySellBook?reqPage=" + (pageNo) + "'>";
+				pageNavi += "<a class='page-item' href='/mypage/myComment?reqPage=" + (pageNo) + "'>";
 				pageNavi += pageNo;
 				pageNavi += "</a>";
 				pageNavi += "</li>";
@@ -374,7 +374,7 @@ public class MypageService {
 		// 다음버튼 제작 >> ...4 5 >>
 		if (pageNo <= totalPage) {
 			pageNavi += "<li>";
-			pageNavi += "<a class='page-item' href='/mypage/mySellBook?reqPage=" + (pageNo) + "'>";/// pageNo-1에서 바꿈
+			pageNavi += "<a class='page-item' href='/mypage/myComment?reqPage=" + (pageNo) + "'>";/// pageNo-1에서 바꿈
 			pageNavi += "<span class='material-icons'>chevron_right</span>"; /// left를 right로
 			pageNavi += "</a>";
 			pageNavi += "</li>";
@@ -400,11 +400,12 @@ public class MypageService {
 		//여기서 페이지 나비 만들기
 		// 1. 한페이지당 게시물 수 지정 -> 10개
 
-		int numPerPage = 10;
+		int numPerPage = 5;
 		int end = reqPage * numPerPage;
 		int start = end - numPerPage + 1;	
 		List selectConsumerList = mypageDao.selectConsumer(p,m, start, end);
 
+		
 
 		//신뢰도 가져오기
 		for(int i =0 ; i<selectConsumerList.size();i++) {
@@ -438,7 +439,7 @@ public class MypageService {
 		// 이전버튼 제작 < 1 2
 		if (pageNo != 1) {// 페이지 번호가 1이 아닌경우만 1이면 그 전이 없으니까
 			pageNavi += "<li>";
-			pageNavi += "<a class='page-item' href='/mypage/mySellBook?reqPage=" + (pageNo - 1) + "'>";
+			pageNavi += "<a class='page-item' href='/mypage/showConsumer?reqPage=" + (pageNo - 1) + "'>";
 			pageNavi += "<span class='material-icons'>chevron_left</span>";
 			pageNavi += "</a>";
 			pageNavi += "</li>";
@@ -447,13 +448,13 @@ public class MypageService {
 		for (int i = 0; i < pageNaviSize; i++) {
 			if (pageNo == reqPage) {
 				pageNavi += "<li>";
-				pageNavi += "<a class='page-item active-page' href='/mypage/mySellBook?reqPage=" + (pageNo) + "'>";
+				pageNavi += "<a class='page-item active-page' href='/mypage/showConsumer?reqPage=" + (pageNo) + "'>";
 				pageNavi += pageNo;
 				pageNavi += "</a>";
 				pageNavi += "</li>";
 			} else {
 				pageNavi += "<li>";
-				pageNavi += "<a class='page-item' href='/mypage/mySellBook?reqPage=" + (pageNo) + "'>";
+				pageNavi += "<a class='page-item' href='/mypage/showConsumer?reqPage=" + (pageNo) + "'>";
 				pageNavi += pageNo;
 				pageNavi += "</a>";
 				pageNavi += "</li>";
@@ -466,7 +467,7 @@ public class MypageService {
 		// 다음버튼 제작 >> ...4 5 >>
 		if (pageNo <= totalPage) {
 			pageNavi += "<li>";
-			pageNavi += "<a class='page-item' href='/mypage/mySellBook?reqPage=" + (pageNo) + "'>";/// pageNo-1에서 바꿈
+			pageNavi += "<a class='page-item' href='/mypage/showConsumer?reqPage=" + (pageNo) + "'>";/// pageNo-1에서 바꿈
 			pageNavi += "<span class='material-icons'>chevron_right</span>"; /// left를 right로
 			pageNavi += "</a>";
 			pageNavi += "</li>";
