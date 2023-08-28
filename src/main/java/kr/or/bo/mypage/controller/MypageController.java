@@ -162,10 +162,14 @@ public class MypageController {
 		return "redirect:/mypage/mySellBook?reqPage=1";
 	}
 	@GetMapping(value = "/byRequest")
-	public String byRequest(HttpSession session, Model model, int reqPage) {
+	public String byRequest(HttpSession session, Model model, Product p ) {
 		Member m = (Member)session.getAttribute("m");
+		System.out.println("p 잘 넘어왔나"+p);
+		int result = mypageService.tradeInsert(m,p);
 		
-		return "mypage/byRequest";
+		//return "mypage/byRequest";
+		return "redirect:/product/productDetail?productBoardNo="+p.getProductBoardNo();
+
 	}
 	@GetMapping(value = "/showConsumer")
 	public String showConsumer () {

@@ -384,6 +384,15 @@ public class MypageService {
 		return mld;
 	}//selectMyComment()종료
 
+	//거래목록 인서트
+	@Transactional
+	public int tradeInsert(Member m, Product p) {
+		// TODO Auto-generated method stub
+		int result = mypageDao.tradeInsert(m,p);
+		
+		return result;
+	}
+
 	
 	
 }
