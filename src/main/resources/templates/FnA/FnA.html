@@ -25,7 +25,7 @@
         
         <table class="tbl tbl-hover FnA-tbl">
             <tr class="tbl tr-3">
-                <th class="greenfna" colspan="2">[F & A]</th>
+                <th class="greenfna" colspan="2">F & A</th>
             </tr>
             <tr class="tr-1 fna">
                 
@@ -89,25 +89,10 @@
       <script>
 	  $('.slideTogglebox').css("display","none");
 	  $('.title').click(function() {
-      $(this).next().slideToggle();
+		  $('.slideTogglebox').slideUp();
+          $(this).next().slideToggle();
       });
-	 /*
-           $(document).ready(function(){
-    	     $('#title').click(function(){
-    	       $('#slideTogglebox').slideToggle();
-    	     })
-    	   });
-    	   $(document).ready(function(){
-    	     $('#title1').click(function(){
-    	       $('#slideTogglebox1').slideToggle();
-    	     })
-    	   });
-    	   $(document).ready(function(){
-    	     $('#title2').click(function(){
-    	       $('#slideTogglebox2').slideToggle();
-    	     })
-    	   });*/
-      
+	
       </script>
 </body>
 </html>
