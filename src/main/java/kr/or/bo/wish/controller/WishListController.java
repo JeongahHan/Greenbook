@@ -1,6 +1,7 @@
 package kr.or.bo.wish.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import kr.or.bo.FileUtil;
 import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.msg.model.vo.Msg;
 import kr.or.bo.wish.model.service.WishListService;
