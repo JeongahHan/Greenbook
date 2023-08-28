@@ -163,6 +163,16 @@ public class MypageDao {
 		return result;
 	}
 
+	//고객 정보 조회
+	public List selectConsumer(Product p, Member m, int start, int end) {
+		// TODO Auto-generated method stub
+		String query = "SELECT * FROM TRADE_LIST WHERE PRODUCT_BOARD_NO=?";
+		
+		//List list = jdbc.query(query, rowMapper);
+		
+		return null;
+	}
+
 
 	
 }
