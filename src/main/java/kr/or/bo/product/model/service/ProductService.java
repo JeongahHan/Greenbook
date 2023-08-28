@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.or.bo.member.model.dao.MemberDao;
+import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.product.model.dao.ProductDao;
 import kr.or.bo.product.model.vo.Product;
 import kr.or.bo.product.model.vo.ProductComment;
@@ -19,6 +21,9 @@ public class ProductService {
 
 	@Autowired
 	private ProductDao productDao;
+	
+	@Autowired
+	private MemberDao memberDao;
 
 	@Transactional
 	public int insertPhoto(Product p, ArrayList<ProductFile> fileList) {
@@ -112,7 +117,10 @@ public class ProductService {
 			
 			List reCommentList = productDao.selectRecommentList(productBoardNo);
 			
-			ProductViewData pvd = new ProductViewData(p, commentList, reCommentList);
+			Member m = memberDao.selectMemberGrade(productBoardNo);
+			
+			ProductViewData pvd = new ProductViewData(p, commentList, reCommentList, m);
+			
 			
 			return pvd;
 		}else {
