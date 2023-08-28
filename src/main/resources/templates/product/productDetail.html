@@ -40,8 +40,9 @@
 					<div class="main-box">
 						<div class="title" th:text="${p.getProductBoardTitle}"></div>
 						<!-- 관심상품 등록/해제 -->
-						<div class="cart cart-btn" th:if="${session.m != null && session.m.memberId != p.productBoardWriter}" th:onclick="deleteWish(this,[[${p.productBoardNo}]],[[${session.m.memberId}]]);">관심상품 등록</div>
-						<div class="cart cart-btn" th:if="${session.m != null && session.m.memberId != p.productBoardWriter}" th:onclick="insertWish(this,[[${p.productBoardNo}]],[[${session.m.memberId}]]);">관심상품 해제</div>
+						<div class="cart cart-btn" th:if="${session.m != null && session.m.memberId != p.productBoardWriter && isWished == 1}" th:onclick="deleteWish(this,[[${p.productBoardNo}]],[[${session.m.memberId}]]);">관심상품 해제</div>
+						<div class="cart cart-btn" th:if="${session.m != null && session.m.memberId != p.productBoardWriter && isWished == 0}" th:onclick="insertWish(this,[[${p.productBoardNo}]],[[${session.m.memberId}]]);">관심상품 등록</div>
+						
 						<form action="/mypage/show" class="byRequest" method="get">
 							<button type="submit" class="buy-btn"><div class="buy" th:if="${session.m != null}">구매요청</div></button>
 							<input type="hidden" name="session" th:value="${session.m}">
@@ -221,11 +222,13 @@
 			const wishBtn=$(obj);
 			$.ajax({
 				url : "/wish/insertWish",
-				type:"get",
+				type: "get",
 				data : {productBoardNo:productBoardNo, memberId:memberId},
-				success:function(){
-					wishBtn.text("관심상품 해제"); //채워져있는거
-					wishBtn.attr("onclick","deleteWish(this,"+productBoardNo+","+memberId+")");
+				success:function(data){
+					if(data > 0){
+						wishBtn.text("관심상품 해제"); 
+						wishBtn.attr("onclick","deleteWish(this,"+productBoardNo+",'"+memberId+"')");						
+					}
 				}
 			});
 		}
@@ -233,12 +236,14 @@
 		function deleteWish(obj, productBoardNo, memberId){
 			const wishBtn = $(obj);
 			$.ajax({
-				url:"/wish/deleteWish",
-				type:"get",
+				url: "/wish/deleteWish",
+				type: "get",
 				data : {productBoardNo:productBoardNo, memberId:memberId},
-				success:function(){
-					wishBtn.text("관심상품 등록"); //안채워져있는거
-					wishBtn.attr("onclick","insertWish(this,"+productBoardNo+","+memberId+")");
+				success:function(data){
+					if(data > 0){
+						wishBtn.text("관심상품 등록"); 
+						wishBtn.attr("onclick","insertWish(this,"+productBoardNo+",'"+memberId+"')");						
+					}
 				}
 			});
 		}
