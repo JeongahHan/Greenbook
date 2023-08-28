@@ -96,4 +96,13 @@ public class MemberDao {
 		}
 		return (Member)list.get(0);
 	}
+
+	public Member selectMemberGrade(int productBoardNo) {
+		String query = "select * from member join product_board on (MEMBER_ID = PRODUCT_BOARD_WRITER) where product_board_no = ?";
+		List list = jdbc.query(query, memberRowMapper, productBoardNo);
+		if(list.isEmpty()) {
+			return null;
+		}
+		return (Member)list.get(0);
+	}
 }
