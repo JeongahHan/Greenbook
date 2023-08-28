@@ -14,12 +14,24 @@
 			<div class="mypage-content-title">구매요청 현황</div>
 			
 			<table class="mypage-tbl">
+				<!-- 
+				<tr class="mypageTr mypageTr-2" th:each="request : ${byRequestList}">
+					<td th:text="${request.byRequestNo}"></td>
+					<td><a href="@{/product/productDetail(productBoardNo=${product.productBoardNo})}" th:text="${p.productBoardTitle}"></a></td>
+					<td th:text="${p.productAuthor}"></td>
+					<td th:text="${p.productPrice}"></td>
+					<td th:text="${p.productBoardWriter}"></td>
+					<td th:text="${request.byRequestDate}"></td>
+					<td><button class="post-btn byRequestBtn byRequestBc1" th:if="">거래평가</button></td>
+				</tr>
+				 -->
+			
 				<tr class="mypageTr mypageTr-1">
 					<th style="width:5%">번호</th>
 					<th style="width:30%">책제목</th>
 					<th style="width:20%">저자</th>
 					<th style="width:10%">가격</th>
-					<th style="width:10%">작성자</th>
+					<th style="width:10%">판매자</th>
 					<th style="width:15%">요청 날짜</th>
 					<th style="width:10%">거래후기</th>
 				</tr>
@@ -39,7 +51,7 @@
 					<td>4000원</td>
 					<td>user02</td>
 					<td>2023-08-30</td>
-					<td><button class="post-btn byRequestBtn byRequestBc1">거래평가</button></td>
+					<td></td>
 				</tr>
 				<tr class="mypageTr mypageTr-2"> <!-- th:each="list : ${myBoardList}" -->
 					<td>102</td>
