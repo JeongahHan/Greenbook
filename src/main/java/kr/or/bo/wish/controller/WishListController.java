@@ -19,6 +19,21 @@ public class WishListController {
 	@Autowired
 	private WishListService wishListService;
 	
+	//로그인 체크하기
+	@GetMapping(value = "/loginCheck")
+	public String loginCheck(Model model, @SessionAttribute(required = false) Member m) {
+		//로그인이 되지 않은 경우 -> 관심도서 볼 수 없음
+		if(m == null) {
+			model.addAttribute("title", "접근 권한 없음");
+			model.addAttribute("msg", "로그인 후 볼 수 있습니다.");
+			model.addAttribute("loc", "/");
+			return "common/msg";
+		//로그인이 된 경우
+		}else {
+			return "redirect:/wish/myWishList?reqPage=1";	
+		}
+	}
+	
 	//관심 도서 등록
 	@ResponseBody
 	@GetMapping(value = "/insertWish")

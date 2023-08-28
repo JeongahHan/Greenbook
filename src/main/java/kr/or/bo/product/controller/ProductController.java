@@ -118,7 +118,6 @@ public class ProductController {
 		int memberNo = (m == null) ? 0 : m.getMemberNo();
 		String memberId = (m == null) ? null : m.getMemberId();
 		ProductViewData pvd = productService.selectOneProduct(productBoardNo, memberNo, memberId);
-		System.out.println(pvd);
 		if(pvd != null) {
 			model.addAttribute("p", pvd.getP());
 			model.addAttribute("commentList", pvd.getCommentList());
