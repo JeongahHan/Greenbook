@@ -241,7 +241,8 @@ public class ProductService {
 			if(delFileNo != null) {
 				for(int fileNo : delFileNo) {
 					ProductFile productFile = productDao.selectOneFile(fileNo);
-					delFileList.add(productFile);	
+					delFileList.add(productFile);
+					result += productDao.deleteFile(fileNo);
 				}
 			}
 		}

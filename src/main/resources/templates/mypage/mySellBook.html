@@ -27,7 +27,14 @@
 					</div>
 					
 					<div class="btn-box">
-						<a class="btn bc1" href="/mypage/showConsumer">고객 정보 보기</a><!-- form태그 submit로 해야 편할듯 -->
+						<form action="/mypage/showConsumer">
+							<input type="hidden" name="productBoardNo" th:value="${list.productBoardNo}">
+							
+							
+							<button type="submit" class="btn bc1" href="/mypage/showConsumer">고객 정보 보기</button><!-- form태그 submit로 해야 편할듯 -->
+							<!-- <a class="btn bc1" href="/mypage/showConsumer">고객 정보 보기</a>form태그 submit로 해야 편할듯 -->
+						
+						</form>
 						<!-- <a class="btn bc1 modal-open-btn" target="#delete-modal" th:href="@{/mypage/mySellBookDelete(productBoardNo=${list.productBoardNo})}" th:value="${list.productBoardNo}">판매취소</a> -->
 						<p style="display : none" class="toControllPath" value="/mypage/mySellBookDelete?productBoardNo=">모달에 컨트롤 경로지정</p>
 						<!-- <button class="btn bc1 modal-open-btn deleteBtn" target="#delete-modal" th:value="${list.productBoardNo}">판매취소</button> -->
