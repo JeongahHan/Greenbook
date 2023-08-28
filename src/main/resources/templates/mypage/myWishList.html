@@ -16,8 +16,8 @@
 				<div class="s-wishList-one" th:each="wishList : ${list}">
 					<a th:href="@{/product/productDetail(productBoardNo=${wishList.productBoardNo})}">
 						<div class="s-wishList-imgBox">
-							<img src="/img/product-img/매미울음소리 그칠 무렵.jpg">
-	                    	<!-- <img th:src="${wishList.filepath}"> -->
+							<!-- <img src="/img/product-img/매미울음소리 그칠 무렵.jpg"> -->
+	                    	<img th:src="${wishList.filepath}">
 						</div>
 						<div class="title"><p class="bold" th:text="${wishList.productBoardTitle}"></p></div>
 						<div class="small">판매자 | <span th:text="${wishList.productBoarWriter}"></span></div>
