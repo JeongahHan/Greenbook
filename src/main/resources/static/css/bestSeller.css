@@ -1,0 +1,40 @@
+.bestseller-content{
+	overflow: hidden;
+}
+
+.table{
+    float:left;
+    border-style: none;
+    
+    width: calc(100%/4);
+    height: 545px;
+    
+    margin-bottom:150px;
+}
+.table>.tr1{
+    border-style: none;
+     height: 410px;
+}
+.table>.tr2{
+    border-style: none;
+     height: 75px;
+}
+.table>.tr3{
+    border-style: none;
+     height: 25px;
+}
+
+
+.table td{
+    border-style: none;
+}
+.table .td1{
+    height: 410px;
+}
+.table .td2{
+    height: 75px;
+}
+.table .td3{
+    height: 25px;
+    font-family:ns-light;
+}
