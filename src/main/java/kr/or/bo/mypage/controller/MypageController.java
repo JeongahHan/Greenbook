@@ -164,7 +164,6 @@ public class MypageController {
 	@GetMapping(value = "/byRequest")
 	public String byRequest(HttpSession session, Model model, Product p ) {
 		Member m = (Member)session.getAttribute("m");
-		System.out.println("p 잘 넘어왔나"+p);
 		int result = mypageService.tradeInsert(m,p);
 		
 		//return "mypage/byRequest";
@@ -172,7 +171,13 @@ public class MypageController {
 
 	}
 	@GetMapping(value = "/showConsumer")
-	public String showConsumer () {
+	public String showConsumer (Product p , HttpSession session) {
+		
+		System.out.println(p);
+		Member m = (Member)session.getAttribute("m");
+		System.out.println(m);
+		mypageService.selectConsumer(p,m);
+		
 		return"mypage/showConsumer";
 	}
 	

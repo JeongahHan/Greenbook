@@ -393,6 +393,12 @@ public class MypageService {
 		return result;
 	}
 
+	//고객정보보기 조회
+	public void selectConsumer(Product p, Member m) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 	
 }
