@@ -29,8 +29,7 @@
 					<div class="btn-box">
 						<form action="/mypage/showConsumer">
 							<input type="hidden" name="productBoardNo" th:value="${list.productBoardNo}">
-							
-							
+							<input type="hidden" name="reqPage" value="1">							
 							<button type="submit" class="btn bc1" href="/mypage/showConsumer">고객 정보 보기</button><!-- form태그 submit로 해야 편할듯 -->
 							<!-- <a class="btn bc1" href="/mypage/showConsumer">고객 정보 보기</a>form태그 submit로 해야 편할듯 -->
 						
