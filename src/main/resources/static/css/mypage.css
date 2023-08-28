@@ -58,6 +58,7 @@ B31312 빨강
 }
 
 
+
 /* 게시판 페이징 디자인 */
 #pageNavi{
     margin:100px 30px 30px 30px ;
@@ -225,6 +226,7 @@ B31312 빨강
     /* border-collapse: collapse; */
     /* 좁은 간격이 있던데 간격 없애줌 */
     border-spacing: 0;
+    
 
 }
 .mypage-tbl .mypageTr-1 th{
@@ -304,6 +306,30 @@ B31312 빨강
     padding-right: 33%;
 }
 
+
+/* 관심 도서 디자인 *//* wishList */
+.wishList-wrap{
+    /* width: 100%; */
+    /* background-color: bisque; */
+    overflow: hidden;
+}
+.wishList-one{
+    width: 160px;
+    background-color: #F1F1F1;
+    float: left;
+    padding: 15px 15px;
+    margin: 5px 5px;
+    border-radius: 5px;
+}
+.wishList-one:hover{
+    background-color: #E7E7E7;
+    cursor: pointer;
+}
+.wishList-imgBox img{
+    width: 100%;
+}
+
+
 /* byRequest */
 
 .post-btn{
@@ -333,3 +359,26 @@ B31312 빨강
     color: #fff;
     cursor: pointer;
 }
+
+/* showConsumer */
+.bookInfo{
+	background-color: cyan;
+    overflow: hidden;
+}
+.book-img-box{
+    float: left;
+}
+.bookInfo img{
+    height: 300px;
+}
+.book-content{
+    float: left;
+}
+
+.consumer-wrap{
+}
+.consumer-one{
+    background-color: cornflowerblue;
+    /* width: 200px; */
+}
+

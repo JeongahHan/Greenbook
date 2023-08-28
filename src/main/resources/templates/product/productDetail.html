@@ -33,25 +33,29 @@
 						</div>
 						
 						<div class="box2">
-							<span class="Grade">신뢰도 <span>1123</span></span>
+							<span class="Grade">신뢰도 <span th:text="${m.getGrade}"></span></span>
 						</div>
 					</div>
 					
 					<div class="main-box">
 						<div class="title" th:text="${p.getProductBoardTitle}"></div>
 						<!-- 관심상품 등록/해제 -->
-						<div class="cart cart-btn" th:if="${session.m != null}">관심상품 등록</div>
-						<form action="/mypage/byRequest" class="byRequest" method="post">
-							<div class="buy" th:if="${session.m != null}"><button type="submit" class="buy-btn">구매요청</button></div>
+						<div class="cart cart-btn" th:if="${session.m != null && session.m.memberId != p.productBoardWriter && isWished == 1}" th:onclick="deleteWish(this,[[${p.productBoardNo}]],[[${session.m.memberId}]]);">관심상품 해제</div>
+						<div class="cart cart-btn" th:if="${session.m != null && session.m.memberId != p.productBoardWriter && isWished == 0}" th:onclick="insertWish(this,[[${p.productBoardNo}]],[[${session.m.memberId}]]);">관심상품 등록</div>
+						
+						<form action="/mypage/show" class="byRequest" method="get">
+							<button type="submit" class="buy-btn"><div class="buy" th:if="${session.m != null}">구매요청</div></button>
 							<input type="hidden" name="session" th:value="${session.m}">
 							<input type="hidden" name="productBoardNo" th:value="${p.productBoardNo}">
 							<input type="hidden" name="productBoardTitle" th:value="${p.productBoardTitle}">
+							<input type="hidden" name="productBoardContent" th:value="${p.productBoardContent}">
 							<input type="hidden" name="productBoardWriter" th:value="${p.productBoardWriter}">
+							<input type="hidden" name="productRegDate" th:value="${p.productRegDate}">
 							<input type="hidden" name="productPrice" th:value="${p.productPrice}">
 							<input type="hidden" name="productAuthor" th:value="${p.productAuthor}">
 							<input type="hidden" name="productCondition" th:value="${p.productCondition}">
 							<input type="hidden" name="productSellCheck" th:value="${p.productSellCheck}">
-							<input type="hidden" name="productFile" th:value="${p.productFile}">
+							<!-- <input type="hidden" name="productFile" th:value="${p.productFile}"> -->
 						</form>
 						<div class="author" th:text="${p.getProductAuthor}"></div>
 						<div class="price"><span th:text="${p.getProductPrice}"></span> 원</div>
@@ -214,39 +218,40 @@
 
 	<script>
 		//관심상품 등록 및 해제 정보 전달
-		const productBoardNo = $("input[name=productBoardNo]").val();
-		$(".cart").on("click",function(){
-			if($(this).text() == "관심상품 등록"){
-				//관심상품 등록
-				$.ajax({
-					url : "/wish/insertWish",
-					type : "get",
-					data : {productBoardNo : productBoardNo},
-					success : function(data){
-						if(data > 0){
-							$(".cart").text("관심상품 해제");								
-						}
+		function insertWish(obj, productBoardNo, memberId){
+			const wishBtn=$(obj);
+			$.ajax({
+				url : "/wish/insertWish",
+				type: "get",
+				data : {productBoardNo:productBoardNo, memberId:memberId},
+				success:function(data){
+					if(data > 0){
+						wishBtn.text("관심상품 해제"); 
+						wishBtn.attr("onclick","deleteWish(this,"+productBoardNo+",'"+memberId+"')");						
 					}
-				});
-			}else{
-				//관심상품 해제
-				$.ajax({
-					url : "/wish/deleteWish",
-					type : "get",
-					data : {productBoardNo : productBoardNo},
-					success : function(data){
-						if(data > 0){							
-							$(".cart").text("관심상품 등록");	
-						}
+				}
+			});
+		}
+		
+		function deleteWish(obj, productBoardNo, memberId){
+			const wishBtn = $(obj);
+			$.ajax({
+				url: "/wish/deleteWish",
+				type: "get",
+				data : {productBoardNo:productBoardNo, memberId:memberId},
+				success:function(data){
+					if(data > 0){
+						wishBtn.text("관심상품 등록"); 
+						wishBtn.attr("onclick","insertWish(this,"+productBoardNo+",'"+memberId+"')");						
 					}
-				});
-			}
-		});
+				}
+			});
+		}
 		
 		$(".buy").on("click",function(){
 			const result = confirm("구매를 요청하시겠습니까?");
 			if(result){
-				alert("판매자에게 메세지를 전송하였습니다.");
+				alert("판매자에게 구매요청이 전송되었습니다.");
 			}
 		});
 		
@@ -375,11 +380,12 @@
 				//받는 사람 데이터 넣어주기
 				$(".receiver").text(receiver);
 				$("#receiver").val(receiver);
-				//쪽지쓰기 모달 닫기
-				$("#sendMsgCancel").on("click", function(){
-					$(".sendMsg-modal-wrap").css("display","none");
-				});
 			}
+		});
+		
+		//쪽지쓰기 모달 닫기
+		$("#sendMsgCancel").on("click", function(){
+			$(".sendMsg-modal-wrap").css("display","none");
 		});
 		
 		//댓글 작성자에게 쪽지 쓰기
@@ -393,10 +399,6 @@
 				//받는 사람 데이터 넣어주기
 				$(".receiver").text(receiver);
 				$("#receiver").val(receiver);
-				//쪽지쓰기 모달 닫기
-				$("#sendMsgCancel").on("click", function(){
-					$(".sendMsg-modal-wrap").css("display","none");
-				});
 			}
 		});
 		
@@ -411,10 +413,6 @@
 				//받는 사람 데이터 넣어주기
 				$(".receiver").text(receiver);
 				$("#receiver").val(receiver);
-				//쪽지쓰기 모달 닫기
-				$("#sendMsgCancel").on("click", function(){
-					$(".sendMsg-modal-wrap").css("display","none");
-				});
 			}
 		});
 		

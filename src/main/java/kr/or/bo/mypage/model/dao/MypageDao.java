@@ -153,6 +153,16 @@ public class MypageDao {
 		return list;
 	}
 
+	//거래목록 인서트
+	public int tradeInsert(Member m, Product p) {
+		// TODO Auto-generated method stub
+		String query ="INSERT INTO TRADE_LIST VALUES(TRADE_LIST_SEQ.NEXTVAL,?,?,TO_CHAR(SYSDATE,'YYYY-MM-DD'),null)";
+		Object params []= {p.getProductBoardNo(), m.getMemberId()};
+		int result = jdbc.update(query, params);
+		
+		return result;
+	}
+
 
 	
 }

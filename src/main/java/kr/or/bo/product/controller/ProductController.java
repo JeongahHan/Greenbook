@@ -116,11 +116,15 @@ public class ProductController {
 	@GetMapping("/productDetail")
 	public String productDetail(int productBoardNo, @SessionAttribute(required = false) Member m, Model model) {
 		int memberNo = (m == null) ? 0 : m.getMemberNo();
-		ProductViewData pvd = productService.selectOneProduct(productBoardNo, memberNo);
+		String memberId = (m == null) ? null : m.getMemberId();
+		ProductViewData pvd = productService.selectOneProduct(productBoardNo, memberNo, memberId);
+		System.out.println(pvd);
 		if(pvd != null) {
 			model.addAttribute("p", pvd.getP());
 			model.addAttribute("commentList", pvd.getCommentList());
 			model.addAttribute("reCommentList", pvd.getReCommentList());
+			model.addAttribute("m", pvd.getM());
+			model.addAttribute("isWished", pvd.getIsWished());
 			// model.addAttribute("fileList", pvd.getFileList());
 			return "product/productDetail";
 		}else {

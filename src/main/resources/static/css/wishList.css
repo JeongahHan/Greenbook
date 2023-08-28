@@ -51,25 +51,48 @@
 }
 
 /* 관심 도서 디자인 */
-.wishList-wrap{
-    /* width: 100%; */
-    /* background-color: bisque; */
+.s-wishList-wrap{
+    width: 100%;
     overflow: hidden;
 }
-.wishList-one{
-    width: 160px;
-    background-color: #F1F1F1;
+.s-wishList-one{
+    width: calc(100% / 5);
+    box-sizing: border-box;
     float: left;
     padding: 15px 15px;
-    margin: 5px 5px;
     border-radius: 5px;
+    height: 100%;
 }
-.wishList-one:hover{
-    background-color: #E7E7E7;
+.s-wishList-one:hover{
     cursor: pointer;
 }
-.wishList-imgBox img{
+.s-wishList-one:hover .title{
+    cursor: pointer;
+    text-decoration: underline;
+}
+.s-wishList-imgBox>img{
+    display: block;
+    height: 250px;
     width: 100%;
+}
+.selling{
+	color: blue;
+}
+.sold{
+	color: red;
+}
+.bold{
+	font-weight:900;
+}
+.small{
+	color: gray;
+	font-size: 12px;
+}
+.small>span{
+	color: gray;
+}
+.title{
+	padding-top: 10px;
 }
 
 /* 게시판 페이징 디자인 */
