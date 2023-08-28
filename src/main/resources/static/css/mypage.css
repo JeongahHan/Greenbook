@@ -226,6 +226,7 @@ B31312 빨강
     /* border-collapse: collapse; */
     /* 좁은 간격이 있던데 간격 없애줌 */
     border-spacing: 0;
+    
 
 }
 .mypage-tbl .mypageTr-1 th{
@@ -362,12 +363,22 @@ B31312 빨강
 /* showConsumer */
 .bookInfo{
 	background-color: cyan;
+    overflow: hidden;
 }
+.book-img-box{
+    float: left;
+}
+.bookInfo img{
+    height: 300px;
+}
+.book-content{
+    float: left;
+}
+
 .consumer-wrap{
 }
 .consumer-one{
     background-color: cornflowerblue;
     /* width: 200px; */
-    height: 20px;
 }
 
