@@ -403,8 +403,7 @@ public class MypageService {
 		int end = reqPage * numPerPage;
 		int start = end - numPerPage + 1;	
 		List selectConsumerList = mypageDao.selectConsumer(p,m, start, end);
-		System.out.println(selectConsumerList);
-		System.out.println("진행 상황 체크");
+
 
 		//신뢰도 가져오기
 		for(int i =0 ; i<selectConsumerList.size();i++) {

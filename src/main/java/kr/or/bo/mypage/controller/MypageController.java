@@ -155,7 +155,6 @@ public class MypageController {
 		//model.addAttribute("mySellBookImgList", mld.getMySellBookImgList());
 		
 		
-		
 		return "mypage/mySellBook";
 	}
 	
@@ -185,7 +184,8 @@ public class MypageController {
 		MypageListData mld = mypageService.selectConsumer(p,m,reqPage);
 			
 		model.addAttribute("selectConsumerList",mld.getMypageList());
-		
+		model.addAttribute("pageNavi", mld.getPageNavi());
+		model.addAttribute("product", p);
 		
 		return"mypage/showConsumer";
 	}
