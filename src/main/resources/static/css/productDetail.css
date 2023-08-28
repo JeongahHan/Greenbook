@@ -183,6 +183,7 @@
 }
 
 .buy{
+	color: #fff;
 	top: 85px;
 }
 
@@ -208,6 +209,7 @@
 }
 
 .buy:hover{
+	color: #005A0D;
 	background-color: #fff;
 	cursor: pointer;
 }
