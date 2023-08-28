@@ -181,10 +181,10 @@ public class MypageController {
 		
 		System.out.println(p);
 		Member m = (Member)session.getAttribute("m");
-		System.out.println(m);
 		MypageListData mld = mypageService.selectConsumer(p,m,reqPage);
-		
+			
 		model.addAttribute("selectConsumerList",mld.getMypageList());
+		
 		
 		return"mypage/showConsumer";
 	}
