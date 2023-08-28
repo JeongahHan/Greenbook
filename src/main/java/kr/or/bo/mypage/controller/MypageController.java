@@ -188,10 +188,4 @@ public class MypageController {
 		return"mypage/showConsumer";
 	}
 	
-	@GetMapping(value="/byRequest")
-	public String byRequest(int reqPage, Model model) {
-		
-		return "/mypage/byRequest";
-	}
-	
 }
