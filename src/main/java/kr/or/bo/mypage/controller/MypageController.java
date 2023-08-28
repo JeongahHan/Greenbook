@@ -178,14 +178,12 @@ public class MypageController {
 
 	}
 	@GetMapping(value = "/showConsumer")
-	public String showConsumer (Product p , HttpSession session, int reqPage, Model model) {
+	public String showConsumer (Product p , HttpSession session, int reqPage) {
 		
 		System.out.println(p);
 		Member m = (Member)session.getAttribute("m");
 		System.out.println(m);
-		MypageListData mld = mypageService.selectConsumer(p,m,reqPage);
-		
-		model.addAttribute("selectConsumerList",mld.getMypageList());
+		mypageService.selectConsumer(p,m,reqPage);
 		
 		return"mypage/showConsumer";
 	}
