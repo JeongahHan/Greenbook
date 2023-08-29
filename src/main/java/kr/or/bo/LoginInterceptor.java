@@ -16,6 +16,7 @@ public class LoginInterceptor implements HandlerInterceptor{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		HttpSession session = request.getSession();
 		Member m = (Member)session.getAttribute("m");
+		System.out.println("로그인"+m);
 		if(m == null) {
 			response.sendRedirect("/member/loginMsg");
 			return false;
