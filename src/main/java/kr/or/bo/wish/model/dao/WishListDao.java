@@ -10,7 +10,7 @@ import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.wish.model.vo.MyWishListRowMapper;
 import kr.or.bo.wish.model.vo.WishList;
 import kr.or.bo.wish.model.vo.WishListRowMapper;
-import kr.or.bo.wish.model.vo.wishListMain;
+import kr.or.bo.wish.model.vo.wishListMainRowMapper;
 
 @Repository
 public class WishListDao {
@@ -21,7 +21,7 @@ public class WishListDao {
 	@Autowired
 	private MyWishListRowMapper myWishListRowMapper;
 	@Autowired
-	private wishListMain wishListMain;
+	private wishListMainRowMapper wishListMain;
 	
 	
 	

@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class wishListMain implements RowMapper<WishList> {
+public class wishListMainRowMapper implements RowMapper<WishList> {
 
 	@Override
 	public WishList mapRow(ResultSet rs, int rowNum) throws SQLException {
