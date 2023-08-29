@@ -21,7 +21,7 @@ import kr.or.bo.msg.model.vo.MsgListData;
 public class MsgController {
 	@Autowired
 	private MsgService msgService;
-	
+	/* 로그인 인터셉터로 해결
 	//로그인 체크하기
 	@GetMapping(value = "/loginCheck")
 	public String loginCheck(Model model, @SessionAttribute(required = false) Member m) {
@@ -35,7 +35,7 @@ public class MsgController {
 		}else {
 			return "redirect:/msg/receiveList?reqPage=1";	
 		}
-	}
+	}*/
 	
 	//받은 쪽지 리스트
 	@GetMapping(value = "/receiveList")
@@ -44,7 +44,7 @@ public class MsgController {
 		model.addAttribute("list", mld.getMsgList());
 		model.addAttribute("pageNavi", mld.getPageNavi());
 		model.addAttribute("reqPage", reqPage);
-		return "msg/receiveMsgList";
+		return "msg/receiveMsgList";			
 	}
 	
 	//보낸 쪽지 리스트
@@ -53,7 +53,7 @@ public class MsgController {
 		MsgListData mld = msgService.selectSendList(m.getMemberId(), reqPage);
 		model.addAttribute("list", mld.getMsgList());
 		model.addAttribute("pageNavi", mld.getPageNavi());
-		return "msg/sendMsgList";
+		return "msg/sendMsgList";			
 	}
 	
 	//관리자에게 쪽지 보내기

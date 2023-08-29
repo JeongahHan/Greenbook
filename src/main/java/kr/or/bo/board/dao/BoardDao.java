@@ -12,6 +12,7 @@ import kr.or.bo.board.vo.BoardCommentRowMapper;
 import kr.or.bo.board.vo.BoardFile;
 import kr.or.bo.board.vo.BoardFileRowMapper;
 import kr.or.bo.board.vo.BoardRowMapper;
+import kr.or.bo.board.vo.MainSearchListRowMapper;
 import kr.or.bo.product.model.vo.ProductFile;
 import kr.or.bo.product.model.vo.ProductFileRowMapper;
 import kr.or.bo.product.model.vo.ProductRowMapper;
@@ -31,6 +32,9 @@ public class BoardDao {
 	private ProductRowMapper productRowMapper;
 	@Autowired
 	private ProductFileRowMapper productFileRowmapper;
+	
+	@Autowired
+	private MainSearchListRowMapper mainSearchListRowMapper;
 
 //////////////////////////////////////////////////////////////////////////
 //게시물 페이지 전체보기
@@ -242,25 +246,16 @@ public class BoardDao {
 /////////////////////////////////////////////////////////////
 //메인서치기능		
 
-		public List mainSearchList2(int start, int end, String keyword) {
-			String query = "select * from (select rownum as snum, s.* from ((select * from (select* from (select rownum as rnum, n.* from(select * from PRODUCT_BOARD order by 1 desc)n) where (PRODUCT_BOARD_TITLE || PRODUCT_AUTHOR) like UPPER('%'||?||'%')))s)) where snum between ? and ?";
-			List productList = jdbc.query(query, productRowMapper, keyword, start, end);
-			return productList;
-		}
-		
+
 		public List mainSearchList1(int start, int end, String keyword) {
-			String query = "select * from (select rownum as snum, s.* from ((select * from (select* from (select rownum as rnum, n.* from(select * from BOARD order by 1 desc)n) where (BOARD_TITLE || BOARD_CONTENT) like UPPER('%'||?||'%')))s)) where snum between ? and ?";
-			List productList = jdbc.query(query, boardRowMapper, keyword, start, end);
-			return productList;
+			String query = "select * from (select rownum as rnum,r.* from (select * from (select  b.board_no, b.BOARD_TITLE, b.board_content, b.board_writer,b.board_read_count,b.board_reg_date,'board' as board_type from board b union all select p.product_board_no, p.product_board_title, (p.product_author || p.product_board_content),p.product_board_writer,p.read_count,p.product_reg_date,'product_board' from product_board p) where (board_title||board_content) like '%'||?||'%' order by board_reg_date desc)r) where rnum between ? and ?";
+			List mainSearchList = jdbc.query(query, mainSearchListRowMapper, keyword, start, end);
+			return mainSearchList;
 		}
 
-		public int getSearchListTotalCount2(String keyword) {
-			String query = "select count(*) from (select rownum as snum, s.* from ((select * from (select * from (select rownum as rnum, n.* from (select * from PRODUCT_BOARD order by 1 desc)n) where (PRODUCT_BOARD_TITLE || PRODUCT_AUTHOR) like UPPER('%'||?||'%')))s))";
-			int totalCount = jdbc.queryForObject(query, Integer.class, keyword);
-			return totalCount;
-		}		
+
 		public int getSearchListTotalCount1(String keyword) {
-			String query = "select count(*) from (select rownum as snum, s.* from ((select * from (select * from (select rownum as rnum, n.* from (select * from BOARD order by 1 desc)n) where (BOARD_TITLE || BOARD_CONTENT) like UPPER('%'||?||'%')))s))";
+			String query = "select count(*) from (select rownum as rnum,r.* from (select * from (select  b.board_no, b.BOARD_TITLE, b.board_content, b.board_writer,b.board_read_count,b.board_reg_date,'board' as board_type from board b union all select p.product_board_no, p.product_board_title, (p.product_author || p.product_board_content),p.product_board_writer,p.read_count,p.product_reg_date,'product_board' from product_board p) where (board_title||board_content) like '%'||?||'%' order by board_reg_date desc)r)";
 			int totalCount = jdbc.queryForObject(query, Integer.class, keyword);
 			return totalCount;
 		}		
