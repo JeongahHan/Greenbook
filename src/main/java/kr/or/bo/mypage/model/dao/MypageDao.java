@@ -13,6 +13,7 @@ import kr.or.bo.board.vo.BoardRowMapper;
 import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.member.model.vo.MemberRowMapper;
 import kr.or.bo.mypage.model.vo.BoardCommentRowMapperForMypage;
+import kr.or.bo.mypage.model.vo.TradeList;
 import kr.or.bo.mypage.model.vo.TradeListRowMapper;
 import kr.or.bo.product.model.vo.Product;
 import kr.or.bo.product.model.vo.ProductCommentRowMapper;
@@ -222,6 +223,26 @@ public class MypageDao {
 		String query ="select * from board_file where board_no = ?";
 		List list = jdbc.query(query, boardFileRowMapper, boardRef);
 		return list;
+	}
+
+	//판매완료
+	////product_board의 PRODUCT_SELL_CHECK =1로 바꾸기
+	public int soldOutFromProductBoard(TradeList tradeList) {
+		// TODO Auto-generated method stub
+		String query ="update product_board set PRODUCT_SELL_CHECK = 1 where product_Board_No= ? ";
+		int result = jdbc.update(query,tradeList.getProductBoardNo());
+		
+		return result;
+	}
+
+	//trade_list의  TRADE_COMPLETE_DONE =1로 바꾸기
+	//TRADE_COMPLETE_DATE 넣어주기
+	public int soldOutFromTradeList(TradeList tradeList) {
+		// TODO Auto-generated method stub
+		String query = "update trade_list set TRADE_COMPLETE_DONE = 1 , TRADE_COMPLETE_DATE=TO_CHAR(SYSDATE, 'YYYY-MM-DD') where trade_No= ? ";
+		int result = jdbc.update(query, tradeList.getTradeNo());
+		
+		return result;
 	}
 	
 }

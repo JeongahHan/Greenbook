@@ -19,6 +19,7 @@ import kr.or.bo.member.model.service.MemberService;
 import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.mypage.model.service.MypageService;
 import kr.or.bo.mypage.model.vo.MypageListData;
+import kr.or.bo.mypage.model.vo.TradeList;
 import kr.or.bo.product.model.service.ProductService;
 import kr.or.bo.product.model.vo.Product;
 import kr.or.bo.product.model.vo.ProductListData;
@@ -245,6 +246,17 @@ public class MypageController {
 //		model.addAttribute("byRequestList", mld.getMypageList());
 		
 		return "mypage/byRequestList";
+	}
+	
+	@GetMapping(value = "/soldOut")
+	public String soldOut(TradeList tradeList, Member member) {
+		System.out.println("컨트롤로 잘 오나");
+		tradeList.setMember(member);//멤버 담아온거 셋팅
+		System.out.println(tradeList);
+		
+		int result = mypageService.soldOut(tradeList);
+		
+		return "mypage/memberUpdateFrm";//임시로 회원정보로
 	}
 	
 }

@@ -39,8 +39,8 @@
 									<th style="width:20%">아이디</th>
 									<th style="width:20%">이름</th>
 									<th style="width:10%">신뢰도</th>
-									<th style="width:10%">거래요청 날짜</th>
-									<th style="width:30%"></th>
+									<th style="width:20%">거래요청 날짜</th>
+									<th style="width:40%"></th>
 								</tr>
 								<tr class="mypageTr mypageTr-2" th:each="selectConsumer : ${selectConsumerList}">
 									<td th:text="${selectConsumer.tradeNo}">11 소비자</td>
@@ -50,9 +50,37 @@
 									<td th:text="${selectConsumer.tradeRequestDate}">2023-08-27</td>
 									<td>
 										<p style="display : none" class="toControllPath" value="/mypage/myBoardDelete?boardNo=">모달에 컨트롤 경로지정</p>
-										<button class="btn bc1 modal-open-btn deleteBtn" target="#delete-modal">삭제</button>
-										<button class="btn bc1 modal-open-btn deleteBtn" target="#delete-modal" >쪽지</button>
-										<button class="btn bc1 modal-open-btn deleteBtn">판매 완료</button>
+										<div class="btn-box">
+											<!-- <button class="btn bc1 modal-open-btn deleteBtn" target="#delete-modal">삭제</button> -->
+											<button class="btn bc1 modal-open-btn deleteBtn" target="#delete-modal" >쪽지</button>
+											<form action="/mypage/soldOut" class="btn">
+												<!-- tradeList 넘기기 -->
+												<input type="text" th:value="${selectConsumer.tradeNo}">
+												<input type="hidden" name="tradeNo" th:value="${selectConsumer.tradeNo}">
+												<input type="hidden" name="productBoardNo" th:value="${selectConsumer.productBoardNo}">
+												<input type="hidden" name="consumer" th:value="${selectConsumer.consumer}">
+												<input type="hidden" name="tradeRequestDate" th:value="${selectConsumer.tradeRequestDate}">
+												
+												<!-- Member 넘기기 -->
+												<input type="hidden" name="memberNo" th:value="${selectConsumer.member.memberNo}">
+												<input type="hidden" name="memberId" th:value="${selectConsumer.member.memberId}">
+												<input type="hidden" name="memberPw" th:value="${selectConsumer.member.memberPw}">
+												<input type="hidden" name="memberName" th:value="${selectConsumer.member.memberName}">
+												<input type="hidden" name="memberPhone" th:value="${selectConsumer.member.memberPhone}">
+												<input type="hidden" name="memberEmail" th:value="${selectConsumer.member.memberEmail}">
+												<input type="hidden" name="memberLevel" th:value="${selectConsumer.member.memberLevel}">
+												<input type="hidden" name="enrollDate" th:value="${selectConsumer.member.enrollDate}">
+												<input type="hidden" name="grade" th:value="${selectConsumer.member.grade}">
+												
+												
+												
+
+
+												<button type="submit" class="btn bc1">판매 완료</button>
+											</form>
+										
+										</div>
+										
 									</td>
 								</tr>
 								

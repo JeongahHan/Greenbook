@@ -562,5 +562,22 @@ public class MypageService {
 		return tradeList;
 	}
 
+	//판매완료
+	@Transactional
+	public int soldOut(TradeList tradeList) {
+		// TODO Auto-generated method stub
+		
+		//product_board의 PRODUCT_SELL_CHECK =1로 바꾸기
+		int result = mypageDao.soldOutFromProductBoard(tradeList);
+		if(result>0) {//product_board의 PRODUCT_SELL_CHECK =1로 update 성공시
+			//trade_list의  TRADE_COMPLETE_DONE =1로 바꾸기
+			//TRADE_COMPLETE_DATE 넣어주기
+			int result2 = mypageDao.soldOutFromTradeList(tradeList);
+			return result2;//둘다 성공시 리턴
+		}
+		
+		return 0;//어느하나라도 실패시 0리턴
+	}
+
 	
 }
