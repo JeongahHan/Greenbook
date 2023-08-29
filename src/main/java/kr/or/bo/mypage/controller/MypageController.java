@@ -186,6 +186,7 @@ public class MypageController {
 		return "common/msg";
 //		return "mypage/byRequestList";
 //		return "redirect:/product/productDetail?productBoardNo="+p.getProductBoardNo();
+//		return "redirect:/mypage/byRequestList";
 	}
 	@GetMapping(value = "/showConsumer")
 	public String showConsumer (Product p , HttpSession session, int reqPage, Model model) {
@@ -204,7 +205,23 @@ public class MypageController {
 	}
 	
 	@GetMapping(value="/byRequestList")
-	public String byRequestList(int reqPage, Model model) {
+	public String byRequestList(HttpSession session, int reqPage, Model model) {
+		
+		Member m = (Member)session.getAttribute("m");
+		List byRequestList = productService.selectbyRequestList(m);
+		List tradeList = mypageService.selectTradeList(m);
+		MypageListData mld = mypageService.selectByRequestList(m.getMemberId(), reqPage);
+		
+		System.out.println(byRequestList);
+		System.out.println(tradeList);
+		model.addAttribute("requestList", byRequestList);
+		model.addAttribute("tradeList", tradeList);
+		model.addAttribute("pageNavi", mld.getPageNavi());
+//		
+//		System.out.println(m);
+//		System.out.println(p);
+//		
+//		model.addAttribute("byRequestList", mld.getMypageList());
 		
 		return "mypage/byRequestList";
 	}

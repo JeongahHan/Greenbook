@@ -164,7 +164,7 @@ public class MypageDao {
 	//거래목록 인서트
 	public int tradeInsert(Member m, Product p) {
 		// TODO Auto-generated method stub
-		String query ="INSERT INTO TRADE_LIST VALUES(TRADE_LIST_SEQ.NEXTVAL,?,?,TO_CHAR(SYSDATE,'YYYY-MM-DD'),null)";
+		String query ="INSERT INTO TRADE_LIST VALUES(TRADE_LIST_SEQ.NEXTVAL,?,?,TO_CHAR(SYSDATE,'YYYY-MM-DD'),null,default)";
 		Object params []= {p.getProductBoardNo(), m.getMemberId()};
 		int result = jdbc.update(query, params);
 		
@@ -194,5 +194,24 @@ public class MypageDao {
 		
 		return list;
 	}
+
+	public List selectByRequestList(String memberId, int start, int end) {
+		String query = "select * from(select ROWNUM AS RNUM,N.* from(select * from TRADE_LIST where CONSUMER = ? order by 1 DESC)N) where rnum between ? and ?";
+		List byRequestList = jdbc.query(query, tradeListRowMapper, memberId, start, end);
+		return byRequestList;
+	}
+
+	public int selectByRequestListTotalCount(String memberId) {
+		String query = "select count(*) as cnt from TRADE_LIST where CONSUMER = ?";
+		int totalCount = jdbc.queryForObject(query, Integer.class, memberId);
+		return totalCount;
+	}
+
+	public List selectTradeList(Member m) {
+		String query = "select * from trade_list where consumer=?";
+		List tradeList = jdbc.query(query, tradeListRowMapper, m.getMemberId());
+		return tradeList;
+	}
+
 	
 }

@@ -271,4 +271,9 @@ public class ProductService {
 		return list;
 	}
 
+	public List selectbyRequestList(Member m) {
+		List byRequestList = productDao.selectbyRequestList(m);
+		return byRequestList;
+	}
+
 }
