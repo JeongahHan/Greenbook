@@ -22,6 +22,7 @@ public class MsgController {
 	@Autowired
 	private MsgService msgService;
 	
+	/* 로그인 인터셉터로 해결
 	//로그인 체크하기
 	@GetMapping(value = "/loginCheck")
 	public String loginCheck(Model model, @SessionAttribute(required = false) Member m) {
@@ -35,7 +36,7 @@ public class MsgController {
 		}else {
 			return "redirect:/msg/receiveList?reqPage=1";	
 		}
-	}
+	}*/
 	
 	//받은 쪽지 리스트
 	@GetMapping(value = "/receiveList")

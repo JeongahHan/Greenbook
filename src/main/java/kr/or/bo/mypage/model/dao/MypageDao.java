@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import kr.or.bo.board.vo.BoardFileRowMapper;
 import kr.or.bo.board.vo.BoardRowMapper;
 import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.member.model.vo.MemberRowMapper;
@@ -37,6 +38,8 @@ public class MypageDao {
 	private TradeListRowMapper tradeListRowMapper;
 	@Autowired
 	private MemberRowMapper memberRowMapper;
+	@Autowired
+	private BoardFileRowMapper boardFileRowMapper;
 	
 	//회원정보 수정
 	public int updateMember(Member member) {
@@ -164,7 +167,7 @@ public class MypageDao {
 	//거래목록 인서트
 	public int tradeInsert(Member m, Product p) {
 		// TODO Auto-generated method stub
-		String query ="INSERT INTO TRADE_LIST VALUES(TRADE_LIST_SEQ.NEXTVAL,?,?,TO_CHAR(SYSDATE,'YYYY-MM-DD'),null)";
+		String query ="INSERT INTO TRADE_LIST VALUES(TRADE_LIST_SEQ.NEXTVAL,?,?,TO_CHAR(SYSDATE,'YYYY-MM-DD'),null,default)";
 		Object params []= {p.getProductBoardNo(), m.getMemberId()};
 		int result = jdbc.update(query, params);
 		
@@ -192,6 +195,32 @@ public class MypageDao {
 		List list = jdbc.query(query, memberRowMapper, memberId);
 		
 		
+		return list;
+	}
+
+	public List selectByRequestList(String memberId, int start, int end) {
+		String query = "select * from(select ROWNUM AS RNUM,N.* from(select * from TRADE_LIST where CONSUMER = ? order by 1 DESC)N) where rnum between ? and ?";
+		List byRequestList = jdbc.query(query, tradeListRowMapper, memberId, start, end);
+		return byRequestList;
+	}
+
+	public int selectByRequestListTotalCount(String memberId) {
+		String query = "select count(*) as cnt from TRADE_LIST where CONSUMER = ?";
+		int totalCount = jdbc.queryForObject(query, Integer.class, memberId);
+		return totalCount;
+	}
+
+	public List selectTradeList(Member m) {
+		String query = "select * from trade_list where consumer=?";
+		List tradeList = jdbc.query(query, tradeListRowMapper, m.getMemberId());
+		return tradeList;
+	}
+
+	//독서노트 이미지 가져오기
+	public List selectBoardFile(int boardRef) {
+		// TODO Auto-generated method stub
+		String query ="select * from board_file where board_no = ?";
+		List list = jdbc.query(query, boardFileRowMapper, boardRef);
 		return list;
 	}
 	

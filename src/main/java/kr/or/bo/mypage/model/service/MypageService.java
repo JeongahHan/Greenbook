@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.bo.board.vo.Board;
 import kr.or.bo.board.vo.BoardComment;
+import kr.or.bo.board.vo.BoardFile;
 import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.mypage.model.dao.MypageDao;
 import kr.or.bo.mypage.model.vo.MypageListData;
@@ -321,7 +322,19 @@ public class MypageService {
 			bc.setBoard((Board)selectMyBoardList.get(0));
 			
 		}
-		
+		//독서노트 이미지 가져오기 //댓글이 어느글의 출처인지 들고가서
+		for(int i =0 ;i<selectMyCommentList.size();i++) {
+			BoardComment bc = (BoardComment) selectMyCommentList.get(i);
+			List selectBoardFile = mypageDao.selectBoardFile(bc.getBoardRef());
+
+			if(selectBoardFile.isEmpty()) {//사진 없으면 
+				bc.setBoardFile(null);
+			}else{//사진 있을경우
+				bc.setBoardFile((BoardFile)selectBoardFile.get(0));
+			}
+			
+			//bc.setBoardFile((BoardFile) selectBoardFile.get(0));
+		}
 		
 		// 2. 페이지 네비게이션 제작
 		// 총 페이지 수 계산을 위해서는 총 게시물 수를 알아야함 -> DB에서 그룹함수로 조회
@@ -480,5 +493,73 @@ public class MypageService {
 		return mld;
 
 	}
+
+	public MypageListData selectByRequestList(String memberId, int reqPage) {
+		
+		int numPerPage = 10;
+		int end = reqPage * numPerPage;
+		int start = end - numPerPage + 1;
+		
+		List byRequestList = mypageDao.selectByRequestList(memberId, start, end);
+		
+		int totalCount = mypageDao.selectByRequestListTotalCount(memberId);
+		
+		int totalPage = (int)Math.ceil(totalCount / (double)numPerPage);
+		
+		int pageNaviSize = 5;
+		
+		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
+		
+		String pageNavi = "<ul class='pagination circle-style'>";
+		// 이전버튼 제작 < 1 2
+		if (pageNo != 1) {// 페이지 번호가 1이 아닌경우만 1이면 그 전이 없으니까
+			pageNavi += "<li>";
+			pageNavi += "<a class='page-item' href='/mypage/byRequestList?reqPage=" + (pageNo - 1) + "'>";
+			pageNavi += "<span class='material-icons'>chevron_left</span>";
+			pageNavi += "</a>";
+			pageNavi += "</li>";
+		}
+		// 페이지 숫자 제작
+		for (int i = 0; i < pageNaviSize; i++) {
+			if (pageNo == reqPage) {
+				pageNavi += "<li>";
+				pageNavi += "<a class='page-item active-page' href='/mypage/byRequestList?reqPage=" + (pageNo) + "'>";
+				pageNavi += pageNo;
+				pageNavi += "</a>";
+				pageNavi += "</li>";
+			} else {
+				pageNavi += "<li>";
+				pageNavi += "<a class='page-item' href='/mypage/byRequestList?reqPage=" + (pageNo) + "'>";
+				pageNavi += pageNo;
+				pageNavi += "</a>";
+				pageNavi += "</li>";
+			}
+			pageNo++;
+			if (pageNo > totalPage) {/// 총 페이지보다 크면
+				break;
+			}
+		}
+		// 다음버튼 제작 >> ...4 5 >>
+		if (pageNo <= totalPage) {
+			pageNavi += "<li>";
+			pageNavi += "<a class='page-item' href='/mypage/byRequestList?reqPage=" + (pageNo) + "'>";/// pageNo-1에서 바꿈
+			pageNavi += "<span class='material-icons'>chevron_right</span>"; /// left를 right로
+			pageNavi += "</a>";
+			pageNavi += "</li>";
+		}
+
+		pageNavi += "</ul>";
+		
+		
+		MypageListData mld = new MypageListData(byRequestList, pageNavi);
+		
+		return mld;
+	}
+
+	public List selectTradeList(Member m) {
+		List tradeList = mypageDao.selectTradeList(m);
+		return tradeList;
+	}
+
 	
 }

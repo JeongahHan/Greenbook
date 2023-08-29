@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.product.model.vo.Product;
 import kr.or.bo.product.model.vo.ProductComment;
 import kr.or.bo.product.model.vo.ProductCommentRowMapper;
@@ -178,6 +179,12 @@ public class ProductDao {
 		Object[] params = {productBoardNo};
 		int result = jdbc.update(query, params);
 		return result;
+	}
+
+	public List selectbyRequestList(Member m) {
+		String query = "SELECT * FROM PRODUCT_BOARD WHERE PRODUCT_BOARD_NO IN (select product_board_no from trade_list where consumer=?)";
+		List byRequestList = jdbc.query(query, productRowmapper, m.getMemberId());
+		return byRequestList;
 	}
 	
 }

@@ -1,6 +1,5 @@
-console.log("멤버업데이트 연결확인");
 
-const checkArr = [false,false,false,false];
+const checkArr = [false,false];
 
 //비밀번호 유효성 검사
 $("#memberPw").on("change",function(){
@@ -14,13 +13,14 @@ $("#memberPw").on("change",function(){
 	        $("#checkPw").text("사용 가능한 비밀번호입니다.");
 	        $("#checkPw").css("color","blue");
 	        $(this).css("border","1px solid blue");
-	        checkArr[1] = true;
+	        checkArr[0] = true;
+
 	    }else{
 	        //정규표현식 만족하지 못한 경우
 	        $("#checkPw").text("비밀번호는 영어 대문자, 소문자, 숫자로 8~12글자입니다.");
 	        $("#checkPw").css("color","red");
 	        $(this).css("border","1px solid red");
-	        checkArr[1] = false;
+	        checkArr[0] = false;
 	    }
 		if($("#checkPwRe").text() != ""){
 	    	pwDupCHECK();
@@ -45,14 +45,13 @@ function pwDupCHECK(){
 	        $("#checkPwRe").text("비밀번호가 일치합니다.");
 	        $("#checkPwRe").css("color","blue");
 	        $("#memberPwRe").css("border","1px solid blue");
-	        checkArr[2] = true;
+	        checkArr[1] = true;
 	    }else{
 	        $("#checkPwRe").text("비밀번호가 일치하지 않습니다.");
 	        $("#checkPwRe").css("color","red");
 	        $("#memberPwRe").css("border","1px solid red");
-	        checkArr[2] = false;
+	        checkArr[1] = false;
 
-            console.log(checkArr);
 
 	    }
     }else{
@@ -62,5 +61,20 @@ function pwDupCHECK(){
 
 }
 
-console.log("마지막줄");
-console.log(checkArr);
+$(".update-btn").on("click",function(event){
+    
+    if(!checkArr[1]){//새 비밀번호 확인이 일치하지 않을 경우
+        //console.log("비밀번호 일치하지 않음");
+        alert("비밀번호가 일치하지 않습니다.");
+        event.preventDefault();//클릭 작동 무효화
+    }
+
+    else if (!checkArr[0]){// 새 비밀번호 정규표현식 만족하지 않을경우
+        alert("사용할 수 없는 비밀번호입니다.");
+        event.preventDefault();//클릭 작동 무효화
+
+
+    }
+
+});
+

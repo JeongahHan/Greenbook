@@ -27,7 +27,7 @@ public class MemberController {
 	@Autowired
 	private EmailSender emailSender;
 	
-	//login 인터셉터
+	// login 인터셉터
 	@GetMapping(value="/loginMsg")
 	public String loginMsg(Model model) {
 		model.addAttribute("title", "접근 권한 없음");
@@ -36,7 +36,7 @@ public class MemberController {
 		return "common/msg";
 	}
 	
-	//admin 인터셉터
+	// admin 인터셉터
 	@GetMapping(value="/adminMsg")
 	public String adminMsg(Model model) {
 		model.addAttribute("title", "접근 권한 없음");
@@ -45,7 +45,7 @@ public class MemberController {
 		return "common/msg";
 	}
 	
-	//블랙이 인터셉터
+	// 블랙이 인터셉터
 	@GetMapping(value="/blackMsg")
 	public String blackMsg(Model model) {
 		model.addAttribute("title", "이용 제한 있음");
@@ -198,7 +198,7 @@ public class MemberController {
 		}
 		return "common/msg";
 	}
-/*
+	/*
 	@GetMapping(value = "/admin")
 	public String admin(Model model) {
 		List list = memberService.selectAllMember();
@@ -216,7 +216,6 @@ public class MemberController {
 		return "member/admin";
 	}
 	
-
 	@GetMapping(value = "/changeLevel")
 	public String changeLevel(int memberNo, int memberLevel, Model model) {
 		int result = memberService.changeLevel(memberNo, memberLevel);

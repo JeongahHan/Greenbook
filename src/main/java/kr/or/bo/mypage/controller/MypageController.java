@@ -78,7 +78,14 @@ public class MypageController {
 		//서비스에서 제목받아오기
 		model.addAttribute("myBoardCommentList",mld.getMypageList()); //리스트넘김
 		model.addAttribute("pageNavi", mld.getPageNavi());
-
+		
+		//진행확인용
+//		System.out.println("mld : "+mld);
+//		System.out.println("넘겨주는거 확인"+mld.getMypageList()); //오브젝트인가? 리스트인가
+//		List bc =  mld.getMypageList();
+//		System.out.println("리스트인지 확인 : "+bc);//리스트인듯
+		
+		
 		return "mypage/myComment";
 	}
 	
@@ -200,6 +207,7 @@ public class MypageController {
 		return "common/msg";
 //		return "mypage/byRequestList";
 //		return "redirect:/product/productDetail?productBoardNo="+p.getProductBoardNo();
+//		return "redirect:/mypage/byRequestList";
 	}
 	@GetMapping(value = "/showConsumer")
 	public String showConsumer (Product p , HttpSession session, int reqPage, Model model) {
@@ -218,7 +226,23 @@ public class MypageController {
 	}
 	
 	@GetMapping(value="/byRequestList")
-	public String byRequestList(int reqPage, Model model) {
+	public String byRequestList(HttpSession session, int reqPage, Model model) {
+		
+		Member m = (Member)session.getAttribute("m");
+		List byRequestList = productService.selectbyRequestList(m);
+		List tradeList = mypageService.selectTradeList(m);
+		MypageListData mld = mypageService.selectByRequestList(m.getMemberId(), reqPage);
+		
+		System.out.println(byRequestList);
+		System.out.println(tradeList);
+		model.addAttribute("requestList", byRequestList);
+		model.addAttribute("tradeList", tradeList);
+		model.addAttribute("pageNavi", mld.getPageNavi());
+//		
+//		System.out.println(m);
+//		System.out.println(p);
+//		
+//		model.addAttribute("byRequestList", mld.getMypageList());
 		
 		return "mypage/byRequestList";
 	}
