@@ -379,9 +379,9 @@ public class BoardController {
 			
 			MainSearchListData msd = boardService.mainSearchList2(reqPage,keyword);
 			
-			model.addAttribute("productList", msd.getProductList());
+
 			
-			model.addAttribute("boardList",msd.getBoardList());
+			model.addAttribute("mainSearchList", msd.getMainSearchList());
 
 			model.addAttribute("pageNavi2", msd.getPageNavi());
 			

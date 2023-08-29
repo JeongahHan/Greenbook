@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import kr.or.bo.board.vo.BoardFileRowMapper;
 import kr.or.bo.board.vo.BoardRowMapper;
 import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.member.model.vo.MemberRowMapper;
@@ -37,6 +38,8 @@ public class MypageDao {
 	private TradeListRowMapper tradeListRowMapper;
 	@Autowired
 	private MemberRowMapper memberRowMapper;
+	@Autowired
+	private BoardFileRowMapper boardFileRowMapper;
 	
 	//회원정보 수정
 	public int updateMember(Member member) {
@@ -192,6 +195,14 @@ public class MypageDao {
 		List list = jdbc.query(query, memberRowMapper, memberId);
 		
 		
+		return list;
+	}
+
+	//독서노트 이미지 가져오기
+	public List selectBoardFile(int boardRef) {
+		// TODO Auto-generated method stub
+		String query ="select * from board_file where board_no = ?";
+		List list = jdbc.query(query, boardFileRowMapper, boardRef);
 		return list;
 	}
 	

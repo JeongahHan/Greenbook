@@ -1,7 +1,10 @@
 package kr.or.bo.board.service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -477,6 +480,7 @@ public class BoardService {
 	/////////////////////////////////////////////////////////////////////////
 	
 	public MainSearchListData mainSearchList2(int reqPage,String keyword) {
+		
 		//1. 한 페이지 당 게시물 수 지정 ->> 10개
 		int numPerPage = 10;
 		//reqPage가 1이면 -> 1~10
@@ -486,19 +490,16 @@ public class BoardService {
 		int end = reqPage * numPerPage;
 		int start = (end-numPerPage)+1;
 		
-		List productList = boardDao.mainSearchList2(start, end, keyword); //중고책방 조회
-		List boardList = boardDao.mainSearchList1(start,end,keyword); //boardList 조회
-		
+		List mainSearchList = boardDao.mainSearchList1(start,end,keyword); //boardList 조회
+
 		
 		//2. 페이지 네비게이션 제작
 		//총 페이지 수 계산을 위해서는 "총 게시물 수"를 알아야함  ->>  DB에서 그룹함수로 조회
-		int totalCount1 = boardDao.getSearchListTotalCount2(keyword);
-		int totalCount2 = boardDao.getSearchListTotalCount1(keyword);
+		int totalCount = boardDao.getSearchListTotalCount1(keyword);
 		//총 페이지 수 계산
 		//총 게시물 수 100
 		//한 페이지당 게시물 수 : 10
 		
-		int totalCount = totalCount1+totalCount2;
 		int totalPage; //총 페이지 선언
 	
 		
@@ -555,7 +556,7 @@ public class BoardService {
 		pageNavi2 += "</ul>";
 		
 		
-		MainSearchListData msd =  new MainSearchListData(productList,boardList,pageNavi2);
+		MainSearchListData msd =  new MainSearchListData(mainSearchList,pageNavi2);
 		
 		return msd;
 	}
