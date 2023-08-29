@@ -10,6 +10,7 @@ import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.wish.model.vo.MyWishListRowMapper;
 import kr.or.bo.wish.model.vo.WishList;
 import kr.or.bo.wish.model.vo.WishListRowMapper;
+import kr.or.bo.wish.model.vo.wishListMain;
 
 @Repository
 public class WishListDao {
@@ -19,6 +20,10 @@ public class WishListDao {
 	private WishListRowMapper wishListRowMapper;
 	@Autowired
 	private MyWishListRowMapper myWishListRowMapper;
+	@Autowired
+	private wishListMain wishListMain;
+	
+	
 	
 	public int insertWish(int productBoardNo, String memberId) {
 		String query = "insert into wish_list values(wish_list_seq.nextval, ?, ?)";
@@ -54,4 +59,18 @@ public class WishListDao {
 		}
 		return 1;
 	}
+	
+	public int totalCount() {
+		String query = "select count(*) from WISH_LIST";
+		int totalCount = jdbc.queryForObject(query, Integer.class);
+		return totalCount;
+	}
+
+	public List selectWishlist(int start, int end) {
+		String query = "select * from (select rownum as rnum, w.* from (select PRODUCT_BOARD_NO, count(*) from WISH_LIST group by PRODUCT_BOARD_NO having count(*) >= 1 order by 2 desc)w) where rnum between ? and ?";
+		List wishList = jdbc.query(query, wishListMain, start, end);
+		return wishList; 
+	}
+	
+	
 }

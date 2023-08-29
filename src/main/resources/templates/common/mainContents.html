@@ -37,9 +37,120 @@
 	</div>
 
 	<div class="page-main-like-more">
-		<a href=#><button type="button" class="main-btn main-bc1 main-bs4">더보기</button></a>
+		<button type="button" class="main-btn main-bc1 main-bs4" id="more-btn" th:totalCount="${totalCount}" currentCount="0" value="1">더보기</button>
 	</div>
 </div>
+<script>
 
+$("#more-btn").on("click",function(){
+	//추가 가져올 게시물 시작번호
+	const start = $(this).val();
+	//console.log(start);
+	//한 번 더보기를 누를 때 추가로 가지고 올 게시물 수(5개로 지정)
+	const amount = 4;
+	const end = Number(start)+amount-1;
+	$.ajax({
+		url : "/wish/more",
+		type : "post",
+		data : {start : start, end : end},
+		success : function(data){
+			console.log(data);
+			for(let i=0 ; i<data.length;i++){
+				const wish = data[i];
+				const div = $("<div>");
+				div.addClass("posting-item");	//<div class="posting-item"></div>
+				
+				const imgDiv = $("<div>");
+				imgDiv.addClass("posting-img");	//<div class="posting-img"></div>
+				const img = $("<img>");
+				img.attr("src", "/wish/"+wish.filepath);//<img src="파일경로">
+				imgDiv.append(img);				//<div class="posting-img"><img src="파일경로"></div>
+				
+				const contentDiv = $("<div>");
+				contentDiv.addClass("posting-content");//<div class="posting-content"></div>
+				const title = $("<p>");
+				title.text(wish.productBoardTitle);	//<p>글제목</p>
+				contentDiv.append(title);		//<div class="posting-content"><p>글제목</p></div>
+				
+				div.append(imgDiv).append(contentDiv);
+				$(".page-main-like-content").append(div);
+			}
+			//새로 읽어온 Photo를 화면에 추가 완료
+			//→ 더보기를 한 번 더 눌렀을 때 읽어온 이후 값을 조회하기 위한 준비
+			const currentVal = Number($("#more-btn").val());
+			$("#more-btn").val(currentVal+amount);
+			
+			//currentCount 변경
+			const currentCount = Number($("#more-btn").attr("currentCount"));
+			const changeCount = currentCount+data.length;
+			$("#more-btn").attr("currentCount", changeCount);
+			
+			const totalCount = Number($("#more-btn").attr("totalCount"));
+			if(totalCount == changeCount){
+				$("#more-btn").remove();
+			}
+		}
+	});
+});
+
+$("#more-btn").click();
+
+/*
+$("#more-btn").on("click",function(){
+			//추가 가져올 게시물 시작번호
+			const start = $(this).val();
+			console.log(start);
+			//한 번 더보기를 누를 때 추가로 가지고 올 게시물 수(5개로 지정)
+			const amount = 5;
+			const end = Number(start)+amount-1;
+			$.ajax({
+				url : "/photo/more",
+				type : "post",
+				data : {start : start, end : end},
+				success : function(data){
+					console.log(data);
+					for(let i=0 ; i<data.length;i++){
+						const photo = data[i];
+						const div = $("<div>");
+						div.addClass("posting-item");	//<div class="posting-item"></div>
+						
+						const imgDiv = $("<div>");
+						imgDiv.addClass("posting-img");	//<div class="posting-img"></div>
+						const img = $("<img>");
+						img.attr("src", "/photo/"+photo.filepath);//<img src="파일경로">
+						imgDiv.append(img);				//<div class="posting-img"><img src="파일경로"></div>
+						
+						const contentDiv = $("<div>");
+						contentDiv.addClass("posting-content");//<div class="posting-content"></div>
+						const title = $("<p>");
+						title.text(photo.photoTitle);	//<p>글제목</p>
+						contentDiv.append(title);		//<div class="posting-content"><p>글제목</p></div>
+						
+						div.append(imgDiv).append(contentDiv);
+						$(".photoWrapper").append(div);
+					}
+					//새로 읽어온 Photo를 화면에 추가 완료
+					//→ 더보기를 한 번 더 눌렀을 때 읽어온 이후 값을 조회하기 위한 준비
+					const currentVal = Number($("#more-btn").val());
+					$("#more-btn").val(currentVal+amount);
+					
+					//currentCount 변경
+					const currentCount = Number($("#more-btn").attr("currentCount"));
+					const changeCount = currentCount+data.length;
+					$("#more-btn").attr("currentCount", changeCount);
+					
+					const totalCount = Number($("#more-btn").attr("totalCount"));
+					if(totalCount == changeCount){
+						$("#more-btn").remove();
+					}
+				}
+			});
+		});
+		
+		$("#more-btn").click();
+		
+		*/
+		
+		</script>
 
 </html>

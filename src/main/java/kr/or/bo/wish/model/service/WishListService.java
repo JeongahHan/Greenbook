@@ -80,4 +80,14 @@ public class WishListService {
 		WishListData wld = new WishListData(myWishList, pageNavi);
 		return wld;
 	}
+	
+	public int totalCount() {
+		int totalCount = wishListDao.totalCount();
+		return totalCount;
+	}
+
+	public List selectWishlist(int start, int end) {
+		List list = wishListDao.selectWishlist(start,end);
+		return list;
+	}
 }
