@@ -13,8 +13,8 @@ import lombok.NoArgsConstructor;
 @Data
 public class MainSearchListData {
 
-		private List productList;
-		private List boardList;
+	
+		private List mainSearchList;
 		private String pageNavi;
 	
 

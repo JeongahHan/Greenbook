@@ -20,7 +20,7 @@ import kr.or.bo.wish.model.vo.WishListData;
 public class WishListController {
 	@Autowired
 	private WishListService wishListService;
-	
+	/* 로그인 인터셉터로 해결
 	//로그인 체크하기
 	@GetMapping(value = "/loginCheck")
 	public String loginCheck(Model model, @SessionAttribute(required = false) Member m) {
@@ -34,7 +34,7 @@ public class WishListController {
 		}else {
 			return "redirect:/wish/myWishList?reqPage=1";	
 		}
-	}
+	}*/
 	
 	//관심 도서 등록
 	@ResponseBody
