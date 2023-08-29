@@ -312,3 +312,5 @@ $("button[type=submit]").on("click",function(event){
 $("#close").on("click", function(){
 	$(".modal-wrap").css("display","none");
 });
+
+

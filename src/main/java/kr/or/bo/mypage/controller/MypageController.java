@@ -100,16 +100,30 @@ public class MypageController {
 	
 	
 	@PostMapping(value = "/update")
-	public String update(Member member, HttpSession session) {
+	public String update(Member member, HttpSession session, Model model) {
 		// disabled 때문인거 같은데 멤버 비밀번호, 휴대폰, 이메일만 넘겨받음
+		System.out.println(member.getMemberPw());
+
 		int result = mypageService.updateMember(member);
 		//로그인되있는 세션 정보 바꿔주기
 		//메소드 가져다 쓰기
-		Member m = memberService.selectOneMember(member.getMemberId(), member.getMemberPw());
-		session.setAttribute("m", m);
-		System.out.println(m);
-		
-		return "mypage/memberUpdateFrm";//에러땜에 임시로 여기로감
+		if(result >0) {
+			Member m = memberService.selectOneMember(member.getMemberId(), member.getMemberPw());
+			session.setAttribute("m", m);
+			model.addAttribute("title", "정보수정 성공");
+			model.addAttribute("msg", "변경된 정보를 확인하세요.");
+			model.addAttribute("icon", "success");
+			model.addAttribute("loc", "/mypage/memberUpdateFrm");
+			return "common/msg";
+			
+		}else {
+			model.addAttribute("title", "정보변경 실패");
+			model.addAttribute("msg", "회원 정보 수정에 실패했습니다.");
+			model.addAttribute("icon", "error");
+			model.addAttribute("loc", "/mypage/memberUpdateFrm");
+			return "common/msg";
+
+		}
 	}
 	
 	//회원탈퇴

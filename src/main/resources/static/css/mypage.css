@@ -168,7 +168,7 @@ B31312 빨강
 
 /* 회원정보 */
 .updateForm{
-    width: 500px;
+    width: 550px;
     /* background-color: blanchedalmond; */
     float: left;
     font-size: 20px;
@@ -189,7 +189,13 @@ B31312 빨강
 .updateForm input{
     float: right;
     font-size: 18px;
+    width: 300px;
 
+}
+#checkPw, #checkPwRe{
+    font-size: 12px;
+    /* text-align: right; */
+    padding-left: 210px;
 }
 
 .btn-box{

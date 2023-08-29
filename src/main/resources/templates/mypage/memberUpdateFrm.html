@@ -30,8 +30,14 @@
 	                <input type="text" name="memberId" id="memberId" th:value="${session.m.memberId}" disabled>
 	            </div>
 	            <div class="input-wrap">
-	                <label for="memberPw">회원비밀번호</label>
+	                <label for="memberPw">새 비밀번호</label>
 	                <input type="text" name="memberPw" id="memberPw" th:value="${session.m.memberPw}">
+	                <p id="checkPw"></p>
+	            </div>
+	            <div class="input-wrap">
+	                <label for="memberPw">새 비밀번호 확인</label>
+	                <input type="text" name="memberPwRe" id="memberPwRe" th:value="${session.m.memberPw}">
+                    <p id="checkPwRe"></p>
 	            </div>
 	            <div class="input-wrap">
 	                <label for="memberName">회원이름</label>
@@ -43,7 +49,8 @@
 	            </div>
 	            <div class="input-wrap">
 	                <label for="memberEmail">이메일</label>
-	                <input type="text" name="memberEmail" id="memberEmail" th:value="${session.m.memberEmail}">
+	                <input type="hidden" name="memberEmail" id="memberEmail" th:value="${session.m.memberEmail}" readonly>
+	                <input type="text" name="memberEmail" id="memberEmail" th:value="${session.m.memberEmail}" disabled>
 	            </div>
 	            <div class="input-wrap">
 	                <label for="enrollDate">가입일</label>
@@ -85,6 +92,9 @@
 	        <!-- <div class="modal-foot"></div> -->
 	      </div>
     	</div>
-
+	
+	<!-- <script src="/js/join.js"></script> -->
+	<script src="/js/memberUpdate.js"></script>
+	
 </body>
 </html>
