@@ -78,7 +78,10 @@ public class MypageController {
 		//서비스에서 제목받아오기
 		model.addAttribute("myBoardCommentList",mld.getMypageList()); //리스트넘김
 		model.addAttribute("pageNavi", mld.getPageNavi());
-
+		
+		
+		System.out.println("넘겨주는거 확인"+mld.getMypageList());
+		
 		return "mypage/myComment";
 	}
 	
