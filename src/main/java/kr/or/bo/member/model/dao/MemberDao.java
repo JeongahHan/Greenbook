@@ -31,7 +31,7 @@ public class MemberDao {
 		return list;
 	}*/
 	public List selectAdminList(int start, int end) {
-		String query = "select * from (select rownum as rnum, n.* from (select * from member order by 1 desc)n)where rnum between ? and ?";
+		String query = "select * from (select rownum as rnum, n.* from (select * from member)n)where rnum between ? and ?";
 		List list = jdbc.query(query, memberRowMapper, start, end);
 		return list;
 	}
