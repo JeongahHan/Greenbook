@@ -44,6 +44,9 @@ $("#memberPw").on("change",function(){
     const pwReg = /^[a-zA-Z0-9]{8,12}$/;
     const inputPw = $("#memberPw").val();
     const check = pwReg.test(inputPw);
+    if($("#checkPwRe").text() != ""){
+	    pwDupCHECK();
+	}
     if($("#memberPw").val() != ""){
 	   	if(check){
 	        //정규표현식 만족한 경우
@@ -58,19 +61,14 @@ $("#memberPw").on("change",function(){
 	        $(this).css("border","1px solid red");
 	        checkArr[1] = false;
 	    }
-		if($("#checkPwRe").text() != ""){
-	    	pwDupCHECK();
-	    }
     }else{
     	$("#checkPw").text("");
     	$("#memberPw").css("border","1px solid #ccc");
-    	$("#checkPwRe").text("");
-    	$("#memberPwRe").css("border","1px solid #ccc");
     }
 });
 
 $("#memberPwRe").on("change",function(){
-    pwDupCHECK();
+	pwDupCHECK();
 });
 
 //비밀번호, 비밀번호 확인 일치
@@ -93,7 +91,6 @@ function pwDupCHECK(){
     	$("#checkPwRe").text("");
     	$("#memberPwRe").css("border","1px solid #ccc");
     }
-
 }
 
 let authCode = null;

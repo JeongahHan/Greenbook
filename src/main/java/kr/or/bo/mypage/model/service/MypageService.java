@@ -500,5 +500,73 @@ public class MypageService {
 		return mld;
 
 	}
+
+	public MypageListData selectByRequestList(String memberId, int reqPage) {
+		
+		int numPerPage = 10;
+		int end = reqPage * numPerPage;
+		int start = end - numPerPage + 1;
+		
+		List byRequestList = mypageDao.selectByRequestList(memberId, start, end);
+		
+		int totalCount = mypageDao.selectByRequestListTotalCount(memberId);
+		
+		int totalPage = (int)Math.ceil(totalCount / (double)numPerPage);
+		
+		int pageNaviSize = 5;
+		
+		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
+		
+		String pageNavi = "<ul class='pagination circle-style'>";
+		// 이전버튼 제작 < 1 2
+		if (pageNo != 1) {// 페이지 번호가 1이 아닌경우만 1이면 그 전이 없으니까
+			pageNavi += "<li>";
+			pageNavi += "<a class='page-item' href='/mypage/byRequestList?reqPage=" + (pageNo - 1) + "'>";
+			pageNavi += "<span class='material-icons'>chevron_left</span>";
+			pageNavi += "</a>";
+			pageNavi += "</li>";
+		}
+		// 페이지 숫자 제작
+		for (int i = 0; i < pageNaviSize; i++) {
+			if (pageNo == reqPage) {
+				pageNavi += "<li>";
+				pageNavi += "<a class='page-item active-page' href='/mypage/byRequestList?reqPage=" + (pageNo) + "'>";
+				pageNavi += pageNo;
+				pageNavi += "</a>";
+				pageNavi += "</li>";
+			} else {
+				pageNavi += "<li>";
+				pageNavi += "<a class='page-item' href='/mypage/byRequestList?reqPage=" + (pageNo) + "'>";
+				pageNavi += pageNo;
+				pageNavi += "</a>";
+				pageNavi += "</li>";
+			}
+			pageNo++;
+			if (pageNo > totalPage) {/// 총 페이지보다 크면
+				break;
+			}
+		}
+		// 다음버튼 제작 >> ...4 5 >>
+		if (pageNo <= totalPage) {
+			pageNavi += "<li>";
+			pageNavi += "<a class='page-item' href='/mypage/byRequestList?reqPage=" + (pageNo) + "'>";/// pageNo-1에서 바꿈
+			pageNavi += "<span class='material-icons'>chevron_right</span>"; /// left를 right로
+			pageNavi += "</a>";
+			pageNavi += "</li>";
+		}
+
+		pageNavi += "</ul>";
+		
+		
+		MypageListData mld = new MypageListData(byRequestList, pageNavi);
+		
+		return mld;
+	}
+
+	public List selectTradeList(Member m) {
+		List tradeList = mypageDao.selectTradeList(m);
+		return tradeList;
+	}
+
 	
 }

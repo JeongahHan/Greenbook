@@ -21,6 +21,7 @@ import kr.or.bo.msg.model.vo.MsgListData;
 public class MsgController {
 	@Autowired
 	private MsgService msgService;
+	
 	/* 로그인 인터셉터로 해결
 	//로그인 체크하기
 	@GetMapping(value = "/loginCheck")
