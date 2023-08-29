@@ -37,20 +37,12 @@
 			</tr>
 			
 			
-			<tr class="tr-1" th:each="product : ${productList}">
-				<td th:text ="${product.productBoardNo}"></td>
-				<td><span>[중고책방]</span> <a th:href ="@{/product/productDetail(productBoardNo=${product.productBoardNo})}" th:text="${product.productBoardTitle}" id="titleLine"></a></td> 
-				<td th:text="${productBoardWriter}"></td>
-				<td th:text="${product.productRegDate}"></td>
-				<td th:text="${product.readCount}"></td>
-			</tr>
-			
-			<tr class="tr-1" th:each="board : ${boardList}">
-				<td th:text ="${board.boardNo}"></td>
-				<td><a th:href ="@{/board/view(boardNo=${board.boardNo})}" th:text="${board.boardTitle}" id="titleLine"></a></td> <!-- board/view?boardNo=105 -->
-				<td th:text="${board.boardWriter}"></td>
-				<td th:text="${board.boardRegDate}"></td>
-				<td th:text="${board.boardReadCount}"></td>
+			<tr class="tr-1" th:each="mainSearchList : ${mainSearchList}">
+				<td th:text ="${mainSearchList.boardNo}"></td>
+				<td><a th:href ="@{/board/view(boardNo=${mainSearchList.boardNo})}" id="titleLine"><span>[자유게시판]</span><span th:text="${mainSearchList.boardTitle}" ></span></a></td> 
+				<td th:text="${mainSearchList.boardWriter}"></td>
+				<td th:text="${mainSearchList.boardRegDate}"></td>
+				<td th:text="${mainSearchList.boardReadCount}"></td>
 			</tr>
 			
 			
