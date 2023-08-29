@@ -21,11 +21,12 @@
 					<th style="width:15%"></th>
 				</tr>
 				<tr class="mypageTr mypageTr-2" th:each="list : ${myBoardList}">
-					<td th:text="${list.boardNo}">11</td>
-					<td th:text="${list.boardTitle}"></td>
-					<td th:text="${list.boardWriter}">유저01</td>
-					<td th:text="${list.boardRegDate}">2023-08-21</td>
-					<td th:text="${list.boardReadCount}"></td>
+				<!-- <tr class="mypageTr mypageTr-2" th:each="list : ${myBoardList}" th:onclick="|location.href='@{/board/view(boardNo=${list.boardNo})}'|"> -->
+					<td th:text="${list.boardNo}" th:onclick="|location.href='@{/board/view(boardNo=${list.boardNo})}'|">11</td>
+					<td th:text="${list.boardTitle}" th:onclick="|location.href='@{/board/view(boardNo=${list.boardNo})}'|">제목</td>
+					<td th:text="${list.boardWriter}" th:onclick="|location.href='@{/board/view(boardNo=${list.boardNo})}'|">유저01</td>
+					<td th:text="${list.boardRegDate}" th:onclick="|location.href='@{/board/view(boardNo=${list.boardNo})}'|">2023-08-21</td>
+					<td th:text="${list.boardReadCount}" th:onclick="|location.href='@{/board/view(boardNo=${list.boardNo})}'|">조회수</td>
 					<td>
 						<p style="display : none" class="toControllPath" value="/mypage/myBoardDelete?boardNo=">모달에 컨트롤 경로지정</p>
 						<!-- <button class="btn bc1 modal-open-btn deleteBtn" target="#delete-modal">삭제</button> -->
