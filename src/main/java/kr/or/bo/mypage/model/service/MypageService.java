@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.bo.board.vo.Board;
 import kr.or.bo.board.vo.BoardComment;
+import kr.or.bo.board.vo.BoardFile;
 import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.mypage.model.dao.MypageDao;
 import kr.or.bo.mypage.model.vo.MypageListData;
@@ -320,6 +321,25 @@ public class MypageService {
 			List selectMyBoardList = mypageDao.selectMyBoardList(bc.getBoardRef());
 			bc.setBoard((Board)selectMyBoardList.get(0));
 			
+		}
+		
+		//독서노트 이미지 가져오기 //댓글이 어느글의 출처인지 들고가서
+		for(int i =0 ;i<selectMyCommentList.size();i++) {
+			BoardComment bc = (BoardComment) selectMyCommentList.get(i);
+			List selectBoardFile = mypageDao.selectBoardFile(bc.getBoardRef());
+			System.out.println(bc);
+			System.out.println(selectBoardFile);
+			System.out.println(selectBoardFile.isEmpty());
+			System.out.println();
+			
+			bc.setBoardFile((BoardFile)selectBoardFile.get(0));
+//			if(selectBoardFile.isEmpty()) {//사진 없으면 
+//				bc.setBoard(null);
+//			}else{//사진 있을경우
+//				bc.setBoardFile((BoardFile)selectBoardFile.get(0));
+//			}
+			
+			//bc.setBoardFile((BoardFile) selectBoardFile.get(0));
 		}
 		
 		

@@ -1,7 +1,6 @@
 package kr.or.bo.wish.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,9 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
-import kr.or.bo.FileUtil;
 import kr.or.bo.member.model.vo.Member;
-import kr.or.bo.msg.model.vo.Msg;
 import kr.or.bo.wish.model.service.WishListService;
 import kr.or.bo.wish.model.vo.WishListData;
 
@@ -21,6 +18,7 @@ public class WishListController {
 	@Autowired
 	private WishListService wishListService;
 	
+	/* 로그인 인터셉터로 해결
 	//로그인 체크하기
 	@GetMapping(value = "/loginCheck")
 	public String loginCheck(Model model, @SessionAttribute(required = false) Member m) {
@@ -34,7 +32,7 @@ public class WishListController {
 		}else {
 			return "redirect:/wish/myWishList?reqPage=1";	
 		}
-	}
+	}*/
 	
 	//관심 도서 등록
 	@ResponseBody

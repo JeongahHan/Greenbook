@@ -144,6 +144,16 @@
 	        anchor: new naver.maps.Point(11, 35)},
 	    animation: naver.maps.Animation.BOUNCE
 	});
+/*
+const marker2 = new naver.maps.Marker({
+	position : new naver.maps.LatLng(37.5337816, 126.8967783),
+	map : map,
+	icon: {
+        content:'Green Book company',
+        size: new naver.maps.Size(50, 50), 
+        origin: new naver.maps.Point(0, 0),
+        anchor: new naver.maps.Point(11, 35)}
+});*/
 	
 
 	let infoWindow = new naver.maps.InfoWindow();
@@ -156,33 +166,45 @@
 		"</div>"
 	].join("");
 	
-	
-	
 	naver.maps.Event.addListener(marker,"click",function(e){
 		infoWindow = new naver.maps.InfoWindow({
 			content : contentString
 		});
 		infoWindow.open(map,marker);
  
-		/*
-		var markers = [];
-        var infowindows = [];
-		
-		
-		for(let i=0; i<markers.length; i++){
-		    naver.maps.Event.addListener(markers[i], "click", function(e) {
-		        if (infowindows[i].getMap()) {
-		        	infowindows[i].close();
-		        } else {
-		        	infowindows[i].open(map, markers[i]);
-		        }
-		    });
-		}*/
-		
-	}); 
+	}); 	
 	
+	/*
+	naver.maps.Event.addListener(map,"click",function(e){
+		if(infoWindow.getMap()){	//정보창이 지도에 노출되어 있는 상태면
+			infoWindow.close();
+		}
+	}); 
+		*/
+/*	
+///////////////////////////////////////////////////////////////////////클릭옵션
+ markers.push(marker); // 생성한 마커를 담는다.
+ infoWindows.push(infoWindow); // 생성한 정보창을 담는다.
+		function getClickHandler(seq) {
+		
+        return function(e) {  // 마커를 클릭하는 부분
+            var marker = markers[seq], // 클릭한 마커의 시퀀스로 찾는다.
+                infoWindow = infoWindows[seq]; // 클릭한 마커의 시퀀스로 찾는다
 
+            if (infoWindow.getMap()) {
+                infoWindow.close();
+            } else {
+                infoWindow.open(map, marker); // 표출
+            }
+		}
+	}
 
+for (var i=0, ii=markers.length; i<ii; i++) {
+	console.log(markers[i] , getClickHandler(i));
+    naver.maps.Event.addListener(markers[i], 'click', getClickHandler(i)); // 클릭한 마커 핸들러
+}
+	}
+*/		
 	
 	</script>
 

@@ -19,7 +19,7 @@ public class ProductRowMapper implements RowMapper<Product>{
 		p.setProductBoardWriter(rs.getString("product_board_writer"));
 		p.setProductCondition(rs.getInt("product_condition"));
 		p.setProductPrice(rs.getInt("product_price"));
-		p.setProductRegDate("product_reg_date");
+		p.setProductRegDate(rs.getString("product_reg_date"));
 		p.setProductSellCheck(rs.getInt("product_sell_check"));
 		p.setReadCount(rs.getInt("read_count"));
 		return p;

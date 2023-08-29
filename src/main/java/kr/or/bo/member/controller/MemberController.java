@@ -26,7 +26,34 @@ public class MemberController {
 	private MemberService memberService;
 	@Autowired
 	private EmailSender emailSender;
-
+	
+	// login 인터셉터
+	@GetMapping(value="/loginMsg")
+	public String loginMsg(Model model) {
+		model.addAttribute("title", "접근 권한 없음");
+		model.addAttribute("msg", "로그인 후 이용 가능합니다.");
+		model.addAttribute("loc", "/");
+		return "common/msg";
+	}
+	
+	// admin 인터셉터
+	@GetMapping(value="/adminMsg")
+	public String adminMsg(Model model) {
+		model.addAttribute("title", "접근 권한 없음");
+		model.addAttribute("msg", "관리자만 이용 가능합니다.");
+		model.addAttribute("loc", "/");
+		return "common/msg";
+	}
+	
+	// 블랙이 인터셉터
+	@GetMapping(value="/blackMsg")
+	public String blackMsg(Model model) {
+		model.addAttribute("title", "이용 제한 있음");
+		model.addAttribute("msg", "블랙이는 이용에 제한이 있습니다.");
+		model.addAttribute("loc", "/");
+		return "common/msg";
+	}
+	
 	// loginFrm.html로 이동
 	@GetMapping(value = "/loginFrm")
 	public String loginFrm() {
@@ -171,7 +198,7 @@ public class MemberController {
 		}
 		return "common/msg";
 	}
-/*
+	/*
 	@GetMapping(value = "/admin")
 	public String admin(Model model) {
 		List list = memberService.selectAllMember();
@@ -189,7 +216,6 @@ public class MemberController {
 		return "member/admin";
 	}
 	
-
 	@GetMapping(value = "/changeLevel")
 	public String changeLevel(int memberNo, int memberLevel, Model model) {
 		int result = memberService.changeLevel(memberNo, memberLevel);
@@ -248,5 +274,4 @@ public class MemberController {
 		model.addAttribute("pageNavi", nld.getPageNavi());
 		return "member/admin";
 	}
-
 }
