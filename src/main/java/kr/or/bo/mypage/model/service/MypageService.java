@@ -320,28 +320,28 @@ public class MypageService {
 			BoardComment bc = (BoardComment) selectMyCommentList.get(i);
 			List selectMyBoardList = mypageDao.selectMyBoardList(bc.getBoardRef());
 			bc.setBoard((Board)selectMyBoardList.get(0));
+			System.out.println("리스트에 board 담겻는지 확인 for문 안 : "+selectMyCommentList.get(i));//여기선 잘 담김
 			
 		}
-		
 		//독서노트 이미지 가져오기 //댓글이 어느글의 출처인지 들고가서
 		for(int i =0 ;i<selectMyCommentList.size();i++) {
 			BoardComment bc = (BoardComment) selectMyCommentList.get(i);
 			List selectBoardFile = mypageDao.selectBoardFile(bc.getBoardRef());
-			System.out.println(bc);
-			System.out.println(selectBoardFile);
-			System.out.println(selectBoardFile.isEmpty());
-			System.out.println();
+//			System.out.println(bc);
+//			System.out.println(selectBoardFile);
+//			System.out.println(selectBoardFile.isEmpty());
+//			System.out.println();
 			
-			bc.setBoardFile((BoardFile)selectBoardFile.get(0));
-//			if(selectBoardFile.isEmpty()) {//사진 없으면 
-//				bc.setBoard(null);
-//			}else{//사진 있을경우
-//				bc.setBoardFile((BoardFile)selectBoardFile.get(0));
-//			}
+//			bc.setBoardFile((BoardFile)selectBoardFile.get(0));
+			if(selectBoardFile.isEmpty()) {//사진 없으면 
+				bc.setBoardFile(null);
+			}else{//사진 있을경우
+				bc.setBoardFile((BoardFile)selectBoardFile.get(0));
+			}
 			
 			//bc.setBoardFile((BoardFile) selectBoardFile.get(0));
 		}
-		
+		System.out.println("리스트에 board잘 담기는지 확인 : "+selectMyCommentList);//여기서 안담기네
 		
 		// 2. 페이지 네비게이션 제작
 		// 총 페이지 수 계산을 위해서는 총 게시물 수를 알아야함 -> DB에서 그룹함수로 조회

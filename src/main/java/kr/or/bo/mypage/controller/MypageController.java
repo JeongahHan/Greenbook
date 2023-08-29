@@ -79,8 +79,12 @@ public class MypageController {
 		model.addAttribute("myBoardCommentList",mld.getMypageList()); //리스트넘김
 		model.addAttribute("pageNavi", mld.getPageNavi());
 		
+		//진행확인용
+//		System.out.println("mld : "+mld);
+//		System.out.println("넘겨주는거 확인"+mld.getMypageList()); //오브젝트인가? 리스트인가
+//		List bc =  mld.getMypageList();
+//		System.out.println("리스트인지 확인 : "+bc);//리스트인듯
 		
-		System.out.println("넘겨주는거 확인"+mld.getMypageList());
 		
 		return "mypage/myComment";
 	}
