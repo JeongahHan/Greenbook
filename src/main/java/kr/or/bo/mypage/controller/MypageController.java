@@ -212,18 +212,18 @@ public class MypageController {
 	@GetMapping(value = "/showConsumer")
 	public String showConsumer (Product p , HttpSession session, int reqPage, Model model) {
 		
-		System.out.println(p);
 		Member m = (Member)session.getAttribute("m");
-		System.out.println(m);
 		mypageService.selectConsumer(p,m,reqPage);
 		MypageListData mld = mypageService.selectConsumer(p,m,reqPage);
 			
 		model.addAttribute("selectConsumerList",mld.getMypageList());
 		model.addAttribute("pageNavi", mld.getPageNavi());
 		model.addAttribute("product", p);
+		System.out.println("mld 보기 : "+mld);
 		
 		return"mypage/showConsumer";
 	}
+	
 	
 	@GetMapping(value="/byRequestList")
 	public String byRequestList(HttpSession session, int reqPage, Model model) {

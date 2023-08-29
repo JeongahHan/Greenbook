@@ -424,8 +424,9 @@ public class MypageService {
 		for(int i =0 ; i<selectConsumerList.size();i++) {
 			TradeList tradeList= (TradeList)selectConsumerList.get(i);
 			List list = mypageDao.selectOneMember(tradeList.getConsumer());
-			tradeList.setMember((Member)list.get(0)); 
-
+			if(!list.isEmpty()) {
+				tradeList.setMember((Member)list.get(0));
+			}
 		}
 		
 		
