@@ -102,6 +102,8 @@ public class MypageController {
 	@PostMapping(value = "/update")
 	public String update(Member member, HttpSession session) {
 		// disabled 때문인거 같은데 멤버 비밀번호, 휴대폰, 이메일만 넘겨받음
+		System.out.println(member.getMemberPw());
+
 		int result = mypageService.updateMember(member);
 		//로그인되있는 세션 정보 바꿔주기
 		//메소드 가져다 쓰기
