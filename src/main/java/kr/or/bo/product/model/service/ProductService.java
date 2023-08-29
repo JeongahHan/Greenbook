@@ -123,9 +123,9 @@ public class ProductService {
 			List reCommentList = productDao.selectRecommentList(productBoardNo);
 			
 			Member m = memberDao.selectMemberGrade(productBoardNo);
-			
+			//관심상품 기능을 위해 추가
 			int isWished = wishListDao.selectIsWished(productBoardNo, memberId);
-			
+			//관심상품 기능을 위해 isWished 추가
 			ProductViewData pvd = new ProductViewData(p, commentList, reCommentList, m, isWished);
 			
 			

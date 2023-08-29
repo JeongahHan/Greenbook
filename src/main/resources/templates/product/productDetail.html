@@ -220,7 +220,7 @@
 	<th:block th:include="common/footer"></th:block>
 
 	<script>
-		//관심상품 등록 및 해제 정보 전달
+		//관심상품 등록
 		function insertWish(obj, productBoardNo, memberId){
 			const wishBtn=$(obj);
 			$.ajax({
@@ -235,7 +235,7 @@
 				}
 			});
 		}
-		
+		//관심상품 해제
 		function deleteWish(obj, productBoardNo, memberId){
 			const wishBtn = $(obj);
 			$.ajax({

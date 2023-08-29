@@ -156,6 +156,7 @@ public class MemberController {
 		return authCode;
 	}
 
+	// 회원가입
 	@PostMapping(value = "/signup")
 	public String signup(Member member, Model model) {
 		int result = memberService.insertMember(member);
@@ -178,6 +179,7 @@ public class MemberController {
 		return "member/admin";
 	}
 	*/
+	// 쪽지 보내기 기능으로 rePage추가
 	@GetMapping(value = "/list")
 	public String adminList(Model model, int reqPage) {
 		adminListData nld = memberService.selectAdminList(reqPage);

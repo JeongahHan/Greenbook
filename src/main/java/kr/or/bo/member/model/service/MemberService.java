@@ -135,7 +135,7 @@ public class MemberService {
 					pageNavi += "</li>";
 				}
 				pageNavi += "</ul>";
-				
+				//쪽지 보내는 기능으로 reqPage 추가
 				adminListData nld = new adminListData(adminList,pageNavi,reqPage); 
 				return nld;
 			}
@@ -190,7 +190,7 @@ public class MemberService {
 			pageNavi += "</li>";
 		}
 		pageNavi += "</ul>";
-		
+		//쪽지 보내는 기능으로 reqPage 추가
 		adminListData nld = new adminListData(adminList,pageNavi,reqPage); 
 		return nld;
 	}

@@ -17,5 +17,6 @@ public class ProductViewData {
 	private List commentList;
 	private List reCommentList;
 	private Member m;
+	//관심상품 기능을 위해 변수 추가
 	private int isWished;	
 }

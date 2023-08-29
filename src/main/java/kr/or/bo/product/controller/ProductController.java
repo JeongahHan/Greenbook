@@ -116,6 +116,7 @@ public class ProductController {
 	@GetMapping("/productDetail")
 	public String productDetail(int productBoardNo, @SessionAttribute(required = false) Member m, Model model) {
 		int memberNo = (m == null) ? 0 : m.getMemberNo();
+		//관심상품 기능을 위해 추가
 		String memberId = (m == null) ? null : m.getMemberId();
 		ProductViewData pvd = productService.selectOneProduct(productBoardNo, memberNo, memberId);
 		if(pvd != null) {
@@ -123,6 +124,7 @@ public class ProductController {
 			model.addAttribute("commentList", pvd.getCommentList());
 			model.addAttribute("reCommentList", pvd.getReCommentList());
 			model.addAttribute("m", pvd.getM());
+			//관심상품 기능을 위해 추가
 			model.addAttribute("isWished", pvd.getIsWished());
 			// model.addAttribute("fileList", pvd.getFileList());
 			return "product/productDetail";
