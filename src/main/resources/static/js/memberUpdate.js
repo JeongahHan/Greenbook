@@ -51,6 +51,9 @@ function pwDupCHECK(){
 	        $("#checkPwRe").css("color","red");
 	        $("#memberPwRe").css("border","1px solid red");
 	        checkArr[2] = false;
+
+            console.log(checkArr);
+
 	    }
     }else{
     	$("#checkPwRe").text("");
@@ -58,3 +61,6 @@ function pwDupCHECK(){
     }
 
 }
+
+console.log("마지막줄");
+console.log(checkArr);

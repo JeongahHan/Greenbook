@@ -49,7 +49,8 @@
 	            </div>
 	            <div class="input-wrap">
 	                <label for="memberEmail">이메일</label>
-	                <input type="text" name="memberEmail" id="memberEmail" th:value="${session.m.memberEmail}">
+	                <input type="hidden" name="memberEmail" id="memberEmail" th:value="${session.m.memberEmail}" readonly>
+	                <input type="text" name="memberEmail" id="memberEmail" th:value="${session.m.memberEmail}" disabled>
 	            </div>
 	            <div class="input-wrap">
 	                <label for="enrollDate">가입일</label>
