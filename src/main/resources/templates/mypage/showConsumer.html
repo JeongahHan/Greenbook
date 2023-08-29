@@ -25,11 +25,17 @@
 					</div>
 				</div>
 				<div class="consumer-wrap">
-					<th:block th:if="${selectConsumerList != null}">
+					<!-- <p th:text="${()selectConsumerList.get(0)).isEmpty()}"> 테스트</p> -->
+					<p th:text="${selectConsumerList.get(0).member}"> 테스트</p>
+					<p>트레이드 리스트</p>
+					<p th:text="${selectConsumerList.get(0)}"> 테스트</p>
+					
+					<th:block th:if="${selectConsumerList.get(0).member != null}">
+					<p th:text="${selectConsumerList.get(0).member}"></p>
 						<div class="consumer-one">
 							<table class="mypage-tbl">
 								<tr class="mypageTr mypageTr-1">
-									<th style="width:10%">번호</th>
+									<th style="width:10%">거래번호</th>
 									<th style="width:20%">아이디</th>
 									<th style="width:20%">이름</th>
 									<th style="width:10%">신뢰도</th>
@@ -39,13 +45,13 @@
 								<tr class="mypageTr mypageTr-2" th:each="selectConsumer : ${selectConsumerList}">
 									<td th:text="${selectConsumer.tradeNo}">11 소비자</td>
 									<td th:text="${selectConsumer.consumer}">user01 멤버</td>
-									<td th:text="${selectConsumer.consumer}">user01 멤버</td>
+									<td th:text="${selectConsumer.member.memberName}">user01 멤버</td>
 									<td th:text="${selectConsumer.member.grade}">신뢰도 들어갈곳</td>
 									<td th:text="${selectConsumer.tradeRequestDate}">2023-08-27</td>
 									<td>
 										<p style="display : none" class="toControllPath" value="/mypage/myBoardDelete?boardNo=">모달에 컨트롤 경로지정</p>
-										<!-- <button class="btn bc1 modal-open-btn deleteBtn" target="#delete-modal">삭제</button> -->
-										<button class="btn bc1 modal-open-btn deleteBtn" target="#delete-modal" >쪽지보내기</button>
+										<button class="btn bc1 modal-open-btn deleteBtn" target="#delete-modal">삭제</button>
+										<button class="btn bc1 modal-open-btn deleteBtn" target="#delete-modal" >쪽지</button>
 										<button class="btn bc1 modal-open-btn deleteBtn">판매 완료</button>
 									</td>
 								</tr>
@@ -53,6 +59,10 @@
 							</table>					
 						
 						</div>
+					
+					<!-- </th:block th:if="${()selectConsumerList.get(0)).member.isEmpty()}">
+						<p>구매요청한사람이 없을때</p>
+					<th:block> -->
 					
 					</th:block>
 					<div id="pageNavi" th:utext="${pageNavi}"></div>
