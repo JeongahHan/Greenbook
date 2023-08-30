@@ -395,18 +395,22 @@ public class BoardController {
 			return "mainSearch/mainSearch";
 		}			
 ///////////////////////////////////////////////////////////////////////////
-//메인 서치 기능 -ajax
+//메인 서치 - 필터
 		
-		@ResponseBody
 		@GetMapping(value="/mainSearchList2")
 		public String mainSearchList2(int reqPage,String keyword,String type,Model model) throws JsonProcessingException {
 		
 			MainSearchListData msd = boardService.mainSearchList3(reqPage,keyword,type);
 			
+			model.addAttribute("reqPage",reqPage);
+			model.addAttribute("keyword",keyword);
 			
-			Gson gson = new Gson();
-	       
-			return gson.toJson(msd.getMainSearchList());
+			model.addAttribute("mainSearchList", msd.getMainSearchList());
+			model.addAttribute("pageNavi2", msd.getPageNavi());
+			
+			
+			return "mainSearch/mainSearch";
+			
 		}
 		
 		
