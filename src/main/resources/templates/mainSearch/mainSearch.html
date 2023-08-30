@@ -39,8 +39,11 @@ transition-duration: 0.5s;
             <div class="page-title" >
 				<p style="font-size: 28px;">통합검색</p>
             </div>
+            <div th:if="${#lists.isEmpty(mainSearchList)}" style="padding-top: 10%; text-align: center;">검색된 항목이 없습니다.</div>
 			
-			<form action="/board/mainSearchList2">
+			
+			<div th:if="${#lists.isEmpty(mainSearchList) == false}">
+				<form action="/board/mainSearchList2">
 				<input type="hidden" name="reqPage" th:value="${reqPage}" id="reqPage">
 				<input type="hidden" name="keyword" th:value="${keyword}" id="keyword"> 
 			
@@ -79,9 +82,12 @@ transition-duration: 0.5s;
 				<td th:text="${mainSearchList.boardReadCount}"></td>
 				</tr>
 			</table>
-			
 			<div>
 				<div id="pageNavi" th:utext="${pageNavi2}"></div>
+			</div>
+			
+			
+			
 			</div>
 
         </div>
@@ -91,7 +97,7 @@ transition-duration: 0.5s;
     
 	
 	<th:block th:include="common/footer"></th:block>		
-		
+
 		
 
 		

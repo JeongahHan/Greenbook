@@ -398,9 +398,10 @@ public class BoardController {
 //메인 서치 - 필터
 		
 		@GetMapping(value="/mainSearchList2")
-		public String mainSearchList2(int reqPage,String keyword,String type,Model model) throws JsonProcessingException {
+		public String mainSearchList2(int reqPage,String keyword,String type,Model model)  {
 		
 			MainSearchListData msd = boardService.mainSearchList3(reqPage,keyword,type);
+			
 			
 			model.addAttribute("reqPage",reqPage);
 			model.addAttribute("keyword",keyword);

@@ -35,9 +35,15 @@
                     			<img th:src="${product.productFile.getFilepath}">
                     		</div>
                     		<div class="info">
-								<div class="book-title" th:text="${product.productBoardTitle}"></div>
-								<div class="book-writer">저자 | <span th:text="${product.productAuthor}"></span></div>
-								<div class="book-price"><span th:text="${product.productPrice}"></span> 원</div>
+								<div class="book-title" th:if="${product.productSellCheck == 0}" th:text="${product.productBoardTitle}" style="text-decoration: line-through; color:#ccc;"></div>
+								<div class="book-title" th:if="${product.productSellCheck == 1}" th:text="${product.productBoardTitle}"></div>
+								
+								<div class="book-writer" th:if="${product.productSellCheck == 0}" style="text-decoration: line-through; color:#ccc">저자 | <span th:text="${product.productAuthor}" style="text-decoration: line-through; color:#ccc"></span></div>
+								<div class="book-writer" th:if="${product.productSellCheck == 1}">저자 | <span th:text="${product.productAuthor}"></span></div>
+								
+								<div class="book-price" th:if="${product.productSellCheck == 0}" style="color:#ccc;"><span th:text="${product.productPrice}" style="text-decoration: line-through; color:#ccc"></span> 원 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<span style="text-decoration: none; color:red"> 판매완료</span></div>
+								<div class="book-price" th:if="${product.productSellCheck == 1}"><span th:text="${product.productPrice}"></span> 원</div>
+								
                     		</div>
                     	</a>
                     </li>
@@ -329,6 +335,15 @@
     </div>
 	
 	<th:block th:include="common/footer"></th:block>
+	
+	<style>
+		.sold-out{
+			color:#ccc;
+		}
+		.sold-out > span{
+			color:#ccc;
+		}
+	</style>
 	
 	<script>
 	
