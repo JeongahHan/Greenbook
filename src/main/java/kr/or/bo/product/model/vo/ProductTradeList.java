@@ -17,4 +17,6 @@ public class ProductTradeList {
 	private String tradeRequestDate;
 	private String tradeCompleteDone;
 	
+	private int grade;
+	
 }

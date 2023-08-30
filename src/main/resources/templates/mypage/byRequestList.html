@@ -43,7 +43,7 @@
 						<td th:text="${requestList.productBoardWriter}"></td>
 						<td th:text="${requestList.tradeRequestDate}"></td>
 						<td>
-							<input type="hidden" class="tradeCompleteDone" th:value="${requestList.tradeCompleteDone}">
+							<input type="hidden" class="grade" th:value="${requestList.grade}">
 							<input type="hidden" class="productBoardWriter" th:value="${requestList.productBoardWriter}">
 							<button class="post-btn byRequestBtn byRequestBc1" th:if="${requestList.tradeCompleteDone=='1'}">거래평가</button>
 						</td>
@@ -72,11 +72,12 @@
 				 			<h3>거래 평가</h3>
 				 			<hr>
 				 		</div>
-					 		<div>
-					 			<span>asdf</span><span> 님과의 거래가 <button>만족</button>스러웠어요!</span>
+					 		<div class="ass-btn">
+					 			<span class="seller" style="font-weight: 900; text-decoration: underline;"></span><span> 님과의 거래가 어떠셨나요?</span>
 					 		</div>
-					 		<div>
-					 			<span>asdf</span><span> 님과의 거래가 <button>불만족</button>스러웠어요!</span>
+					 		<div class="ass-btn">
+					 			<span>신뢰도 &nbsp<button class="good-btn">👍</button>&nbsp&nbsp<button class="bad-btn">👎</button></span>
+					 			<!-- <span class="seller" style="font-weight: 900;"></span><span> 님과의 거래가 <button>불만족</button>스러웠어요! 😷</span> -->
 					 		</div>
 					 		<div>
 					 		</div>
@@ -97,9 +98,8 @@
 		$(".post-btn").on("click",function(){
 			const writer = $(this).prev().val();
 			const grade = $(this).prev().prev().val();
-			alert(writer);
-			alert(grade);
 			$(".ass-modal-wrap").css("display","flex");
+			$(".seller").text(writer);
 		});
 		
 		//쪽지쓰기 시작
