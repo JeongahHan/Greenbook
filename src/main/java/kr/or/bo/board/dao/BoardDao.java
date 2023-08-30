@@ -248,21 +248,21 @@ public class BoardDao {
 
 
 		public List mainSearchList1(int start, int end, String keyword) {
-			String query = "select * from (select rownum as rnum,r.* from (select * from (select  b.board_no, b.BOARD_TITLE, b.board_content, b.board_writer,b.board_read_count,b.board_reg_date,'board' as board_type from board b union all select p.product_board_no, p.product_board_title, (p.product_author || p.product_board_content),p.product_board_writer,p.read_count,p.product_reg_date,'product_board' from product_board p) where (board_title||board_content) like '%'||?||'%' order by board_reg_date desc)r) where rnum between ? and ?";
+			String query = "select * from (select rownum as rnum,r.* from (select * from (select  b.board_no, b.BOARD_TITLE, (regexp_replace(b.board_content,'<[^>]*>|\\&([^;])*;',''))as board_content, b.board_writer,b.board_read_count,b.board_reg_date,'board' as board_type from board b union all select p.product_board_no, p.product_board_title, (p.product_author || (regexp_replace(p.product_board_content,'<[^>]*>|\\&([^;])*;',''))),p.product_board_writer,p.read_count,p.product_reg_date,'product_board' from product_board p) where (board_title||board_content) like '%'||?||'%' order by board_reg_date desc)r) where rnum between ? and ?";
 			List mainSearchList = jdbc.query(query, mainSearchListRowMapper, keyword, start, end);
 			return mainSearchList;
 		}
 
 
 		public int getSearchListTotalCount1(String keyword) {
-			String query = "select count(*) from (select rownum as rnum,r.* from (select * from (select  b.board_no, b.BOARD_TITLE, b.board_content, b.board_writer,b.board_read_count,b.board_reg_date,'board' as board_type from board b union all select p.product_board_no, p.product_board_title, (p.product_author || p.product_board_content),p.product_board_writer,p.read_count,p.product_reg_date,'product_board' from product_board p) where (board_title||board_content) like '%'||?||'%' order by board_reg_date desc)r)";
+			String query = "select count(*) from (select rownum as rnum,r.* from (select * from (select  b.board_no, b.BOARD_TITLE,b.board_content, b.board_writer,b.board_read_count,b.board_reg_date,'board' as board_type from board b union all select p.product_board_no, p.product_board_title, (p.product_author || p.product_board_content),p.product_board_writer,p.read_count,p.product_reg_date,'product_board' from product_board p) where (board_title||board_content) like '%'||?||'%' order by board_reg_date desc)r)";
 			int totalCount = jdbc.queryForObject(query, Integer.class, keyword);
 			return totalCount;
 		}
 ////////////////////////////////////////////////////////////////////////////////////
 //메인서치 필터 기능
 		public List mainSearchList2(int start, int end, String keyword, String type) {
-			String query = "select * from (select rownum as rnum,r.* from (select * from (select  b.board_no, b.BOARD_TITLE, b.board_content, b.board_writer,b.board_read_count,b.board_reg_date,'board' as board_type from board b union all select p.product_board_no, p.product_board_title, (p.product_author || p.product_board_content),p.product_board_writer,p.read_count,p.product_reg_date,'product_board' from product_board p) where ((board_title||board_content) like '%'||?||'%') and (board_type like ?) order by board_reg_date desc)r) where rnum between ? and ?";
+			String query = "select * from (select rownum as rnum,r.* from (select * from (select  b.board_no, b.BOARD_TITLE, (regexp_replace(b.board_content,'<[^>]*>|\\\\&([^;])*;',''))as board_content, b.board_writer,b.board_read_count,b.board_reg_date,'board' as board_type from board b union all select p.product_board_no, p.product_board_title, (p.product_author || (regexp_replace(p.product_board_content,'<[^>]*>|\\\\&([^;])*;',''))),p.product_board_writer,p.read_count,p.product_reg_date,'product_board' from product_board p) where ((board_title||board_content) like '%'||?||'%') and (board_type like ?) order by board_reg_date desc)r) where rnum between ? and ?";
 			List mainSearchList = jdbc.query(query, mainSearchListRowMapper, keyword,type ,start, end);
 			return mainSearchList;
 		}
