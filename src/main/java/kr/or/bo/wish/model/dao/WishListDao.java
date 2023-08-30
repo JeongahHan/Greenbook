@@ -56,6 +56,12 @@ public class WishListDao {
 		int totalCount = jdbc.queryForObject(query, Integer.class, memberId);
 		return totalCount;
 	}
+	
+	public int selectMainWishListTotalCount(String memberId) {
+		String query = "select count(*) as cnt from wish_list where member_id = ?";
+		int totalCount = jdbc.queryForObject(query, Integer.class, memberId);
+		return totalCount;
+	}	
 
 	public int selectIsWished(int productBoardNo, String memberId) {
 		String query = "select * from wish_list where product_board_no = ? and member_id = ?";
@@ -76,5 +82,5 @@ public class WishListDao {
 		String query = "select * from (select rownum as rnum, w.* from (select PRODUCT_BOARD_NO, count(*) from WISH_LIST group by PRODUCT_BOARD_NO having count(*) >= 1 order by 2 desc)w) where rnum between ? and ?";
 		List wishList = jdbc.query(query, wishListMain, start, end);
 		return wishList; 
-	}	
+	}
 }

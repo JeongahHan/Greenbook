@@ -22,6 +22,7 @@ import kr.or.bo.mypage.model.vo.MypageListData;
 import kr.or.bo.mypage.model.vo.TradeList;
 import kr.or.bo.product.model.service.ProductService;
 import kr.or.bo.product.model.vo.Product;
+import kr.or.bo.product.model.vo.ProductFile;
 import kr.or.bo.product.model.vo.ProductListData;
 
 @Controller
@@ -211,16 +212,18 @@ public class MypageController {
 //		return "redirect:/mypage/byRequestList";
 	}
 	@GetMapping(value = "/showConsumer")
-	public String showConsumer (Product p , HttpSession session, int reqPage, Model model) {
+	public String showConsumer (Product product ,ProductFile productFile, HttpSession session, int reqPage, Model model) {
 		
 		Member m = (Member)session.getAttribute("m");
 		//mypageService.selectConsumer(p,m,reqPage);
+		product.setProductFile(productFile);
 		//tradeList조회해오기
-		MypageListData mld = mypageService.selectConsumer(p,m,reqPage);
-			
+		MypageListData mld = mypageService.selectConsumer(product,m,reqPage);
+		
+		
 		model.addAttribute("selectConsumerList",mld.getMypageList());
 		model.addAttribute("pageNavi", mld.getPageNavi());
-		model.addAttribute("product", p);
+		model.addAttribute("product", product);
 		System.out.println("mld 보기 : "+mld);
 		
 		return"mypage/showConsumer";
@@ -264,11 +267,11 @@ public class MypageController {
 		
 		int result = mypageService.soldOut(tradeList);
 		if(result>0) {
-			model.addAttribute("title", "구매요청 성공");
-			model.addAttribute("msg", "판매자에게 구매요청이 전송되었습니다.");
+			model.addAttribute("title", "판매완료");
+			model.addAttribute("msg", "");
 			model.addAttribute("icon", "");
 		}else {
-			model.addAttribute("title", "구매요청 실패");
+			model.addAttribute("title", "판매 실패");
 			model.addAttribute("msg", "관리자에게 문의하여주시기 바랍니다.");
 			model.addAttribute("icon", "");
 		}
