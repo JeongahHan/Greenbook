@@ -12,9 +12,12 @@
 		<div class="mypage-content-wrap">
 			<div class="mypage-content-title">고객 정보 보기</div>
 			<div class="">
+				<p>프로덕트</p>
+				<p th:text="${product}"> 테스트</p>
 				<div class="bookInfo">
 					<div class="book-img-box">
 	                    <img src="/img/product-img/매미울음소리 그칠 무렵.jpg">
+	                    <!-- <img th:src="${product.productFile.filepath}"> -->
 					</div>
 					<div class="book-content">
 						<h2 class="book-title" th:text="${product.productBoardTitle}">매미 울음소리 프로덕트보드</h2>
