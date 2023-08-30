@@ -21,8 +21,8 @@
 						</div>
 						<p><span class="productBoardNo" th:text="${list.productBoardNo}"></span>글번호</p>
 						<!-- <a th:href="@{/product/productDetail(productBoardNo=${list.productBoardNo})}" th:text="${list.productBoardTitle}" class="productBoardTitle">제목</a> -->
-						<p th:href="@{/product/productDetail(productBoardNo=${list.productBoardNo})}" th:text="${list.productBoardTitle}" class="productBoardTitle">제목</p>
-						<p>저자 : <span th:text="${list.productAuthor}"></span></p>
+						<div style="box-sizing: border-box; overflow: auto;"><p th:href="@{/product/productDetail(productBoardNo=${list.productBoardNo})}" th:text="${list.productBoardTitle}" class="productBoardTitle" style="margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">제목</p></div>
+						<div style="box-sizing: border-box; overflow: auto;"><p style="margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">저자 : <span th:text="${list.productAuthor}"></span></p></div>
 						<p th:text="${list.productBoardWriter}">판매자user01</p>
 						<p><span th:text="${list.productPrice}"></span>원</p>
 					</div>
