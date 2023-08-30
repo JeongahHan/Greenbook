@@ -685,15 +685,6 @@
 .s-bc2:hover {
     cursor: pointer;
 }
-.ProductBoardWriter:hover{
-	cursor: pointer;
-}
-.productCommentWriter:hover{
-	cursor: pointer;
-}
-.productReCommentWriter:hover{
-	cursor: pointer;
-}
 /*쪽지 내용 입력하라는 모달*/
 .msg-modal-content{
     margin-top: 10px;
@@ -711,7 +702,20 @@
 	cursor: pointer;
 }
 
-
+/*쪽지 아이콘*/
+.msgIcon{
+	padding-top: 15px;
+	padding-left: 5px;
+	color: rgb(0, 90, 13);
+}
+.msgIcon:hover{
+	cursor: pointer;
+}
+.posting-comment > li:last-child > .comment-info > span:last-child {
+  	color: rgb(0, 90, 13);
+  	padding-top: 40px;
+	padding-left: 5px;
+}
 
   .posting-comment > li:first-child .material-icons {
     font-size: 80px;
@@ -721,3 +725,4 @@
     font-size: 40px;
     color: #ccc;
   }
+  
