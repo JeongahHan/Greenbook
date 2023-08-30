@@ -88,30 +88,6 @@ header {
     margin: 0 auto;
 }
 
-footer {
-	margin-top:100px;
-    padding-top: 40px;
-    padding-bottom: 40px;
-    padding-left: 20px;
-    border-top: 1px solid #252a34;
-    background-color: antiquewhite;
-    }
-footer > .footer-content {
-    width: 1200px;
-    margin: 0px;
-    padding: 0px 10px;
-    }
-footer > .footer-content > .footer-title {
-    font-size: 18px;
-    font-weight: 900;
-    padding-bottom:20px;
-    }
-
-footer > .footer-content > .footer-detail {
-    font-size: 14px;
-    font-family: ns-light;
-    font-weight: 580;
-    }
 
 .page-content {
     width: 1200px;
@@ -447,9 +423,6 @@ footer > .footer-content > .footer-detail {
   background-color: rgba(57, 62, 70, 0.15);
 }
 
-.slideTogglebox{
-  background-color: rgba(0, 0, 0, 0.05);
-}
 
 
 
@@ -566,6 +539,7 @@ textarea.input-form {
 	 
 }
 .slideTogglebox{
+	/*display : none;*/
 	margin : 3rem;
 	border: 1px solid #005A0D;
 }
@@ -606,6 +580,7 @@ textarea.input-form {
 .title{
 	font-size: 19px;
 	font-family: ns-bold;
+	cursor: pointer;
 }
 
 

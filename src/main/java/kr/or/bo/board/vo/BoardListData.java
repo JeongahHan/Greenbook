@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @Data
 public class BoardListData {
 	private List boardList;
-	private String pageNavi;   
+	private String pageNavi;
 }
 

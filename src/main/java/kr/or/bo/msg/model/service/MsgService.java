@@ -172,4 +172,10 @@ public class MsgService {
 		int result = msgDao.boardSendMsg(msg);
 		return result;
 	}
+	
+	@Transactional
+	public int findResultSendMsg(Msg msg) {
+		int result = msgDao.findResultSendMsg(msg);
+		return result;
+	}
 }

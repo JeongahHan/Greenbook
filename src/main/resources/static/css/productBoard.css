@@ -145,6 +145,8 @@
 }
 
 .info>.book-title{
+	white-space: nowrap;
+	overflow: hidden;
     font-weight: 900;
 }
 

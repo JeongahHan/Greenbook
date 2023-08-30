@@ -13,6 +13,92 @@
 			<div class="mypage-content-title">고객 정보 보기</div>
 			<div class="">
 				
+				<div class="bookInfo">
+					<div class="book-img-box">
+	                    <img src="/img/product-img/매미울음소리 그칠 무렵.jpg">
+	                    <img th:src="${product.productFile.filepath}">
+					</div>
+					<div class="book-content">
+						<h2 class="book-title" th:text="${product.productBoardTitle}">매미 울음소리 프로덕트보드</h2>
+						<p>저자 : <span class="book-author" th:text="${product.productAuthor}">저자 프로덕트보드</span></p>
+						<p class="book-condition">책 상태 : 
+							<!-- <span class="book-condition" th:text="${product.productCondition}">책상태 프로덕트보드</span> -->
+							<span th:if="${product.productCondition==1}">매우나쁨</span>
+							<span th:if="${product.productCondition==2}">나쁨</span>
+							<span th:if="${product.productCondition==3}">보통</span>
+							<span th:if="${product.productCondition==4}">좋음</span>
+							<span th:if="${product.productCondition==5}">매우 좋음</span>
+						</p>
+						<p class="book-price"><span th:text="${product.productPrice}">가격</span> 원</p>
+						
+					</div>
+				</div>
+				<div class="consumer-wrap">
+					<!-- <p th:text="${()selectConsumerList.get(0)).isEmpty()}"> 테스트</p> -->
+					
+					
+					
+					<th:block th:if="${selectConsumerList.get(0).member != null}">
+						<div class="consumer-one">
+							<table class="mypage-tbl">
+								<tr class="mypageTr mypageTr-1">
+									<th style="width:10%">거래번호</th>
+									<th style="width:20%">아이디</th>
+									<th style="width:20%">이름</th>
+									<th style="width:10%">신뢰도</th>
+									<th style="width:20%">거래요청 날짜</th>
+									<th style="width:40%"></th>
+								</tr>
+								<tr class="mypageTr mypageTr-2" th:each="selectConsumer : ${selectConsumerList}"><!-- selectConsumer는 tradeList 임 -->
+									<td th:text="${selectConsumer.tradeNo}">11 소비자</td>
+									<td th:text="${selectConsumer.consumer}">user01 멤버</td>
+									<td th:text="${selectConsumer.member.memberName}">user01 멤버</td>
+									<td th:text="${selectConsumer.member.grade}">신뢰도 들어갈곳</td>
+									<td th:text="${selectConsumer.tradeRequestDate}">2023-08-27</td>
+									<td>
+										<p style="display : none" class="toControllPath" value="/mypage/myBoardDelete?boardNo=">모달에 컨트롤 경로지정</p>
+										<div class="btn-box">
+											<!-- <button class="btn bc1 modal-open-btn deleteBtn" target="#delete-modal">삭제</button> -->
+											
+											<form action="/mypage/soldOut" class="btn">
+												<!-- tradeList 넘기기 -->
+												<input type="hidden" name="tradeNo" th:value="${selectConsumer.tradeNo}">
+												<input type="hidden" name="productBoardNo" th:value="${selectConsumer.productBoardNo}">
+												<input type="hidden" name="consumer" th:value="${selectConsumer.consumer}">
+												<input type="hidden" name="tradeRequestDate" th:value="${selectConsumer.tradeRequestDate}">
+												
+												<!-- Member 넘기기 -->
+												<input type="hidden" name="memberNo" th:value="${selectConsumer.member.memberNo}">
+												<input type="hidden" name="memberId" th:value="${selectConsumer.member.memberId}">
+												<input type="hidden" name="memberPw" th:value="${selectConsumer.member.memberPw}">
+												<input type="hidden" name="memberName" th:value="${selectConsumer.member.memberName}">
+												<input type="hidden" name="memberPhone" th:value="${selectConsumer.member.memberPhone}">
+												<input type="hidden" name="memberEmail" th:value="${selectConsumer.member.memberEmail}">
+												<input type="hidden" name="memberLevel" th:value="${selectConsumer.member.memberLevel}">
+												<input type="hidden" name="enrollDate" th:value="${selectConsumer.member.enrollDate}">
+												<input type="hidden" name="grade" th:value="${selectConsumer.member.grade}">
+
+												<button type="submit" class="btn bc1">판매 완료</button>
+											</form>
+										
+										</div>
+										
+									</td>
+								</tr>
+								
+							</table>					
+							<div id="pageNavi" th:utext="${pageNavi}"></div>
+						</div>
+					
+					<!-- </th:block th:if="${()selectConsumerList.get(0)).member.isEmpty()}">
+						<p>구매요청한사람이 없을때</p>
+					<th:block> -->
+					
+					</th:block>
+					
+					
+				</div>
+				
 			</div>
 		</div>
 	</div>

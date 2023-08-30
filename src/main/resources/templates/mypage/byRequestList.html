@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>내가 쓴 게시물</title>
+<link rel="stylesheet" href="/css/mypage.css">
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+	<div class="page-content">
+		<div class="page-title">마이페이지</div>
+		<th:block th:include="mypage/mypageMenu"></th:block>
+		<div class="mypage-content-wrap">
+			<div class="mypage-content-title">구매요청 현황</div>
+			
+			<table class="mypage-tbl">
+				<!-- 
+				<tr class="mypageTr mypageTr-2" th:each="request : ${byRequestList}">
+					<td th:text="${request.byRequestNo}"></td>
+					<td><a href="@{/product/productDetail(productBoardNo=${product.productBoardNo})}" th:text="${p.productBoardTitle}"></a></td>
+					<td th:text="${p.productAuthor}"></td>
+					<td th:text="${p.productPrice}"></td>
+					<td th:text="${p.productBoardWriter}"></td>
+					<td th:text="${request.byRequestDate}"></td>
+					<td><button class="post-btn byRequestBtn byRequestBc1" th:if="">거래평가</button></td>
+				</tr>
+				 -->
+			
+				<tr class="mypageTr mypageTr-1">
+					<th style="width:5%">번호</th>
+					<th style="width:30%">책제목</th>
+					<th style="width:20%">저자</th>
+					<th style="width:10%">가격</th>
+					<th style="width:10%">판매자</th>
+					<th style="width:15%">요청 날짜</th>
+					<th style="width:10%">거래후기</th>
+				</tr>
+					<tr class="mypageTr mypageTr-2" th:each="requestList, status : ${requestList}">
+						<td th:text="${(reqPage-1)*10+status.count}"></td> <!-- <td th:text="${requestList.tradeNo}" style="display:none;"></td> -->
+						<td th:text="${requestList.productBoardTitle}"></td>
+						<td th:text="${requestList.productAuthor}"></td>
+						<td><span th:text="${requestList.productPrice}"></span>원</td>
+						<td th:text="${requestList.productBoardWriter}"></td>
+						<td th:text="${requestList.tradeRequestDate}"></td>
+						<td>
+							<input type="hidden" class="grade" th:value="${requestList.grade}">
+							<input type="hidden" class="productBoardWriter" th:value="${requestList.productBoardWriter}">
+							<button class="post-btn byRequestBtn byRequestBc1" th:if="${requestList.tradeCompleteDone=='1'}">거래평가</button>
+						</td>
+						<!-- <td th:value="${requestList.tradeCompleteDone}"></td>  value가 0이면 버튼X, 1이면 버튼O -->
+					</tr>
+				<!-- 
+					<td>100</td>
+					<td>모든 순간이 너였다</td>
+					<td>하태완</td>
+					<td>12000원</td>
+					<td>user01</td>
+					<td>2023-08-30</td>
+					<td><button class="post-btn byRequestBtn byRequestBc1">거래평가</button></td>
+				</tr>
+				 -->
+				
+				<!-- 
+				담겨오는정보들
+				Board(boardNo=103, boardTitle=게시판 테스트103, boardContent=테스트용, boardWriter=user01, boardRegDate=2023-08-22, boardReadCount=0, fileList=null)
+				 -->
+				 
+				 <!-- 거래평가 모달 -->
+				 <div class="ass-modal-wrap">
+				 	<div class="ass-modal">
+				 		<div class="modal-title">
+				 			<h3>거래 평가</h3>
+				 			<hr>
+				 		</div>
+				 		<div class="ass-btn">
+				 			<span class="seller" style="font-weight: 900; text-decoration: underline;"></span><span> 님과의 거래가 어떠셨나요?</span>
+				 		</div>
+				 		<div class="ass-btn">
+				 			<span>신뢰도 &nbsp
+				 				<a class="good-btn">👍</a>&nbsp
+				 				<a class="bad-btn">👎</a>
+				 			</span>
+				 			<!-- <span class="seller" style="font-weight: 900;"></span><span> 님과의 거래가 <button>불만족</button>스러웠어요! 😷</span> -->
+				 		</div>
+				 	</div>
+				 </div>
+				 
+				 <!-- 거래평가 모달의 모달 -->
+				 
+				 <!-- 신뢰도 올리기버튼 -->
+				 <div class="result-wrap1">
+				 	<div class="result1">
+				 		<div class="ass-btn">
+				 			<span class="seller" style="font-weight: 900; text-decoration: underline;"></span><span> 님의 신뢰도를 올리시겠습니까? &nbsp</span>
+				 			<a><button class="btnSet yes-btn1"> ✔️ </button></a>&nbsp
+				 			<button class="btnSet no-btn1"> ❌ </button>
+				 		</div>
+				 	</div>
+				 </div>
+				 
+				  <!-- 신뢰도 내리기버튼 -->
+ 				 <div class="result-wrap2">
+				 	<div class="result2">
+				 		<div class="ass-btn">
+				 			<span class="seller" style="font-weight: 900; text-decoration: underline;"></span><span> 님의 신뢰도를 내리시겠습니까? &nbsp</span>
+				 			<a><button class="btnSet yes-btn2"> ✔️ </button></a>&nbsp
+				 			<button class="btnSet no-btn2"> ❌ </button>
+				 		</div>
+				 	</div>
+				 </div>
+				 
+			</table>
+			<div id="pageNavi" th:utext="${pageNavi}"></div>
+		
+		
+		</div>
+	</div>
+	<th:block th:include="common/footer"></th:block>
+
+	<script>
+	
+		
+		$(".post-btn").on("click",function(){
+			const writer = $(this).prev().val();
+			const grade = $(this).prev().prev().val();
+			$(".ass-modal-wrap").css("display","flex");
+			$(".seller").text(writer);
+		});
+		
+		$(".good-btn").on("click",function(){
+			$(".result-wrap1").css("display","flex");
+		});
+		
+		$(".bad-btn").on("click",function(){
+			$(".result-wrap2").css("display","flex");
+		});
+		
+		$(".no-btn1").on("click",function(){
+			$(this).parent().parent().parent().css("display","none");
+		});
+		
+		$(".yes-btn1").on("click",function(){
+			$(this).parent().parent().parent().parent().css("display","none");
+			$(this).parent().parent().parent().parent().prev().css("display","none");
+		});
+		
+		$(".no-btn2").on("click",function(){
+			$(this).parent().parent().parent().css("display","none");
+		});
+		
+		$(".yes-btn2").on("click",function(){
+			$(this).parent().parent().parent().parent().css("display","none");
+			$(this).parent().parent().parent().parent().prev().prev().css("display","none");
+		});
+		
+		//쪽지쓰기 시작
+		const memberId = $(".memberId").val();
+		//게시물 작성자에게 쪽지 쓰기
+		$(".ProductBoardWriter").on("click", function(){
+			const receiver = $(this).text();
+			if(receiver != memberId){
+				//쪽지쓰기 모달 열기
+				$(".sendMsg-modal-wrap").css("display","flex");
+				//textarea 초기화
+				$("#sendMsgTextarea").val("");
+				//받는 사람 데이터 넣어주기
+				$(".receiver").text(receiver);
+				$("#receiver").val(receiver);
+			}
+		});
+		
+	</script>
+	
+</body>
+</html>

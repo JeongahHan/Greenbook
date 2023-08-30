@@ -18,6 +18,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 import kr.or.bo.FileUtil;
 import kr.or.bo.board.service.BoardService;
 import kr.or.bo.board.vo.Board;
@@ -25,6 +31,7 @@ import kr.or.bo.board.vo.BoardComment;
 import kr.or.bo.board.vo.BoardFile;
 import kr.or.bo.board.vo.BoardListData;
 import kr.or.bo.board.vo.BoardViewData;
+import kr.or.bo.board.vo.MainSearchListData;
 import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.product.model.vo.ProductListData;
 
@@ -65,7 +72,7 @@ public class BoardController {
 		model.addAttribute("boardList",bld.getBoardList());
 		model.addAttribute("pageNavi",bld.getPageNavi());
 		
-		return "board/boardList";
+		return "board/boardListSR";
 	}
 	//////////////////////////////////////////////////////////////////
 
@@ -90,7 +97,6 @@ public class BoardController {
 		}else {
 			model.addAttribute("title","조회실패");
 			model.addAttribute("msg","이미 삭제된 게시물 입니다.");
-			model.addAttribute("icon","info");
 			model.addAttribute("loc","/board/list?reqPage=1");
 			return "common/msg";
 		}
@@ -275,7 +281,7 @@ public class BoardController {
 		if(list == null) {
 			model.addAttribute("title","수정실패");
 			model.addAttribute("msg","관리자에게 문의하세요");
-			model.addAttribute("icon","error");
+
 		}else {
 			
 			for(Object item:list) {
@@ -286,7 +292,7 @@ public class BoardController {
 			
 			model.addAttribute("title","수정완료");
 			model.addAttribute("msg","게시글이 수정되었습니다");
-			model.addAttribute("icon","success");
+
 			
 		}
 		model.addAttribute("loc","/board/view?boardNo="+b.getBoardNo());
@@ -318,11 +324,11 @@ public class BoardController {
 		if(result > 0) {
 			model.addAttribute("title","수정완료");
 			model.addAttribute("msg","댓글이 수정되었습니다");
-			model.addAttribute("icon","success");
+
 		}else {
 			model.addAttribute("title","수정 실패");
 			model.addAttribute("msg","댓글 수정에 실패했습니다. 관리자에게 문의하세요");
-			model.addAttribute("icon","error");
+
 		}
 		
 		model.addAttribute("loc","/board/view?boardNo="+bc.getBoardRef());
@@ -336,11 +342,9 @@ public class BoardController {
 		if(result > 0) {
 			model.addAttribute("title","삭제 완료");
 			model.addAttribute("msg","댓글이 삭제되었습니다");
-			model.addAttribute("icon","success");
 		}else {
 			model.addAttribute("title","삭제 실패");
 			model.addAttribute("msg","댓글 삭제에 실패했습니다. 관리자에게 문의하세요");
-			model.addAttribute("icon","error");
 		}
 		
 		model.addAttribute("loc","/board/view?boardNo="+boardNo);
@@ -376,16 +380,36 @@ public class BoardController {
 		@GetMapping(value="/mainSearchList")
 		public String mainSearchList(int reqPage,String keyword,Model model) {
 			
-			ProductListData pld = boardService.mainSearchList2(reqPage, keyword);
+			MainSearchListData msd = boardService.mainSearchList2(reqPage,keyword);
 			
-			model.addAttribute("productList", pld.getProductList());
-			model.addAttribute("pageNavi2", pld.getPageNavi());
+			model.addAttribute("reqPage",reqPage);
+			model.addAttribute("keyword",keyword);
+			
+			model.addAttribute("mainSearchList", msd.getMainSearchList());
+			model.addAttribute("pageNavi2", msd.getPageNavi());
+			
 			
 			return "mainSearch/mainSearch";
 		}			
+///////////////////////////////////////////////////////////////////////////
+//메인 서치 - 필터
 		
+		@GetMapping(value="/mainSearchList2")
+		public String mainSearchList2(int reqPage,String keyword,String type,Model model)  {
 		
-		
+			MainSearchListData msd = boardService.mainSearchList3(reqPage,keyword,type);
+			
+			
+			model.addAttribute("reqPage",reqPage);
+			model.addAttribute("keyword",keyword);
+			
+			model.addAttribute("mainSearchList", msd.getMainSearchList());
+			model.addAttribute("pageNavi2", msd.getPageNavi());
+			
+			
+			return "mainSearch/mainSearch";
+			
+		}
 		
 		
 		

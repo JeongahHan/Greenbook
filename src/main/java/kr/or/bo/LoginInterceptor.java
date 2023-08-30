@@ -13,9 +13,7 @@ import kr.or.bo.member.model.vo.Member;
 public class LoginInterceptor implements HandlerInterceptor{
 
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws Exception {
-		
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		HttpSession session = request.getSession();
 		Member m = (Member)session.getAttribute("m");
 		if(m == null) {
@@ -24,7 +22,5 @@ public class LoginInterceptor implements HandlerInterceptor{
 		}else {
 			return true;
 		}
-	}
-
-	
+	}	
 }

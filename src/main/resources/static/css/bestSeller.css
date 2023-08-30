@@ -1,0 +1,45 @@
+.bestseller-content{
+	overflow: hidden;
+}
+
+.table{
+    float:left;
+    border-style: none;
+    
+    width: calc(100%/4);
+
+    margin-bottom:100px;
+}
+.table>.tr1{
+    border-style: none;
+}
+.table>.tr2{
+    border-style: none;
+}
+.table>.tr3{
+    border-style: none;
+}
+
+
+.table td{
+    border-style: none;
+    padding-left:10px;
+    padding-right:10px;
+}
+.table .td1{
+    height: 410px;
+    vertical-align: top;
+}
+.table .td2{
+    height: 100px;
+    vertical-align: top;
+	
+	font-size:17px;
+}
+.table .td3{
+    height: 100px;
+    vertical-align: top;
+    
+    font-family:ns-light;
+    font-size:15px;
+}

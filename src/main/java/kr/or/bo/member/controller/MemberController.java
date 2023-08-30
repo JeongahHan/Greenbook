@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
 import kr.or.bo.EmailSender;
 import kr.or.bo.member.model.service.MemberService;
 import kr.or.bo.member.model.vo.Member;
+import kr.or.bo.member.model.vo.adminListData;
 
 @Controller
 @RequestMapping(value = "/member")
@@ -24,7 +26,34 @@ public class MemberController {
 	private MemberService memberService;
 	@Autowired
 	private EmailSender emailSender;
-
+	
+	// login 인터셉터
+	@GetMapping(value="/loginMsg")
+	public String loginMsg(Model model) {
+		model.addAttribute("title", "접근 권한 없음");
+		model.addAttribute("msg", "로그인 후 이용 가능합니다.");
+		model.addAttribute("loc", "/");
+		return "common/msg";
+	}
+	
+	// admin 인터셉터
+	@GetMapping(value="/adminMsg")
+	public String adminMsg(Model model) {
+		model.addAttribute("title", "접근 권한 없음");
+		model.addAttribute("msg", "관리자만 이용 가능합니다.");
+		model.addAttribute("loc", "/");
+		return "common/msg";
+	}
+	
+	// 블랙이 인터셉터
+	@GetMapping(value="/blackMsg")
+	public String blackMsg(Model model) {
+		model.addAttribute("title", "이용 제한 있음");
+		model.addAttribute("msg", "블랙이는 이용에 제한이 있습니다.");
+		model.addAttribute("loc", "/");
+		return "common/msg";
+	}
+	
 	// loginFrm.html로 이동
 	@GetMapping(value = "/loginFrm")
 	public String loginFrm() {
@@ -41,7 +70,7 @@ public class MemberController {
 				session.setAttribute("m", m);
 				model.addAttribute("title", "이용 제한 있음");
 				model.addAttribute("msg", "블랙이로 변경되었습니다. 쪽지함을 확인하세요.");
-				model.addAttribute("loc", "/");
+				model.addAttribute("loc", "/msg/receiveList?reqPage=1");
 			} else {
 				// session에 로그인한 회원 정보를 저장
 				session.setAttribute("m", m);
@@ -54,7 +83,7 @@ public class MemberController {
 			// 로그인 실패(아이디 or 비밀번호 불일치)
 			model.addAttribute("title", "로그인 실패");
 			model.addAttribute("msg", "아이디 또는 비밀번호를 확인하세요");
-			model.addAttribute("loc", "/");
+			model.addAttribute("loc", "/member/loginFrm");
 		}
 		return "common/msg";
 	}
@@ -154,6 +183,7 @@ public class MemberController {
 		return authCode;
 	}
 
+	// 회원가입
 	@PostMapping(value = "/signup")
 	public String signup(Member member, Model model) {
 		int result = memberService.insertMember(member);
@@ -168,38 +198,51 @@ public class MemberController {
 		}
 		return "common/msg";
 	}
-
+	/*
 	@GetMapping(value = "/admin")
 	public String admin(Model model) {
 		List list = memberService.selectAllMember();
 		model.addAttribute("list", list);
 		return "member/admin";
 	}
-
+	*/
+	// 쪽지 보내기 기능으로 rePage추가
+	@GetMapping(value = "/list")
+	public String adminList(Model model, int reqPage) {
+		adminListData nld = memberService.selectAdminList(reqPage);
+		model.addAttribute("adminList", nld.getAdminList());
+		model.addAttribute("pageNavi", nld.getPageNavi());
+		model.addAttribute("reqPage", nld.getReqPage());
+		System.out.println(nld.getPageNavi());
+		return "member/admin";
+	}
+	
 	@GetMapping(value = "/changeLevel")
 	public String changeLevel(int memberNo, int memberLevel, Model model) {
 		int result = memberService.changeLevel(memberNo, memberLevel);
 		if (result > 0) {
-			return "redirect:/member/admin";
+			model.addAttribute("title", "등급변경성공!");
+			model.addAttribute("msg", "등급변경성공하였습니다");
 		} else {
 			model.addAttribute("title", "등급변경실패하였습니다");
 			model.addAttribute("msg", "등급변경실패! 관리자에게 문의하세요");
-			model.addAttribute("loc", "/member/admin");
-			return "common/msg";
 		}
+		model.addAttribute("loc", "/member/list?reqPage=1");
+		return "common/msg";
 	}
 
 	@GetMapping(value = "/checkedchangeLevel")
 	public String checkedchangeLevel(String no, String level, Model model) {
 		boolean result = memberService.checkedChangeLevel(no, level);
-		if (result) { // 불린형으로 논리형이라 바로 가능!!
-			return "redirect:/member/admin";
+		if (result) { 
+			model.addAttribute("title", "등급변경성공!");
+			model.addAttribute("msg", "등급변경성공하였습니다");
 		} else {
 			model.addAttribute("title", "등급변경실패하였습니다");
 			model.addAttribute("msg", "등급변경실패! 관리자에게 문의하세요");
-			model.addAttribute("loc", "/member/admin");
-			return "common/msg";
 		}
+		model.addAttribute("loc", "/member/list?reqPage=1");
+		return "common/msg";
 	}
 	
 
@@ -215,9 +258,21 @@ public class MemberController {
 	public String findresult(String memberId ,Model model) {
 		Member m = memberService.selectOneMember(memberId);
 		model.addAttribute("m", m);
-		return "member/findresult";
-		// Member member = memberService.selectOneMember(memberId);
-		// return member;
+		if(m == null) {
+			model.addAttribute("title", "존재하지않는 회원!");
+			model.addAttribute("msg", "아이디 확인후 재검색해주세요~!");
+			model.addAttribute("loc", "/member/list?reqPage=1");
+			return "common/msg";
+		}else {
+			return "member/findresult";
+		}
+		
 	}
-
+	@GetMapping(value = "/levelSearchList")
+	public String levelSearchList(int reqPage,String memberlevel,Model model) {
+		adminListData nld = memberService.selectLevelList(reqPage, memberlevel);
+		model.addAttribute("adminList", nld.getAdminList());
+		model.addAttribute("pageNavi", nld.getPageNavi());
+		return "member/admin";
+	}
 }

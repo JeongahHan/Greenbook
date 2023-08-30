@@ -25,12 +25,12 @@
         
         <table class="tbl tbl-hover FnA-tbl">
             <tr class="tbl tr-3">
-                <th class="greenfna" colspan="2">Question</th>
+                <th class="greenfna" colspan="2">F & A</th>
             </tr>
             <tr class="tr-1 fna">
                 
-                <td> <div class="title">[F & A]<br>Q.블랙리스트 지정 사유</div>
-                <div class="slideTogglebox">
+                <td> <div class="title">Q.블랙리스트 지정 사유</div>
+                <div class="slideTogglebox" style="display:none;">
                    <div>
                    <p> 1. 사기신고 당한 자</p>
                    <p> 2. 구매자의 신고로 민원이 들어온 자</p>
@@ -45,8 +45,8 @@
             </tr>
             <tr class="tr-1 fna">
               
-                <td><div class="title">[F & A]<br>Q.블랙리스트 해지조건</div>
-                    <div class="slideTogglebox">
+                <td><div class="title">Q.블랙리스트 해지조건</div>
+                    <div class="slideTogglebox" style="display:none;">
                     <div>
                        <p> 1. 경찰조사 후 사기행각이 사실이 아닌경우</p>
                        <p> 2. 관리자의 판단으로 정상계정으로 확인되었을 경우</p>
@@ -57,8 +57,8 @@
             <tr class="tr-1 fna">
                
                 <td>
-                    <div class="title">[F & A]<br>Q.거래 시 사기행각 신고</div>
-                    <div class="slideTogglebox">
+                    <div class="title">Q.거래 시 사기행각 신고</div>
+                    <div class="slideTogglebox" style="display:none;">
                     <div>
                     <p>
                         거래 중 이상 정황을 포착하시거나 사기피해시 <span>YNA@gmail.com</span>으로 관리자에게 문의하세요!!
@@ -70,8 +70,8 @@
              <tr class="tr-1 fna">
                 
                 <td>
-                    <div class="title">[F & A]<br>Q.클린 댓글,쪽지 공지</div>
-                    <div class="slideTogglebox">
+                    <div class="title">Q.클린 댓글,쪽지 공지</div>
+                    <div class="slideTogglebox" style="display:none;">
                     <div>
                     <p>
                         불쾌한 욕설이 포함된 댓글과 쪽지는 관리자에 의해 삭제될 수 있습니다! 거래 시 바른말 고운말로 댓글과 쪽지 남기기 실천해 주세요!!
@@ -87,27 +87,22 @@
   
     <th:block th:include="common/footer"></th:block>
       <script>
-	  $('.slideTogglebox').css("display","none");
-	  $('.title').click(function() {
-      $(this).next().slideToggle();
+	  //$('.slideTogglebox').css("display","none");
+	  $('.title').on('click', function(){
+		  const idx = $(".title").index(this);
+		  const toggleBox = $('.slideTogglebox');
+	  		for(let i=0;i<toggleBox.length;i++){
+	  			if(i == idx ){
+	  				if(toggleBox.eq(i).is(":hidden")){
+	  					toggleBox.eq(i).slideUp();	
+	  				}
+	  			}else{
+	  				toggleBox.eq(i).slideUp();
+	  			}
+	  		}
+          $(this).next().slideToggle();
       });
-	 /*
-           $(document).ready(function(){
-    	     $('#title').click(function(){
-    	       $('#slideTogglebox').slideToggle();
-    	     })
-    	   });
-    	   $(document).ready(function(){
-    	     $('#title1').click(function(){
-    	       $('#slideTogglebox1').slideToggle();
-    	     })
-    	   });
-    	   $(document).ready(function(){
-    	     $('#title2').click(function(){
-    	       $('#slideTogglebox2').slideToggle();
-    	     })
-    	   });*/
-      
+	
       </script>
 </body>
 </html>

@@ -5,6 +5,7 @@
 <title>회원 관리</title>
 <!-- 구글 아이콘 -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 <!-- jquery -->
 <script src="/js/jquery-3.7.0.js"></script>
 <!-- 기본 CSS -->
@@ -53,10 +54,27 @@
    	
    	
    	
+   	<div class="levelSearch">
+				<form action="/member/levelSearchList" method="get">
+					<div class="levelSearch-ChoiceBox">
+						<input type="hidden" name="reqPage" id="currentPage" value="1">
+ 						<select name="memberlevel" class="level-type" id="option">
+							<option value="1">관리자</option>
+							<option value="2">그린이</option>
+							<option value="3">블랙이</option>
+						</select>
+						<button><span class="material-icons">search</span></button>
+					</div>
+					</form>
+				</div>
+	
+   	
+   	
+   	
 		
 		<table class="tbl tbl-hover">
 			<tr class="tr-3 .green">
-				<th>선택</th>
+				<!-- <th>선택</th> -->
 				<th>회원번호</th>
 				<th>아이디</th>
 				<th>이름</th>
@@ -67,10 +85,15 @@
 				<th>회원등급</th>
 				<th>등급변경</th>
 			</tr>
-			<tr class="tr-1" th:each="m : ${list}">
-				<td><input type="checkbox" class="chk"></td>
+			<tr class="tr-1" th:each="m : ${adminList}">
+				<!-- <td><input type="checkbox" class="chk"></td> -->
 				<td th:text="${m.memberNo}"></td>
-				<td class="sendMsg" th:text="${m.memberId}"></td>
+				<td>
+					<div class="adminMsgDiv">
+						<span class="memberId" th:text="${m.memberId}"></span>
+						<span th:if="${m.memberId != 'admin'}" class="material-icons-outlined msgIcon adminMsg">mail</span>
+					</div>
+				</td>
 				<td th:text="${m.memberName}"></td>
 				<td th:text="${m.memberPhone}"></td>
 				<td th:text="${m.memberEmail}"></td>
@@ -100,11 +123,20 @@
 			
 		</table>
 		
-		<button class="bc1 bs5 checkedchangeLevel">선택회원 등급변경</button>
+		<!-- <button class="bc1 bs5 checkedchangeLevel">선택회원 등급변경</button> -->
+        
+        <div id = "pageNavi" th:utext="${pageNavi}"></div>
         
 	</div>
+	
+	
+	
+	
+	
+	
+	
 	<!-- 쪽지 쓰기 모달 -->
-	<div class="sendMsg-modal-wrap">
+	<div class="sendMsg-modal-wrap" th:if="${session.m != null}">
     	<div class="sendMsg-modal">
 	        <div class="modal-title">
 	            <h3>쪽지 쓰기</h3>
@@ -115,23 +147,36 @@
 	                <span><strong>받는 사람</strong></span>
 	                <span class="receiver"></span>
 	                <th:block th:if="${session.m != null}">
+	                	<input type="hidden" name="reqPage" th:value="${reqPage}">
 	                	<input type="hidden" name="sender" th:value="${session.m.memberId}">
 	                </th:block>
 	                <input type="hidden" name="receiver" id="receiver">
 	                <textarea name="message" class="s-input-form" id="sendMsgTextarea"></textarea>
 	            </div>
-	            <button type="submit" class="modalBtn s-bc1">보내기</button>
+	            <button type="submit" class="modalBtn s-bc1" id="msgSubmit">보내기</button>
 	            <button type="button" class="modalBtn s-bc2" id="sendMsgCancel">취소</button>	        
 	        </form>
     	</div>
     </div>
+    
+    <!-- 쪽지 내용 없을 때 모달 -->
+    <div class="msg-modal-wrap" th:if="${session.m != null}">
+        <div class="sendMsg-modal">
+            <div class="msg-modal-top">
+                <h4>쪽지 내용을 입력해주시기 바랍니다.</h4>
+            </div>
+            <div class="msg-modal-content">
+				<button type="button" class="msgBtn s-bc2" id="msg-modal-close">닫기</button>
+            </div>
+        </div>
+    </div>	
 	<th:block th:include="common/footer"></th:block>
 	
 	
 	
 	<script>
 	
-	
+	/*
 	$(".checkedchangeLevel").on("click",function(){
 		const check = $(".chk:checked");
 		if(check.length == 0){
@@ -145,24 +190,27 @@
 			const memberLevel = $(item).parent().parent().find("select").val();
 			no.push(memberNo);
 			level.push(memberLevel);
+			
+			
 		});
-		console.log(no);
-		console.log(level);
-		location.href="/member/checkedchangeLevel?no="+no.join("/")+"&level="+level.join("/");
 		
+		location.href="/member/checkedchangeLevel?no="+no.join("/")+"&level="+level.join("/");
+	
 	});
+	*/
 	
 	
 	$(".changeLevel").on("click",function(){
 		const memberLevel = $(this).parent().prev().children().val();
-		const memberNo = $(this).parent().parent().children().eq(1).text();
-		console.log(memberLevel,memberNo);
-		location.href="/member/changeLevel?memberNo="+memberNo+"&memberLevel="+memberLevel;
+		const memberNo = $(this).parent().parent().children().eq(0).text();
+		console.log(memberLevel);
+		console.log(memberNo);
+		location.href="/member/changeLevel?memberNo="+memberNo+"&memberLevel="+memberLevel; 
 	});
 	
 	//쪽지 쓰기
-	$(".sendMsg").on("click", function(){
-		const receiver = $(this).text();
+	$(".adminMsg").on("click", function(){
+		const receiver = $(this).prev().text();
 		if(receiver != "admin"){
 			//쪽지쓰기 모달 열기
 			$(".sendMsg-modal-wrap").css("display","flex");
@@ -171,11 +219,26 @@
 			//받는 사람 데이터 넣어주기
 			$(".receiver").text(receiver);
 			$("#receiver").val(receiver);
-			//답장 쪽지 모달 닫기
-			$("#sendMsgCancel").on("click", function(){
-				$(".sendMsg-modal-wrap").css("display","none");
-			});			
 		}
+	});
+	
+	//쪽지 쓰기 모달 닫기
+	$("#sendMsgCancel").on("click", function(){
+		$(".sendMsg-modal-wrap").css("display","none");
+	});		
+	
+	//쪽지 내용 없을 때 모달 띄우기
+	$("#msgSubmit").on("click", function(event){
+		if($("#sendMsgTextarea").val() == ""){
+			//쪽지 내용 입력하라는 모달 띄우기
+			$(".msg-modal-wrap").css("display","flex");
+			event.preventDefault();
+		}
+	});
+	
+	//쪽지 내용 입력하라는 모달 닫기
+	$("#msg-modal-close").on("click", function(){
+		$(".msg-modal-wrap").css("display","none");
 	});
 	
 	</script>

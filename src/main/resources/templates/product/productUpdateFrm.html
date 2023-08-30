@@ -89,7 +89,7 @@
 										<span class="material-icons delBtn fc-6" th:onclick="deleteFile(this,[[${file.fileNo}]])">remove_circle</span>
 									</div>
 								</div>
-								<input type="file" name="imageFile" accept=".jpg, .png, .jpeg">
+								<input type="file" name="imageFile" accept=".jpg, .png, .jpeg" style="display:none;">
 							</td>
 						</tr>
 						
@@ -135,7 +135,10 @@
 				input.val(fileNo);
 				$(".productUpdateFrm").append(input);
 				$(obj).parent().remove();
+				
+				$("[name=imageFile]").css("display","inline-block");
 			}
+			
 		}
 		
 		$("[name=imageFile]").on("change",function(){

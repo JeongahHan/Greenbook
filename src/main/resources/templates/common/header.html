@@ -9,7 +9,7 @@
 <script src="/js/jquery-3.7.0.js"></script>
 <!-- 기본 CSS -->
 <link rel="stylesheet" href="/css/default.css">
-<!-- 기본 js -->
+
 
 
 
@@ -18,7 +18,7 @@
 
 <div class="box">
 	<div class="box-detail">
-			<a th:if="${session.m !=null && session.m.memberLevel == 1}" href="/member/admin" id="adminMenuButton">관리자메뉴</a>
+			<a th:if="${session.m !=null && session.m.memberLevel == 1}" href="/member/list?reqPage=1" id="adminMenuButton">관리자메뉴</a>
 			<a th:if="${session.m !=null}" href="/member/logout" id="logoutMenuButton">로그아웃</a>	
 	</div>
 </div>
@@ -44,8 +44,8 @@
 	<div class="header-link">
 		<a th:if="${session.m ==null}" href="/member/loginFrm"><span class="material-icons headericon">person_outline</span></a> <!-- 로그인-->
 		<a th:if="${session.m !=null}" href="/mypage/memberUpdateFrm"><span class="material-icons headericon">person_outline</span></a> <!-- 로그인-->
-		<a href="#"><span class="material-icons headericon">favorite_border</span></a><!--찜-->	
-		<a href="/msg/loginCheck"><span class="material-icons headericon" id="mail-icon">mail_outline</span></a> <!--쪽지-->							
+		<a href="/wish/mainWishList?reqPage=1"><span class="material-icons headericon">favorite_border</span></a><!--찜-->	
+		<a href="/msg/receiveList?reqPage=1"><span class="material-icons headericon" id="mail-icon">mail_outline</span></a> <!--쪽지-->							
 		
 	</div>
 	<p th:if="${session.m !=null}" class="letter-count" style="color: red;"></p><!--숫자는 안읽은 쪽지 개수 받아오려고함-->
@@ -57,11 +57,11 @@
 		<ul class="navi">
 			<li><a href="/product/board?reqPage=1"><span>중고책방</span></a></li> 
 			<li><a href="/now/best"><span>요즘 이 책</span></a></li>
-			<li><a href="/board/list?reqPage=1"><span>자유게시판</span></a></li>
+			<li><a href="/board/list?reqPage=1"><span>독서노트</span></a></li>
 			<li class="service">
 				<a><span>서비스</span></a>
-					<ul class="sub-navi">
-						<li><a href="#"><span>Company</span></a></li>
+					<ul class="sub-navi" style="z-index: 1;">
+						<li><a href="/now/company"><span>Company</span></a></li>
 						<li><a href="/FnA/FnA"><span>자주묻는질문</span></a></li>
 						<li><a href="/api/map"><span>Contact</span></a></li>
 					</ul>

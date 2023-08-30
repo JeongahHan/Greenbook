@@ -17,6 +17,8 @@ public class Board {
 	private String boardRegDate;
 	private int boardReadCount;
 	
+	private String boardType;
+	
 	private List fileList; //리스트 타입 객체 선언 
 	
 	

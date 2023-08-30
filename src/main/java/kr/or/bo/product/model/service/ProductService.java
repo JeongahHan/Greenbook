@@ -7,18 +7,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.or.bo.member.model.dao.MemberDao;
+import kr.or.bo.member.model.vo.Member;
+import kr.or.bo.mypage.model.dao.MypageDao;
 import kr.or.bo.product.model.dao.ProductDao;
 import kr.or.bo.product.model.vo.Product;
 import kr.or.bo.product.model.vo.ProductComment;
 import kr.or.bo.product.model.vo.ProductFile;
 import kr.or.bo.product.model.vo.ProductListData;
 import kr.or.bo.product.model.vo.ProductViewData;
+import kr.or.bo.wish.model.dao.WishListDao;
+import kr.or.bo.wish.model.vo.WishList;
 
 @Service
 public class ProductService {
 
 	@Autowired
 	private ProductDao productDao;
+	
+	@Autowired
+	private MemberDao memberDao;
+	
+	@Autowired
+	private WishListDao wishListDao;
+	@Autowired
+	private MypageDao mypageDao;
 
 	@Transactional
 	public int insertPhoto(Product p, ArrayList<ProductFile> fileList) {
@@ -100,7 +113,7 @@ public class ProductService {
 	}
 
 	@Transactional
-	public ProductViewData selectOneProduct(int productBoardNo, int memberNo) {
+	public ProductViewData selectOneProduct(int productBoardNo, int memberNo, String memberId) {
 		int result = productDao.updateReadCount(productBoardNo);
 		if(result > 0) {
 			Product p = productDao.selectOneProduct(productBoardNo);
@@ -112,7 +125,16 @@ public class ProductService {
 			
 			List reCommentList = productDao.selectRecommentList(productBoardNo);
 			
-			ProductViewData pvd = new ProductViewData(p, commentList, reCommentList);
+			Member m = memberDao.selectMemberGrade(productBoardNo);
+			//관심상품 기능을 위해 추가
+			int isWished = wishListDao.selectIsWished(productBoardNo, memberId);
+			
+			//구매요청 중복을 막기위해 추가
+			int isBuyRequest = mypageDao.selectIsBuyRequest(productBoardNo, memberId);
+
+			//관심상품 기능을 위해 isWished 추가
+			ProductViewData pvd = new ProductViewData(p, commentList, reCommentList, m, isWished, isBuyRequest);
+			
 			
 			return pvd;
 		}else {
@@ -226,7 +248,8 @@ public class ProductService {
 			if(delFileNo != null) {
 				for(int fileNo : delFileNo) {
 					ProductFile productFile = productDao.selectOneFile(fileNo);
-					delFileList.add(productFile);	
+					delFileList.add(productFile);
+					result += productDao.deleteFile(fileNo);
 				}
 			}
 		}
@@ -253,6 +276,11 @@ public class ProductService {
 			return null;
 		}
 		return list;
+	}
+
+	public List selectbyRequestList(Member m) {
+		List byRequestList = productDao.selectbyRequestList(m);
+		return byRequestList;
 	}
 
 }

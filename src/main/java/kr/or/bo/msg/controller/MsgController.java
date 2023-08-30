@@ -22,6 +22,7 @@ public class MsgController {
 	@Autowired
 	private MsgService msgService;
 	
+	/* 로그인 인터셉터로 해결
 	//로그인 체크하기
 	@GetMapping(value = "/loginCheck")
 	public String loginCheck(Model model, @SessionAttribute(required = false) Member m) {
@@ -35,7 +36,7 @@ public class MsgController {
 		}else {
 			return "redirect:/msg/receiveList?reqPage=1";	
 		}
-	}
+	}*/
 	
 	//받은 쪽지 리스트
 	@GetMapping(value = "/receiveList")
@@ -44,7 +45,7 @@ public class MsgController {
 		model.addAttribute("list", mld.getMsgList());
 		model.addAttribute("pageNavi", mld.getPageNavi());
 		model.addAttribute("reqPage", reqPage);
-		return "msg/receiveMsgList";
+		return "msg/receiveMsgList";			
 	}
 	
 	//보낸 쪽지 리스트
@@ -53,7 +54,7 @@ public class MsgController {
 		MsgListData mld = msgService.selectSendList(m.getMemberId(), reqPage);
 		model.addAttribute("list", mld.getMsgList());
 		model.addAttribute("pageNavi", mld.getPageNavi());
-		return "msg/sendMsgList";
+		return "msg/sendMsgList";			
 	}
 	
 	//관리자에게 쪽지 보내기
@@ -119,7 +120,7 @@ public class MsgController {
 	
 	//관리자가 회원에게 쪽지 보내기
 	@PostMapping(value = "/adminSendMsg")
-	public String adminSendMsg(Msg msg, Model model) {
+	public String adminSendMsg(Msg msg, int reqPage, Model model) {
 		int result = msgService.adminSendMsg(msg);
 		//쪽지 전송 성공
 		if(result > 0) {
@@ -130,7 +131,24 @@ public class MsgController {
 			model.addAttribute("title", "전송 실패");
 			model.addAttribute("msg", "쪽지 전송에 실패하였습니다.");
 		}
-		model.addAttribute("loc", "/member/admin");
+		model.addAttribute("loc", "/member/list?reqPage="+reqPage);
+		return "common/msg";
+	}
+	
+	//findResult.html에서 쪽지 보내기
+	@PostMapping(value = "/findResultSendMsg")
+	public String findResultSendMsg(Msg msg, Model model) {
+		int result = msgService.findResultSendMsg(msg);
+		//쪽지 전송 성공
+		if(result > 0) {
+			model.addAttribute("title", "전송 완료");
+			model.addAttribute("msg", "쪽지가 성공적으로 전송되었습니다.");
+		//쪽지 전송 실패
+		}else {
+			model.addAttribute("title", "전송 실패");
+			model.addAttribute("msg", "쪽지 전송에 실패하였습니다.");
+		}
+		model.addAttribute("loc", "/member/list?reqPage=1");
 		return "common/msg";
 	}
 	

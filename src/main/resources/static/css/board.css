@@ -223,10 +223,6 @@
 
 
 
-
-
-
-
 /*게시물 상세보기*/
 #board-title{
 	font-size:25px;
@@ -235,7 +231,7 @@
 	height:auto;
 	text-align:left;
 	vertical-align:unset;    /*unset*/
-	padding: 3.6rem;
+	padding: 4rem;;
 
 	font-family:ns-m;
 }
@@ -440,7 +436,7 @@
   }
 .writingbs4 {
    width: 13%;
-   padding: 1rem;
+   padding: 0.8rem;
    font-size: 1.2em;
  }
 
@@ -594,7 +590,7 @@
   }
   
  /*쪽지 쓰기 모달*/
-.sendMsg-modal-wrap{
+.sendMsg-modal-wrap,.msg-modal-wrap{
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
@@ -664,12 +660,41 @@
 .s-bc2:hover {
     cursor: pointer;
 }
-.boardWriter:hover {
+/*쪽지 내용 입력하라는 모달*/
+.msg-modal-content{
+    margin-top: 10px;
+}
+.msgBtn{
+    border-radius: 5px;
+    width: 180px;
+    height: 40px;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: ns-light;
+    margin-top: 10px;
+}
+.msgBtn:hover{
 	cursor: pointer;
 }
-.boardCommentWriter:hover {
+/*쪽지 아이콘*/
+.msgIcon{
+	color: rgb(0, 90, 13);
+	padding-left: 5px;
+}
+.msgIcon:hover{
 	cursor: pointer;
 }
-.boardReCommentWriter:hover {
-	cursor: pointer;
+.posting-comment > li:last-child > .comment-info > span:nth-child(4) {
+    color: rgb(0, 90, 13);
 }
+.bwMsgDiv{
+	position: relative;
+}
+.bwMsgDiv>span:last-child {
+	top: 3px;
+	position: initial;
+	transform: translate(10px, 5px);
+}
+
+
+

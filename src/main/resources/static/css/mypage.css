@@ -30,10 +30,11 @@ B31312 빨강
   flex-direction: column;
 }
 .modal-wrap {
-  margin-top: 150px;
+  margin-top: 350px;
   width: 600px;
   background: #fff;
   height: auto;
+  border-radius: 10px;
 }
 .modal-wrap div {
   padding: 1rem;
@@ -46,6 +47,7 @@ B31312 빨강
 }
 .modal-wrap div.modal-head {
   position: relative;
+  text-align: center;
 }
 .close-icon {
   position: absolute;
@@ -56,6 +58,7 @@ B31312 빨강
 .close-icon:hover {
   cursor: pointer;
 }
+
 
 
 /* 게시판 페이징 디자인 */
@@ -165,7 +168,7 @@ B31312 빨강
 
 /* 회원정보 */
 .updateForm{
-    width: 500px;
+    width: 550px;
     /* background-color: blanchedalmond; */
     float: left;
     font-size: 20px;
@@ -186,7 +189,13 @@ B31312 빨강
 .updateForm input{
     float: right;
     font-size: 18px;
+    width: 300px;
 
+}
+#checkPw, #checkPwRe{
+    font-size: 12px;
+    /* text-align: right; */
+    padding-left: 210px;
 }
 
 .btn-box{
@@ -225,6 +234,7 @@ B31312 빨강
     /* border-collapse: collapse; */
     /* 좁은 간격이 있던데 간격 없애줌 */
     border-spacing: 0;
+    
 
 }
 .mypage-tbl .mypageTr-1 th{
@@ -305,7 +315,7 @@ B31312 빨강
 }
 
 
-/* myWishList 디자인 */
+/* 관심 도서 디자인 *//* wishList */
 .wishList-wrap{
     /* width: 100%; */
     /* background-color: bisque; */
@@ -313,24 +323,27 @@ B31312 빨강
 }
 .wishList-one{
     width: 160px;
-    background-color: #f1f1f1;
+    background-color: #F1F1F1;
     float: left;
     padding: 15px 15px;
     margin: 5px 5px;
-    border-radius: 10px;
+    border-radius: 5px;
+    
 }
 .wishList-one:hover{
-    background-color: #e7e7e7;
-    border-radius: 10px;
+    background-color: #E7E7E7;
     cursor: pointer;
-
 }
 .wishList-imgBox img{
     width: 100%;
 }
+.wishList-toProductDetail{
+    /* overflow: hidden; */
+}
+.productBoardTitle{
+    /* height: 22.69px; */
+}
 
-
-/* -------------- */
 
 /* byRequest */
 
@@ -360,4 +373,216 @@ B31312 빨강
     background-color: #005A0D;
     color: #fff;
     cursor: pointer;
+}
+
+/* showConsumer */
+.bookInfo{
+	/* background-color: cyan; */
+    overflow: hidden;
+    margin-bottom: 50px;
+}
+.book-img-box{
+    float: left;
+}
+.bookInfo img{
+    height: 300px;
+}
+.book-content{
+    float: left;
+    padding-left: 50px;
+    width: 600px;
+}
+.book-content>*{
+    padding: 5px 0px;
+}
+.book-price, .book-price>*{
+    font-size: 30px;
+    font-weight: 900px;
+    text-align: right;
+    padding-top: 150px;
+    color: #005A0D;
+}
+
+.consumer-wrap{
+}
+.consumer-one{
+    /* background-color: cornflowerblue; */
+    /* width: 200px; */
+}
+
+/* 쪽지쓰기 모달 */
+.sendMsg-modal-wrap,.msg-modal-wrap{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.sendMsg-modal{
+    width: 400px;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 0 auto;
+    text-align: center;
+    box-sizing: border-box;
+}
+.modal-title>h3{
+    margin-bottom: 5px;
+}
+.sendMsg-modal-content{
+    text-align: left;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.receiver{
+    padding-left: 20px;
+}
+.s-input-form{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    font-size: 15px;
+    display: block;
+    padding: 10px;
+    height: 150px;
+    outline: none;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    resize: vertical;
+}
+.modalBtn{
+    border: none;
+    border-radius: 5px;
+    width: 100px;
+    height: 30px;
+    box-sizing: border-box;
+    font-size: 15px;
+    font-family: ns-light;
+    margin-top: 10px;
+    display: inline-block;
+}
+.s-bc1 {
+    background-color: rgba(0, 90, 13, 0.9);
+    color: #fff;
+}
+.s-bc1:hover {
+    cursor: pointer;
+}
+.s-bc2 {
+    border: 1px solid rgb(0, 90, 13);
+    background-color: #fff;
+    color: rgb(0, 90, 13);
+}
+.s-bc2:hover {
+    cursor: pointer;
+}
+.ProductBoardWriter:hover{
+	cursor: pointer;
+}
+.productCommentWriter:hover{
+	cursor: pointer;
+}
+.productReCommentWriter:hover{
+	cursor: pointer;
+}
+
+/* 내용 입력하라는 모달 */
+.msg-modal-content{
+    margin-top: 10px;
+}
+.msgBtn{
+    border-radius: 5px;
+    width: 180px;
+    height: 40px;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: ns-light;
+    margin-top: 10px;
+}
+.msgBtn:hover{
+	cursor: pointer;
+}
+
+
+
+  .posting-comment > li:first-child .material-icons {
+    font-size: 80px;
+    color: #ccc;
+  }
+  .posting-comment.reply > li:first-child .material-icons:first-child {
+    font-size: 40px;
+  }
+    
+/* 거래평가 모달 */
+.ass-modal-wrap, .result-wrap1, .result-wrap2{
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.5);
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: none;
+	justify-content: center;
+	align-items: center;
+}
+
+.ass-modal, .result1, .result2{
+	width: 400px;
+	background-color: #fff;
+	border-radius: 5px;
+	padding: 20px;
+	margin: 0 auto;
+	text-align: center;
+	box-sizing: border-box;
+}
+
+.modal-title > h3{
+	margin-bottom: 5px;
+}
+
+.seller{
+	color: #005A0D;
+}
+
+.ass-btn{
+	padding-top: 10px;
+}
+
+.good-btn{
+
+}
+
+.bad-btn{
+
+}
+
+.good-btn, .bad-btn{
+	color: #005A0D;
+    background-color: #fff;
+    border: 2px solid #005A0D;
+    height: 35px;
+    line-height: 12px;
+    
+    padding: 0.5rem;
+    display: inline-block;
+    box-sizing: border-box;
+    transition-duration: 0.5s;
+    font-size: 14px;
+    font-family: ns-light;
+}
+
+.good-btn:hover,
+ .bad-btn:hover{
+    background-color: #005A0D;
+    color: #fff;
+    cursor: pointer;
+}
+
+.btnSet:hover{
+	cursor: pointer;
 }

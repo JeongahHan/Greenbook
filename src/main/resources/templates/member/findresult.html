@@ -5,6 +5,7 @@
 <title>Insert title here</title>
 <!-- 구글 아이콘 -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 <!-- jquery -->
 <script src="/js/jquery-3.7.0.js"></script>
 <!-- 기본 CSS -->
@@ -42,7 +43,13 @@
 			<tr class="tr-1">
 				<td><input type="checkbox" class="chk"></td>
 				<td th:text="${m.memberNo}"></td>
-				<td th:text="${m.memberId}"></td>
+				<!-- <td class="sendMsg" th:text="${m.memberId}"></td> -->
+				<td>
+					<div class="adminMsgDiv">
+						<span class="memberId" th:text="${m.memberId}"></span>
+						<span th:if="${m.memberId != 'admin'}" class="material-icons-outlined msgIcon adminMsg">mail</span>
+					</div>	
+				</td>
 				<td th:text="${m.memberName}"></td>
 				<td th:text="${m.memberPhone}"></td>
 				<td th:text="${m.memberEmail}"></td>
@@ -75,6 +82,40 @@
 		<button class="bc1 bs5 checkedchangeLevel">선택회원등급변경</button>
         
 	</div>
+	<!-- 쪽지 쓰기 모달 -->
+	<div class="sendMsg-modal-wrap">
+    	<div class="sendMsg-modal">
+	        <div class="modal-title">
+	            <h3>쪽지 쓰기</h3>
+	           	<hr>
+	        </div>
+	        <form action="/msg/findResultSendMsg" method="post">
+	            <div class="sendMsg-modal-content">
+	                <span><strong>받는 사람</strong></span>
+	                <span class="receiver"></span>
+	                <th:block th:if="${session.m != null}">
+	                	<input type="hidden" name="sender" th:value="${session.m.memberId}">
+	                </th:block>
+	                <input type="hidden" name="receiver" id="receiver">
+	                <textarea name="message" class="s-input-form" id="sendMsgTextarea"></textarea>
+	            </div>
+	            <button type="submit" class="modalBtn s-bc1" id="msgSubmit">보내기</button>
+	            <button type="button" class="modalBtn s-bc2" id="sendMsgCancel">취소</button>	        
+	        </form>
+    	</div>
+    </div>
+    
+    <!-- 쪽지 내용 없을 때 모달 -->
+    <div class="msg-modal-wrap">
+        <div class="sendMsg-modal">
+            <div class="msg-modal-top">
+                <h4>쪽지 내용을 입력해주시기 바랍니다.</h4>
+            </div>
+            <div class="msg-modal-content">
+				<button type="button" class="msgBtn s-bc2" id="msg-modal-close">닫기</button>
+            </div>
+        </div>
+    </div>	
 	<th:block th:include="common/footer"></th:block>
 	
 	
@@ -82,33 +123,48 @@
 <script src="/js/sweetalert.min.js"></script>
 	<script>
 	
-	
-	$(".checkedchangeLevel").on("click",function(){
-		const check = $(".chk:checked");
-		if(check.length == 0){
-			return;
+	//쪽지 쓰기
+	$(".adminMsg").on("click", function(){
+		const receiver = $(this).prev().text();
+		console.log(receiver);
+		if(receiver != "admin"){
+			//쪽지쓰기 모달 열기
+			$(".sendMsg-modal-wrap").css("display","flex");
+			//textarea 초기화
+			$("#sendMsgTextarea").val("");
+			//받는 사람 데이터 넣어주기
+			$(".receiver").text(receiver);
+			$("#receiver").val(receiver);
 		}
-		const no = new Array();
-		const level = new Array();
-		
-		check.each(function(index,item){
-			const memberNo = $(item).parent().next().text();
-			const memberLevel = $(item).parent().parent().find("select").val();
-			no.push(memberNo);
-			level.push(memberLevel);
-		});
-		console.log(no);
-		console.log(level);
-		location.href="/member/checkedchangeLevel?no="+no.join("/")+"&level="+level.join("/");
-		
 	});
+
+	//쪽지 쓰기 모달 닫기
+	$("#sendMsgCancel").on("click", function(){
+		$(".sendMsg-modal-wrap").css("display","none");
+	});		
+
+	//쪽지 내용 없을 때 모달 띄우기
+	$("#msgSubmit").on("click", function(event){
+		if($("#sendMsgTextarea").val() == ""){
+			//쪽지 내용 입력하라는 모달 띄우기
+			$(".msg-modal-wrap").css("display","flex");
+			event.preventDefault();
+		}
+	});
+
+	//쪽지 내용 입력하라는 모달 닫기
+	$("#msg-modal-close").on("click", function(){
+		$(".msg-modal-wrap").css("display","none");
+	});
+
 	
 	
+	//회원등급 바꾸기
 	$(".changeLevel").on("click",function(){
 		const memberLevel = $(this).parent().prev().children().val();
 		const memberNo = $(this).parent().parent().children().eq(1).text();
-		console.log(memberLevel,memberNo);
 		location.href="/member/changeLevel?memberNo="+memberNo+"&memberLevel="+memberLevel;
+		
 	});
 	
 ///////엔터키
@@ -133,6 +189,8 @@ $("#findjQ").on("click",function(){
 			success : function(data){
 				console.log(data);
 				
+	
+				
 				const tr = $("<tr>");
 				tr.addClass("tr-1");
 				
@@ -144,9 +202,19 @@ $("#findjQ").on("click",function(){
 				const memberNoTd = $("<td>");
 				memberNoTd.text(data.memberNo);
 				
-				const memberIdTd = $("<td>");
-				memberIdTd.text(data.memberId);
+				const memberIdSpan = $("<span>");
+				memberIdSpan.text(data.memberId);
+				const msgIconSpan = $("<span>");
+				msgIconSpan.text("mail");
+				msgIconSpan.attr('class', 'material-icons-outlined msgIcon adminMsg');
 				
+				const adminMsgDiv =  $("<div>");
+				adminMsgDiv.attr('class', 'adminMsgDiv');
+				adminMsgDiv.append(memberIdSpan);
+				adminMsgDiv.append(msgIconSpan);
+				const memberIdTd = $("<td>");
+				memberIdTd.append(adminMsgDiv);					
+	
 				const memberNameTd = $("<td>");
 				memberNameTd.text(data.memberName);
 				
@@ -189,41 +257,114 @@ $("#findjQ").on("click",function(){
 				btn.on("click", function(){
 					const memberLevel = $(this).parent().prev().children().val();
 					const memberNo = $(this).parent().parent().children().eq(1).text();
-					console.log(memberLevel,memberNo);
 					location.href="/member/changeLevel?memberNo="+memberNo+"&memberLevel="+memberLevel;
+				
 				});
 				
+				msgIconSpan.on("click", function(){
+					const receiver = $(this).prev().text();
+					console.log(receiver);
+					if(receiver != "admin"){
+						//쪽지쓰기 모달 열기
+						$(".sendMsg-modal-wrap").css("display","flex");
+						//textarea 초기화
+						$("#sendMsgTextarea").val("");
+						//받는 사람 데이터 넣어주기
+						$(".receiver").text(receiver);
+						$("#receiver").val(receiver);
+					}
+					
+					
+				});
+				
+				/*
+				//쪽지 쓰기
+				$(".sendMsg").on("click", function(){
+					const receiver = $(this).text();
+					console.log(receiver);
+					if(receiver != "admin"){
+						//쪽지쓰기 모달 열기
+						$(".sendMsg-modal-wrap").css("display","flex");
+						//textarea 초기화
+						$("#sendMsgTextarea").val("");
+						//받는 사람 데이터 넣어주기
+						$(".receiver").text(receiver);
+						$("#receiver").val(receiver);
+					}
+				});
+
+				//쪽지 쓰기 모달 닫기
+				$("#sendMsgCancel").on("click", function(){
+					$(".sendMsg-modal-wrap").css("display","none");
+				});		
+
+				//쪽지 내용 없을 때 모달 띄우기
+				$("#msgSubmit").on("click", function(event){
+					if($("#sendMsgTextarea").val() == ""){
+						//쪽지 내용 입력하라는 모달 띄우기
+						$(".msg-modal-wrap").css("display","flex");
+						event.preventDefault();
+					}
+				});
+
+				//쪽지 내용 입력하라는 모달 닫기
+				$("#msg-modal-close").on("click", function(){
+					$(".msg-modal-wrap").css("display","none");
+				});
+
+				*/
 				
 				
 				tr.append(inputTd).append(memberNoTd).append(memberIdTd).append(memberNameTd).append(memberPhoneTd).append(memberEmailTd).append(enrollDateTd).append(memberGradeTd).append(memberLevelTd).append(btnTd);
 				$("#admintbl>tbody").append(tr);
 				
 				
+				
 		}
 			
 		})
 		.fail(function() {
-		    console.log( "error" );
-		    //alert("없는 회원입니다~!다시 검색해주세요~!");
-		    
+		   
 		    $().ready(function () {
 		    	swal({
-					title :  '존재하지않는 회원입니다.',
-					text : '회원아이디를 재검색 해주세요!',
-					icon : "info"
+					title : '존재하지않는 회원입니다.',
+					text : '회원아이디를 재검색 해주세요!'
+					//icon : "info"
 				})
 		    	
 	        });
+		    
+		
 	        
 		  })
+		  
+		 	    $("#find").val(null);		
 		  
 
 		
 	
 	});
+$(".checkedchangeLevel").on("click",function(){
+	const check = $(".chk:checked");
+	if(check.length == 0){
+		return;
+	}
+	const no = new Array();
+	const level = new Array();
+	
+	check.each(function(index,item){
+		const memberNo = $(item).parent().next().text();
+		const memberLevel = $(item).parent().parent().find("select").val();
+		no.push(memberNo);
+		level.push(memberLevel);
+	});
+	location.href="/member/checkedchangeLevel?no="+no.join("/")+"&level="+level.join("/");
+	
+});
+
 	
 
-	</script>
+</script>
 		
 
 </body>

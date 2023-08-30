@@ -11,7 +11,7 @@
 
 	<th:block th:include="common/header"></th:block>
 	
-	<div class="main">
+	<div class="main" style="flex-grow: 1;">
         <div class="page-content">
 
             <!-- 홈 > 중고거래게시판 -->
@@ -20,9 +20,15 @@
 				<p>></p>
 				<p>중고거래게시판</p>
             </div>
-
+			
+			<div th:if="${#lists.isEmpty(productList)}" style="padding-top: 10%; text-align: center;">
+			<p>검색된 항목이 없습니다.</p>
+			<br>
+			<a href="/product/board?reqPage=1" style="color:#005A0D; border-bottom:1px solid #005A0D; font-family:ns-light; font-size:15.5px;">목록으로 돌아가기</a>
+			</div>
+		
             <!-- 최신게시물 / 상품리스트 -->
-            <div class="main-mid">
+            <div class="main-mid" th:if="${#lists.isEmpty(productList) == false}" style="margin: 60px auto;">
                 <div>
                     <span class="mid-text1">최신 게시물</span>
                 </div>
@@ -35,9 +41,15 @@
                     			<img th:src="${product.productFile.getFilepath}">
                     		</div>
                     		<div class="info">
-								<div class="book-title" th:text="${product.productBoardTitle}"></div>
-								<div class="book-writer">저자 | <span th:text="${product.productAuthor}"></span></div>
-								<div class="book-price"><span th:text="${product.productPrice}"></span> 원</div>
+								<div class="book-title" th:if="${product.productSellCheck == 1}" th:text="${product.productBoardTitle}" style="text-decoration: line-through; color:#ccc;"></div>
+								<div class="book-title" th:if="${product.productSellCheck == 0}" th:text="${product.productBoardTitle}"></div>
+								
+								<div class="book-writer" th:if="${product.productSellCheck == 1}" style="text-decoration: line-through; color:#ccc">저자 | <span th:text="${product.productAuthor}" style="text-decoration: line-through; color:#ccc"></span></div>
+								<div class="book-writer" th:if="${product.productSellCheck == 0}">저자 | <span th:text="${product.productAuthor}"></span></div>
+								
+								<div class="book-price" th:if="${product.productSellCheck == 1}" style="color:#ccc;"><span th:text="${product.productPrice}" style="text-decoration: line-through; color:#ccc"></span> 원 &nbsp<span style="text-decoration: none; color:red"> 판매완료</span></div>
+								<div class="book-price" th:if="${product.productSellCheck == 0}"><span th:text="${product.productPrice}"></span> 원</div>
+								
                     		</div>
                     	</a>
                     </li>
@@ -284,7 +296,7 @@
                 
             </div>
 
-			<div class="main-bottom">
+			<div class="main-bottom" th:if="${#lists.isEmpty(productList) == false}">
 			
 				<div class="board-search">
 				
@@ -321,7 +333,7 @@
 				
 			</div>
 			
-			<div>
+			<div  th:if="${#lists.isEmpty(productList) == false}">
 				<div id="pageNavi" th:utext="${pageNavi}"></div>
 			</div>
 
@@ -330,16 +342,16 @@
 	
 	<th:block th:include="common/footer"></th:block>
 	
-	<script>
+	<style>
+		.sold-out{
+			color:#ccc;
+		}
+		.sold-out > span{
+			color:#ccc;
+		}
+	</style>
 	
-		document.getElementById("keyword")
-		.addEventListener("keyup", function(e){
-			if(e.keyCode === 13) {
-				document.getElementById("board-enter").click();
-			}
-		});
-	
-	</script>
+
 	
 </body>
 </html>

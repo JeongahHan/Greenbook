@@ -6,30 +6,26 @@
 <title>요즘 이 책</title>
 <!-- 기본 CSS -->
 <link rel="stylesheet" href="/css/default.css">
+<link rel="stylesheet" href="/css/bestSeller.css">
 </head>
 
 <body>
 <th:block th:include="common/header"></th:block>
 <div class="page-content">
-	<div class="page-content2" style="padding-top: 130px;">
+	<div class="page-content2" style="padding-top: 108px; padding-bottom: 100px;">
 		<div class="page-main-like-text">
 			<p>서점에서 가장 많이 팔린 책은?</p>
-			<p>금주의 Top20</p>
+			<p>오늘의 Top20</p>
+
 		</div>
 		<div style="text-align:right;">
-			<p style="font-family:ns-light; padding-bottom:50px">도서 DB 제공 : 알라딘 인터넷서점(www.aladin.co.kr)</p>
+			<p style="font-family:ns-light; padding-top:50px; padding-bottom:50px;">도서 DB 제공 : 알라딘 인터넷서점(www.aladin.co.kr)</p>
 		</div>
 		
 		<!--베스트셀러 -->
 		<div class="bestseller-content">
-				<div class="bestBook">
-					<table class="tbl tbl-hover">
-						<tr class="tr-3">
-							<th style="width:30%;">이미지</th>
-							<th style="width:30%;">책 이름</th>
-							<th style="width:20%;">저자</th>
-						</tr>
-					</table>
+				<div class="bestBook" style="width:1200px;">
+					
 				</div>
 		</div>
 	</div>
@@ -46,25 +42,48 @@
 			data : {},
 			type : "get",
 			success : function(data){
-				console.log(data);
 				for(let i=0; i<data.length; i++){
-					const tr = $("<tr>");
-					tr.addClass("tr-1");
+					
+					const table = $("<table>");
+					table.addClass("table");
+					$('.table').attr('border','1');
+					
+					const tr1 = $("<tr>");
+					tr1.addClass("tr1")
+					
+					const tr2 = $("<tr>");
+					tr2.addClass("tr2")
+					
+					const tr3 = $("<tr>");
+					tr3.addClass("tr3")
 					
 					const imgTd = $("<td>");
-					const img = $("<img style='width:100%;'>");
+					imgTd.addClass("td1");
+					const img = $("<img style='width:250px; height:370px;'>");
 					img.attr("src",data[i].cover);
 					imgTd.append(img);
-					
-					const titleTd = $("<td>");
-					titleTd.text(data[i].title);
-					
-					const authorTd = $("<td>");
-					authorTd.text(data[i].author);
 
 					
-					tr.append(imgTd).append(titleTd).append(authorTd);
-					$(".bestBook>table").append(tr);
+					const titleTd = $("<td>");
+					titleTd.addClass("td2");
+					titleTd.text(data[i].title);
+	
+
+					
+					const authorTd = $("<td>");
+					authorTd.addClass("td3");
+					authorTd.text(data[i].author);
+	
+
+
+
+					tr1.append(imgTd);
+					tr2.append(titleTd);
+					tr3.append(authorTd);
+					
+					table.append(tr1).append(tr2).append(tr3);
+					
+					$(".bestBook").append(table);
 				} //for문 종료				
 			}
 		});

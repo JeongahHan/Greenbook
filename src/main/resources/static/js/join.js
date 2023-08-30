@@ -44,6 +44,9 @@ $("#memberPw").on("change",function(){
     const pwReg = /^[a-zA-Z0-9]{8,12}$/;
     const inputPw = $("#memberPw").val();
     const check = pwReg.test(inputPw);
+    if($("#checkPwRe").text() != ""){
+	    pwDupCHECK();
+	}
     if($("#memberPw").val() != ""){
 	   	if(check){
 	        //정규표현식 만족한 경우
@@ -58,20 +61,14 @@ $("#memberPw").on("change",function(){
 	        $(this).css("border","1px solid red");
 	        checkArr[1] = false;
 	    }
-		if($("#checkPwRe").text() != ""){
-	    	pwDupCHECK();
-	    }
     }else{
     	$("#checkPw").text("");
     	$("#memberPw").css("border","1px solid #ccc");
-    	$("#checkPwRe").text("");
-    	$("#memberPwRe").css("border","1px solid #ccc");
     }
 });
 
 $("#memberPwRe").on("change",function(){
-    pwDupCHECK();
-    
+	pwDupCHECK();
 });
 
 //비밀번호, 비밀번호 확인 일치
@@ -94,7 +91,6 @@ function pwDupCHECK(){
     	$("#checkPwRe").text("");
     	$("#memberPwRe").css("border","1px solid #ccc");
     }
-
 }
 
 let authCode = null;
@@ -102,47 +98,57 @@ let authCode = null;
 $("#memberEmail").on("change", function(){
 	const memberEmail = $("#memberEmail").val();
 	const emailReg = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-	//유효성 충족
-    if(emailReg.test(memberEmail)){
-    	//중복 체크
-    	$.ajax({
-            url : "/member/checkEmail",
-            type : "post",
-            data : {memberEmail : memberEmail},
-            success : function(data){
-            	//중복되지 않을 때
-                if(data == "0"){
-			        $("#checkEmail").text("인증을 완료하여 주세요.");
-			        $("#checkEmail").css("color","blue");
-			        $("#memberEmail").css("border","1px solid blue");
-			        $("#emailChkBtn").on("click",function(){
-			        	$.ajax({
-					        url : "/member/auth",
-					        data : {memberEmail : memberEmail},
-					        type : "post",
-					        success : function(data1) {
-					            authCode = data1;
-					            $("#auth").slideDown();
-					            authTime();
-					        }
-			    		});
-			        });
-                //중복될 때
-                }else{
-			        $("#checkEmail").text("중복된 메일 주소입니다.");
-			        $("#checkEmail").css("color","red");
-			        $("#memberEmail").css("border","1px solid red");
-			        checkArr[3] = false;
-                }
-            }
-        });
-    //유효성 불충족
-    }else{
-        $("#checkEmail").text("메일 주소가 유효하지 않습니다.");
-        $("#checkEmail").css("color","red");
-        $("#memberEmail").css("border","1px solid red");
-        checkArr[3] = false;
-    }
+	if($("#memberEmail").val() != ""){
+		//유효성 충족
+	    if(emailReg.test(memberEmail)){
+	    	//중복 체크
+	    	$.ajax({
+	            url : "/member/checkEmail",
+	            type : "post",
+	            data : {memberEmail : memberEmail},
+	            success : function(data){
+	            	//중복되지 않을 때
+	                if(data == "0"){
+				        $("#checkEmail").text("인증을 완료하여 주세요.");
+				        $("#checkEmail").css("color","blue");
+				        $("#memberEmail").css("border","1px solid blue");
+				        checkArr[3] = false;
+				        $("#emailChkBtn").on("click",function(){
+				        	$.ajax({
+						        url : "/member/auth",
+						        data : {memberEmail : memberEmail},
+						        type : "post",
+						        success : function(data1) {
+						            authCode = data1;
+								 	$("#authCode").val("");
+						        	$("#authMsg").text("");
+						        	$("#timeZone").empty();
+						            $("#auth").slideDown();
+						            authTime();
+						        }
+				    		});
+				        });
+	                //중복될 때
+	                }else{
+				        $("#checkEmail").text("중복된 메일 주소입니다.");
+				        $("#checkEmail").css("color","red");
+				        $("#memberEmail").css("border","1px solid red");
+				        checkArr[3] = false;
+	                }
+	            }
+	        });
+	    //유효성 불충족
+	    }else{
+	        $("#checkEmail").text("메일 주소가 유효하지 않습니다.");
+	        $("#checkEmail").css("color","red");
+	        $("#memberEmail").css("border","1px solid red");
+	        checkArr[3] = false;
+	    }
+	}else{
+		$("#checkEmail").text("");
+        $("#memberEmail").css("border","1px solid #ccc");
+	}
+	
 });
 
 //이메일 인증 타이머 시작
@@ -192,6 +198,13 @@ $("#authBtn").on("click",function(){
     }
 });
 
+$("#emailChkBtn").on("click",function(){
+	if($("#memberEmail").val() == ""){
+		$("#msg").text("이메일을 입력해주세요.");
+		$(".modal-wrap").css("display","flex");
+	}
+});
+
 //전체 동의 체크박스
 $("#allAgreement").click(function() {
     if($("#allAgreement").is(":checked")) $(".agreecheck").prop("checked", true);
@@ -227,6 +240,12 @@ $("button[type=submit]").on("click",function(event){
 		event.preventDefault();
 	}
 	
+	if(!checkArr[3]){
+		$("#msg").text("이메일 인증을 완료해주세요.");
+		$(".modal-wrap").css("display","flex");
+		event.preventDefault();
+	}
+	
 	if($("#memberEmail").val() == ""){
 		$("#msg").text("이메일을 입력해주세요.");
 		$(".modal-wrap").css("display","flex");
@@ -245,14 +264,32 @@ $("button[type=submit]").on("click",function(event){
 		event.preventDefault();
 	}
 	
+	if(!checkArr[2]){
+		$("#msg").text("비밀번호가 일치하지 않습니다.");
+		$(".modal-wrap").css("display","flex");
+		event.preventDefault();
+	}
+	
 	if($("#memberPwRe").val() == ""){
 		$("#msg").text("비밀번호를 한번 더 입력해주세요.");
 		$(".modal-wrap").css("display","flex");
 		event.preventDefault();
 	}
 	
+	if(!checkArr[1]){
+		$("#msg").text("비밀번호 확인 부탁 드립니다.");
+		$(".modal-wrap").css("display","flex");
+		event.preventDefault();
+	}
+	
 	if($("#memberPw").val() == ""){
 		$("#msg").text("비밀번호를 입력해주세요.");
+		$(".modal-wrap").css("display","flex");
+		event.preventDefault();
+	}
+	
+	if(!checkArr[0]){
+		$("#msg").text("아이디 확인 부탁 드립니다.");
 		$(".modal-wrap").css("display","flex");
 		event.preventDefault();
 	}
@@ -272,3 +309,5 @@ $("button[type=submit]").on("click",function(event){
 $("#close").on("click", function(){
 	$(".modal-wrap").css("display","none");
 });
+
+

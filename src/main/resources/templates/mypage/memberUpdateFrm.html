@@ -20,18 +20,21 @@
 	        		<span class="material-icons">person</span>
 	        		<h3>회원 정보</h3>
 	        	</div>
-	            <div class="input-wrap">
-	                <label for="memberNo">회원번호</label>
-	                <input type="text" name="memberNo" id="memberNo" th:value="${session.m.memberNo}" disabled>
-	            </div>
+	            
 	            <div class="input-wrap">
 	                <label for="memberId">회원아이디</label>
 	                <input type="hidden" name="memberId" id="memberId" th:value="${session.m.memberId}" readonly>
 	                <input type="text" name="memberId" id="memberId" th:value="${session.m.memberId}" disabled>
 	            </div>
 	            <div class="input-wrap">
-	                <label for="memberPw">회원비밀번호</label>
-	                <input type="text" name="memberPw" id="memberPw" th:value="${session.m.memberPw}">
+	                <label for="memberPw">새 비밀번호</label>
+	                <input type="password" name="memberPw" id="memberPw" >
+	                <p id="checkPw"></p>
+	            </div>
+	            <div class="input-wrap">
+	                <label for="memberPw">새 비밀번호 확인</label>
+	                <input type="password" name="memberPwRe" id="memberPwRe" >
+                    <p id="checkPwRe"></p>
 	            </div>
 	            <div class="input-wrap">
 	                <label for="memberName">회원이름</label>
@@ -43,7 +46,8 @@
 	            </div>
 	            <div class="input-wrap">
 	                <label for="memberEmail">이메일</label>
-	                <input type="text" name="memberEmail" id="memberEmail" th:value="${session.m.memberEmail}">
+	                <input type="hidden" name="memberEmail" id="memberEmail" th:value="${session.m.memberEmail}" readonly>
+	                <input type="text" name="memberEmail" id="memberEmail" th:value="${session.m.memberEmail}" disabled>
 	            </div>
 	            <div class="input-wrap">
 	                <label for="enrollDate">가입일</label>
@@ -55,7 +59,7 @@
 	            </div>
 	
 	            <div class="btn-box">
-	                <button type="submit" class="btn bc1">정보수정</button>
+	                <button type="submit" class="btn bc1 update-btn">정보수정</button>
 	                <!-- <a href="/mypage/delete" class="btn bc1">회원탈퇴</a> -->
 	                <!-- <button class="btn bc1 modal-open-btn deleteBtn" target="#delete-modal" th:value="">삭제</button> -->
 	                <p style="display : none" class="toControllPath" value="/mypage/delete">모달에 컨트롤 경로지정</p>
@@ -73,19 +77,21 @@
 	      <div class="modal-wrap">
 	        <div class="modal-head">
 	          <h2>정말 탈퇴하시겠습니까?</h2>
-	          <span class="material-icons close-icon modal-close">close</span>
+	          <!-- <span class="material-icons close-icon modal-close">close</span> -->
 	        </div>
 	        <div class="modal-content btn-box">
 	          <p></p>
 	          <p></p>
 	          <p></p>
-	          <a class="btn bc1 deleteBtn">정말 회원 탈퇴</a>
-	          <button class="btn bc1 modal-close">창닫기</button>
+	          <a class="btn bc1 deleteBtn" href="/mypage/delete">회원 탈퇴</a>
+	          <button class="btn bc1 modal-close">탈퇴 취소</button>
 	        </div>
-	        <div class="modal-foot">
-	        </div>
+	        <!-- <div class="modal-foot"></div> -->
 	      </div>
     	</div>
-
+	
+	<!-- <script src="/js/join.js"></script> -->
+	<script src="/js/memberUpdate.js"></script>
+	
 </body>
 </html>

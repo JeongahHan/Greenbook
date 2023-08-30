@@ -13,7 +13,7 @@
 		<div class="mypage-content-wrap">
 			<div class="myComment-wrap">
 				<div class="mypage-content-title">
-					<a href="/mypage/myComment?reqPage=1" class="myBoardComment-title"><span>자유게시판 댓글</span></a>
+					<a href="/mypage/myComment?reqPage=1" class="myBoardComment-title"><span>독서노트 댓글</span></a>
 					<a href="#" class="myProductBoardComment-title"><h2>중고책방 댓글</h2></a>
 				</div>
 				<div class="myComment-one" th:each="list : ${myProductBoardCommentList}">
@@ -22,7 +22,7 @@
 							<div class="myComment">
 								<p><span th:text="${list.product.productBoardTitle}">어느게시글에 달린 댓글인지</span> 에 남긴 댓글</p>
 								<p th:text="${list.productCommentContent}">여기는 중고책판 댓글내용</p>
-								<p th:text="${list.productFile.filepath}">임시로 파일패스 문자 확인</p>
+								
 								
 							</div>
 							<div class="comment-imgBox">
@@ -30,13 +30,14 @@
 		                    	<!-- <img src="/img/product-img/매미울음소리 그칠 무렵.jpg"> -->
 							</div>
 						</a>
-						<a><span class="material-icons">clear</span></a>
+						<a th:href="@{/mypage/myProductBoardCommentDelete(productCommentNo=${list.productCommentNo})}"><span class="material-icons">clear</span></a>
 					</div>
 					<p class="myComment-date">댓글 작성일 : <span th:text="${list.productCommentDate}"></span> </p>
 					
 				</div>
 				
 			</div>
+			<div id="pageNavi" th:utext="${pageNavi}"></div>
 		</div>
 	</div>
 	<th:block th:include="common/footer"></th:block>

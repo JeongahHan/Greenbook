@@ -13,6 +13,31 @@
 <script src="/js/find.js"></script>
 <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=cg9rg4mv5w=geocoder"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+
+<style>
+@media (max-width: 640px)
+.info {
+    padding-top: 80px;
+    padding-bottom: 80px;
+    background-color: var(--ui-02);
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+}
+.info .Inner-sc-zoh9d9-0 {
+    position: relative;
+}
+.wrap {
+    max-width: 1204px;
+    padding-top: ;
+    padding-bottom: ;
+    padding-left: max(var(--inner-space),env(safe-area-inset-left));
+    padding-right: max(var(--inner-space),env(safe-area-inset-right));
+    margin: 0px auto;
+}
+
+</style>
+
 </head>
 <body>
 <th:block th:include="common/header"></th:block>
@@ -36,53 +61,145 @@
         <div class="map-content">
            <div id="map" style="width:100%; height:500px;"></div>
         </div>
-        
-        
-        
-     
 
   </div>
   
   
+ 
    <div class="info">
-        <div>문의</div>
-        <div>000-000-0000</div>
-        <div>평일 10:00 - 18:00</div>
-        <div>(점심시간 13:00 - 14:00 토, 일, 공휴일 휴무)</div>
-        <div>E-mail</div>
-        <div>콘텐츠 제휴 문의</div>
-        <div>contents@millie.town</div>
-        <div>B2B 문의</div>
-        <div>b2bcs@millie.town</div>
-        <div>이용 문의</div>
-        <div>help@millie.town</div>
-        <div>아이콘3개 ui li</div>
+   <div class="wrap">
+        <div class="infotitle">문의</div>
+        <div class="infotel">고객센터 : 1544-9970</div>
+        <div class="infostay">평일 10:00 - 18:00</div>
+        <div class="infostay last">(점심시간 13:00 - 14:00 토, 일, 공휴일 휴무)</div>
+        <div class="infoemail">E-mail</div>
+        
+        <pre>콘텐츠 제휴 문의          contents@greenbook.town
+             
+ B2B 문의                    b2bcs@greenbook.town
+             
+ 이용 문의                    help@greenbook.town
+        </pre>
+        
+        <div class="infoicon">
+         <table>
+           <tr>
+              <td><img src="/img/mapimg/facebook.png"></td>
+              <td><img src="/img/mapimg/instagram.png"></td>
+              <td><img src="/img/mapimg/twitter.png"></td>
+            </tr>
+            <tr>
+              <td><img src="/img/mapimg/line.png"></td>
+              <td><img src="/img/mapimg/pinterest.png"></td>
+              <td><img src="/img/mapimg/youtube.png"></td>
+            </tr>
+         </table>
+        </div>
       </div>
-  
-  
-	<th:block th:include="common/footer"></th:block>
+  </div>
+
+	<footer style="margin-top:0;">
+      <div class="footer-content">
+        <p style="font-size:20px; padding-bottom:30px;">
+          (주) 그린북 컴퍼니
+        </p>
+        <p style="font-size:15px; padding-bottom:5px;">
+          	대표 : 그린이 | 개인정보책임관리자 : 그린이 | 사업자 등록번호 : 111-22-33333
+        </p>
+        <p style="font-size:15px; padding-bottom:5px;">
+          07222 서울특별시 영등포구 당산동6가 311-1 이레빌딩 19F (1544-9970)
+        </p>
+      </div>
+	</footer>
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	<script>
 	const map = new naver.maps.Map("map",{
 		center : new naver.maps.LatLng(37.5337816, 126.8967783),
 		zoom : 16,
-		zoomControl : true,
-		zoomControlOptions : {
-			position : naver.maps.Position.TOP_RIGHT,
-			style : naver.maps.ZoomControlStyle.SMALL
-		}
+		
 	});
+	/*
+	var CustomOverlay = function(options) {
+	    this._element = $('<div style="position:absolute;left:0;top:0;width:120px;height:30px;line-height:30px;text-align:center;background-color:#fff;border:2px solid #f00;">커스텀오버레이</div>')
+
+	    this.setPosition(options.position);
+	    this.setMap(options.map || null);
+	};
+	CustomOverlay.prototype = new naver.maps.OverlayView();
+
+	CustomOverlay.prototype.constructor = CustomOverlay;
+
+	CustomOverlay.prototype.onAdd = function() {
+	    var overlayLayer = this.getPanes().overlayLayer;
+	    
+	    this._element.appendTo(overlayLayer);
+	};
+	CustomOverlay.prototype.draw = function() {
+	    
+	    if (!this.getMap()) {
+	        return;
+	    }
+	    
+	    marker = new naver.maps.Marker({
+			position : new naver.maps.LatLng(37.5337816, 126.8967783),
+			map : map,
+			title: "Green Book company",
+			
+			icon: {
+		        url:'/img/mapimg/bookicon.png', 
+		        size: new naver.maps.Size(50, 50), 
+		        origin: new naver.maps.Point(0, 0),
+		        anchor: new naver.maps.Point(11, 35),
+		        animation: naver.maps.Animation.BOUNCE
+		    } 
+		});
+	    var overlay = new CustomOverlay({
+	        position: center1,
+	        map: map
+	    });
+*/
+	  
+	
+	
 	const marker = new naver.maps.Marker({
 		position : new naver.maps.LatLng(37.5337816, 126.8967783),
-		map : map
+		map : map,
+		title: "Green Book company",
+		
+		icon: {
+	        url:'/img/mapimg/bookicon.png', //아이콘 경로
+	        size: new naver.maps.Size(50, 50), 
+	        origin: new naver.maps.Point(0, 0),
+	        anchor: new naver.maps.Point(11, 35)},
+	    animation: naver.maps.Animation.BOUNCE
 	});
+/*
+const marker2 = new naver.maps.Marker({
+	position : new naver.maps.LatLng(37.5337816, 126.8967783),
+	map : map,
+	icon: {
+        content:'Green Book company',
+        size: new naver.maps.Size(50, 50), 
+        origin: new naver.maps.Point(0, 0),
+        anchor: new naver.maps.Point(11, 35)}
+});*/
 	
+
 	let infoWindow = new naver.maps.InfoWindow();
 	let contentString = [
-		"<div class='iw_inner'",
-		"	<h3>Green Book company</h3>",
-		"	<p>서울 영등포구 선유동2로 57 이레빌딩</p>",
+		"<div class='iw_inner'"  ,
+		"	<h3 class='companytitle' style='color:#005A0D;'>Green Book company</h3>",
+		"<br>",
+		"<hr>",
+		"<p>서울 영등포구 선유동2로 57 이레빌딩</p>",
 		"</div>"
 	].join("");
 	
@@ -91,30 +208,40 @@
 			content : contentString
 		});
 		infoWindow.open(map,marker);
-	});
+ 
+	}); 	
 	
+	/*
 	naver.maps.Event.addListener(map,"click",function(e){
-		console.log(e);
-		marker.setPosition(e.coord);
-		map.setCenter(e.coord);		
-		if(infoWindow.getMap()){
+		if(infoWindow.getMap()){	//정보창이 지도에 노출되어 있는 상태면
 			infoWindow.close();
 		}
+	}); 
+		*/
+/*	
+///////////////////////////////////////////////////////////////////////클릭옵션
+ markers.push(marker); // 생성한 마커를 담는다.
+ infoWindows.push(infoWindow); // 생성한 정보창을 담는다.
+		function getClickHandler(seq) {
 		
-		naver.maps.Service.reverseGeocode({
-			location : e.coord
-		}, function(status, response){
-			console.log(response);
-			const address = response.result.items[1].address;
-			console.log(address);
-			contentString = [
-				"<div class='iw_inner'",
-				"	<p>"+address+"</p>",
-				"</div>"
-			].join("");
-		});
-	});
-	
+        return function(e) {  // 마커를 클릭하는 부분
+            var marker = markers[seq], // 클릭한 마커의 시퀀스로 찾는다.
+                infoWindow = infoWindows[seq]; // 클릭한 마커의 시퀀스로 찾는다
+
+            if (infoWindow.getMap()) {
+                infoWindow.close();
+            } else {
+                infoWindow.open(map, marker); // 표출
+            }
+		}
+	}
+
+for (var i=0, ii=markers.length; i<ii; i++) {
+	console.log(markers[i] , getClickHandler(i));
+    naver.maps.Event.addListener(markers[i], 'click', getClickHandler(i)); // 클릭한 마커 핸들러
+}
+	}
+*/		
 	
 	</script>
 
