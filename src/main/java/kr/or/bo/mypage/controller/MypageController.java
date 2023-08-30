@@ -230,14 +230,14 @@ public class MypageController {
 	public String byRequestList(HttpSession session, int reqPage, Model model) {
 		
 		Member m = (Member)session.getAttribute("m");
-		List byRequestList = productService.selectbyRequestList(m);
-		List tradeList = mypageService.selectTradeList(m);
 		MypageListData mld = mypageService.selectByRequestList(m.getMemberId(), reqPage);
 		
-		System.out.println(byRequestList);
-		System.out.println(tradeList);
-		model.addAttribute("requestList", byRequestList);
-		model.addAttribute("tradeList", tradeList);
+		List byRequestList = productService.selectbyRequestList(m);
+//		List tradeList = mypageService.selectTradeList(m);
+		
+		System.out.println(mld.getMypageList());
+		System.out.println(mld.getMypageList().size());
+		model.addAttribute("requestList", mld.getMypageList());
 		model.addAttribute("pageNavi", mld.getPageNavi());
 //		
 //		System.out.println(m);
