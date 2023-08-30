@@ -46,6 +46,7 @@
 							<div class="cart cart-btn" th:if="${isWished == 1}" th:onclick="deleteWish(this,[[${p.productBoardNo}]],[[${session.m.memberId}]]);">관심상품 해제</div>
 							<div class="cart cart-btn" th:if="${isWished == 0}" th:onclick="insertWish(this,[[${p.productBoardNo}]],[[${session.m.memberId}]]);">관심상품 등록</div>
 						</th:block>
+						<!-- 구매요청 버튼 -->
 						<form action="/mypage/byRequest" class="byRequest" method="get">
 							<button type="submit" class="buy-btn" th:if="${session.m != null && session.m.memberId != p.productBoardWriter && isBuyRequest == 0}">
 								<div class="buy" th:if="${session.m != null}" th:onclick="byRequest(this,[[${p.productBoardNo}]],[[${session.m.memberId}]])">구매요청</div>
@@ -62,10 +63,8 @@
 							<input type="hidden" name="productSellCheck" th:value="${p.productSellCheck}">
 							<!-- <input type="hidden" name="productFile" th:value="${p.productFile}"> -->
 						</form>
+						<!-- 구매요청 취소 버튼 -->
 						<form action="/mypage/buyRequestCancle" class="byRequest" method="get">
-							<button type="submit" class="buy-btn" th:if="${session.m != null && session.m.memberId != p.productBoardWriter && isBuyRequest == 0}">
-								<div class="buy" th:if="${session.m != null}" th:onclick="byRequest(this,[[${p.productBoardNo}]],[[${session.m.memberId}]])">구매요청</div>
-							</button>
 							<button class="buy-btn" th:if="${session.m != null && session.m.memberId != p.productBoardWriter && isBuyRequest == 1}">
 								<div class="buy" th:if="${session.m != null}" th:onclick="buyRequestCancle(this,[[${p.productBoardNo}]],[[${session.m.memberId}]])">구매요청취소</div>
 							</button>
@@ -80,6 +79,10 @@
 							<input type="hidden" name="productCondition" th:value="${p.productCondition}">
 							<input type="hidden" name="productSellCheck" th:value="${p.productSellCheck}">
 							<!-- <input type="hidden" name="productFile" th:value="${p.productFile}"> -->
+							
+							<!-- 구매자 멤버 넘기기 -->
+							<input type="hidden" name="memberId" th:value="${session.m.memberId}">
+							
 						</form>
 						
 						<div class="author" th:text="${p.getProductAuthor}"></div>

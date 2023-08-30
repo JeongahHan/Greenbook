@@ -214,10 +214,20 @@ public class MypageController {
 	}
 	//구매요청취소 버튼 클릭시
 	@GetMapping(value = "/buyRequestCancle")
-	public String buyRequestCancle(Product p) {
-		System.out.println("여기는 구매요청 취소버튼 클릭");
+	public String buyRequestCancle(HttpSession session, Model model,Product p, Member m) {
 		
-		return "redirect:/product/productDetail?productBoardNo="+p.getProductBoardNo();		
+		int result = mypageService.tradeDelete(m,p);
+		if(result>0) {
+			model.addAttribute("title", "구매요청취소");
+			model.addAttribute("msg", "");
+			model.addAttribute("icon", "");
+		}else {
+			model.addAttribute("title", "구매요청취소 실패");
+			model.addAttribute("msg", "관리자에게 문의하여주시기 바랍니다.");
+			model.addAttribute("icon", "");
+		}
+		model.addAttribute("loc", "/product/productDetail?productBoardNo="+p.getProductBoardNo());
+		return "common/msg";
 	}
 	
 	@GetMapping(value = "/showConsumer")
