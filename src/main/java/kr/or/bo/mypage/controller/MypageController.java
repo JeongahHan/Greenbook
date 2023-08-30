@@ -22,6 +22,7 @@ import kr.or.bo.mypage.model.vo.MypageListData;
 import kr.or.bo.mypage.model.vo.TradeList;
 import kr.or.bo.product.model.service.ProductService;
 import kr.or.bo.product.model.vo.Product;
+import kr.or.bo.product.model.vo.ProductFile;
 import kr.or.bo.product.model.vo.ProductListData;
 
 @Controller
@@ -211,15 +212,18 @@ public class MypageController {
 //		return "redirect:/mypage/byRequestList";
 	}
 	@GetMapping(value = "/showConsumer")
-	public String showConsumer (Product p , HttpSession session, int reqPage, Model model) {
+	public String showConsumer (Product product ,ProductFile productFile, HttpSession session, int reqPage, Model model) {
 		
 		Member m = (Member)session.getAttribute("m");
-		mypageService.selectConsumer(p,m,reqPage);
-		MypageListData mld = mypageService.selectConsumer(p,m,reqPage);
-			
+		//mypageService.selectConsumer(p,m,reqPage);
+		product.setProductFile(productFile);
+		//tradeList조회해오기
+		MypageListData mld = mypageService.selectConsumer(product,m,reqPage);
+		
+		
 		model.addAttribute("selectConsumerList",mld.getMypageList());
 		model.addAttribute("pageNavi", mld.getPageNavi());
-		model.addAttribute("product", p);
+		model.addAttribute("product", product);
 		System.out.println("mld 보기 : "+mld);
 		
 		return"mypage/showConsumer";
@@ -231,14 +235,20 @@ public class MypageController {
 		
 		Member m = (Member)session.getAttribute("m");
 		MypageListData mld = mypageService.selectByRequestList(m.getMemberId(), reqPage);
+//		List byRequestList = mypageService.selectByRequestList(m.getMemberId(), reqPage);
 		
-		List byRequestList = productService.selectbyRequestList(m);
+//		List byRequestList = productService.selectbyRequestList(m);
 //		List tradeList = mypageService.selectTradeList(m);
 		
-		System.out.println(mld.getMypageList());
-		System.out.println(mld.getMypageList().size());
+//		System.out.println("컨트롤러로 돌아와서 있는 구매현황 리스트 갯수 : "+mld.getMypageList().size());
+//		System.out.println(mld.getMypageList());
+//		System.out.println("byRequestList : "+byRequestList);
+		System.out.println("mld.getMypageList : "+mld.getMypageList());
+		
+//		model.addAttribute("requestList", byRequestList);
 		model.addAttribute("requestList", mld.getMypageList());
 		model.addAttribute("pageNavi", mld.getPageNavi());
+		model.addAttribute("reqPage", reqPage);
 //		
 //		System.out.println(m);
 //		System.out.println(p);
@@ -248,15 +258,27 @@ public class MypageController {
 		return "mypage/byRequestList";
 	}
 	
+	//중고책방 상세보기에서 구매요청버튼을 눌럿을때
 	@GetMapping(value = "/soldOut")
-	public String soldOut(TradeList tradeList, Member member) {
+	public String soldOut(TradeList tradeList, Member member, Model model) {
 		System.out.println("컨트롤로 잘 오나");
 		tradeList.setMember(member);//멤버 담아온거 셋팅
 		System.out.println(tradeList);
 		
 		int result = mypageService.soldOut(tradeList);
+		if(result>0) {
+			model.addAttribute("title", "판매완료");
+			model.addAttribute("msg", "");
+			model.addAttribute("icon", "");
+		}else {
+			model.addAttribute("title", "판매 실패");
+			model.addAttribute("msg", "관리자에게 문의하여주시기 바랍니다.");
+			model.addAttribute("icon", "");
+		}
+		model.addAttribute("loc", "/product/productDetail?productBoardNo="+tradeList.getProductBoardNo());
+
 		
-		return "mypage/memberUpdateFrm";//임시로 회원정보로
+		return "common/msg";//임시로 회원정보로
 	}
 	
 }

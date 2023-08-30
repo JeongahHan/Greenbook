@@ -19,6 +19,7 @@ import kr.or.bo.product.model.vo.Product;
 import kr.or.bo.product.model.vo.ProductCommentRowMapper;
 import kr.or.bo.product.model.vo.ProductFileRowMapper;
 import kr.or.bo.product.model.vo.ProductRowMapper;
+import kr.or.bo.product.model.vo.ProductTradeListRowMapper;
 
 @Repository
 public class MypageDao {
@@ -41,6 +42,8 @@ public class MypageDao {
 	private MemberRowMapper memberRowMapper;
 	@Autowired
 	private BoardFileRowMapper boardFileRowMapper;
+	@Autowired
+	private ProductTradeListRowMapper productTradeListRowMapper;
 	
 	//회원정보 수정
 	public int updateMember(Member member) {
@@ -59,7 +62,7 @@ public class MypageDao {
 	public List selectMySellBook(String memberId, int start, int end) {
 		// TODO Auto-generated method stub
 		
-		String query = "select * from(select ROWNUM AS RNUM,N.* from(select * from PRODUCT_BOARD where PRODUCT_BOARD_WRITER = ? order by 1 DESC)N) where rnum between ? and ?";
+		String query = "select * from(select ROWNUM AS RNUM,N.* from(select * from PRODUCT_BOARD where PRODUCT_BOARD_WRITER = ?  and product_sell_check=0 order by 1 DESC)N) where rnum between ? and ?";
 		//String query = "select * from(select ROWNUM AS RNUM,N.* from(select * from PRODUCT_FILE full join PRODUCT_BOARD ON (PRODUCT_NO=PRODUCT_BOARD_NO) where PRODUCT_BOARD_writer=? order by 1 desc)N) where rnum between ? and ?";
 		
 		List list = jdbc.query(query, productRowMapper, memberId, start, end);
@@ -200,9 +203,11 @@ public class MypageDao {
 	}
 
 	public List selectByRequestList(String memberId, int start, int end) {
-		String query = "select * from(select ROWNUM AS RNUM,N.* from(select * from TRADE_LIST where CONSUMER = ? order by 1 DESC)N) where rnum between ? and ?";
-		List mypageList = jdbc.query(query, tradeListRowMapper, memberId, start, end);
-		return mypageList;
+		String query = "SELECT * FROM(SELECT ROWNUM AS RNUM,N.* FROM(SELECT T.TRADE_NO, P.PRODUCT_BOARD_TITLE, P.PRODUCT_AUTHOR, P.PRODUCT_PRICE, P.PRODUCT_BOARD_WRITER, T.TRADE_REQUEST_DATE, T.TRADE_COMPLETE_DONE FROM TRADE_LIST T, PRODUCT_BOARD P WHERE T.PRODUCT_BOARD_NO = P.PRODUCT_BOARD_NO AND T.CONSUMER = ? ORDER BY 1 DESC)N) WHERE RNUM BETWEEN ? AND ?";
+		Object[] params = {memberId, start, end};
+		List byRequestList = jdbc.query(query, productTradeListRowMapper, params);
+//		List byRequestList = jdbc.query(query, productTradeListRowMapper, memberId);
+		return byRequestList;
 	}
 
 	public int selectByRequestListTotalCount(String memberId) {

@@ -14,6 +14,7 @@ public class TradeList {
 	private String consumer;
 	private String tradeRequestDate;
 	private String tradeCompleteDate;
+	private String tradeCompleteDone;
 	
 	private Member member;
 }

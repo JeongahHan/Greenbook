@@ -28,21 +28,26 @@
 					
 					<div class="btn-box">
 						<form action="/mypage/showConsumer">
-							<!-- 책정보 넘겨주기 -->	
+							<!-- 프로덕트보드 넘겨주기 -->	
 							<input type="hidden" name="productBoardNo" th:value="${list.productBoardNo}">
 							<input type="hidden" name="productBoardTitle" th:value="${list.productBoardTitle}">
 							<input type="hidden" name="productBoardContent" th:value="${list.productBoardContent}">
 							<input type="hidden" name="productBoardWriter" th:value="${list.productBoardWriter}">
 							<input type="hidden" name="productAuthor" th:value="${list.productAuthor}">
 							<input type="hidden" name="productPrice" th:value="${list.productPrice}">
-							
 							<input type="hidden" name="productRegDate" th:value="${list.productRegDate}">
 							<input type="hidden" name="productCondition" th:value="${list.productCondition}">
-							<!-- <input type="hidden" name="productFile" th:value="${list.productFile.getFilepath}"> -->
+							
+							<!-- 프로덕트 파일 넘겨주기 -->
+							<input type="hidden" name="fileNo" th:value="${list.productFile.getFileNo}">
+							<input type="hidden" name="productNo" th:value="${list.productFile.getProductNo}">
+							<input type="hidden" name="filename" th:value="${list.productFile.getFilename}">
+							<input type="hidden" name="filepath" th:value="${list.productFile.getFilepath}">
 							
 							<input type="hidden" name="reqPage" value="1">					
 							<button type="submit" class="btn bc1" href="/mypage/showConsumer">고객 정보 보기</button><!-- form태그 submit로 해야 편할듯 -->
 							<!-- <a class="btn bc1" href="/mypage/showConsumer">고객 정보 보기</a>form태그 submit로 해야 편할듯 -->
+							
 						
 						</form>
 						<!-- <a class="btn bc1 modal-open-btn" target="#delete-modal" th:href="@{/mypage/mySellBookDelete(productBoardNo=${list.productBoardNo})}" th:value="${list.productBoardNo}">판매취소</a> -->
