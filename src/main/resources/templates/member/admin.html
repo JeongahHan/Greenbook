@@ -5,6 +5,7 @@
 <title>회원 관리</title>
 <!-- 구글 아이콘 -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 <!-- jquery -->
 <script src="/js/jquery-3.7.0.js"></script>
 <!-- 기본 CSS -->
@@ -87,7 +88,12 @@
 			<tr class="tr-1" th:each="m : ${adminList}">
 				<!-- <td><input type="checkbox" class="chk"></td> -->
 				<td th:text="${m.memberNo}"></td>
-				<td class="sendMsg" th:text="${m.memberId}"></td>
+				<td>
+					<div class="adminMsgDiv">
+						<span class="memberId" th:text="${m.memberId}"></span>
+						<span th:if="${m.memberId != 'admin'}" class="material-icons-outlined msgIcon adminMsg">mail</span>
+					</div>
+				</td>
 				<td th:text="${m.memberName}"></td>
 				<td th:text="${m.memberPhone}"></td>
 				<td th:text="${m.memberEmail}"></td>
@@ -203,8 +209,8 @@
 	});
 	
 	//쪽지 쓰기
-	$(".sendMsg").on("click", function(){
-		const receiver = $(this).text();
+	$(".adminMsg").on("click", function(){
+		const receiver = $(this).prev().text();
 		if(receiver != "admin"){
 			//쪽지쓰기 모달 열기
 			$(".sendMsg-modal-wrap").css("display","flex");
