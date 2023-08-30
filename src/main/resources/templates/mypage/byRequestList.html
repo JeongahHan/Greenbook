@@ -43,7 +43,7 @@
 						<td th:text="${requestList.productBoardWriter}"></td>
 						<td th:text="${requestList.tradeRequestDate}"></td>
 						<td>
-							<button class="post-btn byRequestBtn byRequestBc1" th:if="${requestList.tradeCompleteDone=='1'}">거래평가</button>
+							<button class="post-btn byRequestBtn byRequestBc1" id="ass-btn" th:if="${requestList.tradeCompleteDone=='1'}">거래평가</button>
 						</td>
 						<!-- <td th:value="${requestList.tradeCompleteDone}"></td>  value가 0이면 버튼X, 1이면 버튼O -->
 					</tr>
@@ -62,6 +62,17 @@
 				담겨오는정보들
 				Board(boardNo=103, boardTitle=게시판 테스트103, boardContent=테스트용, boardWriter=user01, boardRegDate=2023-08-22, boardReadCount=0, fileList=null)
 				 -->
+				 
+				 <!-- 거래평가 모달 -->
+				 <div class="ass-modal-wrap">
+				 	<div class="ass-modal">
+				 		<div class="modal-title">
+				 			<h3>쪽지 쓰기</h3>
+				 			<hr>
+				 		</div>
+				 	</div>
+				 </div>
+				 
 			</table>
 			<div id="pageNavi" th:utext="${pageNavi}"></div>
 		
@@ -70,7 +81,13 @@
 	</div>
 	<th:block th:include="common/footer"></th:block>
 
-
+	<script>
+	
+		$("#ass-btn").on("click", function(){
+			$(".ass-modal-wrap").css("display","flex");
+		});
+	
+	</script>
 	
 </body>
 </html>
