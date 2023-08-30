@@ -81,7 +81,7 @@
 							<!-- <input type="hidden" name="productFile" th:value="${p.productFile}"> -->
 							
 							<!-- 구매자 멤버 넘기기 -->
-							<input type="hidden" name="memberId" th:value="${session.m.memberId}">
+							<input type="hidden" name="memberId" th:if="${session.m != null}" th:value="${session.m.memberId}">
 							
 						</form>
 						

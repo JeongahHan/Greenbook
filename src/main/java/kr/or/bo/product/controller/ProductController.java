@@ -124,7 +124,7 @@ public class ProductController {
 		String memberId = (m == null) ? null : m.getMemberId();
 		//tradeList 중복 insert를 막기위해 추가
 		//String buyRequester = mypageService.selectBuyRequester(productBoardNo);
-		ProductViewData pvd = productService.selectOneProduct(productBoardNo, memberNo, memberId, m.getMemberId());
+		ProductViewData pvd = productService.selectOneProduct(productBoardNo, memberNo, memberId);
 
 		if(pvd != null) {
 			model.addAttribute("p", pvd.getP());

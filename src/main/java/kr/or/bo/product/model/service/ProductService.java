@@ -113,7 +113,7 @@ public class ProductService {
 	}
 
 	@Transactional
-	public ProductViewData selectOneProduct(int productBoardNo, int memberNo, String memberId, String buyRequester) {
+	public ProductViewData selectOneProduct(int productBoardNo, int memberNo, String memberId) {
 		int result = productDao.updateReadCount(productBoardNo);
 		if(result > 0) {
 			Product p = productDao.selectOneProduct(productBoardNo);
@@ -130,7 +130,7 @@ public class ProductService {
 			int isWished = wishListDao.selectIsWished(productBoardNo, memberId);
 			
 			//구매요청 중복을 막기위해 추가
-			int isBuyRequest = mypageDao.selectIsBuyRequest(productBoardNo, buyRequester);
+			int isBuyRequest = mypageDao.selectIsBuyRequest(productBoardNo, memberId);
 
 			//관심상품 기능을 위해 isWished 추가
 			ProductViewData pvd = new ProductViewData(p, commentList, reCommentList, m, isWished, isBuyRequest);
