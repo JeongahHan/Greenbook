@@ -5,6 +5,7 @@
 <title>Insert title here</title>
 <!-- 구글 아이콘 -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 <!-- jquery -->
 <script src="/js/jquery-3.7.0.js"></script>
 <!-- 기본 CSS -->
@@ -42,7 +43,13 @@
 			<tr class="tr-1">
 				<td><input type="checkbox" class="chk"></td>
 				<td th:text="${m.memberNo}"></td>
-				<td class="sendMsg" th:text="${m.memberId}"></td>
+				<!-- <td class="sendMsg" th:text="${m.memberId}"></td> -->
+				<td>
+					<div class="adminMsgDiv">
+						<span class="memberId" th:text="${m.memberId}"></span>
+						<span th:if="${m.memberId != 'admin'}" class="material-icons-outlined msgIcon adminMsg">mail</span>
+					</div>	
+				</td>
 				<td th:text="${m.memberName}"></td>
 				<td th:text="${m.memberPhone}"></td>
 				<td th:text="${m.memberEmail}"></td>
@@ -117,8 +124,8 @@
 	<script>
 	
 	//쪽지 쓰기
-	$(".sendMsg").on("click", function(){
-		const receiver = $(this).text();
+	$(".adminMsg").on("click", function(){
+		const receiver = $(this).prev().text();
 		console.log(receiver);
 		if(receiver != "admin"){
 			//쪽지쓰기 모달 열기
@@ -195,10 +202,19 @@ $("#findjQ").on("click",function(){
 				const memberNoTd = $("<td>");
 				memberNoTd.text(data.memberNo);
 				
-				const memberIdTd = $("<td>");
-				memberIdTd.text(data.memberId);
-				memberIdTd.attr('class','sendMsg');
+				const memberIdSpan = $("<span>");
+				memberIdSpan.text(data.memberId);
+				const msgIconSpan = $("<span>");
+				msgIconSpan.text("mail");
+				msgIconSpan.attr('class', 'material-icons-outlined msgIcon adminMsg');
 				
+				const adminMsgDiv =  $("<div>");
+				adminMsgDiv.attr('class', 'adminMsgDiv');
+				adminMsgDiv.append(memberIdSpan);
+				adminMsgDiv.append(msgIconSpan);
+				const memberIdTd = $("<td>");
+				memberIdTd.append(adminMsgDiv);					
+	
 				const memberNameTd = $("<td>");
 				memberNameTd.text(data.memberName);
 				
@@ -245,8 +261,8 @@ $("#findjQ").on("click",function(){
 				
 				});
 				
-				memberIdTd.on("click", function(){
-					const receiver = $(this).text();
+				msgIconSpan.on("click", function(){
+					const receiver = $(this).prev().text();
 					console.log(receiver);
 					if(receiver != "admin"){
 						//쪽지쓰기 모달 열기
