@@ -580,6 +580,7 @@ textarea.input-form {
 .title{
 	font-size: 19px;
 	font-family: ns-bold;
+	cursor: pointer;
 }
 
 
