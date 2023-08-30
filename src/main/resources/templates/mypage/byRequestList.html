@@ -72,15 +72,40 @@
 				 			<h3>거래 평가</h3>
 				 			<hr>
 				 		</div>
-					 		<div class="ass-btn">
-					 			<span class="seller" style="font-weight: 900; text-decoration: underline;"></span><span> 님과의 거래가 어떠셨나요?</span>
-					 		</div>
-					 		<div class="ass-btn">
-					 			<span>신뢰도 &nbsp<button class="good-btn">👍</button>&nbsp&nbsp<button class="bad-btn">👎</button></span>
-					 			<!-- <span class="seller" style="font-weight: 900;"></span><span> 님과의 거래가 <button>불만족</button>스러웠어요! 😷</span> -->
-					 		</div>
-					 		<div>
-					 		</div>
+				 		<div class="ass-btn">
+				 			<span class="seller" style="font-weight: 900; text-decoration: underline;"></span><span> 님과의 거래가 어떠셨나요?</span>
+				 		</div>
+				 		<div class="ass-btn">
+				 			<span>신뢰도 &nbsp
+				 				<a class="good-btn">👍</a>&nbsp
+				 				<a class="bad-btn">👎</a>
+				 			</span>
+				 			<!-- <span class="seller" style="font-weight: 900;"></span><span> 님과의 거래가 <button>불만족</button>스러웠어요! 😷</span> -->
+				 		</div>
+				 	</div>
+				 </div>
+				 
+				 <!-- 거래평가 모달의 모달 -->
+				 
+				 <!-- 신뢰도 올리기버튼 -->
+				 <div class="result-wrap1">
+				 	<div class="result1">
+				 		<div class="ass-btn">
+				 			<span class="seller" style="font-weight: 900; text-decoration: underline;"></span><span> 님의 신뢰도를 올리시겠습니까? &nbsp</span>
+				 			<a><button class="btnSet yes-btn1"> ✔️ </button></a>&nbsp
+				 			<button class="btnSet no-btn1"> ❌ </button>
+				 		</div>
+				 	</div>
+				 </div>
+				 
+				  <!-- 신뢰도 내리기버튼 -->
+ 				 <div class="result-wrap2">
+				 	<div class="result2">
+				 		<div class="ass-btn">
+				 			<span class="seller" style="font-weight: 900; text-decoration: underline;"></span><span> 님의 신뢰도를 내리시겠습니까? &nbsp</span>
+				 			<a><button class="btnSet yes-btn2"> ✔️ </button></a>&nbsp
+				 			<button class="btnSet no-btn2"> ❌ </button>
+				 		</div>
 				 	</div>
 				 </div>
 				 
@@ -100,6 +125,32 @@
 			const grade = $(this).prev().prev().val();
 			$(".ass-modal-wrap").css("display","flex");
 			$(".seller").text(writer);
+		});
+		
+		$(".good-btn").on("click",function(){
+			$(".result-wrap1").css("display","flex");
+		});
+		
+		$(".bad-btn").on("click",function(){
+			$(".result-wrap2").css("display","flex");
+		});
+		
+		$(".no-btn1").on("click",function(){
+			$(this).parent().parent().parent().css("display","none");
+		});
+		
+		$(".yes-btn1").on("click",function(){
+			$(this).parent().parent().parent().parent().css("display","none");
+			$(this).parent().parent().parent().parent().prev().css("display","none");
+		});
+		
+		$(".no-btn2").on("click",function(){
+			$(this).parent().parent().parent().css("display","none");
+		});
+		
+		$(".yes-btn2").on("click",function(){
+			$(this).parent().parent().parent().parent().css("display","none");
+			$(this).parent().parent().parent().parent().prev().prev().css("display","none");
 		});
 		
 		//쪽지쓰기 시작

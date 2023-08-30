@@ -253,18 +253,21 @@ public class MypageDao {
 		return result;
 	}
 
-	//tradeList 중복 insert를 막기위해 추가
-	public String selectBuyRequester(int productBoardNo) {
-		// TODO Auto-generated method stub
-		String query = "select * from trade_list where product_board_no = ?";
-		List list = jdbc.query(query, tradeListRowMapper, productBoardNo);
-		TradeList tradeList;
-		if(!list.isEmpty()) {
-			tradeList = (TradeList) list.get(0);
-			return tradeList.getConsumer();
-		}
-		return null;
-	}
+//	//tradeList 중복 insert를 막기위해 추가
+//	public String selectBuyRequester(int productBoardNo) {
+//		// TODO Auto-generated method stub
+//		String query = "select * from trade_list where product_board_no = ?";
+//		List list = jdbc.query(query, tradeListRowMapper, productBoardNo);
+//		System.out.println("여기는 마이페이지 dao : " + productBoardNo);
+//
+//		TradeList tradeList;
+//		if(!list.isEmpty()) {
+//			tradeList = (TradeList) list.get(0);
+//			System.out.println("여기는 마이페이지 dao : " + tradeList);
+//			return tradeList.getConsumer();
+//		}
+//		return null;
+//	}
 
 	//구매요청 중복 막기
 	public int selectIsBuyRequest(int productBoardNo, String buyRequester) {
@@ -284,7 +287,6 @@ public class MypageDao {
 	public int tradeDelete(Member m, Product p) {
 		// TODO Auto-generated method stub
 		String query = "delete from trade_list where product_board_no = ? and consumer= ? ";
-		System.out.println("여기는 마이페이지 dao : "+m.getMemberId());
 		int result = jdbc.update(query, p.getProductBoardNo(), m.getMemberId());
 		
 		
