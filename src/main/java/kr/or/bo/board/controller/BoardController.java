@@ -72,7 +72,7 @@ public class BoardController {
 		model.addAttribute("boardList",bld.getBoardList());
 		model.addAttribute("pageNavi",bld.getPageNavi());
 		
-		return "board/boardList";
+		return "board/boardListSR";
 	}
 	//////////////////////////////////////////////////////////////////
 
@@ -97,7 +97,6 @@ public class BoardController {
 		}else {
 			model.addAttribute("title","조회실패");
 			model.addAttribute("msg","이미 삭제된 게시물 입니다.");
-			model.addAttribute("icon","info");
 			model.addAttribute("loc","/board/list?reqPage=1");
 			return "common/msg";
 		}
@@ -282,7 +281,7 @@ public class BoardController {
 		if(list == null) {
 			model.addAttribute("title","수정실패");
 			model.addAttribute("msg","관리자에게 문의하세요");
-			model.addAttribute("icon","error");
+
 		}else {
 			
 			for(Object item:list) {
@@ -293,7 +292,7 @@ public class BoardController {
 			
 			model.addAttribute("title","수정완료");
 			model.addAttribute("msg","게시글이 수정되었습니다");
-			model.addAttribute("icon","success");
+
 			
 		}
 		model.addAttribute("loc","/board/view?boardNo="+b.getBoardNo());
@@ -325,11 +324,11 @@ public class BoardController {
 		if(result > 0) {
 			model.addAttribute("title","수정완료");
 			model.addAttribute("msg","댓글이 수정되었습니다");
-			model.addAttribute("icon","success");
+
 		}else {
 			model.addAttribute("title","수정 실패");
 			model.addAttribute("msg","댓글 수정에 실패했습니다. 관리자에게 문의하세요");
-			model.addAttribute("icon","error");
+
 		}
 		
 		model.addAttribute("loc","/board/view?boardNo="+bc.getBoardRef());
@@ -343,11 +342,9 @@ public class BoardController {
 		if(result > 0) {
 			model.addAttribute("title","삭제 완료");
 			model.addAttribute("msg","댓글이 삭제되었습니다");
-			model.addAttribute("icon","success");
 		}else {
 			model.addAttribute("title","삭제 실패");
 			model.addAttribute("msg","댓글 삭제에 실패했습니다. 관리자에게 문의하세요");
-			model.addAttribute("icon","error");
 		}
 		
 		model.addAttribute("loc","/board/view?boardNo="+boardNo);

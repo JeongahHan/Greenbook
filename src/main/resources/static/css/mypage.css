@@ -338,10 +338,10 @@ B31312 빨강
     width: 100%;
 }
 .wishList-toProductDetail{
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 .productBoardTitle{
-    height: 22.69px;
+    /* height: 22.69px; */
 }
 
 
@@ -393,7 +393,7 @@ B31312 빨강
 .consumer-wrap{
 }
 .consumer-one{
-    background-color: cornflowerblue;
+    /* background-color: cornflowerblue; */
     /* width: 200px; */
 }
 
@@ -530,4 +530,42 @@ B31312 빨강
 
 .modal-title > h3{
 	margin-bottom: 5px;
+}
+
+.seller{
+	color: #005A0D;
+}
+
+.ass-btn{
+	padding-top: 10px;
+}
+
+.good-btn{
+
+}
+
+.bad-btn{
+
+}
+
+.good-btn, .bad-btn{
+	color: #005A0D;
+    background-color: #fff;
+    border: 2px solid #005A0D;
+    height: 35px;
+    line-height: 5px;
+    
+    padding: 0.5rem;
+    display: inline-block;
+    box-sizing: border-box;
+    transition-duration: 0.5s;
+    font-size: 14px;
+    font-family: ns-light;
+}
+
+.good-btn:hover,
+ .bad-btn:hover{
+    background-color: #005A0D;
+    color: #fff;
+    cursor: pointer;
 }
