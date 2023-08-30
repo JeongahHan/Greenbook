@@ -131,7 +131,7 @@ public class ProductService {
 			
 			//구매요청 중복을 막기위해 추가
 			int isBuyRequest = mypageDao.selectIsBuyRequest(productBoardNo, buyRequester);
-			
+
 			//관심상품 기능을 위해 isWished 추가
 			ProductViewData pvd = new ProductViewData(p, commentList, reCommentList, m, isWished, isBuyRequest);
 			
