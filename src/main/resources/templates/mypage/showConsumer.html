@@ -21,7 +21,7 @@
 					<div class="book-content">
 						<h2 class="book-title" th:text="${product.productBoardTitle}">매미 울음소리 프로덕트보드</h2>
 						<p>저자 : <span class="book-author" th:text="${product.productAuthor}">저자 프로덕트보드</span></p>
-						<p>책 상태 : 
+						<p class="book-condition">책 상태 : 
 							<!-- <span class="book-condition" th:text="${product.productCondition}">책상태 프로덕트보드</span> -->
 							<span th:if="${product.productCondition==1}">매우나쁨</span>
 							<span th:if="${product.productCondition==2}">나쁨</span>
