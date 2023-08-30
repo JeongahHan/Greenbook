@@ -19,6 +19,7 @@ import kr.or.bo.product.model.vo.Product;
 import kr.or.bo.product.model.vo.ProductCommentRowMapper;
 import kr.or.bo.product.model.vo.ProductFileRowMapper;
 import kr.or.bo.product.model.vo.ProductRowMapper;
+import kr.or.bo.product.model.vo.ProductTradeListMemberRowMapper;
 import kr.or.bo.product.model.vo.ProductTradeListRowMapper;
 
 @Repository
@@ -44,6 +45,8 @@ public class MypageDao {
 	private BoardFileRowMapper boardFileRowMapper;
 	@Autowired
 	private ProductTradeListRowMapper productTradeListRowMapper;
+	@Autowired
+	private ProductTradeListMemberRowMapper productTradeListMemberRowMapper;
 	
 	//회원정보 수정
 	public int updateMember(Member member) {
@@ -203,9 +206,9 @@ public class MypageDao {
 	}
 
 	public List selectByRequestList(String memberId, int start, int end) {
-		String query = "SELECT * FROM(SELECT ROWNUM AS RNUM,N.* FROM(SELECT T.TRADE_NO, P.PRODUCT_BOARD_TITLE, P.PRODUCT_AUTHOR, P.PRODUCT_PRICE, P.PRODUCT_BOARD_WRITER, T.TRADE_REQUEST_DATE, T.TRADE_COMPLETE_DONE FROM TRADE_LIST T, PRODUCT_BOARD P WHERE T.PRODUCT_BOARD_NO = P.PRODUCT_BOARD_NO AND T.CONSUMER = ? ORDER BY 1 DESC)N) WHERE RNUM BETWEEN ? AND ?";
+		String query = "SELECT * FROM(SELECT ROWNUM AS RNUM,N.* FROM(SELECT T.TRADE_NO, P.PRODUCT_BOARD_TITLE, P.PRODUCT_AUTHOR, P.PRODUCT_PRICE, P.PRODUCT_BOARD_WRITER, T.TRADE_REQUEST_DATE, T.TRADE_COMPLETE_DONE, M.GRADE FROM TRADE_LIST T, PRODUCT_BOARD P , MEMBER M WHERE T.PRODUCT_BOARD_NO = P.PRODUCT_BOARD_NO AND T.CONSUMER = ? AND P.PRODUCT_BOARD_WRITER = M.MEMBER_ID ORDER BY 1 DESC)N) WHERE RNUM BETWEEN ? AND ?";
 		Object[] params = {memberId, start, end};
-		List byRequestList = jdbc.query(query, productTradeListRowMapper, params);
+		List byRequestList = jdbc.query(query, productTradeListMemberRowMapper, params);
 //		List byRequestList = jdbc.query(query, productTradeListRowMapper, memberId);
 		return byRequestList;
 	}
