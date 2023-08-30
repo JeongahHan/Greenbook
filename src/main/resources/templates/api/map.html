@@ -13,6 +13,31 @@
 <script src="/js/find.js"></script>
 <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=cg9rg4mv5w=geocoder"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+
+<style>
+@media (max-width: 640px)
+.info {
+    padding-top: 80px;
+    padding-bottom: 80px;
+    background-color: var(--ui-02);
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+}
+.info .Inner-sc-zoh9d9-0 {
+    position: relative;
+}
+.wrap {
+    max-width: 1204px;
+    padding-top: ;
+    padding-bottom: ;
+    padding-left: max(var(--inner-space),env(safe-area-inset-left));
+    padding-right: max(var(--inner-space),env(safe-area-inset-right));
+    margin: 0px auto;
+}
+
+</style>
+
 </head>
 <body>
 <th:block th:include="common/header"></th:block>
@@ -36,27 +61,24 @@
         <div class="map-content">
            <div id="map" style="width:100%; height:500px;"></div>
         </div>
-        
-        
-        
-     
 
   </div>
   
   
+ 
    <div class="info">
-   <div class="wrap" style="padding-left: 90px;">
+   <div class="wrap">
         <div class="infotitle">문의</div>
-        <div class="infotel">고객센터 : 02. 070. 8279</div>
+        <div class="infotel">고객센터 : 1544-9970</div>
         <div class="infostay">평일 10:00 - 18:00</div>
         <div class="infostay last">(점심시간 13:00 - 14:00 토, 일, 공휴일 휴무)</div>
         <div class="infoemail">E-mail</div>
         
-        <pre>콘텐츠 제휴 문의          contents@millie.town
+        <pre>콘텐츠 제휴 문의          contents@greenbook.town
              
- B2B 문의                    b2bcs@millie.town
+ B2B 문의                    b2bcs@greenbook.town
              
- 이용 문의                    help@millie.town
+ 이용 문의                    help@greenbook.town
         </pre>
         
         <div class="infoicon">
@@ -75,7 +97,7 @@
         </div>
       </div>
   </div>
-  
+
 	<footer style="margin-top:0;">
       <div class="footer-content">
         <p style="font-size:20px; padding-bottom:30px;">
