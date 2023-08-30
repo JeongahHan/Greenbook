@@ -18,6 +18,7 @@ import kr.or.bo.mypage.model.vo.BoardCommentRowMapperForMypage;
 import kr.or.bo.mypage.model.vo.TradeList;
 import kr.or.bo.mypage.model.vo.TradeListRowMapper;
 import kr.or.bo.product.model.vo.Product;
+import kr.or.bo.product.model.vo.ProductComment;
 import kr.or.bo.product.model.vo.ProductCommentRowMapper;
 import kr.or.bo.product.model.vo.ProductFileRowMapper;
 import kr.or.bo.product.model.vo.ProductRowMapper;
@@ -339,6 +340,14 @@ public class MypageDao {
 		String query ="delete from board_comment where board_comment_no=?";
 		int result = jdbc.update(query, boardComment.getBoardCommentNo());
 		
+		return result;
+	}
+
+	//중고책방 댓글 삭제
+	public int myProductBoardCommentDelete(ProductComment productComment) {
+		// TODO Auto-generated method stub
+		String query = "delete from PRODUCT_COMMENT where PRODUCT_COMMENT_NO= ?";
+		int result =jdbc.update(query, productComment.getProductCommentNo());
 		return result;
 	}
 	

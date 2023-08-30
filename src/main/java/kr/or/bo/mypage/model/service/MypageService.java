@@ -680,5 +680,13 @@ public class MypageService {
 		return result;
 	}
 
+	//중고책방 댓글 삭제
+	@Transactional
+	public int myProductBoardCommentDelete(ProductComment productComment) {
+		// TODO Auto-generated method stub
+		int result =mypageDao.myProductBoardCommentDelete(productComment);
+		return result;
+	}
+
 	
 }

@@ -30,7 +30,7 @@
 		                    	<!-- <img src="/img/product-img/매미울음소리 그칠 무렵.jpg"> -->
 							</div>
 						</a>
-						<a><span class="material-icons">clear</span></a>
+						<a th:href="@{/mypage/myProductBoardCommentDelete(productCommentNo=${list.productCommentNo})}"><span class="material-icons">clear</span></a>
 					</div>
 					<p class="myComment-date">댓글 작성일 : <span th:text="${list.productCommentDate}"></span> </p>
 					
