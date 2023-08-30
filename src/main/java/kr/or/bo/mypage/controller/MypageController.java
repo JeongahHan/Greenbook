@@ -295,4 +295,10 @@ public class MypageController {
 		return "common/msg";//임시로 회원정보로
 	}
 	
+	@GetMapping(value = "/gradeUp")
+	public String gradeUp(String productBoardWriter) {
+		
+		return "mypage/gradeUp";
+	}
+	
 }

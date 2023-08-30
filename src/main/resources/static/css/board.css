@@ -692,7 +692,8 @@
 }
 .bwMsgDiv>span:last-child {
 	top: 3px;
-	position: absolute;
+	position: initial;
+	transform: translate(10px, 5px);
 }
 
 
