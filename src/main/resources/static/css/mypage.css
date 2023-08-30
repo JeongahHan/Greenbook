@@ -338,10 +338,10 @@ B31312 빨강
     width: 100%;
 }
 .wishList-toProductDetail{
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 .productBoardTitle{
-    height: 22.69px;
+    /* height: 22.69px; */
 }
 
 
