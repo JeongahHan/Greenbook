@@ -506,7 +506,7 @@ B31312 빨강
   }
     
 /* 거래평가 모달 */
-.ass-modal-wrap{
+.ass-modal-wrap, .result-wrap1, .result-wrap2{
 	width: 100vw;
 	height: 100vh;
 	background-color: rgba(0, 0, 0, 0.5);
@@ -518,7 +518,7 @@ B31312 빨강
 	align-items: center;
 }
 
-.ass-modal{
+.ass-modal, .result1, .result2{
 	width: 400px;
 	background-color: #fff;
 	border-radius: 5px;
@@ -553,7 +553,7 @@ B31312 빨강
     background-color: #fff;
     border: 2px solid #005A0D;
     height: 35px;
-    line-height: 5px;
+    line-height: 12px;
     
     padding: 0.5rem;
     display: inline-block;
@@ -568,4 +568,8 @@ B31312 빨강
     background-color: #005A0D;
     color: #fff;
     cursor: pointer;
+}
+
+.btnSet:hover{
+	cursor: pointer;
 }
