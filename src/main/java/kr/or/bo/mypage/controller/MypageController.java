@@ -172,7 +172,6 @@ public class MypageController {
 		model.addAttribute("pageNavi", mld.getPageNavi());
 		//model.addAttribute("mySellBookImgList", mld.getMySellBookImgList());
 		
-		System.out.println("여기는 마이페이지 컨트롤러 나비 확인 : "+mld.getPageNavi());
 
 		
 		return "mypage/mySellBook";

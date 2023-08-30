@@ -20,10 +20,7 @@
 	        		<span class="material-icons">person</span>
 	        		<h3>회원 정보</h3>
 	        	</div>
-	            <div class="input-wrap">
-	                <label for="memberNo">회원번호</label>
-	                <input type="text" name="memberNo" id="memberNo" th:value="${session.m.memberNo}" disabled>
-	            </div>
+	            
 	            <div class="input-wrap">
 	                <label for="memberId">회원아이디</label>
 	                <input type="hidden" name="memberId" id="memberId" th:value="${session.m.memberId}" readonly>
@@ -31,12 +28,12 @@
 	            </div>
 	            <div class="input-wrap">
 	                <label for="memberPw">새 비밀번호</label>
-	                <input type="text" name="memberPw" id="memberPw" th:value="${session.m.memberPw}">
+	                <input type="password" name="memberPw" id="memberPw" >
 	                <p id="checkPw"></p>
 	            </div>
 	            <div class="input-wrap">
 	                <label for="memberPw">새 비밀번호 확인</label>
-	                <input type="text" name="memberPwRe" id="memberPwRe" th:value="${session.m.memberPw}">
+	                <input type="password" name="memberPwRe" id="memberPwRe" >
                     <p id="checkPwRe"></p>
 	            </div>
 	            <div class="input-wrap">

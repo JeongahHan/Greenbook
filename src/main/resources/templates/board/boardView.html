@@ -31,7 +31,12 @@
 			<tr class="tr-1">
 				<th class="td-3" style="width:15%;">작성자</th>
 				<!-- 쪽지 쓰기 위해 클래스 추가 -->
-				<td class="boardWriter" th:text="${b.boardWriter}" style="font-family:ns-light;"></td>
+				<td>
+					<div class="bwMsgDiv">
+						<span class="boardWriter" th:text="${b.boardWriter}" style="font-family:ns-light;"></span>
+						<span th:if="${session.m != null && session.m.memberId != b.boardWriter && session.m.memberLevel != 3}" class="material-icons-outlined msgIcon bwMsg">mail</span>
+					</div>
+				</td>
 				<th class="td-3" style="width:10%;">작성일</th>
 				<td th:text="${b.boardRegDate}" style="font-family:ns-light;"></td>
 				<th class="td-3" style="width:10%;">조회수</th>
@@ -112,7 +117,7 @@
 								<span class="material-icons" th:if="${session.m != null && bc.isLike == 0}" th:onclick="addLike(this,[[${bc.boardCommentNo}]],[[${session.m.memberNo}]]);">thumb_up_off_alt</span>
 								<span th:text="${bc.likeCount}"></span> 
 							</span>
-							<span th:if="${session.m != null && session.m.memberId != bc.boardCommentWriter && session.m.memberLevel != 3}" class="material-icons-outlined msgIcon" id="bcMsg">mail</span>
+							<span th:if="${session.m != null && session.m.memberId != bc.boardCommentWriter && session.m.memberLevel != 3}" class="material-icons-outlined msgIcon bcMsg">mail</span>
 						</p>
 						
 						<p class="comment-content" th:text="${bc.boardCommentContent}"></p>
@@ -150,7 +155,7 @@
 									<span class="material-icons" th:if="${session.m != null && bcc.isLike == 0}" th:onclick="addLike(this,[[${bcc.boardCommentNo}]],[[${session.m.memberNo}]]);">thumb_up_off_alt</span>
 									<span th:text="${bcc.likeCount}"></span> 
 								</span>
-								<span th:if="${session.m != null && session.m.memberId != bcc.boardCommentWriter && session.m.memberLevel != 3}" class="material-icons-outlined msgIcon" id="bccMsg">mail</span>
+								<span th:if="${session.m != null && session.m.memberId != bcc.boardCommentWriter && session.m.memberLevel != 3}" class="material-icons-outlined msgIcon bccMsg">mail</span>
 							</p>
 							<p class="comment-content" th:text="${bcc.boardCommentContent}"></p>
 							<textarea name="boardCommentContent" class="input-form" style="min-height:96px;display:none;" th:text="${bcc.boardCommentContent}"></textarea>
@@ -396,9 +401,10 @@
 		
 		//쪽지 쓰기 관련 스크립트 시작
 		const memberId = $(".memberId").val();
+		
 		//게시물 작성자에게 쪽지 쓰기
-		$(".boardWriter").on("click", function(){
-			const receiver = $(this).text();
+		$(".bwMsg").on("click", function(){
+			const receiver = $(this).prev().text();
 			if(receiver != memberId){
 				//쪽지쓰기 모달 열기
 				$(".sendMsg-modal-wrap").css("display","flex");
@@ -416,7 +422,7 @@
 		});
 		
 		//댓글 작성자에게 쪽지 쓰기
-		$("#bcMsg").on("click", function(){
+		$(".bcMsg").on("click", function(){
 			const receiver = $(this).prev().prev().prev().text();
 			if(receiver != memberId){
 				//쪽지쓰기 모달 열기
@@ -426,15 +432,11 @@
 				//받는 사람 데이터 넣어주기
 				$(".receiver").text(receiver);
 				$("#receiver").val(receiver);
-				//쪽지쓰기 모달 닫기
-				$("#sendMsgCancel").on("click", function(){
-					$(".sendMsg-modal-wrap").css("display","none");
-				});
 			}
 		});
 		
 		//대댓글 작성자에게 쪽지 쓰기
-		$("#bccMsg").on("click", function(){
+		$(".bccMsg").on("click", function(){
 			const receiver = $(this).prev().prev().prev().text();
 			if(receiver != memberId){
 				//쪽지쓰기 모달 열기
@@ -444,10 +446,6 @@
 				//받는 사람 데이터 넣어주기
 				$(".receiver").text(receiver);
 				$("#receiver").val(receiver);
-				//쪽지쓰기 모달 닫기
-				$("#sendMsgCancel").on("click", function(){
-					$(".sendMsg-modal-wrap").css("display","none");
-				});
 			}
 		});
 		

@@ -63,7 +63,13 @@ function pwDupCHECK(){
 
 $(".update-btn").on("click",function(event){
     
-    if(!checkArr[1]){//새 비밀번호 확인이 일치하지 않을 경우
+	
+    if($("#memberPw").val() ==""){
+		alert("변경할 비밀번호를 입력해주세요");
+        event.preventDefault();//클릭 작동 무효화
+	}
+
+	else if(!checkArr[1]){//새 비밀번호 확인이 일치하지 않을 경우
         //console.log("비밀번호 일치하지 않음");
         alert("비밀번호가 일치하지 않습니다.");
         event.preventDefault();//클릭 작동 무효화
