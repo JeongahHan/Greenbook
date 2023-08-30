@@ -214,7 +214,8 @@ public class MypageController {
 	public String showConsumer (Product p , HttpSession session, int reqPage, Model model) {
 		
 		Member m = (Member)session.getAttribute("m");
-		mypageService.selectConsumer(p,m,reqPage);
+		//mypageService.selectConsumer(p,m,reqPage);
+		//tradeList조회해오기
 		MypageListData mld = mypageService.selectConsumer(p,m,reqPage);
 			
 		model.addAttribute("selectConsumerList",mld.getMypageList());

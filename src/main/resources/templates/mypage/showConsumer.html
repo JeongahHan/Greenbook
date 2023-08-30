@@ -26,12 +26,13 @@
 				</div>
 				<div class="consumer-wrap">
 					<!-- <p th:text="${()selectConsumerList.get(0)).isEmpty()}"> 테스트</p> -->
-					<p th:text="${selectConsumerList.get(0).member}"> 테스트</p>
+					
 					<p>트레이드 리스트</p>
 					<p th:text="${selectConsumerList.get(0)}"> 테스트</p>
+					<p>트레이드 리스트 안의 멤버</p>
+					<p th:text="${selectConsumerList.get(0).member}">테스트</p>
 					
 					<th:block th:if="${selectConsumerList.get(0).member != null}">
-					<p th:text="${selectConsumerList.get(0).member}"></p>
 						<div class="consumer-one">
 							<table class="mypage-tbl">
 								<tr class="mypageTr mypageTr-1">
@@ -42,7 +43,7 @@
 									<th style="width:20%">거래요청 날짜</th>
 									<th style="width:40%"></th>
 								</tr>
-								<tr class="mypageTr mypageTr-2" th:each="selectConsumer : ${selectConsumerList}">
+								<tr class="mypageTr mypageTr-2" th:each="selectConsumer : ${selectConsumerList}"><!-- selectConsumer는 tradeList 임 -->
 									<td th:text="${selectConsumer.tradeNo}">11 소비자</td>
 									<td th:text="${selectConsumer.consumer}">user01 멤버</td>
 									<td th:text="${selectConsumer.member.memberName}">user01 멤버</td>
@@ -55,7 +56,6 @@
 											<button class="btn bc1 modal-open-btn deleteBtn" target="#delete-modal" >쪽지</button>
 											<form action="/mypage/soldOut" class="btn">
 												<!-- tradeList 넘기기 -->
-												<input type="text" th:value="${selectConsumer.tradeNo}">
 												<input type="hidden" name="tradeNo" th:value="${selectConsumer.tradeNo}">
 												<input type="hidden" name="productBoardNo" th:value="${selectConsumer.productBoardNo}">
 												<input type="hidden" name="consumer" th:value="${selectConsumer.consumer}">
@@ -71,10 +71,6 @@
 												<input type="hidden" name="memberLevel" th:value="${selectConsumer.member.memberLevel}">
 												<input type="hidden" name="enrollDate" th:value="${selectConsumer.member.enrollDate}">
 												<input type="hidden" name="grade" th:value="${selectConsumer.member.grade}">
-												
-												
-												
-
 
 												<button type="submit" class="btn bc1">판매 완료</button>
 											</form>

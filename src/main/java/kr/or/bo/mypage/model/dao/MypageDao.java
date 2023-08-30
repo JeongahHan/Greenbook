@@ -59,7 +59,7 @@ public class MypageDao {
 	public List selectMySellBook(String memberId, int start, int end) {
 		// TODO Auto-generated method stub
 		
-		String query = "select * from(select ROWNUM AS RNUM,N.* from(select * from PRODUCT_BOARD where PRODUCT_BOARD_WRITER = ? order by 1 DESC)N) where rnum between ? and ?";
+		String query = "select * from(select ROWNUM AS RNUM,N.* from(select * from PRODUCT_BOARD where PRODUCT_BOARD_WRITER = ?  and product_sell_check=0 order by 1 DESC)N) where rnum between ? and ?";
 		//String query = "select * from(select ROWNUM AS RNUM,N.* from(select * from PRODUCT_FILE full join PRODUCT_BOARD ON (PRODUCT_NO=PRODUCT_BOARD_NO) where PRODUCT_BOARD_writer=? order by 1 desc)N) where rnum between ? and ?";
 		
 		List list = jdbc.query(query, productRowMapper, memberId, start, end);
