@@ -24,7 +24,9 @@ transition-duration: 0.5s;
     color: #fff;
     cursor: pointer;
 }
-
+#resetbtn:hover{
+	cursor: pointer;
+}
 
 </style>
 
@@ -52,7 +54,13 @@ transition-duration: 0.5s;
 				<input type="hidden" name="keyword" th:value="${keyword}" id="keyword"> 
 			
             	<!-- 필터 -->
-            	<div style="position:fixed; transform: translate(-184px, 60px); display: grid;">
+            	<div style="position:fixed; transform: translate(-184px, -45px); display: grid;">
+            		<div class="reset" style="overflow:hidden; margin-bottom:20px;">
+        				<p style="float:left; padding-left:5px;">필터</p>
+        				<div style="float:right;">
+            				<button type="button" class="btn_reset" id="resetbtn" style="border:none;background-color:#fff; display: flex; align-items: center;"><span class="text">초기화</span><span class="material-icons">restart_alt</span></button>
+        				</div>
+    				</div>
             		<button type="submit" id="btn" name=type value="product_board">중고책방</button>
             		<button type="submit" id="btn" name=type value="board">독서노트</button>
            		</div>
@@ -102,20 +110,20 @@ transition-duration: 0.5s;
 	
 	<th:block th:include="common/footer"></th:block>		
 
-<script>
-
-$(document).ready(function(){
-
+	<script>
 	
-	const content =[[${mainSearchList}]];
+		
+		const keyword = $("#keyword").val();
+		
 
-
+		
+		$("#resetbtn").on("click",function(){
+			
+			var loc = '/board/mainSearchList?reqPage=1&keyword='+keyword;
+			location.href = loc;
+		});
 	
-});
-
-</script>
-
-
+	</script>
 		
 </body>
 </html>	    
