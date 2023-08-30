@@ -35,14 +35,14 @@
 					<th style="width:15%">요청 날짜</th>
 					<th style="width:10%">거래후기</th>
 				</tr>
-					<tr class="mypageTr mypageTr-2" th:each="requestList : ${requestList}">
-						<td></td>
+					<tr class="mypageTr mypageTr-2" th:each="requestList, status : ${requestList}">
+						<td th:text="${requestList.tradeNo}" style="display:none;"><td th:text="${status.size-status.index}"></td></td> <!-- <td th:text="${requestList.tradeNo}"></td> -->
 						<td th:text="${requestList.productBoardTitle}"></td>
 						<td th:text="${requestList.productAuthor}"></td>
 						<td th:text="${requestList.productPrice}"></td>
 						<td th:text="${requestList.productBoardWriter}"></td>
-						<td></td>
-						<td></td>
+						<td th:text="${requestList.tradeRequestDate}"></td>
+						<td th:value="${requestList.tradeCompleteDone}"></td> <!-- value가 0이면 버튼X, 1이면 버튼O -->
 					</tr>
 				<!-- 
 					<td>100</td>

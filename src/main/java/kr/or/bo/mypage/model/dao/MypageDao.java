@@ -200,8 +200,8 @@ public class MypageDao {
 
 	public List selectByRequestList(String memberId, int start, int end) {
 		String query = "select * from(select ROWNUM AS RNUM,N.* from(select * from TRADE_LIST where CONSUMER = ? order by 1 DESC)N) where rnum between ? and ?";
-		List byRequestList = jdbc.query(query, tradeListRowMapper, memberId, start, end);
-		return byRequestList;
+		List mypageList = jdbc.query(query, tradeListRowMapper, memberId, start, end);
+		return mypageList;
 	}
 
 	public int selectByRequestListTotalCount(String memberId) {
