@@ -27,14 +27,13 @@ public class WebConfig implements WebMvcConfigurer{
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new LoginInterceptor())
 		.addPathPatterns("/member/logout", "/member/list", "/member/changeLevel", "/member/checkedchangeLevel", "/member/find", "/member/findresult", "/member/levelSearchList",
-						"/msg/**", "/wish/**", "/proudct/**", "/mypage/**")
-		.excludePathPatterns("/product/board","/product/productDetail", "/wish/list", "/wish/more");
+						"/msg/**", "/wish/**", "/mypage/**")
+		.excludePathPatterns("/wish/list", "/wish/more");
 		
 		registry.addInterceptor(new AdminInterceptor())
 		.addPathPatterns("/member/list", "/member/changeLevel", "/member/checkedchangeLevel", "/member/find", "/member/findresult", "/member/levelSearchList");
 		
 		registry.addInterceptor(new BlackInterceptor())
-		.addPathPatterns("/mypage/**","/proudct/**", "/wish/**")
-		.excludePathPatterns("/product/board");
+		.addPathPatterns("/wish/**","/mypage/**");
 	}
 }
