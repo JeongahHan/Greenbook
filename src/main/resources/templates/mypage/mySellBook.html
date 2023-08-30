@@ -39,15 +39,15 @@
 							<input type="hidden" name="productCondition" th:value="${list.productCondition}">
 							
 							<!-- 프로덕트 파일 넘겨주기 -->
-							<input type="text" name="fileNo" th:value="${list.productFile.getFileNo}">
-							<input type="text" name="productNo" th:value="${list.productFile.getProductNo}">
-							<input type="text" name="filename" th:value="${list.productFile.getFilename}">
-							<input type="text" name="filepath" th:value="${list.productFile.getFilepath}">
+							<input type="hidden" name="fileNo" th:value="${list.productFile.getFileNo}">
+							<input type="hidden" name="productNo" th:value="${list.productFile.getProductNo}">
+							<input type="hidden" name="filename" th:value="${list.productFile.getFilename}">
+							<input type="hidden" name="filepath" th:value="${list.productFile.getFilepath}">
 							
 							<input type="hidden" name="reqPage" value="1">					
 							<button type="submit" class="btn bc1" href="/mypage/showConsumer">고객 정보 보기</button><!-- form태그 submit로 해야 편할듯 -->
 							<!-- <a class="btn bc1" href="/mypage/showConsumer">고객 정보 보기</a>form태그 submit로 해야 편할듯 -->
-							<p th:text="${list}">테스트</p>
+							
 						
 						</form>
 						<!-- <a class="btn bc1 modal-open-btn" target="#delete-modal" th:href="@{/mypage/mySellBookDelete(productBoardNo=${list.productBoardNo})}" th:value="${list.productBoardNo}">판매취소</a> -->

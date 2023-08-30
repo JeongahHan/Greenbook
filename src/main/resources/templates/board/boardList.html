@@ -21,8 +21,11 @@
             <p>></p>
             <p>독서노트</p>
         </div>
-		
-		<table class="tbl tbl-hover notice-tbl" id="boardtable">
+		<div th:if="${#lists.isEmpty(boardList)}" style="padding-top: 10%; text-align: center;">검색된 항목이 없습니다.</div>
+			
+			
+			<div th:if="${#lists.isEmpty(boardList) == false}">
+				<table class="tbl tbl-hover notice-tbl" id="boardtable">
 			<tr class="tr-2">
 				<th style="width:10%">번호</th>
 				<th style="width:45%">제목</th>
@@ -69,6 +72,8 @@
 			</div>
 		</div>
 		<div id="pageNavi" th:utext="${pageNavi}"></div>   <!-- 태그로 동작시킬려고 utext 로 가져옴 -->
+		</div>
+		
 	</div>
 	<th:block th:include="common/footer"></th:block>
 	

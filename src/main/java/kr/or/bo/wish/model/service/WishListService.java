@@ -87,7 +87,7 @@ public class WishListService {
 		int start = end - numPerPage + 1;
 		List myWishList = wishListDao.selectMainWishList(start, end, memberId);
 		
-		int totalCount = wishListDao.selectMyWishListTotalCount(memberId);
+		int totalCount = wishListDao.selectMainWishListTotalCount(memberId);
 		int totalPage = (int)Math.ceil(totalCount/(double)numPerPage);
 		
 		int pageNaviSize = 5;
@@ -96,7 +96,7 @@ public class WishListService {
 		String pageNavi = "<ul class='pagination'>";				
 		if(pageNo != 1) {
 			pageNavi += "<li>";
-			pageNavi += "<a class='page-item' href='/wish/myWishList?reqPage="+(pageNo-1)+"'>";
+			pageNavi += "<a class='page-item' href='/wish/mainWishList?reqPage="+(pageNo-1)+"'>";
 			pageNavi += "<span class='material-icons'>chevron_left</span>";
 			pageNavi += "</a>";
 			pageNavi += "</li>";
@@ -105,13 +105,13 @@ public class WishListService {
 		for(int i=0;i<pageNaviSize;i++) {
 			if(pageNo == reqPage) {
 				pageNavi += "<li>";
-				pageNavi += "<a class='page-item active-page' href='/wish/myWishList?reqPage="+(pageNo)+"'>";
+				pageNavi += "<a class='page-item active-page' href='/wish/mainWishList?reqPage="+(pageNo)+"'>";
 				pageNavi += pageNo;
 				pageNavi += "</a>";
 				pageNavi += "</li>";
 			}else {
 				pageNavi += "<li>";
-				pageNavi += "<a class='page-item' href='/wish/myWishList?reqPage="+(pageNo)+"'>";
+				pageNavi += "<a class='page-item' href='/wish/mainWishList?reqPage="+(pageNo)+"'>";
 				pageNavi += pageNo;
 				pageNavi += "</a>";
 				pageNavi += "</li>";
@@ -124,7 +124,7 @@ public class WishListService {
 		//다음 버튼
 		if(pageNo <= totalPage) {
 			pageNavi += "<li>";
-			pageNavi += "<a class='page-item' href='/wish/myWishList?reqPage="+(pageNo)+"'>";
+			pageNavi += "<a class='page-item' href='/wish/mainWishList?reqPage="+(pageNo)+"'>";
 			pageNavi += "<span class='material-icons'>chevron_right</span>";
 			pageNavi += "</a>";
 			pageNavi += "</li>";

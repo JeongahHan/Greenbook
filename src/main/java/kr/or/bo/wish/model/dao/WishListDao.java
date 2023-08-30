@@ -10,7 +10,7 @@ import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.wish.model.vo.MyWishListRowMapper;
 import kr.or.bo.wish.model.vo.WishList;
 import kr.or.bo.wish.model.vo.WishListRowMapper;
-import kr.or.bo.wish.model.vo.wishListMain;
+import kr.or.bo.wish.model.vo.wishListMainRowMapper;
 
 @Repository
 public class WishListDao {
@@ -21,7 +21,7 @@ public class WishListDao {
 	@Autowired
 	private MyWishListRowMapper myWishListRowMapper;
 	@Autowired
-	private wishListMain wishListMain;
+	private wishListMainRowMapper wishListMainRowMapper;
 	
 	
 	
@@ -56,6 +56,12 @@ public class WishListDao {
 		int totalCount = jdbc.queryForObject(query, Integer.class, memberId);
 		return totalCount;
 	}
+	
+	public int selectMainWishListTotalCount(String memberId) {
+		String query = "select count(*) as cnt from wish_list where member_id = ?";
+		int totalCount = jdbc.queryForObject(query, Integer.class, memberId);
+		return totalCount;
+	}	
 
 	public int selectIsWished(int productBoardNo, String memberId) {
 		String query = "select * from wish_list where product_board_no = ? and member_id = ?";
@@ -73,8 +79,8 @@ public class WishListDao {
 	}
 
 	public List selectWishlist(int start, int end) {
-		String query = "select * from (select rownum as rnum, w.* from (select PRODUCT_BOARD_NO, count(*) from WISH_LIST group by PRODUCT_BOARD_NO having count(*) >= 1 order by 2 desc)w) where rnum between ? and ?";
-		List wishList = jdbc.query(query, wishListMain, start, end);
+		String query = "select * from (select rownum as rnum, w.* from (select pb.PRODUCT_BOARD_TITLE,pb.PRODUCT_BOARD_NO,pf.FILEPATH,(select count(*) from wish_list where product_board_no = pb.product_board_no) as wish_count  from PRODUCT_BOARD pb join product_file pf on (product_board_no = product_no) order by wish_count desc)w) where rnum between ? and ?";
+		List wishList = jdbc.query(query, wishListMainRowMapper, start, end);
 		return wishList; 
-	}	
+	}
 }

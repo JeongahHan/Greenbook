@@ -64,7 +64,15 @@
 				Board(boardNo=103, boardTitle=게시판 테스트103, boardContent=테스트용, boardWriter=user01, boardRegDate=2023-08-22, boardReadCount=0, fileList=null)
 				 -->
 				 
-				<!-- 거래평가 모달 -->
+				 <!-- 거래평가 모달 -->
+				 <div class="ass-modal-wrap">
+				 	<div class="ass-modal">
+				 		<div class="modal-title">
+				 			<h3>쪽지 쓰기</h3>
+				 			<hr>
+				 		</div>
+				 	</div>
+				 </div>
 				 
 			</table>
 			<div id="pageNavi" th:utext="${pageNavi}"></div>
@@ -98,6 +106,9 @@
 			}
 		});
 		
+		$("#ass-btn").on("click", function(){
+			$(".ass-modal-wrap").css("display","flex");
+		});
 	
 	</script>
 	

@@ -85,7 +85,7 @@ public class WishListController {
 	}
 	
 	@ResponseBody
-	@PostMapping(value="/more")
+	@GetMapping(value="/more")
 	public List more(int start, int end) {
 		System.out.println(start);
 		System.out.println(end);
