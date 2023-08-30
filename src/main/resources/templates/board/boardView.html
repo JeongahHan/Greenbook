@@ -417,9 +417,8 @@
 		
 		//댓글 작성자에게 쪽지 쓰기
 		$("#bcMsg").on("click", function(){
-			const receiver = $(this).prev().prev().text();
+			const receiver = $(this).prev().prev().prev().text();
 			if(receiver != memberId){
-
 				//쪽지쓰기 모달 열기
 				$(".sendMsg-modal-wrap").css("display","flex");
 				//textarea 초기화
@@ -435,10 +434,9 @@
 		});
 		
 		//대댓글 작성자에게 쪽지 쓰기
-		$(".boardReCommentWriter").on("click", function(){
-			const receiver = $(this).text();
+		$("#bccMsg").on("click", function(){
+			const receiver = $(this).prev().prev().prev().text();
 			if(receiver != memberId){
-
 				//쪽지쓰기 모달 열기
 				$(".sendMsg-modal-wrap").css("display","flex");
 				//textarea 초기화
