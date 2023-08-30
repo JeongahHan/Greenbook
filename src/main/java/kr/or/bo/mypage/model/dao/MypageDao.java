@@ -282,7 +282,9 @@ public class MypageDao {
 		// TODO Auto-generated method stub
 		String query = "delete from trade_list where product_board_no = ? and consumer= ? ";
 		System.out.println("여기는 마이페이지 dao : "+m.getMemberId());
-		int result = jdbc.update(query,p.getProductBoardNo(), m.getMemberId());
+		int result = jdbc.update(query, p.getProductBoardNo(), m.getMemberId());
+		
+		
 		
 		return result;
 	}
