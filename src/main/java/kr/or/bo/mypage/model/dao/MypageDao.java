@@ -86,7 +86,7 @@ public class MypageDao {
 	//내가 판매중인 도서 토탈 카운트 세오기
 	public int selectMySellBookTotalCount(String memberId) {
 		// TODO Auto-generated method stub
-		String query = "select count(*) as cnt from PRODUCT_BOARD where PRODUCT_BOARD_WRITER = ?";
+		String query = "select count(*) as cnt from PRODUCT_BOARD where PRODUCT_BOARD_WRITER = ? and product_sell_check=0";
 		//jdbc.query(query, rowMapper, 위치홀더값 ,,,)
 		//query메소드를 사용하는 경우 매번 rowMapper를 제작 (결과가 1개여도)
 		//단일 값(행1, 열1)을 조회하는 경우
@@ -293,6 +293,33 @@ public class MypageDao {
 		
 		
 		return result;
+	}
+
+	//독서노트 댓글 토탈 카운트 조회
+	public int selectMyBoardCommentTotalCount(String memberId) {
+		// TODO Auto-generated method stub
+		String query ="select count(*) as cnt from BOARD_COMMENT where BOARD_COMMENT_WRITER = ?";
+		int totalCount = jdbc.queryForObject(query, Integer.class,memberId);
+		
+		return totalCount;
+	}
+
+	//중고책방 댓글 토탈 카운트 조회
+	public int selectMyProductBoardCommentTotalCount(String memberId) {
+		// TODO Auto-generated method stub
+		String query ="select count(*) as cnt from PRODUCT_COMMENT where PRODUCT_COMMENT_WRITER = ?";
+		int totalCount = jdbc.queryForObject(query, Integer.class,memberId);
+		
+		return totalCount;
+	}
+
+	//고객정보보기 토탈 카운트 조회
+	public int selectConsumerTotalCount(int productBoardNo) {
+		// TODO Auto-generated method stub
+		String query ="select count(*) as cnt from trade_list where product_board_no=?";
+		int totalCount = jdbc.queryForObject(query, Integer.class,productBoardNo);
+		
+		return totalCount;
 	}
 	
 }
