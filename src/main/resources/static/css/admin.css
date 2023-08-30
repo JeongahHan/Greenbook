@@ -675,7 +675,20 @@ textarea.input-form {
 .msgBtn:hover{
 	cursor: pointer;
 }
-
+/*쪽지 아이콘*/
+.msgIcon{
+	color: rgb(0, 90, 13);
+}
+.msgIcon:hover{
+	cursor: pointer;
+}
+.adminMsgDiv{
+	position: relative;
+}
+.adminMsgDiv>span:last-child {
+	position: initial;
+	transform: translate(5px, 5px);
+}
 .levelSearch{
   margin-top: 30px;
   overflow: hidden;
