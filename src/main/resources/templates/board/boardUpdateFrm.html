@@ -69,7 +69,11 @@
 			</form>
 		</div>
 		<th:block th:include="common/footer"></th:block>
+		
+		<script src="/js/sweetalert.min.js"></script>
 		<script>
+		
+		/*
 		function deleteFile(obj,fileNo){  //obj = this
 			if(confirm("파일을 삭제하시겠습니까?")){ //<input name = "delFilfeNo" ....> <<<<이거만들어주는거임
 				const input = $("<input>");
@@ -81,6 +85,34 @@
 				$(obj).parent().remove(); //화면에서 없애는 로직.
 			}
 		}
+		*/
+		
+		//파일 삭제 		
+		function deleteFile(obj,fileNo) {
+            
+			swal({
+				title: "파일을 삭제하시겠습니까?",
+				icon: 'warning'
+			}).then(function(isConfirm) {
+				if(!isConfirm){
+					return;
+				}else if(isConfirm){
+					const input = $("<input>");
+					input.attr("name","delFileNo");
+					input.attr("type","hidden");
+					input.val(fileNo);
+					
+					$(".boardUpdateFrm").append(input); // 위에 있는 클래스와 관련 됨
+					$(obj).parent().remove(); //화면에서 없애는 로직.	
+				}
+
+				});
+
+
+			};
+		
+		
+		
 		
 		
 		//썸머노트
@@ -94,6 +126,7 @@
 				}
 			}
 		});
+		
 		
 		function uploadImage(file,editor){
 			//이미지 데이터를 바로 본문에 삽입하면 용량이 너무 큼 (db기준)
