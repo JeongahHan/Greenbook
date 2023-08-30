@@ -43,10 +43,9 @@
 <script>
 
 $("#more-btn").on("click",function(){
-	//추가 가져올 게시물 시작번호
+
 	const start = $(this).val();
-	//console.log(start);
-	//한 번 더보기를 누를 때 추가로 가지고 올 게시물 수(5개로 지정)
+	console.log(start);
 	const amount = 4;
 	const end = Number(start)+amount-1;
 	$.ajax({
@@ -55,32 +54,32 @@ $("#more-btn").on("click",function(){
 		data : {start : start, end : end},
 		success : function(data){
 			console.log(data);
-			for(let i=0 ; i<data.length;i++){
+			for(let i=0 ; i<4;i++){
 				const wish = data[i];
 				const div = $("<div>");
-				div.addClass("posting-item");	//<div class="posting-item"></div>
+				div.addClass("posting-item");	
 				
 				const imgDiv = $("<div>");
-				imgDiv.addClass("posting-img");	//<div class="posting-img"></div>
+				imgDiv.addClass("posting-img");	
 				const img = $("<img>");
-				img.attr("src", "/static/img/product-img/");//<img src="파일경로">
-				imgDiv.append(img);				//<div class="posting-img"><img src="파일경로"></div>
+				img.attr("src",  "/product/"+wish.filepath);
+				console.log(wish.filepath);
+				imgDiv.append(img);				
 				
 				const contentDiv = $("<div>");
-				contentDiv.addClass("posting-content");//<div class="posting-content"></div>
+				contentDiv.addClass("posting-content");
 				const title = $("<p>");
-				title.text(wish.productBoardTitle);	//<p>글제목</p>
-				contentDiv.append(title);		//<div class="posting-content"><p>글제목</p></div>
+				title.text(wish.ProductBoardTitle);	
+				contentDiv.append(title);
 				
 				div.append(imgDiv).append(contentDiv);
 				$(".page-main-like-content").append(div);
 			}
-			//새로 읽어온 Photo를 화면에 추가 완료
-			//→ 더보기를 한 번 더 눌렀을 때 읽어온 이후 값을 조회하기 위한 준비
+			
 			const currentVal = Number($("#more-btn").val());
 			$("#more-btn").val(currentVal+amount);
 			
-			//currentCount 변경
+			
 			const currentCount = Number($("#more-btn").attr("currentCount"));
 			const changeCount = currentCount+data.length;
 			$("#more-btn").attr("currentCount", changeCount);
