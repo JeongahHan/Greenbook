@@ -404,8 +404,13 @@ public class MypageService {
 	//거래목록 인서트
 	@Transactional
 	public int tradeInsert(Member m, Product p) {
+		//먼저 검색해와서 이미 거래목록에 있는지 조회
+		
+		
+		//인서트 진행
 		int result = mypageDao.tradeInsert(m,p);
 		return result;
+		
 	}
 
 	//고객정보보기 조회
