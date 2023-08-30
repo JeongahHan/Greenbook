@@ -127,12 +127,12 @@ public class MypageService {
 		List mySellBookImgList = mypageDao.selectMySellBookImgList(m.getMemberId(), start, end);
 		for(int i =0 ;i<mySellBookList.size();i++) {
 			Product p = (Product)mySellBookList.get(i);
-			ProductFile pf = (ProductFile)mySellBookImgList.get(0);
+			ProductFile pf = (ProductFile)mySellBookImgList.get(i);
 			p.setProductFile(pf);
 			//p.set
 
 		}
-		
+		System.out.println("file 잘 담겨있는지 확인"+mySellBookImgList);
 		
 		
 		// 2. 페이지 네비게이션 제작
