@@ -26,12 +26,6 @@
 		<br>
 		<a href="/board/list?reqPage=1" style="color:#005A0D; border-bottom:1px solid #005A0D; font-family:ns-light; font-size:15.5px;">목록으로 돌아가기</a>
 		</div>
-		
-		<!-- 글쓰기 버튼 -->
-			<div class="board-write-button" th:if="${#lists.isEmpty(boardList)}">
-				<!-- 로그인되어있으면서 회원일때 -->
-				<a th:if="${session.m !=null && (session.m.memberLevel == 1 || session.m.memberLevel == 2)}" href="/board/writeFrm" class="board-btn board-write-button">글쓰기</a>
-			</div>
 			
 			
 			<div th:if="${#lists.isEmpty(boardList) == false}">
@@ -85,79 +79,6 @@
 		</div>
 	</div>
 	<th:block th:include="common/footer"></th:block>
-	
-	
-	
-		<script>
-		
-		/////페이지 1로 초기화		
-		//$("#board-enter").on("click",function(){
-		//	$("#currentPage").val(1);
-		//});
-
-		
-
-	
-		/*
-		/////현재 페이지 값  -- 중요!
-		const currentPage = window.location.search;
-		let bset = currentPage.split('=');
-
-		var bsetStr = bset[1];
-		
-		if(bsetStr.indexOf('&')>=0){
-			let realPageSplit = bsetStr.split('&');
-			var realPage = realPageSplit[0];
-			
-			$("#currentPage").val(realPage);
-		}else{
-			$("#currentPage").val(bsetStr);
-		}
-		
-		*/
-
-		/*
-		///////게시판 내 검색
-		
-			
-			$("#board-enter").on("click",function(){
-			
-			$.ajax({
-					url:"/board/getSearchList",
-					type:"GET",
-					data :  {reqPage:reqPage,type:type,keyword:keyword}, 
-					dataType : "json",
-					success : function(data){
-						console.log(data);
-						
-						
-						//테이블 초기화
-						$(".tr-1").empty();
-						$("#pageNavi").empty();
-						
-						if(data.length>=1){
-							data.forEach(function(item){
-								str="<tr class='tr-1'>";
-								str+= "<td>"+item.boardNo+"</td>";
-								str+="<td>"+item.boardTitle+"</td>";
-								str+="<td>"+item.boardWriter+"</td>";
-								str+="<td>"+item.boardRegDate+"</td>";
-								str+="<td>"+item.boardReadCount+"</td>";
-								str+="</tr>";
-								$('#boardtable').append(str);
-			        			});
-							
-								$(".board-search").next().append(str)
-						};
-						
-					}
-				});
-			
-			}); 
-		*/
-	
-	</script>
-	
 	
 	
 	

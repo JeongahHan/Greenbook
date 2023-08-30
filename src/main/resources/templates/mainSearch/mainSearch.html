@@ -44,7 +44,8 @@ transition-duration: 0.5s;
             <div th:if="${#lists.isEmpty(mainSearchList)}" style="padding-top: 10%; text-align: center;">
             	<p>검색된 항목이 없습니다.</p>
 				<br>
-				<a href="/" style="color:#005A0D; border-bottom:1px solid #005A0D; font-family:ns-light; font-size:15.5px;">메인으로 돌아가기</a>
+				<!-- 뒤로가기 -->
+				<a href="javascript:window.history.back()" style="color:#005A0D; border-bottom:1px solid #005A0D; font-family:ns-light; font-size:15.5px;">이전으로 돌아가기</a>
 			</div>
 			
 			
