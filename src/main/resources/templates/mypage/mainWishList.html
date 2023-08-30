@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>나의 관심도서</title>
+<link rel="stylesheet" href="/css/wishList.css">
+</head>
+<body>
+	<th:block th:include="common/header"></th:block>
+	<div class="page-content">
+		<div class="mypage-content-wrap">
+			<div class="mypage-content-title">관심도서</div>
+			<div class="s-wishList-wrap">
+				<div class="s-wishList-one" th:each="wishList : ${list}">
+					<a th:href="@{/product/productDetail(productBoardNo=${wishList.productBoardNo})}">
+						<div class="s-wishList-imgBox">
+							<!-- <img src="/img/product-img/매미울음소리 그칠 무렵.jpg"> -->
+	                    	<img th:src="${wishList.filepath}">
+						</div>
+						<div class="title"><p class="bold" th:text="${wishList.productBoardTitle}"></p></div>
+						<div class="small">판매자 | <span th:text="${wishList.productBoarWriter}"></span></div>
+						<div class="bold">
+							<span th:if="${wishList.productSellCheck == 0}" class="selling">[판매중]</span>
+							<span th:if="${wishList.productSellCheck == 1}" class="sold">[거래완료]</span>
+							<span th:text="${wishList.productPrice}"></span><span> 원</span>						
+						</div>				
+					</a>
+				</div>
+			</div>
+			<div id="pageNavi" th:utext="${pageNavi}"></div>
+		</div>	
+	</div>
+	<th:block th:include="common/footer"></th:block>
+	
+
+</body>
+</html>

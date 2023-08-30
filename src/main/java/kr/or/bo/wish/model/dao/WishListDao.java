@@ -44,6 +44,12 @@ public class WishListDao {
 		List list = jdbc.query(query, myWishListRowMapper, memberId, start, end);
 		return list;
 	}
+	
+	public List selectMainWishList(int start, int end, String memberId) {
+		String query = "select * from (select rownum as rnum, w.* from (select wish_list_no, product_board_no, member_id, product_board_writer, product_price, product_sell_check, product_board_title, filepath from wish_list join product_board using (product_board_no) join product_file on (product_board_no = product_no) where member_id = ? order by 1 desc)w) where rnum between ? and ?";
+		List list = jdbc.query(query, myWishListRowMapper, memberId, start, end);
+		return list;
+	}
 
 	public int selectMyWishListTotalCount(String memberId) {
 		String query = "select count(*) as cnt from wish_list where member_id = ?";
@@ -70,7 +76,5 @@ public class WishListDao {
 		String query = "select * from (select rownum as rnum, w.* from (select PRODUCT_BOARD_NO, count(*) from WISH_LIST group by PRODUCT_BOARD_NO having count(*) >= 1 order by 2 desc)w) where rnum between ? and ?";
 		List wishList = jdbc.query(query, wishListMain, start, end);
 		return wishList; 
-	}
-	
-	
+	}	
 }

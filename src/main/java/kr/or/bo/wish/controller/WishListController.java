@@ -59,13 +59,22 @@ public class WishListController {
 		return result;
 	}
 	
-	//관심 도서 불러오기
+	//마이페이지 - 관심 도서 불러오기
 	@GetMapping(value = "/myWishList")
 	public String myWishList(Model model, int reqPage, @SessionAttribute(required = false) Member m) {
-		WishListData wld = wishListService.selectmyWishList(m.getMemberId(), reqPage);
+		WishListData wld = wishListService.selectMyWishList(m.getMemberId(), reqPage);
 		model.addAttribute("list", wld.getMyWishList());
 		model.addAttribute("pageNavi", wld.getPageNavi());
 		return "mypage/myWishList";
+	}
+	
+	//헤더 아이콘 - 관심 도서 불러오기
+	@GetMapping(value = "/mainWishList")
+	public String mainWishList(Model model, int reqPage, @SessionAttribute(required = false) Member m) {
+		WishListData wld = wishListService.selectMainWishList(m.getMemberId(), reqPage);
+		model.addAttribute("list", wld.getMyWishList());
+		model.addAttribute("pageNavi", wld.getPageNavi());
+		return "mypage/mainWishList";
 	}
 	
 	@GetMapping(value="/list")
