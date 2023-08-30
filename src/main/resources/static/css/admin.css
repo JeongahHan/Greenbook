@@ -402,7 +402,7 @@ header {
 }
 .tbl th,
 .tbl td {
-  padding: 1rem;
+  padding: 0.9rem;
   text-align: center;
 }
 .tbl .tr-1 {

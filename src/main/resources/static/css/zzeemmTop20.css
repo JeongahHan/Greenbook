@@ -297,17 +297,14 @@ footer > .footer-content > .footer-detail {
 }
 
 .main-text{
-    transform: translate(-26%,-210%);
+    transform: translate(-25%,-210%);
 }
 .main-text>p{
-    font-size: 50px;
-    line-height: 10px;
+    font-size: 42px;
+    line-height: 41px;
     color: #fff;
     text-align: center;
-    margin-bottom: 60px;
-    letter-spacing: 2px;
-    font-family: 'ns-m';
-    font-weight: 500;
+    margin-bottom: 30px;
 }
 
 
@@ -338,6 +335,7 @@ footer > .footer-content > .footer-detail {
     text-align: center;
     color: rgb(153, 153, 153);
     margin-top: 10px;
+    margin-bottom: 100px;
 }
 
 
@@ -402,4 +400,52 @@ footer > .footer-content > .footer-detail {
 }
 .posting-wrap .posting-item:hover {
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+/*찜top20*/
+.bestseller-content{
+	overflow: hidden;
+}
+
+.table{
+    float:left;
+    border-style: none;
+    
+    width: calc(100%/4);
+
+    margin-bottom:100px;
+}
+.table>.tr1{
+    border-style: none;
+}
+.table>.tr2{
+    border-style: none;
+}
+.table>.tr3{
+    border-style: none;
+}
+
+
+.table td{
+    border-style: none;
+    padding-left:10px;
+    padding-right:10px;
+}
+.table .td1{
+    height: 410px;
+    vertical-align: top;
+}
+.table .td2{
+    height: 100px;
+    vertical-align: top;
+	
+	font-size:17px;
+}
+.table .td3{
+    height: 100px;
+    vertical-align: top;
+    
+    font-family:ns-light;
+    font-size:15px;
 }

@@ -213,6 +213,7 @@ public class MemberController {
 		model.addAttribute("adminList", nld.getAdminList());
 		model.addAttribute("pageNavi", nld.getPageNavi());
 		model.addAttribute("reqPage", nld.getReqPage());
+		System.out.println(nld.getPageNavi());
 		return "member/admin";
 	}
 	

@@ -192,6 +192,7 @@ public class MypageController {
 		return "redirect:/mypage/mySellBook?reqPage=1";
 	}
 	
+	//구매요청버튼 클릭시
 	@GetMapping(value = "/byRequest")
 	public String byRequest(HttpSession session, Model model, Product p) {
 		Member m = (Member)session.getAttribute("m");
