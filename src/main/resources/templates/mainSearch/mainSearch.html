@@ -39,7 +39,11 @@ transition-duration: 0.5s;
             <div class="page-title" >
 				<p style="font-size: 28px;">통합검색</p>
             </div>
-            <div th:if="${#lists.isEmpty(mainSearchList)}" style="padding-top: 10%; text-align: center;">검색된 항목이 없습니다.</div>
+            <div th:if="${#lists.isEmpty(mainSearchList)}" style="padding-top: 10%; text-align: center;">
+            	<p>검색된 항목이 없습니다.</p>
+				<br>
+				<a href="/" style="color:#005A0D; border-bottom:1px solid #005A0D; font-family:ns-light; font-size:15.5px;">메인으로 돌아가기</a>
+			</div>
 			
 			
 			<div th:if="${#lists.isEmpty(mainSearchList) == false}">
@@ -64,7 +68,7 @@ transition-duration: 0.5s;
 			</tr>
 			
 			
-				<tr class="tr-1" th:each="mainSearchList : ${mainSearchList}">
+			<tr class="tr-1" th:each="mainSearchList : ${mainSearchList}">
 				<td></td>
 				<td style="padding-left: 0px;">
 					<a th:if="${mainSearchList.boardType.toString().equals('board')}" th:href ="@{/board/view(boardNo=${mainSearchList.boardNo})}" id="titleLine">
@@ -76,12 +80,13 @@ transition-duration: 0.5s;
 						<span style="padding-right:5px;">[중고책방]</span>
 						<span th:text="${mainSearchList.boardTitle}" ></span>
 					</a>
-				</td> 
+				</td>
 				<td th:text="${mainSearchList.boardWriter}"></td>
 				<td th:text="${mainSearchList.boardRegDate}"></td>
 				<td th:text="${mainSearchList.boardReadCount}"></td>
-				</tr>
+			</tr>
 			</table>
+			
 			<div>
 				<div id="pageNavi" th:utext="${pageNavi2}"></div>
 			</div>
@@ -89,7 +94,6 @@ transition-duration: 0.5s;
 			
 			
 			</div>
-
         </div>
 
     
@@ -98,7 +102,19 @@ transition-duration: 0.5s;
 	
 	<th:block th:include="common/footer"></th:block>		
 
-		
+<script>
+
+$(document).ready(function(){
+
+	
+	const content =[[${mainSearchList}]];
+
+
+	
+});
+
+</script>
+
 
 		
 </body>
