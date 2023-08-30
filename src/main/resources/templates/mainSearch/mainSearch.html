@@ -12,6 +12,21 @@
 <link rel="stylesheet" href="/css/board.css">
 <link rel="stylesheet" href="/css/default.css">
 
+<style>
+
+#btn{
+width:150px; height:45px; margin-bottom:5px; background-color: #fff; border: 1px solid #005A0D;
+color:#005A0D;
+transition-duration: 0.5s;
+}
+#btn:hover{
+	background-color:  #005A0D;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+</style>
 
 	
 </head>
@@ -24,15 +39,17 @@
             <div class="page-title" >
 				<p style="font-size: 28px;">통합검색</p>
             </div>
-	
-			<input type="hidden" name="reqPage" th:value="${reqPage}" id="reqPage">
-			<input type="hidden" name="keyword" th:value="${keyword}" id="keyword"> 
 			
-            <!-- 필터 -->
-            <div style="position:fixed; transform: translate(-184px, 60px); display: grid;">
-            	<button id="btn" name=button value="product_board" style="width:150px; height:45px; margin-bottom:5px; background-color: #fff; border: 1px solid #005A0D;">중고책방</button>
-            	<button id="btn" name=button value="board"  style="width:150px; height:45px; background-color: #fff; border: 1px solid #005A0D;">독서노트</button>
-            </div>
+			<form action="/board/mainSearchList2">
+				<input type="hidden" name="reqPage" th:value="${reqPage}" id="reqPage">
+				<input type="hidden" name="keyword" th:value="${keyword}" id="keyword"> 
+			
+            	<!-- 필터 -->
+            	<div style="position:fixed; transform: translate(-184px, 60px); display: grid;">
+            		<button type="submit" id="btn" name=type value="product_board">중고책방</button>
+            		<button type="submit" id="btn" name=type value="board">독서노트</button>
+           		</div>
+			</form>
             
             <table class="tbl tbl-hover notice-tbl" id="boardtable">
 			<tr class="tr-2">
@@ -76,54 +93,6 @@
 	<th:block th:include="common/footer"></th:block>		
 		
 		
-		
-<script type="text/javascript">
- 
-
-	$("[name=button]").on('click',function(){
-		
-		const reqPage = $("#reqPage").val();
-		const keyword = $("#keyword").val();
-		const type = $(this).val();
-		console.log(reqPage);
-		console.log(keyword);
-		console.log(type);
-
-		$.ajax({
-				url:"/board/mainSearchList2",
-				type:"GET",
-				data :  {reqPage:reqPage,keyword:keyword,type:type}, 
-				dataType : "json",
-				success : function(data){
-					console.log(data);
-					
-					
-					//테이블 초기화
-					$(".tr-1").empty();
-					$("#pageNavi").empty();
-					
-					if(data.length>=1){
-						data.forEach(function(item){
-							str="<tr class='tr-1'>";
-							str+= "<td>"+"</td>";
-							str+="<td>"+item.boardTitle+"</td>";
-							str+="<td>"+item.boardWriter+"</td>";
-							str+="<td>"+item.boardRegDate+"</td>";
-							str+="<td>"+item.boardReadCount+"</td>";
-							str+="</tr>";
-							
-							$('#boardtable').append(str);
-							
-	        			});
-						
-					};
-					
-				}
-			}); //ajax
-		
-		});//click
-
-</script>
 
 		
 </body>
