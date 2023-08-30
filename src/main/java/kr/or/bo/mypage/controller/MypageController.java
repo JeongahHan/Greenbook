@@ -70,7 +70,7 @@ public class MypageController {
 		return "redirect:/mypage/myBoard?reqPage=1";
 	}
 	
-	//나의 댓글
+	//독서노트 댓글
 	@GetMapping(value = "/myComment")
 	public String myComment(HttpSession session,Model model, int reqPage) {
 		//내가 작성한 댓글 조회해서 넘겨주기

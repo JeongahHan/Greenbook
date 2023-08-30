@@ -152,7 +152,7 @@ public class MypageDao {
 		return list;
 	}
 
-	//내가 작성한 자유게시판 댓글 조회
+	//독서노트 댓글 조회
 	public List selectMyComment(String memberId, int start, int end) {
 		// TODO Auto-generated method stub
 		String query = "select * from(select ROWNUM AS RNUM, N.* from (select * from BOARD_COMMENT where board_comment_writer=? order by 1 desc)N) where rnum between ? and ?";

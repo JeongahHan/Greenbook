@@ -27,7 +27,7 @@
 		<a href="/board/list?reqPage=1" style="color:#005A0D; border-bottom:1px solid #005A0D; font-family:ns-light; font-size:15.5px;">목록으로 돌아가기</a>
 		</div>
 		
-		<!-- 글쓰기 버튼 -->
+		<!-- 어떠한 글도 없을때 0 >> 글쓰기 버튼 -->
 			<div class="board-write-button" th:if="${#lists.isEmpty(boardList)}">
 				<!-- 로그인되어있으면서 회원일때 -->
 				<a th:if="${session.m !=null && (session.m.memberLevel == 1 || session.m.memberLevel == 2)}" href="/board/writeFrm" class="board-btn board-write-button">글쓰기</a>

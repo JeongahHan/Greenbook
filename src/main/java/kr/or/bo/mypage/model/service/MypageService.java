@@ -132,13 +132,11 @@ public class MypageService {
 			//p.set
 
 		}
-		System.out.println("file 잘 담겨있는지 확인"+mySellBookImgList);
 		
 		
 		// 2. 페이지 네비게이션 제작
 		// 총 페이지 수 계산을 위해서는 총 게시물 수를 알아야함 -> DB에서 그룹함수로 조회
 		int totalCount = mypageDao.selectMySellBookTotalCount(m.getMemberId());		
-		System.out.println("MypageService 총 내가 판매하는 도서 수 : " + totalCount);
 		// 총 페이지 수 계산
 		// 총 게시물수 130
 		// 한페이지당 게시물 수 10
@@ -304,7 +302,7 @@ public class MypageService {
 		return mld;
 	}//selectMyProductBoardComment()종료
 
-	//내가 작성한 자유게시판 댓글 조회
+	//독서노트 댓글 조회
 	public MypageListData selectMyComment(Member m, int reqPage) {
 		// TODO Auto-generated method stub
 		

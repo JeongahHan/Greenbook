@@ -12,28 +12,31 @@
 		<div class="mypage-content-wrap">
 			<div class="mypage-content-title">고객 정보 보기</div>
 			<div class="">
-				<p>프로덕트</p>
-				<p th:text="${product}"> 테스트</p>
+				
 				<div class="bookInfo">
 					<div class="book-img-box">
 	                    <img src="/img/product-img/매미울음소리 그칠 무렵.jpg">
-	                    <!-- <img th:src="${product.productFile.filepath}"> -->
+	                    <img th:src="${product.productFile.filepath}">
 					</div>
 					<div class="book-content">
 						<h2 class="book-title" th:text="${product.productBoardTitle}">매미 울음소리 프로덕트보드</h2>
-						<p class="book-author" th:text="${product.productAuthor}">저자 프로덕트보드</p>
-						<p class="book-condition" th:text="${product.productCondition}">책상태 프로덕트보드</p>
-						<p class="book-price"><span th:text="${product.productPrice}">th문법span</span> 원</p>
+						<p>저자 : <span class="book-author" th:text="${product.productAuthor}">저자 프로덕트보드</span></p>
+						<p class="book-condition">책 상태 : 
+							<!-- <span class="book-condition" th:text="${product.productCondition}">책상태 프로덕트보드</span> -->
+							<span th:if="${product.productCondition==1}">매우나쁨</span>
+							<span th:if="${product.productCondition==2}">나쁨</span>
+							<span th:if="${product.productCondition==3}">보통</span>
+							<span th:if="${product.productCondition==4}">좋음</span>
+							<span th:if="${product.productCondition==5}">매우 좋음</span>
+						</p>
+						<p class="book-price"><span th:text="${product.productPrice}">가격</span> 원</p>
 						
 					</div>
 				</div>
 				<div class="consumer-wrap">
 					<!-- <p th:text="${()selectConsumerList.get(0)).isEmpty()}"> 테스트</p> -->
 					
-					<p>트레이드 리스트</p>
-					<p th:text="${selectConsumerList.get(0)}"> 테스트</p>
-					<p>트레이드 리스트 안의 멤버</p>
-					<p th:text="${selectConsumerList.get(0).member}">테스트</p>
+					
 					
 					<th:block th:if="${selectConsumerList.get(0).member != null}">
 						<div class="consumer-one">
