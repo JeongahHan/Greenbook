@@ -180,20 +180,20 @@
 							</th:block>
 							
 							<!-- 대댓글 등록 -->
-							<div class="inputCommentBox inputRecommentBox" th:if="${session.m != null}">
+							<div class="inputCommentBox inputRecommentBox" th:if="${session.m != null}" style="width: 80%;">
 								<form action="/product/insertComment" method="post">
-									<ul>
-										<li>
-											<span class="material-symbols-outlined">subdirectory_arrow_right</span>
+									<ul style="display: flex; height: 100px;">
+										<li style="width: 15%; display: flex; justify-content: center; align-items: center; margin: unset;">
+											<span class="material-symbols-outlined" style="font-size: 40px; color: #ccc; width:unset;">subdirectory_arrow_right</span>
 										</li>
-										<li>
+										<li style="width: 75%;margin-left: -10px;">
 											<input type="hidden" name="productCommentWriter" th:value="${session.m.memberId}">
 											<input type="hidden" name="productRef" th:value="${p.productBoardNo}">
 											<input type="hidden" name="productCommentRef" th:value="${pc.productCommentNo}">
-											<textarea name="productCommentContent" class="commentInput-form"></textarea>
+											<textarea name="productCommentContent" class="commentInput-form" style="height: 96px;min-height: 96px; width:100%; margin-bottom: 0px;"></textarea>
 										</li>
-										<li>
-											<button type="submit" class="btn bc1 bs4 commentInsert">등록</button>
+										<li style="width: 10%;margin-left: 10px;">
+											<button type="submit" class="btn bc1 bs4 commentInsert" style="width: 120%;padding: unset; font-size: 1.2em; display: inline-block; box-sizing: border-box; height: 96px; background-color:#005A0D; border:none; margin:0;">등록</button>
 										</li>
 									</ul>
 								</form>
