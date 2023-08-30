@@ -51,7 +51,7 @@ $("#more-btn").on("click",function(){
 	const end = Number(start)+amount-1;
 	$.ajax({
 		url : "/wish/more",
-		type : "post",
+		type : "GET",
 		data : {start : start, end : end},
 		success : function(data){
 			console.log(data);
@@ -63,7 +63,7 @@ $("#more-btn").on("click",function(){
 				const imgDiv = $("<div>");
 				imgDiv.addClass("posting-img");	//<div class="posting-img"></div>
 				const img = $("<img>");
-				img.attr("src", "/wish/"+wish.filepath);//<img src="파일경로">
+				img.attr("src", "/static/img/product-img/");//<img src="파일경로">
 				imgDiv.append(img);				//<div class="posting-img"><img src="파일경로"></div>
 				
 				const contentDiv = $("<div>");
