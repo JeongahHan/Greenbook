@@ -34,6 +34,7 @@ public class WebConfig implements WebMvcConfigurer{
 		.addPathPatterns("/member/list", "/member/changeLevel", "/member/checkedchangeLevel", "/member/find", "/member/findresult", "/member/levelSearchList");
 		
 		registry.addInterceptor(new BlackInterceptor())
-		.addPathPatterns("/wish/**","/mypage/**");
+		.addPathPatterns("/wish/**","/mypage/**")
+		.excludePathPatterns("/wish/list", "/wish/more");
 	}
 }
