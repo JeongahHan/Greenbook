@@ -296,9 +296,7 @@ footer > .footer-content > .footer-detail {
     height: 700px;
 }
 
-.main-text{
-    transform: translate(-26%,-210%);
-}
+
 .main-text>p{
     font-size: 50px;
     line-height: 10px;
