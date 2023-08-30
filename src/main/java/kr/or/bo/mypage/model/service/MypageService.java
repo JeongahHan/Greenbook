@@ -659,5 +659,15 @@ public class MypageService {
 		return buyRequester;
 	}
 
+	//구매요청 취소
+	@Transactional
+	public int tradeDelete(Member m, Product p) {
+		// TODO Auto-generated method stub
+		
+		int result =mypageDao.tradeDelete(m,p);
+		
+		return result;
+	}
+
 	
 }
