@@ -153,12 +153,6 @@ public class MypageController {
 		
 	}
 	
-	
-	@GetMapping(value = "/myWishList")
-	public String myWishList() {
-		return "mypage/myWishList";
-	}
-	
 	@GetMapping(value = "/mySellBook")
 	public String mySellBook(HttpSession session,Model model, int reqPage) {
 		Member m = (Member)session.getAttribute("m");
