@@ -22,7 +22,7 @@
 							<div class="myComment">
 								<p><span th:text="${list.product.productBoardTitle}">어느게시글에 달린 댓글인지</span> 에 남긴 댓글</p>
 								<p th:text="${list.productCommentContent}">여기는 중고책판 댓글내용</p>
-								<p th:text="${list.productFile.filepath}">임시로 파일패스 문자 확인</p>
+								
 								
 							</div>
 							<div class="comment-imgBox">
@@ -37,6 +37,7 @@
 				</div>
 				
 			</div>
+			<div id="pageNavi" th:utext="${pageNavi}"></div>
 		</div>
 	</div>
 	<th:block th:include="common/footer"></th:block>

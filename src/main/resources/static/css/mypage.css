@@ -328,6 +328,7 @@ B31312 빨강
     padding: 15px 15px;
     margin: 5px 5px;
     border-radius: 5px;
+    
 }
 .wishList-one:hover{
     background-color: #E7E7E7;
@@ -335,6 +336,12 @@ B31312 빨강
 }
 .wishList-imgBox img{
     width: 100%;
+}
+.wishList-toProductDetail{
+    overflow: hidden;
+}
+.productBoardTitle{
+    height: 22.69px;
 }
 
 
