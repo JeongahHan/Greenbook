@@ -214,7 +214,8 @@ public class MypageController {
 	public String showConsumer (Product p , HttpSession session, int reqPage, Model model) {
 		
 		Member m = (Member)session.getAttribute("m");
-		mypageService.selectConsumer(p,m,reqPage);
+		//mypageService.selectConsumer(p,m,reqPage);
+		//tradeList조회해오기
 		MypageListData mld = mypageService.selectConsumer(p,m,reqPage);
 			
 		model.addAttribute("selectConsumerList",mld.getMypageList());
@@ -254,15 +255,27 @@ public class MypageController {
 		return "mypage/byRequestList";
 	}
 	
+	//중고책방 상세보기에서 구매요청버튼을 눌럿을때
 	@GetMapping(value = "/soldOut")
-	public String soldOut(TradeList tradeList, Member member) {
+	public String soldOut(TradeList tradeList, Member member, Model model) {
 		System.out.println("컨트롤로 잘 오나");
 		tradeList.setMember(member);//멤버 담아온거 셋팅
 		System.out.println(tradeList);
 		
 		int result = mypageService.soldOut(tradeList);
+		if(result>0) {
+			model.addAttribute("title", "구매요청 성공");
+			model.addAttribute("msg", "판매자에게 구매요청이 전송되었습니다.");
+			model.addAttribute("icon", "");
+		}else {
+			model.addAttribute("title", "구매요청 실패");
+			model.addAttribute("msg", "관리자에게 문의하여주시기 바랍니다.");
+			model.addAttribute("icon", "");
+		}
+		model.addAttribute("loc", "/product/productDetail?productBoardNo="+tradeList.getProductBoardNo());
+
 		
-		return "mypage/memberUpdateFrm";//임시로 회원정보로
+		return "common/msg";//임시로 회원정보로
 	}
 	
 }
