@@ -495,13 +495,14 @@ public class MypageService {
 
 	}
 
+	@Transactional
 	public MypageListData selectByRequestList(String memberId, int reqPage) {
 		
 		int numPerPage = 10;
 		int end = reqPage * numPerPage;
 		int start = end - numPerPage + 1;
 		
-		List byRequestList = mypageDao.selectByRequestList(memberId, start, end);
+		List mypageList = mypageDao.selectByRequestList(memberId, start, end);
 		
 		int totalCount = mypageDao.selectByRequestListTotalCount(memberId);
 		
@@ -550,9 +551,8 @@ public class MypageService {
 		}
 
 		pageNavi += "</ul>";
-		
-		
-		MypageListData mld = new MypageListData(byRequestList, pageNavi);
+
+		MypageListData mld = new MypageListData(mypageList, pageNavi);
 		
 		return mld;
 	}

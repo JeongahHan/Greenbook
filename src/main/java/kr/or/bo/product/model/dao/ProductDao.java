@@ -14,6 +14,7 @@ import kr.or.bo.product.model.vo.ProductCommentRowMapper;
 import kr.or.bo.product.model.vo.ProductFile;
 import kr.or.bo.product.model.vo.ProductFileRowMapper;
 import kr.or.bo.product.model.vo.ProductRowMapper;
+import kr.or.bo.product.model.vo.ProductTradeListRowMapper;
 
 @Repository
 public class ProductDao {
@@ -29,6 +30,9 @@ public class ProductDao {
 	
 	@Autowired
 	private ProductCommentRowMapper productCommentRowmapper;
+	
+	@Autowired
+	private ProductTradeListRowMapper productTradeListRowMapper;
 
 	public int insertPhoto(Product p) {
 		String query = "INSERT INTO PRODUCT_BOARD VALUES (PRODUCT_BOARD_SEQ.NEXTVAL, ?, ?, ?, TO_CHAR(SYSDATE, 'YYYY-MM-DD'), ?, ?, ?, ?, DEFAULT)";
@@ -182,8 +186,8 @@ public class ProductDao {
 	}
 
 	public List selectbyRequestList(Member m) {
-		String query = "SELECT * FROM PRODUCT_BOARD WHERE PRODUCT_BOARD_NO IN (select product_board_no from trade_list where consumer=?)";
-		List byRequestList = jdbc.query(query, productRowmapper, m.getMemberId());
+		String query = "SELECT T.TRADE_NO, P.PRODUCT_BOARD_TITLE, P.PRODUCT_AUTHOR, P.PRODUCT_PRICE, P.PRODUCT_BOARD_WRITER, T.TRADE_REQUEST_DATE, T.TRADE_COMPLETE_DONE FROM TRADE_LIST T, PRODUCT_BOARD P WHERE T.PRODUCT_BOARD_NO = P.PRODUCT_BOARD_NO AND T.CONSUMER = ? ORDER BY 1 DESC";
+		List byRequestList = jdbc.query(query, productTradeListRowMapper, m.getMemberId());
 		return byRequestList;
 	}
 	
