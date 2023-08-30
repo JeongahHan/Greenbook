@@ -41,7 +41,7 @@
 								<div class="book-writer" th:if="${product.productSellCheck == 0}" style="text-decoration: line-through; color:#ccc">저자 | <span th:text="${product.productAuthor}" style="text-decoration: line-through; color:#ccc"></span></div>
 								<div class="book-writer" th:if="${product.productSellCheck == 1}">저자 | <span th:text="${product.productAuthor}"></span></div>
 								
-								<div class="book-price" th:if="${product.productSellCheck == 0}" style="color:#ccc;"><span th:text="${product.productPrice}" style="text-decoration: line-through; color:#ccc"></span> 원 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<span style="text-decoration: none; color:red"> 판매완료</span></div>
+								<div class="book-price" th:if="${product.productSellCheck == 0}" style="color:#ccc;"><span th:text="${product.productPrice}" style="text-decoration: line-through; color:#ccc"></span> 원 &nbsp<span style="text-decoration: none; color:red"> 판매완료</span></div>
 								<div class="book-price" th:if="${product.productSellCheck == 1}"><span th:text="${product.productPrice}"></span> 원</div>
 								
                     		</div>
