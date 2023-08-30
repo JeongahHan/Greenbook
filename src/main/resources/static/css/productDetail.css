@@ -704,17 +704,22 @@
 
 /*쪽지 아이콘*/
 .msgIcon{
-	padding-top: 15px;
-	padding-left: 5px;
 	color: rgb(0, 90, 13);
+	padding-left: 5px;
 }
 .msgIcon:hover{
 	cursor: pointer;
 }
-.posting-comment > li:last-child > .comment-info > span:last-child {
+.posting-comment > li:last-child > .comment-info > span:nth-child(3){
   	color: rgb(0, 90, 13);
-  	padding-top: 40px;
-	padding-left: 5px;
+}
+.comment-info{
+	align-items: center;
+	display: flex;
+}
+.box1{
+	align-items: center;
+	display: flex;
 }
 
   .posting-comment > li:first-child .material-icons {
@@ -725,4 +730,5 @@
     font-size: 40px;
     color: #ccc;
   }
+
   

@@ -43,8 +43,9 @@
 						<td th:text="${requestList.productBoardWriter}"></td>
 						<td th:text="${requestList.tradeRequestDate}"></td>
 						<td>
+							<input type="hidden" class="tradeCompleteDone" th:value="${requestList.tradeCompleteDone}">
 							<input type="hidden" class="productBoardWriter" th:value="${requestList.productBoardWriter}">
-							<button class="post-btn byRequestBtn byRequestBc1" id="ass-btn" th:if="${requestList.tradeCompleteDone=='1'}">거래평가</button>
+							<button class="post-btn byRequestBtn byRequestBc1" th:if="${requestList.tradeCompleteDone=='1'}">거래평가</button>
 						</td>
 						<!-- <td th:value="${requestList.tradeCompleteDone}"></td>  value가 0이면 버튼X, 1이면 버튼O -->
 					</tr>
@@ -68,9 +69,17 @@
 				 <div class="ass-modal-wrap">
 				 	<div class="ass-modal">
 				 		<div class="modal-title">
-				 			<h3>쪽지 쓰기</h3>
+				 			<h3>거래 평가</h3>
 				 			<hr>
 				 		</div>
+					 		<div>
+					 			<span>asdf</span><span> 님과의 거래가 <button>만족</button>스러웠어요!</span>
+					 		</div>
+					 		<div>
+					 			<span>asdf</span><span> 님과의 거래가 <button>불만족</button>스러웠어요!</span>
+					 		</div>
+					 		<div>
+					 		</div>
 				 	</div>
 				 </div>
 				 
@@ -84,10 +93,13 @@
 
 	<script>
 	
-		const writer = $(".productBoardWriter").val();
-		$("#ass-btn").on("click",function(){
+		
+		$(".post-btn").on("click",function(){
+			const writer = $(this).prev().val();
+			const grade = $(this).prev().prev().val();
 			alert(writer);
-			
+			alert(grade);
+			$(".ass-modal-wrap").css("display","flex");
 		});
 		
 		//쪽지쓰기 시작
@@ -106,10 +118,6 @@
 			}
 		});
 		
-		$("#ass-btn").on("click", function(){
-			$(".ass-modal-wrap").css("display","flex");
-		});
-	
 	</script>
 	
 </body>
