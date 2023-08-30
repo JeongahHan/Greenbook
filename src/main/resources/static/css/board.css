@@ -231,7 +231,7 @@
 	height:auto;
 	text-align:left;
 	vertical-align:unset;    /*unset*/
-	padding: 3.6rem;
+	padding: 4rem;;
 
 	font-family:ns-m;
 }
@@ -436,7 +436,7 @@
   }
 .writingbs4 {
    width: 13%;
-   padding: 1rem;
+   padding: 0.8rem;
    font-size: 1.2em;
  }
 
