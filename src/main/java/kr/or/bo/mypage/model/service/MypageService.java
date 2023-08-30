@@ -453,7 +453,23 @@ public class MypageService {
 		// 이전버튼 제작 < 1 2
 		if (pageNo != 1) {// 페이지 번호가 1이 아닌경우만 1이면 그 전이 없으니까
 			pageNavi += "<li>";
-			pageNavi += "<a class='page-item' href='/mypage/showConsumer?reqPage=" + (pageNo - 1) + "'>";///페이지나비수정
+			//pageNavi += "<a class='page-item' href='/mypage/showConsumer?reqPage=" + (pageNo - 1) + "'>";
+			pageNavi += "<a class='page-item' "
+					+ "href='/mypage/showConsumer?"
+					+ "productBoardNo="	+ p.getProductBoardNo()
+					+ "&productBoardTitle="	+ p.getProductBoardTitle()
+					+ "&productBoardContent="+p.getProductBoardContent()
+					+ "&productBoardWriter="+p.getProductBoardWriter()
+					+ "&productAuthor="+p.getProductAuthor()
+					+ "&productPrice="+p.getProductPrice()
+					+ "&productRegDate="+p.getProductRegDate()
+					+ "&productCondition="+p.getProductCondition()
+					+ "&fileNo="+p.getProductFile().getFileNo()
+					+ "&productNo="+p.getProductFile().getProductNo()
+					+ "&filename="+p.getProductFile().getFilename()
+					+ "&filepath="+p.getProductFile().getFilepath()
+					+ "&reqPage=" 
+					+ (pageNo - 1) + "'>";///페이지나비수정
 			pageNavi += "<span class='material-icons'>chevron_left</span>";
 			pageNavi += "</a>";
 			pageNavi += "</li>";
@@ -462,13 +478,46 @@ public class MypageService {
 		for (int i = 0; i < pageNaviSize; i++) {
 			if (pageNo == reqPage) {
 				pageNavi += "<li>";
-				pageNavi += "<a class='page-item active-page' href='/mypage/showConsumer?reqPage=" + (pageNo) + "'>";///페이지나비수정
+				//pageNavi += "<a class='page-item active-page' href='/mypage/showConsumer?reqPage=" + (pageNo) + "'>";
+				pageNavi += "<a class='page-item active-page' "
+						+ "href='/mypage/showConsumer?"
+						+ "productBoardNo="	+ p.getProductBoardNo()
+						+ "&productBoardTitle="	+ p.getProductBoardTitle()
+						+ "&productBoardContent="+p.getProductBoardContent()
+						+ "&productBoardWriter="+p.getProductBoardWriter()
+						+ "&productAuthor="+p.getProductAuthor()
+						+ "&productPrice="+p.getProductPrice()
+						+ "&productRegDate="+p.getProductRegDate()
+						+ "&productCondition="+p.getProductCondition()
+						+ "&fileNo="+p.getProductFile().getFileNo()
+						+ "&productNo="+p.getProductFile().getProductNo()
+						+ "&filename="+p.getProductFile().getFilename()
+						+ "&filepath="+p.getProductFile().getFilepath()
+						+ "&reqPage=" 
+						+ (pageNo) + "'>";///페이지나비수정
 				pageNavi += pageNo;
 				pageNavi += "</a>";
 				pageNavi += "</li>";
 			} else {
 				pageNavi += "<li>";
-				pageNavi += "<a class='page-item' href='/mypage/showConsumer?reqPage=" + (pageNo) + "'>";///페이지나비수정
+				//pageNavi += "<a class='page-item' href='/mypage/showConsumer?reqPage=" + (pageNo) + "'>";
+				pageNavi += "<a class='page-item' "
+						+ "href='/mypage/showConsumer?"
+						+ "productBoardNo="	+ p.getProductBoardNo()
+						+ "&productBoardTitle="	+ p.getProductBoardTitle()
+						+ "&productBoardContent="+p.getProductBoardContent()
+						+ "&productBoardWriter="+p.getProductBoardWriter()
+						+ "&productAuthor="+p.getProductAuthor()
+						+ "&productPrice="+p.getProductPrice()
+						+ "&productRegDate="+p.getProductRegDate()
+						+ "&productCondition="+p.getProductCondition()
+						+ "&fileNo="+p.getProductFile().getFileNo()
+						+ "&productNo="+p.getProductFile().getProductNo()
+						+ "&filename="+p.getProductFile().getFilename()
+						+ "&filepath="+p.getProductFile().getFilepath()
+						+ "&reqPage=" 
+						
+						+ (pageNo) + "'>";///페이지나비수정
 				pageNavi += pageNo;
 				pageNavi += "</a>";
 				pageNavi += "</li>";
@@ -481,7 +530,24 @@ public class MypageService {
 		// 다음버튼 제작 >> ...4 5 >>
 		if (pageNo <= totalPage) {
 			pageNavi += "<li>";
-			pageNavi += "<a class='page-item' href='/mypage/showConsumer?reqPage=" + (pageNo) + "'>";/// pageNo-1에서 바꿈 ///페이지나비수정
+			//pageNavi += "<a class='page-item' href='/mypage/showConsumer?reqPage=" + (pageNo) + "'>";/// pageNo-1에서 바꿈
+			pageNavi += "<a class='page-item' "
+					+ "href='/mypage/showConsumer?"
+					+ "productBoardNo="	+ p.getProductBoardNo()
+					+ "&productBoardTitle="	+ p.getProductBoardTitle()
+					+ "&productBoardContent="+p.getProductBoardContent()
+					+ "&productBoardWriter="+p.getProductBoardWriter()
+					+ "&productAuthor="+p.getProductAuthor()
+					+ "&productPrice="+p.getProductPrice()
+					+ "&productRegDate="+p.getProductRegDate()
+					+ "&productCondition="+p.getProductCondition()
+					+ "&fileNo="+p.getProductFile().getFileNo()
+					+ "&productNo="+p.getProductFile().getProductNo()
+					+ "&filename="+p.getProductFile().getFilename()
+					+ "&filepath="+p.getProductFile().getFilepath()
+					+ "&reqPage="  
+					
+					+ (pageNo) + "'>";/// pageNo-1에서 바꿈 ///페이지나비수정
 			pageNavi += "<span class='material-icons'>chevron_right</span>"; /// left를 right로
 			pageNavi += "</a>";
 			pageNavi += "</li>";
