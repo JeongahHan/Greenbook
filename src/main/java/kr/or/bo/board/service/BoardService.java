@@ -478,7 +478,7 @@ public class BoardService {
 */
 	
 	/////////////////////////////////////////////////////////////////////////
-	
+	//통합검색
 	public MainSearchListData mainSearchList2(int reqPage,String keyword) {
 		
 		//1. 한 페이지 당 게시물 수 지정 ->> 10개
@@ -563,7 +563,94 @@ public class BoardService {
 
 
 /////////////////////////////////////////////////////////////
+	public MainSearchListData mainSearchList3(int reqPage, String keyword, String type) {
+		
+		//1. 한 페이지 당 게시물 수 지정 ->> 10개
+		int numPerPage = 10;
+		//reqPage가 1이면 -> 1~10
+		//reqPage가 2이면 -> 11~20
+		//reqPage가 3이면 -> 21~30
+		
+		int end = reqPage * numPerPage;
+		int start = (end-numPerPage)+1;
+		
+		List mainSearchList = boardDao.mainSearchList2(start,end,keyword,type); //boardList 조회
 
+		
+		//2. 페이지 네비게이션 제작
+		//총 페이지 수 계산을 위해서는 "총 게시물 수"를 알아야함  ->>  DB에서 그룹함수로 조회
+		int totalCount = boardDao.getSearchListTotalCount2(keyword,type);
+		//총 페이지 수 계산
+		//총 게시물 수 100
+		//한 페이지당 게시물 수 : 10
+		
+		int totalPage; //총 페이지 선언
+	
+		
+		if(totalCount%numPerPage == 0) {
+			totalPage = totalCount/numPerPage;
+		}else {
+			totalPage = (totalCount/numPerPage)+1;
+		}
+		
+		int pageNaviSize = 10;
+		
+		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize + 1;
+		
+		String pageNavi2 = "<ul class='pagination'>";
+		
+		if(pageNo != 1) {
+			pageNavi2 += "<li>";
+			pageNavi2 += "<a class='page-item' href='/board/mainSearchList2?reqPage="+(pageNo-1)+"&keyword="+(keyword)+"&type="+(type)+"'>";
+			pageNavi2 += "<span class='material-icons'>chevron_left</span>";
+			pageNavi2 += "</a>";
+			pageNavi2 += "</li>";
+		}
+		
+		for(int i=0; i<pageNaviSize; i++) {
+			if(pageNo == reqPage) {
+				pageNavi2 += "<li>";
+				pageNavi2 += "<a class='page-item active-page' href='/board/mainSearchList2?reqPage="+(pageNo)+"&keyword="+(keyword)+"&type="+(type)+"'>";
+				pageNavi2 += pageNo;
+				pageNavi2 += "</a>";
+				pageNavi2 += "</li>";
+			}else {
+				pageNavi2 += "<li>";
+				pageNavi2 += "<a class='page-item' href='/board/mainSearchList2?reqPage="+(pageNo)+"&keyword="+(keyword)+"&type="+(type)+"'>";
+				pageNavi2 += pageNo;
+				pageNavi2 += "</a>";
+				pageNavi2 += "</li>";
+			}
+			
+			pageNo++;
+			
+			if(pageNo>totalPage) {
+				break;
+			}
+		}
+		
+		if(pageNo <= totalPage) {
+			pageNavi2 += "<li>";
+			pageNavi2 += "<a class='page-item' href='/board/mainSearchList2?reqPage="+(pageNo)+"&keyword="+(keyword)+"&type="+(type)+"'>";
+			pageNavi2 += "<span class='material-icons'>chevron_right</span>";
+			pageNavi2 += "</a>";
+			pageNavi2 += "</li>";
+		}
+		
+		pageNavi2 += "</ul>";
+		
+		
+		MainSearchListData msd =  new MainSearchListData(mainSearchList,pageNavi2);
+		
+		return msd;
+	}
+
+	
+	
+	
+	
+	
+	
 
 
 }//서비스 종료

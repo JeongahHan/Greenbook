@@ -192,7 +192,7 @@
 	</div>
 	
 	<!-- 쪽지 쓰기 모달 -->
-	<div class="sendMsg-modal-wrap" th:if="${session.m != null}">
+	<div class="sendMsg-modal-wrap" th:if="${session.m != null && session.m.memberLevel != 3}">
     	<div class="sendMsg-modal">
 	        <div class="modal-title">
 	            <h3>쪽지 쓰기</h3>
@@ -216,7 +216,7 @@
     </div>
     
     <!-- 쪽지 내용 없을 때 모달 -->
-    <div class="msg-modal-wrap" th:if="${session.m != null}">
+    <div class="msg-modal-wrap" th:if="${session.m != null && session.m.memberLevel != 3}">
         <div class="sendMsg-modal">
             <div class="msg-modal-top">
                 <h4>쪽지 내용을 입력해주시기 바랍니다.</h4>

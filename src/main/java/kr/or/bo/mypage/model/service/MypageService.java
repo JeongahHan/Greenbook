@@ -322,26 +322,19 @@ public class MypageService {
 			bc.setBoard((Board)selectMyBoardList.get(0));
 			
 		}
-		
 		//독서노트 이미지 가져오기 //댓글이 어느글의 출처인지 들고가서
 		for(int i =0 ;i<selectMyCommentList.size();i++) {
 			BoardComment bc = (BoardComment) selectMyCommentList.get(i);
 			List selectBoardFile = mypageDao.selectBoardFile(bc.getBoardRef());
-			System.out.println(bc);
-			System.out.println(selectBoardFile);
-			System.out.println(selectBoardFile.isEmpty());
-			System.out.println();
-			
-			bc.setBoardFile((BoardFile)selectBoardFile.get(0));
-//			if(selectBoardFile.isEmpty()) {//사진 없으면 
-//				bc.setBoard(null);
-//			}else{//사진 있을경우
-//				bc.setBoardFile((BoardFile)selectBoardFile.get(0));
-//			}
+
+			if(selectBoardFile.isEmpty()) {//사진 없으면 
+				bc.setBoardFile(null);
+			}else{//사진 있을경우
+				bc.setBoardFile((BoardFile)selectBoardFile.get(0));
+			}
 			
 			//bc.setBoardFile((BoardFile) selectBoardFile.get(0));
 		}
-		
 		
 		// 2. 페이지 네비게이션 제작
 		// 총 페이지 수 계산을 위해서는 총 게시물 수를 알아야함 -> DB에서 그룹함수로 조회
@@ -431,8 +424,9 @@ public class MypageService {
 		for(int i =0 ; i<selectConsumerList.size();i++) {
 			TradeList tradeList= (TradeList)selectConsumerList.get(i);
 			List list = mypageDao.selectOneMember(tradeList.getConsumer());
-			tradeList.setMember((Member)list.get(0)); 
-
+			if(!list.isEmpty()) {
+				tradeList.setMember((Member)list.get(0));
+			}
 		}
 		
 		
@@ -566,6 +560,23 @@ public class MypageService {
 	public List selectTradeList(Member m) {
 		List tradeList = mypageDao.selectTradeList(m);
 		return tradeList;
+	}
+
+	//판매완료
+	@Transactional
+	public int soldOut(TradeList tradeList) {
+		// TODO Auto-generated method stub
+		
+		//product_board의 PRODUCT_SELL_CHECK =1로 바꾸기
+		int result = mypageDao.soldOutFromProductBoard(tradeList);
+		if(result>0) {//product_board의 PRODUCT_SELL_CHECK =1로 update 성공시
+			//trade_list의  TRADE_COMPLETE_DONE =1로 바꾸기
+			//TRADE_COMPLETE_DATE 넣어주기
+			int result2 = mypageDao.soldOutFromTradeList(tradeList);
+			return result2;//둘다 성공시 리턴
+		}
+		
+		return 0;//어느하나라도 실패시 0리턴
 	}
 
 	

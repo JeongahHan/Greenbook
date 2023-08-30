@@ -40,9 +40,10 @@
 					<div class="main-box">
 						<div class="title" th:text="${p.getProductBoardTitle}"></div>
 						<!-- 관심상품 등록/해제 -->
-						<div class="cart cart-btn" th:if="${session.m != null && session.m.memberId != p.productBoardWriter && isWished == 1}" th:onclick="deleteWish(this,[[${p.productBoardNo}]],[[${session.m.memberId}]]);">관심상품 해제</div>
-						<div class="cart cart-btn" th:if="${session.m != null && session.m.memberId != p.productBoardWriter && isWished == 0}" th:onclick="insertWish(this,[[${p.productBoardNo}]],[[${session.m.memberId}]]);">관심상품 등록</div>
-						
+						<th:block th:if="${session.m != null && session.m.memberId != p.productBoardWriter && session.m.memberLevel != 3}">
+							<div class="cart cart-btn" th:if="${isWished == 1}" th:onclick="deleteWish(this,[[${p.productBoardNo}]],[[${session.m.memberId}]]);">관심상품 해제</div>
+							<div class="cart cart-btn" th:if="${isWished == 0}" th:onclick="insertWish(this,[[${p.productBoardNo}]],[[${session.m.memberId}]]);">관심상품 등록</div>
+						</th:block>
 						<form action="/mypage/byRequest" class="byRequest" method="get">
 							<button type="submit" class="buy-btn"
 									th:if="${session.m != null && session.m.memberId != p.productBoardWriter}">
@@ -183,7 +184,7 @@
     </div>
 	
 	<!-- 쪽지 쓰기 모달 -->
-	<div class="sendMsg-modal-wrap" th:if="${session.m != null}">
+	<div class="sendMsg-modal-wrap" th:if="${session.m != null && session.m.memberLevel != 3}">
     	<div class="sendMsg-modal">
 	        <div class="modal-title">
 	            <h3>쪽지 쓰기</h3>
@@ -207,7 +208,7 @@
     </div>	
 	
 	<!-- 쪽지 내용 없을 때 모달 -->
-    <div class="msg-modal-wrap" th:if="${session.m != null}">
+    <div class="msg-modal-wrap" th:if="${session.m != null && session.m.memberLevel != 3}">
         <div class="sendMsg-modal">
             <div class="msg-modal-top">
                 <h4>쪽지 내용을 입력해주시기 바랍니다.</h4>

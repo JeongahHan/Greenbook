@@ -1,13 +1,18 @@
 package kr.or.bo.wish.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import kr.or.bo.FileUtil;
 import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.wish.model.service.WishListService;
 import kr.or.bo.wish.model.vo.WishListData;
@@ -17,6 +22,10 @@ import kr.or.bo.wish.model.vo.WishListData;
 public class WishListController {
 	@Autowired
 	private WishListService wishListService;
+	@Autowired
+	private FileUtil fileUtil;
+	@Value("${file.root}")
+	public String root;
 	
 	/* 로그인 인터셉터로 해결
 	//로그인 체크하기
@@ -57,5 +66,21 @@ public class WishListController {
 		model.addAttribute("list", wld.getMyWishList());
 		model.addAttribute("pageNavi", wld.getPageNavi());
 		return "mypage/myWishList";
+	}
+	
+	@GetMapping(value="/list")
+	public String photoList(Model model) {
+		int totalCount = wishListService.totalCount();
+		model.addAttribute("totalCount", totalCount);
+		return "common/mainContents";
+	}
+	
+	@ResponseBody
+	@PostMapping(value="/more")
+	public List more(int start, int end) {
+		System.out.println(start);
+		System.out.println(end);
+		List wishlist = wishListService.selectWishlist(start,end);
+		return wishlist;
 	}
 }

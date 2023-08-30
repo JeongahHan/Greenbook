@@ -18,6 +18,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 import kr.or.bo.FileUtil;
 import kr.or.bo.board.service.BoardService;
 import kr.or.bo.board.vo.Board;
@@ -379,18 +385,29 @@ public class BoardController {
 			
 			MainSearchListData msd = boardService.mainSearchList2(reqPage,keyword);
 			
-
+			model.addAttribute("reqPage",reqPage);
+			model.addAttribute("keyword",keyword);
 			
 			model.addAttribute("mainSearchList", msd.getMainSearchList());
-
 			model.addAttribute("pageNavi2", msd.getPageNavi());
 			
 			
 			return "mainSearch/mainSearch";
 		}			
+///////////////////////////////////////////////////////////////////////////
+//메인 서치 기능 -ajax
 		
+		@ResponseBody
+		@GetMapping(value="/mainSearchList2")
+		public String mainSearchList2(int reqPage,String keyword,String type,Model model) throws JsonProcessingException {
 		
-		
+			MainSearchListData msd = boardService.mainSearchList3(reqPage,keyword,type);
+			
+			
+			Gson gson = new Gson();
+	       
+			return gson.toJson(msd.getMainSearchList());
+		}
 		
 		
 		
