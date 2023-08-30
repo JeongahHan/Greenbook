@@ -124,6 +124,7 @@ public class ProductController {
 			model.addAttribute("commentList", pvd.getCommentList());
 			model.addAttribute("reCommentList", pvd.getReCommentList());
 			model.addAttribute("m", pvd.getM());
+			System.out.println(pvd.getP());
 			//관심상품 기능을 위해 추가
 			model.addAttribute("isWished", pvd.getIsWished());
 			// model.addAttribute("fileList", pvd.getFileList());
