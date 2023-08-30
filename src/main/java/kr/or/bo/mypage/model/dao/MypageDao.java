@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import kr.or.bo.board.vo.Board;
 import kr.or.bo.board.vo.BoardFileRowMapper;
 import kr.or.bo.board.vo.BoardRowMapper;
 import kr.or.bo.member.model.vo.Member;
@@ -320,6 +321,15 @@ public class MypageDao {
 		int totalCount = jdbc.queryForObject(query, Integer.class,productBoardNo);
 		
 		return totalCount;
+	}
+
+	//나의 독서 노트 삭제
+	public int myBoardDelete(Board board) {
+		// TODO Auto-generated method stub
+		String query ="delete from board where board_no=?";
+		int result = jdbc.update(query, board.getBoardNo());
+		
+		return result;
 	}
 	
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import kr.or.bo.board.vo.Board;
 import kr.or.bo.board.vo.BoardComment;
 import kr.or.bo.member.model.service.MemberService;
 import kr.or.bo.member.model.vo.Member;
@@ -45,7 +46,7 @@ public class MypageController {
 		return "mypage/memberUpdateFrm";
 	}
 	
-	//내가작성한 자유게시판 게시물
+	//나의 독서노트
 	@GetMapping(value = "/myBoard")
 	public String myBoard(HttpSession session,Model model,int reqPage) {
 		
@@ -64,10 +65,29 @@ public class MypageController {
 		
 		return "mypage/myBoard";
 	}
+	
+	
+	//나의 독서노트 삭제
 	@GetMapping(value = "/myBoardDelete")
-	public String myBoardDelete() {
+	public String myBoardDelete(Board board, Model model) {
+		System.out.println("삭제 진행확인");
+		System.out.println(board.getBoardNo());
+		int result = mypageService.myBoardDelete(board);
+		if(result >0) {
+			model.addAttribute("title", "독서노트 삭제성공");
+			model.addAttribute("msg", "");
+			model.addAttribute("icon", "success");
+			
+		}else {
+			model.addAttribute("title", "독서노트삭제 실패");
+			model.addAttribute("msg", "관리자에게 문의하세요.");
+			model.addAttribute("icon", "error");
+
+		}
+		model.addAttribute("loc", "/mypage/myBoard?reqPage=1");
 		
-		return "redirect:/mypage/myBoard?reqPage=1";
+		return "common/msg";
+		//return "redirect:/mypage/myBoard?reqPage=1";
 	}
 	
 	//독서노트 댓글

@@ -49,7 +49,6 @@ public class MypageService {
 		// 2. 페이지 네비게이션 제작
 		// 총 페이지 수 계산을 위해서는 총 게시물 수를 알아야함 -> DB에서 그룹함수로 조회
 		int totalCount = mypageDao.selectMyBoardListTotalCount(memberId);		
-		System.out.println("MypageService 총 내가 판매하는 도서 수 : " + totalCount);
 		// 총 페이지 수 계산
 		// 총 게시물수 130
 		// 한페이지당 게시물 수 10
@@ -239,7 +238,6 @@ public class MypageService {
 		// 2. 페이지 네비게이션 제작
 		// 총 페이지 수 계산을 위해서는 총 게시물 수를 알아야함 -> DB에서 그룹함수로 조회
 		int totalCount = mypageDao.selectMyProductBoardCommentTotalCount(m.getMemberId());		
-		System.out.println("MypageService 총 내가 판매하는 도서 수 : " + totalCount);
 		// 총 페이지 수 계산
 		// 총 게시물수 130
 		// 한페이지당 게시물 수 10
@@ -662,6 +660,15 @@ public class MypageService {
 		// TODO Auto-generated method stub
 		
 		int result =mypageDao.tradeDelete(m,p);
+		
+		return result;
+	}
+
+	//나의 독서 노트 삭제
+	@Transactional
+	public int myBoardDelete(Board board) {
+		// TODO Auto-generated method stub
+		int result = mypageDao.myBoardDelete(board);
 		
 		return result;
 	}
