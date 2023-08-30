@@ -235,14 +235,20 @@ public class MypageController {
 		
 		Member m = (Member)session.getAttribute("m");
 		MypageListData mld = mypageService.selectByRequestList(m.getMemberId(), reqPage);
+//		List byRequestList = mypageService.selectByRequestList(m.getMemberId(), reqPage);
 		
-		List byRequestList = productService.selectbyRequestList(m);
+//		List byRequestList = productService.selectbyRequestList(m);
 //		List tradeList = mypageService.selectTradeList(m);
 		
-		System.out.println(mld.getMypageList());
-		System.out.println(mld.getMypageList().size());
+//		System.out.println("컨트롤러로 돌아와서 있는 구매현황 리스트 갯수 : "+mld.getMypageList().size());
+//		System.out.println(mld.getMypageList());
+//		System.out.println("byRequestList : "+byRequestList);
+		System.out.println("mld.getMypageList : "+mld.getMypageList());
+		
+//		model.addAttribute("requestList", byRequestList);
 		model.addAttribute("requestList", mld.getMypageList());
 		model.addAttribute("pageNavi", mld.getPageNavi());
+		model.addAttribute("reqPage", reqPage);
 //		
 //		System.out.println(m);
 //		System.out.println(p);
