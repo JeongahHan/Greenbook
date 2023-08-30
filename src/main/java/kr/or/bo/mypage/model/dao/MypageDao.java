@@ -249,5 +249,32 @@ public class MypageDao {
 		
 		return result;
 	}
+
+	//tradeList 중복 insert를 막기위해 추가
+	public String selectBuyRequester(int productBoardNo) {
+		// TODO Auto-generated method stub
+		String query = "select * from trade_list where product_board_no = ?";
+		List list = jdbc.query(query, tradeListRowMapper, productBoardNo);
+		TradeList tradeList;
+		if(!list.isEmpty()) {
+			tradeList = (TradeList) list.get(0);
+			return tradeList.getConsumer();
+		}
+		return null;
+	}
+
+	//구매요청 중복 막기
+	public int selectIsBuyRequest(int productBoardNo, String buyRequester) {
+		// TODO Auto-generated method stub
+		String query ="select * from trade_list where product_board_no = ? and consumer=?";
+		Object params[]= {productBoardNo, buyRequester};
+		List list = jdbc.query(query, tradeListRowMapper, params);
+		if(list.isEmpty()) {
+			return 0;
+		}else {
+			return 1;
+		}
+		
+	}
 	
 }
