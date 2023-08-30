@@ -660,15 +660,6 @@
 .s-bc2:hover {
     cursor: pointer;
 }
-.boardWriter:hover {
-	cursor: pointer;
-}
-.boardCommentWriter:hover {
-	cursor: pointer;
-}
-.boardReCommentWriter:hover {
-	cursor: pointer;
-}
 /*쪽지 내용 입력하라는 모달*/
 .msg-modal-content{
     margin-top: 10px;
@@ -694,6 +685,15 @@
 .msgIcon:hover{
 	cursor: pointer;
 }
- .posting-comment > li:last-child > .comment-info > span:nth-child(4) {
+.posting-comment > li:last-child > .comment-info > span:nth-child(4) {
     color: rgb(0, 90, 13);
-  }
+}
+.bwMsg{
+  	align-items: center;
+	display: flex;
+	box-sizing: border-box;
+}
+.bwMsg>*{
+	font-family:ns-light;
+	text-align: center;
+}
