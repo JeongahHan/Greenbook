@@ -31,7 +31,7 @@
 						<div class="box1">
 							<span class="material-icons userMainImage">account_box</span>
 							<span class="ProductBoardWriter" th:text="${p.getProductBoardWriter}"></span>
-							<span th:if="${session.m != null && session.m.memberId != p.productBoardWriter && session.m.memberLevel != 3}" class="material-icons-outlined msgIcon" id="pwMsg">mail</span>
+							<span th:if="${session.m != null && session.m.memberId != p.productBoardWriter && session.m.memberLevel != 3}" class="material-icons-outlined msgIcon pwMsg">mail</span>
 						</div>
 						
 						<div class="box2">
@@ -81,7 +81,7 @@
 							<!-- <input type="hidden" name="productFile" th:value="${p.productFile}"> -->
 							
 							<!-- 구매자 멤버 넘기기 -->
-							<input type="hidden" name="memberId" th:value="${session.m.memberId}">
+							<input type="hidden" name="memberId" th:value="${m.memberId}">
 							
 						</form>
 						
@@ -130,7 +130,7 @@
 										<!-- 쪽지 때문에 class 추가하였습니다. -->
 										<span class="productCommentWriter" th:text="${pc.productCommentWriter}"></span>
 										<span th:text="${pc.productCommentDate}"></span>
-										<span th:if="${session.m != null && session.m.memberId != pc.productCommentWriter && session.m.memberLevel != 3}" class="material-icons-outlined msgIcon" id="pcMsg">mail</span>
+										<span th:if="${session.m != null && session.m.memberId != pc.productCommentWriter && session.m.memberLevel != 3}" class="material-icons-outlined msgIcon pcMsg">mail</span>
 									</p>
 									<p class="comment-content" th:text="${pc.productCommentContent}"></p>
 									
@@ -160,7 +160,7 @@
 											<!-- 쪽지 때문에 class 추가하였습니다. -->
 											<span class="productReCommentWriter" th:text="${pcc.productCommentWriter}"></span>
 											<span th:text="${pcc.productCommentDate}"></span>
-											<span th:if="${session.m != null && session.m.memberId != pcc.productCommentWriter && session.m.memberLevel != 3}" class="material-icons-outlined msgIcon" id="pccMsg">mail</span>
+											<span th:if="${session.m != null && session.m.memberId != pcc.productCommentWriter && session.m.memberLevel != 3}" class="material-icons-outlined msgIcon pccMsg">mail</span>
 										</p>
 										<p class="comment-content" th:text="${pcc.productCommentContent}"></p>
 										
@@ -398,7 +398,7 @@
 		//쪽지쓰기 시작
 		//게시물 작성자에게 쪽지 쓰기
 		const memberId = $(".memberId").val();
-		$("#pwMsg").on("click", function(){
+		$(".pwMsg").on("click", function(){
 			const receiver = $(this).prev().text();
 			if(receiver != memberId){
 				//쪽지쓰기 모달 열기
@@ -417,7 +417,7 @@
 		});
 		
 		//댓글 작성자에게 쪽지 쓰기
-		$("#pcMsg").on("click", function(){
+		$(".pcMsg").on("click", function(){
 			const receiver = $(this).prev().prev().text();
 			if(receiver != memberId){
 				//쪽지쓰기 모달 열기
@@ -431,7 +431,7 @@
 		});
 		
 		//대댓글 작성자에게 쪽지 쓰기
-		$("#pccMsg").on("click", function(){
+		$(".pccMsg").on("click", function(){
 			const receiver = $(this).prev().prev().text();
 			if(receiver != memberId){
 				//쪽지쓰기 모달 열기
