@@ -126,7 +126,6 @@ public class ProductController {
 		String buyRequester = mypageService.selectBuyRequester(productBoardNo);
 		
 		ProductViewData pvd = productService.selectOneProduct(productBoardNo, memberNo, memberId, buyRequester);
-		System.out.println("여기는 프로덕트컨트롤러 pvd : "+ pvd.getIsBuyRequest());
 		if(pvd != null) {
 			model.addAttribute("p", pvd.getP());
 			model.addAttribute("commentList", pvd.getCommentList());

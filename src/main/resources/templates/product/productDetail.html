@@ -50,8 +50,24 @@
 							<button type="submit" class="buy-btn" th:if="${session.m != null && session.m.memberId != p.productBoardWriter && isBuyRequest == 0}">
 								<div class="buy" th:if="${session.m != null}" th:onclick="byRequest(this,[[${p.productBoardNo}]],[[${session.m.memberId}]])">구매요청</div>
 							</button>
-							<button type="submit" class="buy-btn" th:if="${session.m != null && session.m.memberId != p.productBoardWriter && isBuyRequest == 1}">
-								<div class="buy" th:if="${session.m != null}" th:onclick="byRequest(this,[[${p.productBoardNo}]],[[${session.m.memberId}]])">구매요청취소</div>
+							<input type="hidden" name="session" th:value="${session.m}">
+							<input type="hidden" name="productBoardNo" th:value="${p.productBoardNo}">
+							<input type="hidden" name="productBoardTitle" th:value="${p.productBoardTitle}">
+							<input type="hidden" name="productBoardContent" th:value="${p.productBoardContent}">
+							<input type="hidden" name="productBoardWriter" th:value="${p.productBoardWriter}">
+							<input type="hidden" name="productRegDate" th:value="${p.productRegDate}">
+							<input type="hidden" name="productPrice" th:value="${p.productPrice}">
+							<input type="hidden" name="productAuthor" th:value="${p.productAuthor}">
+							<input type="hidden" name="productCondition" th:value="${p.productCondition}">
+							<input type="hidden" name="productSellCheck" th:value="${p.productSellCheck}">
+							<!-- <input type="hidden" name="productFile" th:value="${p.productFile}"> -->
+						</form>
+						<form action="/mypage/buyRequestCancle" class="byRequest" method="get">
+							<button type="submit" class="buy-btn" th:if="${session.m != null && session.m.memberId != p.productBoardWriter && isBuyRequest == 0}">
+								<div class="buy" th:if="${session.m != null}" th:onclick="byRequest(this,[[${p.productBoardNo}]],[[${session.m.memberId}]])">구매요청</div>
+							</button>
+							<button class="buy-btn" th:if="${session.m != null && session.m.memberId != p.productBoardWriter && isBuyRequest == 1}">
+								<div class="buy" th:if="${session.m != null}" th:onclick="buyRequestCancle(this,[[${p.productBoardNo}]],[[${session.m.memberId}]])">구매요청취소</div>
 							</button>
 							<input type="hidden" name="session" th:value="${session.m}">
 							<input type="hidden" name="productBoardNo" th:value="${p.productBoardNo}">
@@ -65,6 +81,7 @@
 							<input type="hidden" name="productSellCheck" th:value="${p.productSellCheck}">
 							<!-- <input type="hidden" name="productFile" th:value="${p.productFile}"> -->
 						</form>
+						
 						<div class="author" th:text="${p.getProductAuthor}"></div>
 						<div class="price"><span th:text="${p.getProductPrice}"></span> 원</div>
 						<div class="content" th:utext="${p.getProductBoardContent}"></div>

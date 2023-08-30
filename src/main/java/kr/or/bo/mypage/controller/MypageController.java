@@ -212,6 +212,14 @@ public class MypageController {
 //		return "redirect:/product/productDetail?productBoardNo="+p.getProductBoardNo();
 //		return "redirect:/mypage/byRequestList";
 	}
+	//구매요청취소 버튼 클릭시
+	@GetMapping(value = "/buyRequestCancle")
+	public String buyRequestCancle(Product p) {
+		System.out.println("여기는 구매요청 취소버튼 클릭");
+		
+		return "redirect:/product/productDetail?productBoardNo="+p.getProductBoardNo();		
+	}
+	
 	@GetMapping(value = "/showConsumer")
 	public String showConsumer (Product product ,ProductFile productFile, HttpSession session, int reqPage, Model model) {
 		
