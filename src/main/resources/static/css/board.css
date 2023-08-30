@@ -678,9 +678,8 @@
 }
 /*쪽지 아이콘*/
 .msgIcon{
-	padding-top: 15px;
-	padding-left: 5px;
 	color: rgb(0, 90, 13);
+	padding-left: 5px;
 }
 .msgIcon:hover{
 	cursor: pointer;
@@ -688,12 +687,13 @@
 .posting-comment > li:last-child > .comment-info > span:nth-child(4) {
     color: rgb(0, 90, 13);
 }
-.bwMsg{
-  	align-items: center;
-	display: flex;
-	box-sizing: border-box;
+.bwMsgDiv{
+	position: relative;
 }
-.bwMsg>*{
-	font-family:ns-light;
-	text-align: center;
+.bwMsgDiv>span:last-child {
+	top: 3px;
+	position: absolute;
 }
+
+
+
