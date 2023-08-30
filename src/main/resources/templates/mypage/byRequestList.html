@@ -43,7 +43,8 @@
 						<td th:text="${requestList.productBoardWriter}"></td>
 						<td th:text="${requestList.tradeRequestDate}"></td>
 						<td>
-							<button class="post-btn byRequestBtn byRequestBc1" th:if="${requestList.tradeCompleteDone=='1'}">거래평가</button>
+							<input type="hidden" class="productBoardWriter" th:value="${requestList.productBoardWriter}">
+							<button class="post-btn byRequestBtn byRequestBc1" id="ass-btn" th:if="${requestList.tradeCompleteDone=='1'}">거래평가</button>
 						</td>
 						<!-- <td th:value="${requestList.tradeCompleteDone}"></td>  value가 0이면 버튼X, 1이면 버튼O -->
 					</tr>
@@ -62,6 +63,9 @@
 				담겨오는정보들
 				Board(boardNo=103, boardTitle=게시판 테스트103, boardContent=테스트용, boardWriter=user01, boardRegDate=2023-08-22, boardReadCount=0, fileList=null)
 				 -->
+				 
+				<!-- 거래평가 모달 -->
+				 
 			</table>
 			<div id="pageNavi" th:utext="${pageNavi}"></div>
 		
@@ -70,7 +74,32 @@
 	</div>
 	<th:block th:include="common/footer"></th:block>
 
-
+	<script>
+	
+		const writer = $(".productBoardWriter").val();
+		$("#ass-btn").on("click",function(){
+			alert(writer);
+			
+		});
+		
+		//쪽지쓰기 시작
+		const memberId = $(".memberId").val();
+		//게시물 작성자에게 쪽지 쓰기
+		$(".ProductBoardWriter").on("click", function(){
+			const receiver = $(this).text();
+			if(receiver != memberId){
+				//쪽지쓰기 모달 열기
+				$(".sendMsg-modal-wrap").css("display","flex");
+				//textarea 초기화
+				$("#sendMsgTextarea").val("");
+				//받는 사람 데이터 넣어주기
+				$(".receiver").text(receiver);
+				$("#receiver").val(receiver);
+			}
+		});
+		
+	
+	</script>
 	
 </body>
 </html>
