@@ -502,7 +502,8 @@ public class MypageService {
 		int end = reqPage * numPerPage;
 		int start = end - numPerPage + 1;
 		
-		List mypageList = mypageDao.selectByRequestList(memberId, start, end);
+//		List mypageList = mypageDao.selectByRequestList(memberId, start, end);
+		List byRequestList = mypageDao.selectByRequestList(memberId, start, end);
 		
 		int totalCount = mypageDao.selectByRequestListTotalCount(memberId);
 		
@@ -552,7 +553,7 @@ public class MypageService {
 
 		pageNavi += "</ul>";
 
-		MypageListData mld = new MypageListData(mypageList, pageNavi);
+		MypageListData mld = new MypageListData(byRequestList, pageNavi);
 		
 		return mld;
 	}

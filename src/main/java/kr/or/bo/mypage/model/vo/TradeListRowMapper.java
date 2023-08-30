@@ -19,6 +19,7 @@ public class TradeListRowMapper implements RowMapper<TradeList>{
 		tl.setConsumer(rs.getString("consumer"));
 		tl.setTradeRequestDate(rs.getString("trade_request_date"));
 		tl.setTradeCompleteDate(rs.getString("TRADE_COMPLETE_DATE"));
+		tl.setTradeCompleteDone(rs.getString("trade_complete_done"));
 		
 		return tl;
 	}
