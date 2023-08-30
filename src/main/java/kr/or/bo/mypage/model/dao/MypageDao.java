@@ -191,6 +191,7 @@ public class MypageDao {
 		Object params []= {p.getProductBoardNo(), start, end};
 		List list = jdbc.query(query, tradeListRowMapper,params);
 		
+		
 		return list;
 	}
 
