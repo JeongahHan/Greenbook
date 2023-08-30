@@ -377,8 +377,9 @@ B31312 빨강
 
 /* showConsumer */
 .bookInfo{
-	background-color: cyan;
+	/* background-color: cyan; */
     overflow: hidden;
+    margin-bottom: 50px;
 }
 .book-img-box{
     float: left;
@@ -388,6 +389,18 @@ B31312 빨강
 }
 .book-content{
     float: left;
+    padding-left: 50px;
+    width: 600px;
+}
+.book-content>*{
+    padding: 5px 0px;
+}
+.book-price, .book-price>*{
+    font-size: 30px;
+    font-weight: 900px;
+    text-align: right;
+    padding-top: 150px;
+    color: #005A0D;
 }
 
 .consumer-wrap{
