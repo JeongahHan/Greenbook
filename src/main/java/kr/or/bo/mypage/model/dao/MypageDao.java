@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import kr.or.bo.board.vo.Board;
+import kr.or.bo.board.vo.BoardComment;
 import kr.or.bo.board.vo.BoardFileRowMapper;
 import kr.or.bo.board.vo.BoardRowMapper;
 import kr.or.bo.member.model.vo.Member;
@@ -328,6 +329,15 @@ public class MypageDao {
 		// TODO Auto-generated method stub
 		String query ="delete from board where board_no=?";
 		int result = jdbc.update(query, board.getBoardNo());
+		
+		return result;
+	}
+
+	//독서노트 댓글 삭제
+	public int myCommentDelete(BoardComment boardComment) {
+		// TODO Auto-generated method stub
+		String query ="delete from board_comment where board_comment_no=?";
+		int result = jdbc.update(query, boardComment.getBoardCommentNo());
 		
 		return result;
 	}

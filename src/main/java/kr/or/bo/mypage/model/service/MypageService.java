@@ -334,12 +334,10 @@ public class MypageService {
 		// 2. 페이지 네비게이션 제작
 		// 총 페이지 수 계산을 위해서는 총 게시물 수를 알아야함 -> DB에서 그룹함수로 조회
 		int totalCount = mypageDao.selectMyBoardCommentTotalCount(m.getMemberId());		
-		System.out.println("MypageService 총 내가 판매하는 도서 수 : " + totalCount);
 		// 총 페이지 수 계산
 		// 총 게시물수 130
 		// 한페이지당 게시물 수 10
 		int totalPage = (int) Math.ceil(totalCount / (double) numPerPage); /// Math.ceil로 올림 이게 제일 맘에듬
-		System.out.println("MypageService 총 페이지 수 : " + totalPage);
 		
 		// 페이지 네비게이션 사이즈 지정 /// <<1 2 3 4 ....10>> 이런거
 		int pageNaviSize = 5;
@@ -669,6 +667,15 @@ public class MypageService {
 	public int myBoardDelete(Board board) {
 		// TODO Auto-generated method stub
 		int result = mypageDao.myBoardDelete(board);
+		
+		return result;
+	}
+
+	//독서노트 댓글 삭제
+	@Transactional
+	public int myCommentDelete(BoardComment boardComment) {
+		// TODO Auto-generated method stub
+		int result = mypageDao.myCommentDelete(boardComment);
 		
 		return result;
 	}

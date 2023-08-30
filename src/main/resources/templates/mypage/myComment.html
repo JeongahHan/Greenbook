@@ -28,7 +28,7 @@
 		                    	<img src="${list.boardFile.filepath}">
 							</div>
 						</a> 
-						<a><span class="material-icons">clear</span></a>
+						<a th:href="@{/mypage/myCommentDelete(boardCommentNo=${list.boardCommentNo})}"><span class="material-icons">clear</span></a>
 					</div>
 					<p class="myComment-date">작성일 : <span th:text="${list.boardCommentDate}"></span> </p>
 				</div> 

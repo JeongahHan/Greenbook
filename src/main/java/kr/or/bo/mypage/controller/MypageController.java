@@ -104,6 +104,28 @@ public class MypageController {
 		
 		return "mypage/myComment";
 	}
+	//독서노트 댓글 삭제
+	@GetMapping(value = "/myCommentDelete")
+	public String myCommentDelete(BoardComment boardComment, Model model) {
+		System.out.println("독서노트 댓글 삭제 연결" +boardComment.getBoardCommentNo());
+		
+		int result = mypageService.myCommentDelete(boardComment);
+		if(result >0) {
+			model.addAttribute("title", "독서노트 댓글 삭제성공");
+			model.addAttribute("msg", "");
+			model.addAttribute("icon", "success");
+			
+		}else {
+			model.addAttribute("title", "독서노트삭제 실패");
+			model.addAttribute("msg", "관리자에게 문의하세요.");
+			model.addAttribute("icon", "error");
+
+		}
+		model.addAttribute("loc", "/mypage/myComment?reqPage=1");
+		
+		return "common/msg";
+		//return "redirect:/mypage/myComment?reqPage=1";
+	}
 	
 	//중고책방 댓글
 	@GetMapping(value = "/myProductBoardComment")
