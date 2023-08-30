@@ -7,6 +7,7 @@
 
 <!-- 구글 아이콘 -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 <!-- jquery -->
 <script src="/js/jquery-3.7.0.js"></script>
 <!-- 기본 CSS -->
@@ -111,6 +112,7 @@
 								<span class="material-icons" th:if="${session.m != null && bc.isLike == 0}" th:onclick="addLike(this,[[${bc.boardCommentNo}]],[[${session.m.memberNo}]]);">thumb_up_off_alt</span>
 								<span th:text="${bc.likeCount}"></span> 
 							</span>
+							<span th:if="${session.m != null && session.m.memberId != bc.boardCommentWriter && session.m.memberLevel != 3}" class="material-icons-outlined msgIcon" id="bcMsg">mail</span>
 						</p>
 						
 						<p class="comment-content" th:text="${bc.boardCommentContent}"></p>
@@ -148,6 +150,7 @@
 									<span class="material-icons" th:if="${session.m != null && bcc.isLike == 0}" th:onclick="addLike(this,[[${bcc.boardCommentNo}]],[[${session.m.memberNo}]]);">thumb_up_off_alt</span>
 									<span th:text="${bcc.likeCount}"></span> 
 								</span>
+								<span th:if="${session.m != null && session.m.memberId != bcc.boardCommentWriter && session.m.memberLevel != 3}" class="material-icons-outlined msgIcon" id="bccMsg">mail</span>
 							</p>
 							<p class="comment-content" th:text="${bcc.boardCommentContent}"></p>
 							<textarea name="boardCommentContent" class="input-form" style="min-height:96px;display:none;" th:text="${bcc.boardCommentContent}"></textarea>
@@ -413,8 +416,8 @@
 		});
 		
 		//댓글 작성자에게 쪽지 쓰기
-		$(".boardCommentWriter").on("click", function(){
-			const receiver = $(this).text();
+		$("#bcMsg").on("click", function(){
+			const receiver = $(this).prev().prev().text();
 			if(receiver != memberId){
 
 				//쪽지쓰기 모달 열기
