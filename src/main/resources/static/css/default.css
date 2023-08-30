@@ -297,14 +297,17 @@ footer > .footer-content > .footer-detail {
 }
 
 .main-text{
-    transform: translate(-25%,-210%);
+    transform: translate(-26%,-210%);
 }
 .main-text>p{
-    font-size: 42px;
-    line-height: 41px;
+    font-size: 50px;
+    line-height: 10px;
     color: #fff;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 60px;
+    letter-spacing: 2px;
+    font-family: 'ns-m';
+    font-weight: 500;
 }
 
 

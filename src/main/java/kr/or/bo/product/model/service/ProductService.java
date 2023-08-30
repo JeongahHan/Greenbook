@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.bo.member.model.dao.MemberDao;
 import kr.or.bo.member.model.vo.Member;
+import kr.or.bo.mypage.model.dao.MypageDao;
 import kr.or.bo.product.model.dao.ProductDao;
 import kr.or.bo.product.model.vo.Product;
 import kr.or.bo.product.model.vo.ProductComment;
@@ -29,6 +30,8 @@ public class ProductService {
 	
 	@Autowired
 	private WishListDao wishListDao;
+	@Autowired
+	private MypageDao mypageDao;
 
 	@Transactional
 	public int insertPhoto(Product p, ArrayList<ProductFile> fileList) {
@@ -110,7 +113,7 @@ public class ProductService {
 	}
 
 	@Transactional
-	public ProductViewData selectOneProduct(int productBoardNo, int memberNo, String memberId) {
+	public ProductViewData selectOneProduct(int productBoardNo, int memberNo, String memberId, String buyRequester) {
 		int result = productDao.updateReadCount(productBoardNo);
 		if(result > 0) {
 			Product p = productDao.selectOneProduct(productBoardNo);
@@ -125,8 +128,12 @@ public class ProductService {
 			Member m = memberDao.selectMemberGrade(productBoardNo);
 			//관심상품 기능을 위해 추가
 			int isWished = wishListDao.selectIsWished(productBoardNo, memberId);
+			
+			//구매요청 중복을 막기위해 추가
+			int isBuyRequest = mypageDao.selectIsBuyRequest(productBoardNo, buyRequester);
+			
 			//관심상품 기능을 위해 isWished 추가
-			ProductViewData pvd = new ProductViewData(p, commentList, reCommentList, m, isWished);
+			ProductViewData pvd = new ProductViewData(p, commentList, reCommentList, m, isWished, isBuyRequest);
 			
 			
 			return pvd;

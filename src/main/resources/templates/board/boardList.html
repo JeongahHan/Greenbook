@@ -21,7 +21,11 @@
             <p>></p>
             <p>독서노트</p>
         </div>
-		<div th:if="${#lists.isEmpty(boardList)}" style="padding-top: 10%; text-align: center;">검색된 항목이 없습니다.</div>
+		<div th:if="${#lists.isEmpty(boardList)}" style="padding-top: 10%; text-align: center;">
+		<p>검색된 항목이 없습니다.</p>
+		<br>
+		<a href="/board/list?reqPage=1" style="color:#005A0D; border-bottom:1px solid #005A0D; font-family:ns-light; font-size:15.5px;">목록으로 돌아가기</a>
+		</div>
 			
 			
 			<div th:if="${#lists.isEmpty(boardList) == false}">

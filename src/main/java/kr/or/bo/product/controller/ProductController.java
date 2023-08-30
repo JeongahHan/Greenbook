@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.bo.FileUtil;
 import kr.or.bo.member.model.vo.Member;
+import kr.or.bo.mypage.model.service.MypageService;
 import kr.or.bo.product.model.service.ProductService;
 import kr.or.bo.product.model.vo.Product;
 import kr.or.bo.product.model.vo.ProductComment;
@@ -37,6 +38,9 @@ public class ProductController {
 	
 	@Autowired
 	private FileUtil fileUtil;
+	
+	@Autowired
+	private MypageService mypageService; 
 	
 	@GetMapping(value="/board")
 	public String board(Model model, int reqPage) {
@@ -118,14 +122,20 @@ public class ProductController {
 		int memberNo = (m == null) ? 0 : m.getMemberNo();
 		//관심상품 기능을 위해 추가
 		String memberId = (m == null) ? null : m.getMemberId();
-		ProductViewData pvd = productService.selectOneProduct(productBoardNo, memberNo, memberId);
+		//tradeList 중복 insert를 막기위해 추가
+		String buyRequester = mypageService.selectBuyRequester(productBoardNo);
+		
+		ProductViewData pvd = productService.selectOneProduct(productBoardNo, memberNo, memberId, buyRequester);
 		if(pvd != null) {
 			model.addAttribute("p", pvd.getP());
 			model.addAttribute("commentList", pvd.getCommentList());
 			model.addAttribute("reCommentList", pvd.getReCommentList());
 			model.addAttribute("m", pvd.getM());
+			System.out.println(pvd.getP());
 			//관심상품 기능을 위해 추가
 			model.addAttribute("isWished", pvd.getIsWished());
+			//구매요청 중복을 막기위해 추가
+			model.addAttribute("isBuyRequest", pvd.getIsBuyRequest());
 			// model.addAttribute("fileList", pvd.getFileList());
 			return "product/productDetail";
 		}else {

@@ -650,6 +650,24 @@ public class MypageService {
 		
 		return 0;//어느하나라도 실패시 0리턴
 	}
+	
+	//tradeList 중복 insert를 막기위해 추가
+	public String selectBuyRequester(int productBoardNo) {
+		// TODO Auto-generated method stub
+		String buyRequester = mypageDao.selectBuyRequester(productBoardNo);
+		
+		return buyRequester;
+	}
+
+	//구매요청 취소
+	@Transactional
+	public int tradeDelete(Member m, Product p) {
+		// TODO Auto-generated method stub
+		
+		int result =mypageDao.tradeDelete(m,p);
+		
+		return result;
+	}
 
 	
 }

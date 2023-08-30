@@ -19,4 +19,6 @@ public class ProductViewData {
 	private Member m;
 	//관심상품 기능을 위해 변수 추가
 	private int isWished;	
+	//tradeList에 중복 insert를 막기위한 변수 추가
+	private int isBuyRequest;
 }

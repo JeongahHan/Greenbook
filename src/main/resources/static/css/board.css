@@ -685,3 +685,15 @@
 .msgBtn:hover{
 	cursor: pointer;
 }
+/*쪽지 아이콘*/
+.msgIcon{
+	padding-top: 15px;
+	padding-left: 5px;
+	color: rgb(0, 90, 13);
+}
+.msgIcon:hover{
+	cursor: pointer;
+}
+ .posting-comment > li:last-child > .comment-info > span:nth-child(4) {
+    color: rgb(0, 90, 13);
+  }

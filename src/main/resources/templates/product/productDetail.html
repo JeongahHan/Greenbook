@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="stylesheet" href="/css/productDetail.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 <script src="/javascript/jquery-3.7.0.js"></script>
 </head>
 <body>
@@ -30,6 +31,7 @@
 						<div class="box1">
 							<span class="material-icons userMainImage">account_box</span>
 							<span class="ProductBoardWriter" th:text="${p.getProductBoardWriter}"></span>
+							<span th:if="${session.m != null && session.m.memberId != p.productBoardWriter && session.m.memberLevel != 3}" class="material-icons-outlined msgIcon" id="pwMsg">mail</span>
 						</div>
 						
 						<div class="box2">
@@ -44,9 +46,9 @@
 							<div class="cart cart-btn" th:if="${isWished == 1}" th:onclick="deleteWish(this,[[${p.productBoardNo}]],[[${session.m.memberId}]]);">관심상품 해제</div>
 							<div class="cart cart-btn" th:if="${isWished == 0}" th:onclick="insertWish(this,[[${p.productBoardNo}]],[[${session.m.memberId}]]);">관심상품 등록</div>
 						</th:block>
+						<!-- 구매요청 버튼 -->
 						<form action="/mypage/byRequest" class="byRequest" method="get">
-							<button type="submit" class="buy-btn"
-									th:if="${session.m != null && session.m.memberId != p.productBoardWriter}">
+							<button type="submit" class="buy-btn" th:if="${session.m != null && session.m.memberId != p.productBoardWriter && isBuyRequest == 0}">
 								<div class="buy" th:if="${session.m != null}" th:onclick="byRequest(this,[[${p.productBoardNo}]],[[${session.m.memberId}]])">구매요청</div>
 							</button>
 							<input type="hidden" name="session" th:value="${session.m}">
@@ -61,6 +63,28 @@
 							<input type="hidden" name="productSellCheck" th:value="${p.productSellCheck}">
 							<!-- <input type="hidden" name="productFile" th:value="${p.productFile}"> -->
 						</form>
+						<!-- 구매요청 취소 버튼 -->
+						<form action="/mypage/buyRequestCancle" class="byRequest" method="get">
+							<button class="buy-btn" th:if="${session.m != null && session.m.memberId != p.productBoardWriter && isBuyRequest == 1}">
+								<div class="buy" th:if="${session.m != null}" th:onclick="buyRequestCancle(this,[[${p.productBoardNo}]],[[${session.m.memberId}]])">구매요청취소</div>
+							</button>
+							<input type="hidden" name="session" th:value="${session.m}">
+							<input type="hidden" name="productBoardNo" th:value="${p.productBoardNo}">
+							<input type="hidden" name="productBoardTitle" th:value="${p.productBoardTitle}">
+							<input type="hidden" name="productBoardContent" th:value="${p.productBoardContent}">
+							<input type="hidden" name="productBoardWriter" th:value="${p.productBoardWriter}">
+							<input type="hidden" name="productRegDate" th:value="${p.productRegDate}">
+							<input type="hidden" name="productPrice" th:value="${p.productPrice}">
+							<input type="hidden" name="productAuthor" th:value="${p.productAuthor}">
+							<input type="hidden" name="productCondition" th:value="${p.productCondition}">
+							<input type="hidden" name="productSellCheck" th:value="${p.productSellCheck}">
+							<!-- <input type="hidden" name="productFile" th:value="${p.productFile}"> -->
+							
+							<!-- 구매자 멤버 넘기기 -->
+							<input type="hidden" name="memberId" th:value="${session.m.memberId}">
+							
+						</form>
+						
 						<div class="author" th:text="${p.getProductAuthor}"></div>
 						<div class="price"><span th:text="${p.getProductPrice}"></span> 원</div>
 						<div class="content" th:utext="${p.getProductBoardContent}"></div>
@@ -106,6 +130,7 @@
 										<!-- 쪽지 때문에 class 추가하였습니다. -->
 										<span class="productCommentWriter" th:text="${pc.productCommentWriter}"></span>
 										<span th:text="${pc.productCommentDate}"></span>
+										<span th:if="${session.m != null && session.m.memberId != pc.productCommentWriter && session.m.memberLevel != 3}" class="material-icons-outlined msgIcon" id="pcMsg">mail</span>
 									</p>
 									<p class="comment-content" th:text="${pc.productCommentContent}"></p>
 									
@@ -135,6 +160,7 @@
 											<!-- 쪽지 때문에 class 추가하였습니다. -->
 											<span class="productReCommentWriter" th:text="${pcc.productCommentWriter}"></span>
 											<span th:text="${pcc.productCommentDate}"></span>
+											<span th:if="${session.m != null && session.m.memberId != pcc.productCommentWriter && session.m.memberLevel != 3}" class="material-icons-outlined msgIcon" id="pccMsg">mail</span>
 										</p>
 										<p class="comment-content" th:text="${pcc.productCommentContent}"></p>
 										
@@ -370,10 +396,10 @@
 		});
 		
 		//쪽지쓰기 시작
-		const memberId = $(".memberId").val();
 		//게시물 작성자에게 쪽지 쓰기
-		$(".ProductBoardWriter").on("click", function(){
-			const receiver = $(this).text();
+		const memberId = $(".memberId").val();
+		$("#pwMsg").on("click", function(){
+			const receiver = $(this).prev().text();
 			if(receiver != memberId){
 				//쪽지쓰기 모달 열기
 				$(".sendMsg-modal-wrap").css("display","flex");
@@ -384,15 +410,15 @@
 				$("#receiver").val(receiver);
 			}
 		});
-		
+
 		//쪽지쓰기 모달 닫기
 		$("#sendMsgCancel").on("click", function(){
 			$(".sendMsg-modal-wrap").css("display","none");
 		});
 		
 		//댓글 작성자에게 쪽지 쓰기
-		$(".productCommentWriter").on("click", function(){
-			const receiver = $(this).text();
+		$("#pcMsg").on("click", function(){
+			const receiver = $(this).prev().prev().text();
 			if(receiver != memberId){
 				//쪽지쓰기 모달 열기
 				$(".sendMsg-modal-wrap").css("display","flex");
@@ -405,8 +431,8 @@
 		});
 		
 		//대댓글 작성자에게 쪽지 쓰기
-		$(".productReCommentWriter").on("click", function(){
-			const receiver = $(this).text();
+		$("#pccMsg").on("click", function(){
+			const receiver = $(this).prev().prev().text();
 			if(receiver != memberId){
 				//쪽지쓰기 모달 열기
 				$(".sendMsg-modal-wrap").css("display","flex");

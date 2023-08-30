@@ -192,6 +192,7 @@ public class MypageController {
 		return "redirect:/mypage/mySellBook?reqPage=1";
 	}
 	
+	//구매요청버튼 클릭시
 	@GetMapping(value = "/byRequest")
 	public String byRequest(HttpSession session, Model model, Product p) {
 		Member m = (Member)session.getAttribute("m");
@@ -211,6 +212,24 @@ public class MypageController {
 //		return "redirect:/product/productDetail?productBoardNo="+p.getProductBoardNo();
 //		return "redirect:/mypage/byRequestList";
 	}
+	//구매요청취소 버튼 클릭시
+	@GetMapping(value = "/buyRequestCancle")
+	public String buyRequestCancle(HttpSession session, Model model,Product p, Member m) {
+		
+		int result = mypageService.tradeDelete(m,p);
+		if(result>0) {
+			model.addAttribute("title", "구매요청취소");
+			model.addAttribute("msg", "");
+			model.addAttribute("icon", "");
+		}else {
+			model.addAttribute("title", "구매요청취소 실패");
+			model.addAttribute("msg", "관리자에게 문의하여주시기 바랍니다.");
+			model.addAttribute("icon", "");
+		}
+		model.addAttribute("loc", "/product/productDetail?productBoardNo="+p.getProductBoardNo());
+		return "common/msg";
+	}
+	
 	@GetMapping(value = "/showConsumer")
 	public String showConsumer (Product product ,ProductFile productFile, HttpSession session, int reqPage, Model model) {
 		
