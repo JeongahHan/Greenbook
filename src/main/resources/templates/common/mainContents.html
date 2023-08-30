@@ -95,7 +95,8 @@ $("#more-btn").on("click",function(){
 			const changeCount = currentCount+data.length;
 			$("#more-btn").attr("currentCount", changeCount);
 			
-			const totalCount = Number($("#more-btn").attr("totalCount"));
+			const totalCount = 20;
+			const TotalCount = Number($("#more-btn").attr("TotalCount"));
 			if(totalCount == changeCount){
 				$("#more-btn").remove();
 			}

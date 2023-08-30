@@ -539,6 +539,7 @@ textarea.input-form {
 	 
 }
 .slideTogglebox{
+	/*display : none;*/
 	margin : 3rem;
 	border: 1px solid #005A0D;
 }
