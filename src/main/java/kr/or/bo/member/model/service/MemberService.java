@@ -101,7 +101,7 @@ public class MemberService {
 				
 				if(pageNo != 1) {
 					pageNavi += "<li>";
-					pageNavi += "<a class='page-item' href='/member/admin?reqPage="+(pageNo-1)+"'>";
+					pageNavi += "<a class='page-item' href='/member/list?reqPage="+(pageNo-1)+"'>";
 					pageNavi += "<span class='material-icons'>chevron_left</span>";
 					pageNavi += "</a>";
 					pageNavi += "</li>";
@@ -110,13 +110,13 @@ public class MemberService {
 				for(int i=0 ; i<pageNaviSize ; i++) {
 					if(pageNo == reqPage) {
 						pageNavi += "<li>";
-						pageNavi += "<a class='page-item active-page' href='/member/admin?reqPage="+(pageNo)+"'>";
+						pageNavi += "<a class='page-item active-page' href='/member/list?reqPage="+(pageNo)+"'>";
 						pageNavi += pageNo;
 						pageNavi += "</a>";
 						pageNavi += "</li>";
 					} else {
 						pageNavi += "<li>";
-						pageNavi += "<a class='page-item' href='/member/admin?reqPage="+(pageNo)+"'>";
+						pageNavi += "<a class='page-item' href='/member/list?reqPage="+(pageNo)+"'>";
 						pageNavi += pageNo;
 						pageNavi += "</a>";
 						pageNavi += "</li>";
@@ -129,7 +129,7 @@ public class MemberService {
 					
 				if(pageNo <= totalPage) {
 					pageNavi += "<li>";
-					pageNavi += "<a class='page-item' href='/member/admin?reqPage="+(pageNo)+"'>";
+					pageNavi += "<a class='page-item' href='/member/list?reqPage="+(pageNo)+"'>";
 					pageNavi += "<span class='material-icons'>chevron_right</span>";
 					pageNavi += "</a>";
 					pageNavi += "</li>";
@@ -146,7 +146,7 @@ public class MemberService {
 		int start = end-numPerPage +1;
 		List adminList = memberDao.selectLevelList(start,end, memberlevel);
 		int totalCount = memberDao.selectAdminTotalCount();
-		int totalPage = (int)Math.ceil(totalCount/(double)numPerPage);
+		int totalPage = (int)Math.ceil(totalCount/numPerPage);
 		
 		int pageNaviSize = 5;
 		
