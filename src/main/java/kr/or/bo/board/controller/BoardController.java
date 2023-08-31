@@ -112,6 +112,11 @@ public class BoardController {
 	@PostMapping (value = "/write",produces="plain/text;charset=utf-8")
 	public String boardWrite(Board b,MultipartFile[] upfile,Model model) {  //파일 받을 시 이렇게 ! upfile 은 html 에서 보낸 name 명임
 		
+		//null 일 시 , "/"
+		if(b.getBoardContent().length()==0) {
+			b.setBoardContent("/");
+		}
+		
 		ArrayList<BoardFile> fileList = null; //fileList == null 
 		//첨부파일 목록을 저장할 리스트
 		if(!upfile[0].isEmpty()) {
@@ -146,6 +151,7 @@ public class BoardController {
 		//1.파일이 없으면 result -> 1
 		//2. 파일이 있는 경우 result -> 파일개수 +1
 		
+		
 		if((fileList == null && result==1) || (fileList !=null && result==(fileList.size()+1))) { //성공 조건 
 			model.addAttribute("title","게시판 작성 성공");
 			model.addAttribute("msg","게시판 작성되었습니다");
@@ -153,7 +159,7 @@ public class BoardController {
 			model.addAttribute("title","게시판 작성 실패");
 			model.addAttribute("msg","에러찾으세요...");
 		}
-		model.addAttribute("loc","/board/list?reqPage=1");
+		model.addAttribute("loc","/board/list?reqPage=1");  //리스트로 이동
 		return "common/msg";
 	}
 	
