@@ -206,8 +206,8 @@ B31312 빨강
     /* text-align: right; */
     padding-left: 210px;
 }
-.memberPw{
-    font-size: 50px;
+.memberPw::placeholder{
+    font-size: 15px;
 }
 
 /* 버튼 디자인 */
