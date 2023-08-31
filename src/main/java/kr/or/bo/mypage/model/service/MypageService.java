@@ -690,12 +690,14 @@ public class MypageService {
 	}
 
 	@Transactional
-	public int gradeUp(String writer) {
+	public int gradeUp(String writer, String tradeNo) {
 		int result = mypageDao.gradeUp(writer);
+		int result2 = mypageDao.tradeCompleteDoneUpdate(tradeNo);
+		result += result2;
 		return result;
 	}
 
-	public int gradeDown(String writer) {
+	public int gradeDown(String writer, String tradeNo) {
 		int reuslt = mypageDao.gradeDown(writer);
 		return reuslt;
 	}

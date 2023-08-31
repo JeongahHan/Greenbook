@@ -362,5 +362,11 @@ public class MypageDao {
 		int result = jdbc.update(query, writer);
 		return result;
 	}
+
+	public int tradeCompleteDoneUpdate(String tradeNo) {
+		String query = "update trade_list set trade_complete_done = 1 where trade_no = ?";
+		int result2 = jdbc.update(query, tradeNo);
+		return result2;
+	}
 	
 }

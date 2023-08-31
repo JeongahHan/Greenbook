@@ -356,14 +356,14 @@ public class MypageController {
 	}
 	
 	@GetMapping(value = "/gradeUp")
-	public String gradeUp(String writer) {
-		int result = mypageService.gradeUp(writer);
+	public String gradeUp(String writer, String tradeNo) {
+		int result = mypageService.gradeUp(writer, tradeNo);
 		return "redirect:/mypage/byRequestList?reqPage=1";
 	}
 	
 	@GetMapping(value = "/gradeDown")
-	public String gradeDown(String writer) {
-		int result = mypageService.gradeDown(writer);
+	public String gradeDown(String writer, String tradeNo) {
+		int result = mypageService.gradeDown(writer, tradeNo);
 		return "redirect:/mypage/byRequestList?reqPage=1";
 	}
 	
