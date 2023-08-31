@@ -40,7 +40,7 @@ B31312 빨강
   padding: 1rem;
 }
 .modal-wrap div:not(:last-child) {
-  border-bottom: 1px solid #ccc;
+  /* border-bottom: 1px solid #ccc; */
 }
 .modal-wrap .modal-foot {
   text-align: right;
@@ -184,13 +184,19 @@ B31312 빨강
 
 .input-wrap{
     margin: 20px;
+    overflow: hidden;
 }
+.input-wrap>label{
+    /* padding: 15px 15px; */
+    /* line-height: 15px; */
 
+}
 .updateForm input{
     float: right;
     font-size: 18px;
     width: 300px;
-    padding-left: 5px;
+    /* padding-left: 5px; */
+    padding: 0px 5px;
 
 }
 #checkPw, #checkPwRe{
@@ -324,7 +330,7 @@ B31312 빨강
 }
 .wishList-one{
     width: 160px;
-    background-color: #F1F1F1;
+    /* background-color: #F1F1F1; */
     float: left;
     padding: 15px 15px;
     margin: 5px 5px;
