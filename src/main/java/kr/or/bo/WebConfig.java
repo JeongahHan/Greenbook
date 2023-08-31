@@ -32,8 +32,7 @@ public class WebConfig implements WebMvcConfigurer{
 		.excludePathPatterns("/wish/list", "/wish/more", "/product/board", "/product/productDetail", "/product/getSearchList");
 		
 		registry.addInterceptor(new AdminInterceptor())
-		.addPathPatterns("/member/list", "/member/changeLevel", "/member/checkedchangeLevel", "/member/find", "/member/findresult", "/member/levelSearchList",
-						"/product/**");
+		.addPathPatterns("/member/list", "/member/changeLevel", "/member/checkedchangeLevel", "/member/find", "/member/findresult", "/member/levelSearchList");
 		
 		registry.addInterceptor(new BlackInterceptor())
 		.addPathPatterns("/wish/**","/mypage/**", "/product/**")
