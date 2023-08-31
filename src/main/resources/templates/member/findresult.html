@@ -302,6 +302,145 @@ $("#findjQ").on("click",function(){
 		
 	
 	});
+	
+	
+	/*
+	
+	//////////////////greenbook
+		$("#findjQ").on("click",function(){
+		
+		
+		const memberId = $("#find").val();
+		$.ajax({
+			url : "/member/find",
+			type : "get",
+			data : {memberId : memberId},
+			dataType : "json",
+			success : function(data){
+				console.log(data);
+				
+				for(let i=0; i< data.length; i++;){
+					
+					const tr = $("<tr>");
+					tr.addClass("tr-1");
+					
+					const inputTd = $("<td>");
+					const input = $("<input type='checkbox'>");
+					input.addClass("chk");
+					inputTd.append(input);
+					
+					const memberNoTd = $("<td>");
+					memberNoTd.text(data[i].memberNo);
+					
+					const memberIdSpan = $("<span>");
+					memberIdSpan.text(data[i].memberId);
+					const msgIconSpan = $("<span>");
+					msgIconSpan.text("mail");
+					msgIconSpan.attr('class', 'material-icons-outlined msgIcon adminMsg');
+					
+					const adminMsgDiv =  $("<div>");
+					adminMsgDiv.attr('class', 'adminMsgDiv');
+					adminMsgDiv.append(memberIdSpan);
+					adminMsgDiv.append(msgIconSpan);
+					const memberIdTd = $("<td>");
+					memberIdTd.append(adminMsgDiv);					
+		
+					const memberNameTd = $("<td>");
+					memberNameTd.text(data[i].memberName);
+					
+					const memberPhoneTd = $("<td>");
+					memberPhoneTd.text(data[i].memberPhone);
+					
+					const memberEmailTd = $("<td>");
+					memberEmailTd.text(data[i].memberEmail);
+					
+					const enrollDateTd = $("<td>");
+					enrollDateTd.text(data[i].enrollDate);
+					
+					const memberGradeTd = $("<td>");
+					memberGradeTd.text(data[i].grade);
+					
+					
+					const memberLevelTd = $("<td>");
+					const select = $("<select>");
+					select.addClass("input-form");
+					
+					
+					const option1 = $("<option value='1'>");
+					option1.text("관리자");
+					const option2 = $("<option value='2'>");
+					option2.text("그린이");
+					const option3 = $("<option value='3'>");
+					option3.text("블랙이");
+					select.append(option1).append(option2).append(option3);
+					select.children().eq(data[i].memberLevel-1).prop("selected", true);
+					
+					memberLevelTd.append(select);
+					
+					
+					const btnTd = $("<td>");
+					const btn = $("<button>");
+					btn.addClass("btn bc1 bc1-1 changeLevel");
+					btn.text("회원등급변경");
+					btnTd.append(btn);
+					
+					btn.on("click", function(){
+						const memberLevel = $(this).parent().prev().children().val();
+						const memberNo = $(this).parent().parent().children().eq(1).text();
+						location.href="/member/changeLevel?memberNo="+memberNo+"&memberLevel="+memberLevel;
+					
+					});
+					//로그인한 아이디와 회원 아이디 일치 시 쪽지 아이콘 안 보이게 하기(자기 자신에게 쪽지 안보내게)
+					const loginId = $(".loginId").val();
+					if(data.memberId == loginId){
+						msgIconSpan.css("display","none");
+					}
+					msgIconSpan.on("click", function(){
+						const receiver = $(this).prev().text();
+						console.log(receiver);
+						//쪽지쓰기 모달 열기
+						$(".sendMsg-modal-wrap").css("display","flex");
+						//textarea 초기화
+						$("#sendMsgTextarea").val("");
+						//받는 사람 데이터 넣어주기
+						$(".receiver").text(receiver);
+						$("#receiver").val(receiver);
+					});					
+					
+					tr.append(inputTd).append(memberNoTd).append(memberIdTd).append(memberNameTd).append(memberPhoneTd).append(memberEmailTd).append(enrollDateTd).append(memberGradeTd).append(memberLevelTd).append(btnTd);
+					$("#admintbl>tbody").append(tr);
+					
+					
+				}
+		
+		}
+			
+		})
+		.fail(function() {
+		   
+		    $().ready(function () {
+		    	swal({
+					title : '존재하지않는 회원입니다.',
+					text : '회원아이디를 재검색 해주세요!'
+					//icon : "info"
+				})
+		    	
+	        });
+		    
+		
+	        
+		  })
+		  
+		 	    $("#find").val(null);		
+
+	
+	});
+	
+	
+	*/
+	
+	
+	
 $(".checkedchangeLevel").on("click",function(){
 	const check = $(".chk:checked");
 	if(check.length == 0){
