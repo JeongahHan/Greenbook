@@ -21,8 +21,7 @@ import kr.or.bo.msg.model.vo.MsgListData;
 public class MsgController {
 	@Autowired
 	private MsgService msgService;
-	
-	/* 로그인 인터셉터로 해결
+	/*
 	//로그인 체크하기
 	@GetMapping(value = "/loginCheck")
 	public String loginCheck(Model model, @SessionAttribute(required = false) Member m) {
@@ -36,7 +35,8 @@ public class MsgController {
 		}else {
 			return "redirect:/msg/receiveList?reqPage=1";	
 		}
-	}*/
+	}
+	*/
 	
 	//받은 쪽지 리스트
 	@GetMapping(value = "/receiveList")
@@ -97,8 +97,9 @@ public class MsgController {
 	//쪽지 삭제하기
 	@ResponseBody
 	@GetMapping(value = "/deleteMsg")
-	public void deleteMsg(int mid, Model model) {
+	public int deleteMsg(int mid, Model model, int reqPage) {
 		int result = msgService.deleteMsg(mid);
+		return reqPage;
 	}
 	
 	//쪽지 답장하기
