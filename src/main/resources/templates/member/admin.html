@@ -91,7 +91,7 @@
 				<td>
 					<div class="adminMsgDiv">
 						<span class="memberId" th:text="${m.memberId}"></span>
-						<span th:if="${m.memberId != 'admin'}" class="material-icons-outlined msgIcon adminMsg">mail</span>
+						<span th:if="${m.memberLevel != 1}" class="material-icons-outlined msgIcon adminMsg">mail</span>
 					</div>
 				</td>
 				<td th:text="${m.memberName}"></td>
