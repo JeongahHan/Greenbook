@@ -280,12 +280,18 @@
 		
 		function byRequest(obj, productBoardNo, memberId){
 			if(confirm("구매요청를 요청하시겠습니까?")){
+				
+			}else{
+				return false;
 			}
 		}
 		
 		$(".update").on("click",function(){
 			const result = confirm("게시물을 수정하시겠습니까?");
 			if(result){
+				
+			}else{
+				return false;
 			}
 		});
 		
@@ -293,6 +299,8 @@
 		function productDelete(productBoardNo){
 			if(confirm("게시물을 삭제하시겠습니까?")){
 				location.href="/product/delete?productBoardNo="+productBoardNo;
+			}else{
+				return false;
 			}
 		}
 		
@@ -301,6 +309,8 @@
 			const result = confirm("댓글을 등록하시겠습니까??");
 			if(result){
 				
+			}else{
+				return false;
 			}
 		});
 		
@@ -370,6 +380,8 @@
 			
 			// 6. form submit
 			form.submit();
+			}else{
+				return false;
 			}
 		}
 		
@@ -377,6 +389,8 @@
 		function deleteComment(obj, productCommentNo, productBoardNo){
 			if(confirm("댓글을 삭제하시겠습니까?")){
 				location.href="/product/deleteComment?productCommentNo="+productCommentNo+"&productBoardNo="+productBoardNo;
+			}else{
+				return false;
 			}
 		}
 		
