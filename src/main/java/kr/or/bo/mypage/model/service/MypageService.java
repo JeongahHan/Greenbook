@@ -139,7 +139,6 @@ public class MypageService {
 		// 총 게시물수 130
 		// 한페이지당 게시물 수 10
 		int totalPage = (int) Math.ceil(totalCount / (double) numPerPage); /// Math.ceil로 올림 이게 제일 맘에듬
-		System.out.println("MypageService 총 페이지 수 : " + totalPage);
 		
 		// 페이지 네비게이션 사이즈 지정 /// <<1 2 3 4 ....10>> 이런거
 		int pageNaviSize = 5;
@@ -242,7 +241,6 @@ public class MypageService {
 		// 총 게시물수 130
 		// 한페이지당 게시물 수 10
 		int totalPage = (int) Math.ceil(totalCount / (double) numPerPage); /// Math.ceil로 올림 이게 제일 맘에듬
-		System.out.println("MypageService 총 페이지 수 : " + totalPage);
 		
 		// 페이지 네비게이션 사이즈 지정 /// <<1 2 3 4 ....10>> 이런거
 		int pageNaviSize = 5;
@@ -436,7 +434,6 @@ public class MypageService {
 		// 총 게시물수 130
 		// 한페이지당 게시물 수 10
 		int totalPage = (int) Math.ceil(totalCount / (double) numPerPage); /// Math.ceil로 올림 이게 제일 맘에듬
-		System.out.println("MypageService 총 페이지 수 : " + totalPage);
 		
 		// 페이지 네비게이션 사이즈 지정 /// <<1 2 3 4 ....10>> 이런거
 		int pageNaviSize = 5;
