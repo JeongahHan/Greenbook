@@ -188,7 +188,8 @@ B31312 빨강
 }
 .input-wrap>label{
     /* padding: 15px 15px; */
-    /* line-height: 15px; */
+    line-height: 30px;
+
 
 }
 .updateForm input{
@@ -197,12 +198,16 @@ B31312 빨강
     width: 300px;
     /* padding-left: 5px; */
     padding: 0px 5px;
+    line-height: 30px;
 
 }
 #checkPw, #checkPwRe{
     font-size: 12px;
     /* text-align: right; */
     padding-left: 210px;
+}
+.memberPw{
+    font-size: 50px;
 }
 
 /* 버튼 디자인 */
