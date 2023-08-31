@@ -233,7 +233,8 @@ public class MypageController {
 		model.addAttribute("pageNavi", mld.getPageNavi());
 		//model.addAttribute("mySellBookImgList", mld.getMySellBookImgList());
 		
-
+		Product p = (Product) mld.getMypageList().get(0);
+		System.out.println("마이페이지 서비스 : " + p);
 		
 		return "mypage/mySellBook";
 	}
@@ -299,7 +300,6 @@ public class MypageController {
 		model.addAttribute("selectConsumerList",mld.getMypageList());
 		model.addAttribute("pageNavi", mld.getPageNavi());
 		model.addAttribute("product", product);
-		System.out.println("mld 보기 : "+mld);
 		
 		return"mypage/showConsumer";
 	}

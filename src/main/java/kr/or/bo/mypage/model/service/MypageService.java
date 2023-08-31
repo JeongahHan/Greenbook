@@ -132,6 +132,21 @@ public class MypageService {
 		}
 		
 		
+		//추가
+		for(int i = 0; i<mySellBookList.size();i++) {
+			List selectTradeList = mypageDao.selectConsumer((Product) mySellBookList.get(i));
+			
+			if(!selectTradeList.isEmpty()) {
+				TradeList tl = (TradeList) selectTradeList.get(i);
+				Product p = (Product)mySellBookList.get(i);
+				p.setTradeList(tl);
+				
+			}
+			
+		}
+		
+		
+		
 		// 2. 페이지 네비게이션 제작
 		// 총 페이지 수 계산을 위해서는 총 게시물 수를 알아야함 -> DB에서 그룹함수로 조회
 		int totalCount = mypageDao.selectMySellBookTotalCount(m.getMemberId());

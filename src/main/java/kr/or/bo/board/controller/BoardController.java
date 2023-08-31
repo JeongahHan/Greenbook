@@ -114,10 +114,8 @@ public class BoardController {
 		
 		//null 일 시 , "/"
 		if(b.getBoardContent().length()==0) {
-			model.addAttribute("title","게시글을 입력해주세요.");
-			model.addAttribute("icon","warning");
-			model.addAttribute("loc","/board/writeFrm");
-		}else {
+			b.setBoardContent(" ");
+		}
 			ArrayList<BoardFile> fileList = null; //fileList == null 
 			//첨부파일 목록을 저장할 리스트
 			if(!upfile[0].isEmpty()) {
@@ -162,7 +160,7 @@ public class BoardController {
 			}
 			model.addAttribute("loc","/board/list?reqPage=1");  //리스트로 이동
 			
-		}
+		
 				return "common/msg";
 		
 	}

@@ -239,6 +239,13 @@ B31312 빨강
     width: 100%;
     border-radius: 5px;
     margin-top: 10px;
+    height: 40px;
+}
+.noConsumer-box{
+    width: 160px;
+    margin-top: 10px;
+    height: 40px;
+    background-color: transparent;
 }
 
 
