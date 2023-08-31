@@ -259,23 +259,19 @@ $("#findjQ").on("click",function(){
 				});
 				
 				const loginId = $(".loginId").val();
-				console.log(loginId);
-				console.log(data.memberId);
 				if(data.memberId == loginId){
 					msgIconSpan.css("display","none");
 				}
 				msgIconSpan.on("click", function(){
 					const receiver = $(this).prev().text();
 					console.log(receiver);
-					if(receiver != "admin"){
-						//쪽지쓰기 모달 열기
-						$(".sendMsg-modal-wrap").css("display","flex");
-						//textarea 초기화
-						$("#sendMsgTextarea").val("");
-						//받는 사람 데이터 넣어주기
-						$(".receiver").text(receiver);
-						$("#receiver").val(receiver);
-					}	
+					//쪽지쓰기 모달 열기
+					$(".sendMsg-modal-wrap").css("display","flex");
+					//textarea 초기화
+					$("#sendMsgTextarea").val("");
+					//받는 사람 데이터 넣어주기
+					$(".receiver").text(receiver);
+					$("#receiver").val(receiver);
 				});					
 				
 				/*
