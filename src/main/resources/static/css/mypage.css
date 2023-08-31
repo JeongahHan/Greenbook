@@ -232,6 +232,7 @@ B31312 빨강
 .showConsumer-btn{
     width: 100%;
     border-radius: 5px;
+    margin-top: 10px;
 }
 
 
@@ -281,7 +282,7 @@ B31312 빨강
     background-color: rgba(110, 110, 110, 0.07);
     padding: 10px 0;
     border-radius: 20px;
-    margin: 10px 0px;
+    margin: 20px 0px;
     
 }
 .myComment-one:hover{

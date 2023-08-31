@@ -247,7 +247,7 @@ public class MypageDao {
 		return result;
 	}
 
-	//trade_list의  TRADE_COMPLETE_DONE =1로 바꾸기
+	//trade_list의  TRADE_COMPLETE_DONE =1로 바꾸기 //필요없는 메소드 되버렷네...
 	//TRADE_COMPLETE_DATE 넣어주기
 	public int soldOutFromTradeList(TradeList tradeList) {
 		// TODO Auto-generated method stub
