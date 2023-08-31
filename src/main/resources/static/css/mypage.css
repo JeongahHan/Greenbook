@@ -299,7 +299,13 @@ B31312 빨강
     /* max-width: 900px; */
     /* min-width: 700px; */
 }
-.myComment p{
+.myCommentLarge{
+    /* width: 700px; */
+    float: left;
+    max-width: 930px;
+    min-width: 700px;
+}
+.myComment p, .myCommentLarge p{
     padding: 10px 25px;
 }
 .myComment-boardtitle{
