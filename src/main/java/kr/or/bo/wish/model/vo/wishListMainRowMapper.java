@@ -16,6 +16,7 @@ public class wishListMainRowMapper implements RowMapper<WishList> {
 		//wish.setWishListNo(rs.getInt("wish_list_no"));
 		wish.setProductBoardTitle(rs.getString("PRODUCT_BOARD_TITLE"));
 		wish.setFilepath(rs.getString("FILEPATH"));
+		wish.setProductSellCheck(rs.getInt("product_sell_check"));
 		return wish;
 	}
 }

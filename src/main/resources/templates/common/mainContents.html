@@ -70,10 +70,13 @@ $("#more-btn").on("click",function(){
 				
 				const imgTd = $("<td>");
 				imgTd.addClass("td1");	
+				//const a = $("<a href='/product/productDetail?productBoardNo=95'>");
+				const a = $("<a href='/product/productDetail?productBoardNo="+wish.productBoardNo+"'>");
 				const img = $("<img style='width:250px; height:370px;'>");
 				img.attr("src",  "/product/"+wish.filepath);
 				console.log(wish.filepath);
-				imgTd.append(img);				
+				a.append(img);
+				imgTd.append(a);				
 				
 				const titleTd = $("<td>");
 				titleTd.addClass("td2");
