@@ -43,7 +43,6 @@
 			<tr class="tr-1">
 				<td><input type="checkbox" class="chk"></td>
 				<td th:text="${m.memberNo}"></td>
-				<!-- <td class="sendMsg" th:text="${m.memberId}"></td> -->
 				<td>
 					<div class="adminMsgDiv">
 						<span class="memberId" th:text="${m.memberId}"></span>
@@ -257,7 +256,7 @@ $("#findjQ").on("click",function(){
 					location.href="/member/changeLevel?memberNo="+memberNo+"&memberLevel="+memberLevel;
 				
 				});
-				
+				//로그인한 아이디와 회원 아이디 일치 시 쪽지 아이콘 안 보이게 하기(자기 자신에게 쪽지 안보내게)
 				const loginId = $(".loginId").val();
 				if(data.memberId == loginId){
 					msgIconSpan.css("display","none");
@@ -273,44 +272,6 @@ $("#findjQ").on("click",function(){
 					$(".receiver").text(receiver);
 					$("#receiver").val(receiver);
 				});					
-				
-				/*
-				//쪽지 쓰기
-				$(".sendMsg").on("click", function(){
-					const receiver = $(this).text();
-					console.log(receiver);
-					if(receiver != "admin"){
-						//쪽지쓰기 모달 열기
-						$(".sendMsg-modal-wrap").css("display","flex");
-						//textarea 초기화
-						$("#sendMsgTextarea").val("");
-						//받는 사람 데이터 넣어주기
-						$(".receiver").text(receiver);
-						$("#receiver").val(receiver);
-					}
-				});
-
-				//쪽지 쓰기 모달 닫기
-				$("#sendMsgCancel").on("click", function(){
-					$(".sendMsg-modal-wrap").css("display","none");
-				});		
-
-				//쪽지 내용 없을 때 모달 띄우기
-				$("#msgSubmit").on("click", function(event){
-					if($("#sendMsgTextarea").val() == ""){
-						//쪽지 내용 입력하라는 모달 띄우기
-						$(".msg-modal-wrap").css("display","flex");
-						event.preventDefault();
-					}
-				});
-
-				//쪽지 내용 입력하라는 모달 닫기
-				$("#msg-modal-close").on("click", function(){
-					$(".msg-modal-wrap").css("display","none");
-				});
-
-				*/
-				
 				
 				tr.append(inputTd).append(memberNoTd).append(memberIdTd).append(memberNameTd).append(memberPhoneTd).append(memberEmailTd).append(enrollDateTd).append(memberGradeTd).append(memberLevelTd).append(btnTd);
 				$("#admintbl>tbody").append(tr);
