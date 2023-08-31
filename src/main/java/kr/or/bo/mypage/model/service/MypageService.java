@@ -699,6 +699,8 @@ public class MypageService {
 
 	public int gradeDown(String writer, String tradeNo) {
 		int reuslt = mypageDao.gradeDown(writer);
+		int result2 = mypageDao.tradeCompleteDoneUpdate(tradeNo);
+		reuslt += result2;
 		return reuslt;
 	}
 
