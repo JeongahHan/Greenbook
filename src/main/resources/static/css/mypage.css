@@ -213,7 +213,7 @@ B31312 빨강
     padding: 0.5rem;
     display: inline-block;
     box-sizing: border-box;
-    transition-duration: 0.5s;
+    transition-duration: 0.3s;
     font-size: 16px;
     font-family: ns-light;    
     
@@ -291,8 +291,13 @@ B31312 빨강
     float: left;
 }
 .myComment p{
-    padding: 10px 15px;
+    padding: 10px 25px;
 }
+.myComment-boardtitle{
+    font-size: 18px;
+    text-decoration: underline;
+}
+
 .myComment-date{
     text-align: right;
 }
@@ -314,8 +319,17 @@ B31312 빨강
     font-weight: 900;
     color: red;
     float: right;
-    padding: 0 20px;
+    padding: 2px 2px;
+    margin: 0 20px;
+    border-radius: 20px;
 }
+.myComment-one .material-icons:hover{
+    /* 나의 댓글 삭제 아이콘*/
+    /* font-size: 30px; */
+    background-color: #005A0D;
+    color: #fff;
+}
+
 .myComment-date{
     /* 댓글 작성일 p태그 선택자 */
     padding-right: 33%;
