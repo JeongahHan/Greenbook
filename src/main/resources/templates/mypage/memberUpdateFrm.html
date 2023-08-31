@@ -28,7 +28,7 @@
 	            </div>
 	            <div class="input-wrap">
 	                <label for="memberPw">새 비밀번호</label>
-	                <input type="password" name="memberPw" id="memberPw" >
+	                <input type="password" name="memberPw" class="memberPw" id="memberPw" placeholder="영어 대문자, 소문자, 숫자 입력 가능 [8-12글자]">
 	                <p id="checkPw"></p>
 	            </div>
 	            <div class="input-wrap">
@@ -42,7 +42,7 @@
 	            </div>
 	            <div class="input-wrap">
 	                <label for="memberPhone">휴대폰번호</label>
-	                <input type="text" name="memberPhone" id="memberPhone" th:value="${session.m.memberPhone}">
+	                <input type="text" name="memberPhone" id="memberPhone" th:value="${session.m.memberPhone}" placeholder="010-0000-0000">
 	            </div>
 	            <div class="input-wrap">
 	                <label for="memberEmail">이메일</label>
