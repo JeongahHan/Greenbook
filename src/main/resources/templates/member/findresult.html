@@ -47,7 +47,7 @@
 				<td>
 					<div class="adminMsgDiv">
 						<span class="memberId" th:text="${m.memberId}"></span>
-						<span th:if="${m.memberId != 'admin'}" class="material-icons-outlined msgIcon adminMsg">mail</span>
+						<span th:if="${session.m != null && session.m.memberId != m.memberId}" class="material-icons-outlined msgIcon adminMsg">mail</span>
 					</div>	
 				</td>
 				<td th:text="${m.memberName}"></td>
@@ -94,7 +94,7 @@
 	                <span><strong>받는 사람</strong></span>
 	                <span class="receiver"></span>
 	                <th:block th:if="${session.m != null}">
-	                	<input type="hidden" name="sender" th:value="${session.m.memberId}">
+	                	<input type="hidden" name="sender" class="loginId" th:value="${session.m.memberId}">
 	                </th:block>
 	                <input type="hidden" name="receiver" id="receiver">
 	                <textarea name="message" class="s-input-form" id="sendMsgTextarea"></textarea>
@@ -126,16 +126,13 @@
 	//쪽지 쓰기
 	$(".adminMsg").on("click", function(){
 		const receiver = $(this).prev().text();
-		console.log(receiver);
-		if(receiver != "admin"){
-			//쪽지쓰기 모달 열기
-			$(".sendMsg-modal-wrap").css("display","flex");
-			//textarea 초기화
-			$("#sendMsgTextarea").val("");
-			//받는 사람 데이터 넣어주기
-			$(".receiver").text(receiver);
-			$("#receiver").val(receiver);
-		}
+		//쪽지쓰기 모달 열기
+		$(".sendMsg-modal-wrap").css("display","flex");
+		//textarea 초기화
+		$("#sendMsgTextarea").val("");
+		//받는 사람 데이터 넣어주기
+		$(".receiver").text(receiver);
+		$("#receiver").val(receiver);
 	});
 
 	//쪽지 쓰기 모달 닫기
@@ -261,6 +258,12 @@ $("#findjQ").on("click",function(){
 				
 				});
 				
+				const loginId = $(".loginId").val();
+				console.log(loginId);
+				console.log(data.memberId);
+				if(data.memberId == loginId){
+					msgIconSpan.css("display","none");
+				}
 				msgIconSpan.on("click", function(){
 					const receiver = $(this).prev().text();
 					console.log(receiver);
@@ -272,10 +275,8 @@ $("#findjQ").on("click",function(){
 						//받는 사람 데이터 넣어주기
 						$(".receiver").text(receiver);
 						$("#receiver").val(receiver);
-					}
-					
-					
-				});
+					}	
+				});					
 				
 				/*
 				//쪽지 쓰기
