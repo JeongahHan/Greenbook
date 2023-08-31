@@ -51,7 +51,8 @@ transition-duration: 0.5s;
 			
 			<div th:if="${#lists.isEmpty(mainSearchList) == false}">
 				<form action="/board/mainSearchList2">
-				<input type="hidden" name="reqPage" th:value="${reqPage}" id="reqPage">
+
+				<input type="hidden" name="reqPage" id="reqPage" value="1">
 				<input type="hidden" name="keyword" th:value="${keyword}" id="keyword"> 
 			
             	<!-- 필터 -->
@@ -115,15 +116,35 @@ transition-duration: 0.5s;
 	
 		
 		const keyword = $("#keyword").val();
-		
-
-		
 		$("#resetbtn").on("click",function(){
 			
 			var loc = '/board/mainSearchList?reqPage=1&keyword='+keyword;
 			location.href = loc;
 		});
 	
+		
+		
+		
+		/*
+		const currentPage = window.location.search;
+		let bset = currentPage.split('=');
+
+		var bsetStr = bset[1];
+		
+		if(bsetStr.indexOf('&')>=0){
+			let realPageSplit = bsetStr.split('&');
+			var realPage = realPageSplit[0];
+			
+			$("#reqPage").val(realPage);
+		}else{
+			$("#reqPage").val(bsetStr);
+		}
+		
+		const reqPage = $("#reqPage").val();
+		
+		if(reqPage > 1 && mainSearchList )
+		*/
+		
 	</script>
 		
 </body>
