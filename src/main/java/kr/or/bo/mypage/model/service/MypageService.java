@@ -688,5 +688,16 @@ public class MypageService {
 		return result;
 	}
 
+	@Transactional
+	public int gradeUp(String writer) {
+		int result = mypageDao.gradeUp(writer);
+		return result;
+	}
+
+	public int gradeDown(String writer) {
+		int reuslt = mypageDao.gradeDown(writer);
+		return reuslt;
+	}
+
 	
 }

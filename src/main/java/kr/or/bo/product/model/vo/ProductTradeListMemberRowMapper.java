@@ -21,6 +21,7 @@ public class ProductTradeListMemberRowMapper implements RowMapper<ProductTradeLi
 		ptl.setTradeNo(rs.getInt("trade_no"));
 		ptl.setTradeRequestDate(rs.getString("trade_request_date"));
 		ptl.setGrade(rs.getInt("grade"));
+		ptl.setProductSellCheck(rs.getInt("product_sell_check"));
 		return ptl;
 		
 	}
