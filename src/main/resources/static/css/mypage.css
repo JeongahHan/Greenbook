@@ -398,6 +398,14 @@ B31312 빨강
     line-height: 5px;
 }
 
+.byRequestBc2{
+	color: #fff;
+    background-color: #005A0D;
+    border: 2px solid #005A0D;
+    height: 35px;
+    line-height: 5px;
+}
+
 .byRequestBc1:hover {
     background-color: #005A0D;
     color: #fff;

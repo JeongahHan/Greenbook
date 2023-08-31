@@ -49,9 +49,11 @@ height:70px;
 					<td th:text="${requestList.productBoardWriter}" style="border-top:unset;"></td>
 					<td th:text="${requestList.tradeRequestDate}" style="border-top:unset;"></td>
 					<td style="border-top:unset;">
+						<input type="hidden" class="tradeNo" th:value="${requestList.tradeNo}">
 						<input type="hidden" class="grade" th:value="${requestList.grade}">
 						<input type="hidden" class="productBoardWriter" th:value="${requestList.productBoardWriter}">
-						<button class="post-btn byRequestBtn byRequestBc1" th:if="${requestList.productSellCheck==1}" style="height:46px;">거래평가</button>
+						<button class="post-btn byRequestBtn byRequestBc1" th:if="${requestList.productSellCheck==1 && requestList.tradeCompleteDone=='0'}" style="height:46px;">거래평가</button>
+						<button class="post-btn byRequestBtn byRequestBc2" th:if="${requestList.productSellCheck==1 && requestList.tradeCompleteDone=='1'}" style="height:46px;" disabled>평가완료</button>
 					</td>
 					<!-- <td th:value="${requestList.tradeCompleteDone}"></td>  value가 0이면 버튼X, 1이면 버튼O -->
 				</tr>
@@ -127,29 +129,34 @@ height:70px;
 	<script>
 	
 		// 신뢰도 올리기 yes버튼
+				
+		let pickWriter = null;
+		let pickTradeNo = null;
+		
 		function yesBtn1(obj){
-			const writer = $(obj).val();
+			const writer = pickWriter;
+			const tradeNo = pickTradeNo;
 			console.log(writer);
-			location.href = "/mypage/gradeUp?writer="+writer;
-			
-			$(this).parent().parent().parent().prev().text("수정");
+			location.href = "/mypage/gradeUp?writer="+writer+"&tradeNo="+tradeNo;
 		}
 
-		
 		function yesBtn2(obj){
-			const writer = $(obj).val();
+			const writer = pickWriter;
+			const tradeNo = pickTradeNo;
 			console.log(writer);
-			location.href = "/mypage/gradeDown?writer="+writer;
+			location.href = "/mypage/gradeDown?writer="+writer+"&tradeNo="+tradeNo;
 		}
+		
 		
 		// 거래평가창
 		$(".post-btn").on("click",function(){
 			const writer = $(this).prev().val();
 			const grade = $(this).prev().prev().val();
+			const tradeNo = $(this).prev().prev().prev().val();
 			$(".ass-modal-wrap").css("display","flex");
 			$(".seller").text(writer);
-			$(".yes-btn1").val(writer);
-			$(".yes-btn2").val(writer);
+			pickWriter = writer;
+			pickTradeNo = tradeNo;
 			$(".no-btn1").val(writer);
 			$(".no-btn2").val(writer);
 		});
