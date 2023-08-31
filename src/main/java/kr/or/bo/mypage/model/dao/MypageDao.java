@@ -189,8 +189,8 @@ public class MypageDao {
 		// TODO Auto-generated method stub
 		//String query = "SELECT * FROM TRADE_LIST WHERE PRODUCT_BOARD_NO=?";
 		//String query = "select * from(select ROWNUM AS RNUM,N.* from(select * from TRADE_LIST where PRODUCT_BOARD_NO=? order by 1 DESC)N) where rnum between ? and ?";
-		//먼저 요청한사람이 먼저 뜨도록 desc로 순서 안뒤집음
-		String query = "select * from(select ROWNUM AS RNUM,N.* from(select * from TRADE_LIST full join PRODUCT_BOARD using (PRODUCT_BOARD_NO) where PRODUCT_BOARD_NO=? and PRODUCT_SELL_CHECK=0 order by 1 )N) where rnum between ? and ?";
+		//먼저 요청한사람이 먼저 뜨도록 desc로 순서 안뒤집고 order by 2
+		String query = "select * from(select ROWNUM AS RNUM,N.* from(select * from TRADE_LIST full join PRODUCT_BOARD using (PRODUCT_BOARD_NO) where PRODUCT_BOARD_NO=? and PRODUCT_SELL_CHECK=0 order by 2 )N) where rnum between ? and ?";
 		Object params []= {p.getProductBoardNo(), start, end};
 		List list = jdbc.query(query, tradeListRowMapper,params);
 		
@@ -210,7 +210,7 @@ public class MypageDao {
 	}
 
 	public List selectByRequestList(String memberId, int start, int end) {
-		String query = "SELECT * FROM(SELECT ROWNUM AS RNUM,N.* FROM(SELECT T.TRADE_NO, P.PRODUCT_BOARD_TITLE, P.PRODUCT_AUTHOR, P.PRODUCT_PRICE, P.PRODUCT_BOARD_WRITER, T.TRADE_REQUEST_DATE, T.TRADE_COMPLETE_DONE, M.GRADE FROM TRADE_LIST T, PRODUCT_BOARD P , MEMBER M WHERE T.PRODUCT_BOARD_NO = P.PRODUCT_BOARD_NO AND T.CONSUMER = ? AND P.PRODUCT_BOARD_WRITER = M.MEMBER_ID ORDER BY 1 DESC)N) WHERE RNUM BETWEEN ? AND ?";
+		String query = "SELECT * FROM(SELECT ROWNUM AS RNUM,N.* FROM(SELECT T.TRADE_NO, P.PRODUCT_BOARD_TITLE, P.PRODUCT_AUTHOR, P.PRODUCT_PRICE, P.PRODUCT_BOARD_WRITER, T.TRADE_REQUEST_DATE, T.TRADE_COMPLETE_DONE, M.GRADE, P.PRODUCT_SELL_CHECK FROM TRADE_LIST T, PRODUCT_BOARD P , MEMBER M WHERE T.PRODUCT_BOARD_NO = P.PRODUCT_BOARD_NO AND T.CONSUMER = ? AND P.PRODUCT_BOARD_WRITER = M.MEMBER_ID ORDER BY 1 DESC)N) WHERE RNUM BETWEEN ? AND ?";
 		Object[] params = {memberId, start, end};
 		List byRequestList = jdbc.query(query, productTradeListMemberRowMapper, params);
 //		List byRequestList = jdbc.query(query, productTradeListRowMapper, memberId);
@@ -247,7 +247,7 @@ public class MypageDao {
 		return result;
 	}
 
-	//trade_list의  TRADE_COMPLETE_DONE =1로 바꾸기
+	//trade_list의  TRADE_COMPLETE_DONE =1로 바꾸기 //필요없는 메소드 되버렷네...
 	//TRADE_COMPLETE_DATE 넣어주기
 	public int soldOutFromTradeList(TradeList tradeList) {
 		// TODO Auto-generated method stub
@@ -349,6 +349,24 @@ public class MypageDao {
 		String query = "delete from PRODUCT_COMMENT where PRODUCT_COMMENT_NO= ?";
 		int result =jdbc.update(query, productComment.getProductCommentNo());
 		return result;
+	}
+
+	public int gradeUp(String writer) {
+		String query = "update member set grade = grade+1 where member_id = ?";
+		int result = jdbc.update(query, writer);
+		return result;
+	}
+
+	public int gradeDown(String writer) {
+		String query = "update member set grade = grade-1 where member_id = ?";
+		int result = jdbc.update(query, writer);
+		return result;
+	}
+
+	public int tradeCompleteDoneUpdate(String tradeNo) {
+		String query = "update trade_list set trade_complete_done = 1 where trade_no = ?";
+		int result2 = jdbc.update(query, tradeNo);
+		return result2;
 	}
 	
 }

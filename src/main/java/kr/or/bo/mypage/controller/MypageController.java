@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import kr.or.bo.board.vo.Board;
 import kr.or.bo.board.vo.BoardComment;
+import kr.or.bo.board.vo.BoardFile;
 import kr.or.bo.member.model.service.MemberService;
 import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.mypage.model.service.MypageService;
@@ -101,6 +102,10 @@ public class MypageController {
 		//서비스에서 제목받아오기
 		model.addAttribute("myBoardCommentList",mld.getMypageList()); //리스트넘김
 		model.addAttribute("pageNavi", mld.getPageNavi());
+		
+		//어떻게 받아지나
+		BoardComment bf =  (BoardComment) mld.getMypageList().get(0);
+		System.out.println("마이페이지 컨트롤 보드파일  : "+bf.getBoardFile());
 		
 		
 		return "mypage/myComment";
@@ -328,10 +333,9 @@ public class MypageController {
 		return "mypage/byRequestList";
 	}
 	
-	//중고책방 상세보기에서 구매요청버튼을 눌럿을때
+	//중고책방 상세보기에서 구매요청버튼을 눌럿을때//고객정보 보기에서 판매완료 버튼 눌렀을때
 	@GetMapping(value = "/soldOut")
 	public String soldOut(TradeList tradeList, Member member, Model model) {
-		System.out.println("컨트롤로 잘 오나");
 		tradeList.setMember(member);//멤버 담아온거 셋팅
 		System.out.println(tradeList);
 		
@@ -352,9 +356,15 @@ public class MypageController {
 	}
 	
 	@GetMapping(value = "/gradeUp")
-	public String gradeUp(String productBoardWriter) {
-		
-		return "mypage/gradeUp";
+	public String gradeUp(String writer, String tradeNo) {
+		int result = mypageService.gradeUp(writer, tradeNo);
+		return "redirect:/mypage/byRequestList?reqPage=1";
+	}
+	
+	@GetMapping(value = "/gradeDown")
+	public String gradeDown(String writer, String tradeNo) {
+		int result = mypageService.gradeDown(writer, tradeNo);
+		return "redirect:/mypage/byRequestList?reqPage=1";
 	}
 	
 }

@@ -16,6 +16,7 @@
 				<div class="bookInfo">
 					<div class="book-img-box">
 	                    <img src="/img/product-img/매미울음소리 그칠 무렵.jpg">
+	                    <!-- <img src="/img/mypage-img/NoImg.jpg"> -->
 	                    <img th:src="${product.productFile.filepath}">
 					</div>
 					<div class="book-content">
@@ -94,6 +95,13 @@
 						<p>구매요청한사람이 없을때</p>
 					<th:block> -->
 					
+					</th:block>
+					<th:block th:if="${selectConsumerList.get(0).member == null}">
+						<h3>구매자가 없어요 ㅠㅠ..</h3>
+						<div class="noConsumer-img-box">
+							<img src="">
+						</div>
+						
 					</th:block>
 					
 					
