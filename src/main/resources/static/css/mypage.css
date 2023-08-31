@@ -381,7 +381,20 @@ B31312 빨강
     /* overflow: hidden; */
 }
 .productBoardTitle{
-    /* height: 22.69px; */
+    /* 내가판매중인도서 제목 선택자 */
+    font-family: ns-bold;
+    font-size: 18px;
+
+}
+.mySellBook-productAuthor{
+    /* 내가판매중인도서 저자 선택자 */
+    color: #808080;
+}
+.mySellBook-productPrice{
+    /* background-color: #005A0D; */
+    /* font-family: ns-bold; */
+    font-size: 18px;
+
 }
 
 
