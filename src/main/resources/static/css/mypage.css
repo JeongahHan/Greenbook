@@ -431,8 +431,12 @@ B31312 빨강
     text-align: center;
     box-sizing: border-box;
 }
+.modal-title{
+	overflow: hidden;	
+}
 .modal-title>h3{
     margin-bottom: 5px;
+    display: inline-block;
 }
 .sendMsg-modal-content{
     text-align: left;
@@ -541,6 +545,10 @@ B31312 빨강
 	box-sizing: border-box;
 }
 
+.result1, .result2{
+	margin-bottom: 50px;
+}
+
 .modal-title > h3{
 	margin-bottom: 5px;
 }
@@ -566,7 +574,7 @@ B31312 빨강
     background-color: #fff;
     border: 2px solid #005A0D;
     height: 35px;
-    line-height: 12px;
+    line-height: 15px;
     
     padding: 0.5rem;
     display: inline-block;
@@ -585,4 +593,12 @@ B31312 빨강
 
 .btnSet:hover{
 	cursor: pointer;
+}
+
+.close-btn{
+	float: right;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	line-height: 28px;
 }

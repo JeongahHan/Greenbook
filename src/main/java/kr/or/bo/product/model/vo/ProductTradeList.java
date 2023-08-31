@@ -18,5 +18,6 @@ public class ProductTradeList {
 	private String tradeCompleteDone;
 	
 	private int grade;
+	private int productSellCheck;
 	
 }

@@ -352,9 +352,15 @@ public class MypageController {
 	}
 	
 	@GetMapping(value = "/gradeUp")
-	public String gradeUp(String productBoardWriter) {
-		
-		return "mypage/gradeUp";
+	public String gradeUp(String writer) {
+		int result = mypageService.gradeUp(writer);
+		return "redirect:/mypage/byRequestList?reqPage=1";
+	}
+	
+	@GetMapping(value = "/gradeDown")
+	public String gradeDown(String writer) {
+		int result = mypageService.gradeDown(writer);
+		return "redirect:/mypage/byRequestList?reqPage=1";
 	}
 	
 }

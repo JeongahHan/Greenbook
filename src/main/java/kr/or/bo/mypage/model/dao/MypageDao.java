@@ -210,7 +210,7 @@ public class MypageDao {
 	}
 
 	public List selectByRequestList(String memberId, int start, int end) {
-		String query = "SELECT * FROM(SELECT ROWNUM AS RNUM,N.* FROM(SELECT T.TRADE_NO, P.PRODUCT_BOARD_TITLE, P.PRODUCT_AUTHOR, P.PRODUCT_PRICE, P.PRODUCT_BOARD_WRITER, T.TRADE_REQUEST_DATE, T.TRADE_COMPLETE_DONE, M.GRADE FROM TRADE_LIST T, PRODUCT_BOARD P , MEMBER M WHERE T.PRODUCT_BOARD_NO = P.PRODUCT_BOARD_NO AND T.CONSUMER = ? AND P.PRODUCT_BOARD_WRITER = M.MEMBER_ID ORDER BY 1 DESC)N) WHERE RNUM BETWEEN ? AND ?";
+		String query = "SELECT * FROM(SELECT ROWNUM AS RNUM,N.* FROM(SELECT T.TRADE_NO, P.PRODUCT_BOARD_TITLE, P.PRODUCT_AUTHOR, P.PRODUCT_PRICE, P.PRODUCT_BOARD_WRITER, T.TRADE_REQUEST_DATE, T.TRADE_COMPLETE_DONE, M.GRADE, P.PRODUCT_SELL_CHECK FROM TRADE_LIST T, PRODUCT_BOARD P , MEMBER M WHERE T.PRODUCT_BOARD_NO = P.PRODUCT_BOARD_NO AND T.CONSUMER = ? AND P.PRODUCT_BOARD_WRITER = M.MEMBER_ID ORDER BY 1 DESC)N) WHERE RNUM BETWEEN ? AND ?";
 		Object[] params = {memberId, start, end};
 		List byRequestList = jdbc.query(query, productTradeListMemberRowMapper, params);
 //		List byRequestList = jdbc.query(query, productTradeListRowMapper, memberId);
@@ -348,6 +348,18 @@ public class MypageDao {
 		// TODO Auto-generated method stub
 		String query = "delete from PRODUCT_COMMENT where PRODUCT_COMMENT_NO= ?";
 		int result =jdbc.update(query, productComment.getProductCommentNo());
+		return result;
+	}
+
+	public int gradeUp(String writer) {
+		String query = "update member set grade = grade+1 where member_id = ?";
+		int result = jdbc.update(query, writer);
+		return result;
+	}
+
+	public int gradeDown(String writer) {
+		String query = "update member set grade = grade-1 where member_id = ?";
+		int result = jdbc.update(query, writer);
 		return result;
 	}
 	
