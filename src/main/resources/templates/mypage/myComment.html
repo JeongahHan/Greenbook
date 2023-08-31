@@ -24,8 +24,9 @@
 								<p th:text="${list.boardCommentContent}"></p>
 							</div>
 							<div class="comment-imgBox">
-		                    	<!-- <img src="/img/product-img/매미울음소리 그칠 무렵.jpg"> --><!-- 기본이미지 -->
-		                    	<img src="${list.boardFile.filepath}">
+		                    	<!-- <img th:if="${list.boardFile == null}" src="/img/product-img/매미울음소리 그칠 무렵.jpg"> 기본이미지 -->
+		                    	<img th:if="${list.boardFile == null}" src="/img/mypage-img/NoImg.jpg"> <!-- 기본이미지 -->
+		                    	<img th:if="${list.boardFile != null}" th:src="${list.boardFile.filepath}">
 							</div>
 						</a> 
 						<a th:href="@{/mypage/myCommentDelete(boardCommentNo=${list.boardCommentNo})}"><span class="material-icons">clear</span></a>

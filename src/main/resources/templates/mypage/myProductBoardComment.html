@@ -26,7 +26,7 @@
 								
 							</div>
 							<div class="comment-imgBox">
-		                    	<img th:src="${list.productFile.filepath}">
+		                    	<img th:if="${list.productFile.filepath != null}" th:src="${list.productFile.filepath}">
 		                    	<!-- <img src="/img/product-img/매미울음소리 그칠 무렵.jpg"> -->
 							</div>
 						</a>

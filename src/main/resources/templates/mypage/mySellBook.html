@@ -16,7 +16,7 @@
 				<!-- a태그나 다름 없는데 th:onclick 에서 ||써보고 싶었음 -->
 					<div class="wishList-toProductDetail" th:onclick="|location.href='@{/product/productDetail(productBoardNo=${list.productBoardNo})}'|">
 						<div class="wishList-imgBox" >
-	                    	<img src="/img/product-img/매미울음소리 그칠 무렵.jpg">
+	                    	<!-- <img src="/img/product-img/매미울음소리 그칠 무렵.jpg"> -->
 	                    	<img th:src="${list.productFile.getFilepath}">
 						</div>
 						<p><span class="productBoardNo" th:text="${list.productBoardNo}"></span>글번호</p>
