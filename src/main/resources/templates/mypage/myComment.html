@@ -20,12 +20,13 @@
 					<div class="myComment-wrap">
 						<a th:href="@{/board/view(boardNo=${list.boardRef})}"><!-- 여기부터 문제인듯   -->
 							<div class="myComment">
-								<p><span th:text="${list.board.boardTitle}">th문법 제목 달릴곳</span> 에 남긴 댓글</p>
+								<p ><span class="myComment-boardtitle"th:text="${list.board.boardTitle}">제목 달릴곳</span> 에 남긴 댓글</p>
 								<p th:text="${list.boardCommentContent}"></p>
 							</div>
 							<div class="comment-imgBox">
-		                    	<!-- <img src="/img/product-img/매미울음소리 그칠 무렵.jpg"> --><!-- 기본이미지 -->
-		                    	<img src="${list.boardFile.filepath}">
+		                    	<!-- <img th:if="${list.boardFile == null}" src="/img/product-img/매미울음소리 그칠 무렵.jpg"> -->
+		                    	<img th:if="${list.boardFile == null}" src="/img/mypage-img/NoImg.jpg"><!-- 기본이미지  -->
+		                    	<img th:if="${list.boardFile != null}" th:src="${list.boardFile.filepath}">
 							</div>
 						</a> 
 						<a th:href="@{/mypage/myCommentDelete(boardCommentNo=${list.boardCommentNo})}"><span class="material-icons">clear</span></a>

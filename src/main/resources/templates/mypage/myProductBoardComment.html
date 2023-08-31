@@ -20,14 +20,15 @@
 					<div class="myComment-wrap">
 						<a th:href="@{/product/productDetail(productBoardNo=${list.product.productBoardNo})}">
 							<div class="myComment">
-								<p><span th:text="${list.product.productBoardTitle}">어느게시글에 달린 댓글인지</span> 에 남긴 댓글</p>
+								<p class="myComment-boardtitle"><span th:text="${list.product.productBoardTitle}">어느게시글에 달린 댓글인지</span> 에 남긴 댓글</p>
 								<p th:text="${list.productCommentContent}">여기는 중고책판 댓글내용</p>
 								
 								
 							</div>
 							<div class="comment-imgBox">
-		                    	<img th:src="${list.productFile.filepath}">
 		                    	<!-- <img src="/img/product-img/매미울음소리 그칠 무렵.jpg"> -->
+								<img th:if="${list.productFile == null}" src="/img/mypage-img/NoImg.jpg"> <!-- 기본이미지  -->
+		                    	<img th:if="${list.productFile.filepath != null}" th:src="${list.productFile.filepath}">
 							</div>
 						</a>
 						<a th:href="@{/mypage/myProductBoardCommentDelete(productCommentNo=${list.productCommentNo})}"><span class="material-icons">clear</span></a>

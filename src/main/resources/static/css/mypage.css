@@ -40,7 +40,7 @@ B31312 빨강
   padding: 1rem;
 }
 .modal-wrap div:not(:last-child) {
-  border-bottom: 1px solid #ccc;
+  /* border-bottom: 1px solid #ccc; */
 }
 .modal-wrap .modal-foot {
   text-align: right;
@@ -184,12 +184,19 @@ B31312 빨강
 
 .input-wrap{
     margin: 20px;
+    overflow: hidden;
 }
+.input-wrap>label{
+    /* padding: 15px 15px; */
+    /* line-height: 15px; */
 
+}
 .updateForm input{
     float: right;
     font-size: 18px;
     width: 300px;
+    /* padding-left: 5px; */
+    padding: 0px 5px;
 
 }
 #checkPw, #checkPwRe{
@@ -198,6 +205,7 @@ B31312 빨강
     padding-left: 210px;
 }
 
+/* 버튼 디자인 */
 .btn-box{
     text-align: center;
 }
@@ -206,7 +214,7 @@ B31312 빨강
     padding: 0.5rem;
     display: inline-block;
     box-sizing: border-box;
-    transition-duration: 0.5s;
+    transition-duration: 0.3s;
     font-size: 16px;
     font-family: ns-light;    
     
@@ -220,6 +228,10 @@ B31312 빨강
     background-color: #005A0D;
     color: #fff;
     cursor: pointer;
+}
+.showConsumer-btn{
+    width: 100%;
+    border-radius: 5px;
 }
 
 
@@ -270,6 +282,7 @@ B31312 빨강
     padding: 10px 0;
     border-radius: 20px;
     margin: 10px 0px;
+    
 }
 .myComment-one:hover{
     background-color: rgba(110, 110, 110, 0.2);
@@ -282,19 +295,24 @@ B31312 빨강
 .myComment{
     width: 700px;
     float: left;
+    /* max-width: 900px; */
+    /* min-width: 700px; */
 }
 .myComment p{
-    padding: 10px 15px;
+    padding: 10px 25px;
 }
+.myComment-boardtitle{
+    font-size: 18px;
+    text-decoration: underline;
+}
+
 .myComment-date{
     text-align: right;
 }
 .comment-imgBox{
     /* 댓글작성한 게시글의 이미지박스 선택자 */
-    width: 200px;
-    height: 230px;
-    
-    /* background-color: darkorange; */
+    max-width: 200px;
+    max-height: 230px;
     float: left;
 }
 .comment-imgBox img{
@@ -307,11 +325,21 @@ B31312 빨강
     font-weight: 900;
     color: red;
     float: right;
-    padding: 0 20px;
+    padding: 2px 2px;
+    margin: 0 20px;
+    border-radius: 20px;
 }
+.myComment-one .material-icons:hover{
+    /* 나의 댓글 삭제 아이콘*/
+    /* font-size: 30px; */
+    background-color: #005A0D;
+    color: #fff;
+}
+
 .myComment-date{
     /* 댓글 작성일 p태그 선택자 */
-    padding-right: 33%;
+    /* padding-right: 33%; */
+    padding-right: 30px;
 }
 
 
@@ -323,7 +351,7 @@ B31312 빨강
 }
 .wishList-one{
     width: 160px;
-    background-color: #F1F1F1;
+    /* background-color: #F1F1F1; */
     float: left;
     padding: 15px 15px;
     margin: 5px 5px;

@@ -16,7 +16,7 @@
 				<!-- a태그나 다름 없는데 th:onclick 에서 ||써보고 싶었음 -->
 					<div class="wishList-toProductDetail" th:onclick="|location.href='@{/product/productDetail(productBoardNo=${list.productBoardNo})}'|">
 						<div class="wishList-imgBox" >
-	                    	<img src="/img/product-img/매미울음소리 그칠 무렵.jpg">
+	                    	<!-- <img src="/img/product-img/매미울음소리 그칠 무렵.jpg"> -->
 	                    	<img th:src="${list.productFile.getFilepath}">
 						</div>
 						<p><span class="productBoardNo" th:text="${list.productBoardNo}"></span>글번호</p>
@@ -46,7 +46,7 @@
 							<input type="hidden" name="filepath" th:value="${list.productFile.getFilepath}">
 							
 							<input type="hidden" name="reqPage" value="1">					
-							<button type="submit" class="btn bc1" href="/mypage/showConsumer">고객 정보 보기</button><!-- form태그 submit로 해야 편할듯 -->
+							<button type="submit" class="btn bc1 showConsumer-btn" href="/mypage/showConsumer">고객 정보 보기</button><!-- form태그 submit로 해야 편할듯 -->
 							<!-- <a class="btn bc1" href="/mypage/showConsumer">고객 정보 보기</a>form태그 submit로 해야 편할듯 -->
 							
 						

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import kr.or.bo.board.vo.Board;
 import kr.or.bo.board.vo.BoardComment;
+import kr.or.bo.board.vo.BoardFile;
 import kr.or.bo.member.model.service.MemberService;
 import kr.or.bo.member.model.vo.Member;
 import kr.or.bo.mypage.model.service.MypageService;
@@ -101,6 +102,10 @@ public class MypageController {
 		//서비스에서 제목받아오기
 		model.addAttribute("myBoardCommentList",mld.getMypageList()); //리스트넘김
 		model.addAttribute("pageNavi", mld.getPageNavi());
+		
+		//어떻게 받아지나
+		BoardComment bf =  (BoardComment) mld.getMypageList().get(0);
+		System.out.println("마이페이지 컨트롤 보드파일  : "+bf.getBoardFile());
 		
 		
 		return "mypage/myComment";
