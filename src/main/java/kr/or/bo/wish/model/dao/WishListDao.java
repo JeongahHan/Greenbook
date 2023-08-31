@@ -79,7 +79,7 @@ public class WishListDao {
 	}
 
 	public List selectWishlist(int start, int end) {
-		String query = "select * from (select rownum as rnum, w.* from (select pb.PRODUCT_BOARD_TITLE,pb.PRODUCT_BOARD_NO,pf.FILEPATH,(select count(*) from wish_list where product_board_no = pb.product_board_no) as wish_count  from PRODUCT_BOARD pb join product_file pf on (product_board_no = product_no) order by wish_count desc)w) where rnum between ? and ?";
+		String query = "select *from(select * from(select rownum as rnum, w.* from(select pb.PRODUCT_BOARD_TITLE,pb.PRODUCT_BOARD_NO,pf.FILEPATH,pb.product_sell_check,(select count(*) from wish_list where pb.product_board_no = pb.product_board_no) as wish_count  from (select * from PRODUCT_BOARD where product_sell_check = 0) pb join product_file pf on (product_board_no = product_no) order by wish_count desc)w) where rnum between ? and ?)";
 		List wishList = jdbc.query(query, wishListMainRowMapper, start, end);
 		return wishList; 
 	}

@@ -45,7 +45,7 @@
 $("#more-btn").on("click",function(){
 
 	const start = $(this).val();
-	console.log(start);
+	//console.log(start);
 	const amount = 4;
 	const end = Number(start)+amount-1;
 	$.ajax({
@@ -53,7 +53,7 @@ $("#more-btn").on("click",function(){
 		type : "GET",
 		data : {start : start, end : end},
 		success : function(data){
-			console.log(data);
+			//console.log(data);
 			for(let i=0 ; i<4;i++){
 				const wish = data[i];
 				
@@ -70,10 +70,13 @@ $("#more-btn").on("click",function(){
 				
 				const imgTd = $("<td>");
 				imgTd.addClass("td1");	
+				//const a = $("<a href='/product/productDetail?productBoardNo=95'>");
+				const a = $("<a href='/product/productDetail?productBoardNo="+wish.productBoardNo+"'>");
 				const img = $("<img style='width:250px; height:370px;'>");
 				img.attr("src",  "/product/"+wish.filepath);
-				console.log(wish.filepath);
-				imgTd.append(img);				
+				//console.log(wish.filepath);
+				a.append(img);
+				imgTd.append(a);				
 				
 				const titleTd = $("<td>");
 				titleTd.addClass("td2");

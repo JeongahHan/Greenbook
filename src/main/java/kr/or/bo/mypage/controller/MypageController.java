@@ -351,7 +351,6 @@ public class MypageController {
 		}
 		model.addAttribute("loc", "/product/productDetail?productBoardNo="+tradeList.getProductBoardNo());
 
-		
 		return "common/msg";//임시로 회원정보로
 	}
 	

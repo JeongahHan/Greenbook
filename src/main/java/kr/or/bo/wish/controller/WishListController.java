@@ -87,8 +87,8 @@ public class WishListController {
 	@ResponseBody
 	@GetMapping(value="/more")
 	public List more(int start, int end) {
-		System.out.println(start);
-		System.out.println(end);
+		//System.out.println(start);
+		//System.out.println(end);
 		List wishlist = wishListService.selectWishlist(start,end);
 		return wishlist;
 	}
