@@ -18,13 +18,20 @@
 						<div class="s-wishList-imgBox">
 	                    	<img th:src="${wishList.filepath}">
 						</div>
-						<div class="title"><p class="bold" th:text="${wishList.productBoardTitle}"></p></div>
-						<div class="small">판매자 | <span th:text="${wishList.productBoarWriter}"></span></div>
-						<div class="bold">
-							<span th:if="${wishList.productSellCheck == 0}" class="selling">[판매중]</span>
-							<span th:if="${wishList.productSellCheck == 1}" class="sold">[판매완료]</span>
-							<span th:text="${wishList.productPrice}"></span><span> 원</span>						
-						</div>				
+						<div class="title">
+							<p class="bold" th:if="${wishList.productSellCheck == 1}" th:text="${wishList.productBoardTitle}" style="text-decoration: line-through; color:#ccc;"></p>
+							<p class="bold" th:if="${wishList.productSellCheck == 0}" th:text="${wishList.productBoardTitle}"></p>
+						</div>
+						<div class="small" th:if="${wishList.productSellCheck == 1}" style="text-decoration: line-through; color:#ccc;">판매자 | <span th:text="${wishList.productBoarWriter}" style="text-decoration: line-through; color:#ccc;"></span></div>
+						<div class="small" th:if="${wishList.productSellCheck == 0}">판매자 | <span th:text="${wishList.productBoarWriter}"></span></div>
+						<div class="bold" th:if="${wishList.productSellCheck == 0}">
+							<span class="selling">[판매중]</span>
+							<span th:text="${wishList.productPrice}"></span><span> 원</span>	
+						</div>
+						<div class="bold" th:if="${wishList.productSellCheck == 1}">
+							<span class="sold">[판매완료]</span>
+							<span th:text="${wishList.productPrice}" style="text-decoration: line-through; color:#ccc;"></span><span style="text-decoration: line-through; color:#ccc;"> 원</span>									
+						</div>
 					</a>
 				</div>
 			</div>
