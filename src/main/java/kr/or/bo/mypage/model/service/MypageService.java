@@ -634,14 +634,15 @@ public class MypageService {
 		
 		//product_board의 PRODUCT_SELL_CHECK =1로 바꾸기
 		int result = mypageDao.soldOutFromProductBoard(tradeList);
-		if(result>0) {//product_board의 PRODUCT_SELL_CHECK =1로 update 성공시
-			//trade_list의  TRADE_COMPLETE_DONE =1로 바꾸기
-			//TRADE_COMPLETE_DATE 넣어주기
-			int result2 = mypageDao.soldOutFromTradeList(tradeList);
-			return result2;//둘다 성공시 리턴
-		}
+//		if(result>0) {//product_board의 PRODUCT_SELL_CHECK =1로 update 성공시
+//			//trade_list의  TRADE_COMPLETE_DONE =1로 바꾸기
+//			//TRADE_COMPLETE_DATE 넣어주기
+//			int result2 = mypageDao.soldOutFromTradeList(tradeList);
+//			return result2;//둘다 성공시 리턴
+//		}
 		
-		return 0;//어느하나라도 실패시 0리턴
+		//return 0;//어느하나라도 실패시 0리턴
+		return result;//어느하나라도 실패시 0리턴
 	}
 	
 //	//tradeList 중복 insert를 막기위해 추가
