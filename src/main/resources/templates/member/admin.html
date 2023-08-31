@@ -91,7 +91,7 @@
 				<td>
 					<div class="adminMsgDiv">
 						<span class="memberId" th:text="${m.memberId}"></span>
-						<span th:if="${m.memberLevel != 1}" class="material-icons-outlined msgIcon adminMsg">mail</span>
+						<span th:if="${session.m != null && session.m.memberId != m.memberId}" class="material-icons-outlined msgIcon adminMsg">mail</span>
 					</div>
 				</td>
 				<td th:text="${m.memberName}"></td>
@@ -211,15 +211,13 @@
 	//쪽지 쓰기
 	$(".adminMsg").on("click", function(){
 		const receiver = $(this).prev().text();
-		if(receiver != "admin"){
-			//쪽지쓰기 모달 열기
-			$(".sendMsg-modal-wrap").css("display","flex");
-			//textarea 초기화
-			$("#sendMsgTextarea").val("");
-			//받는 사람 데이터 넣어주기
-			$(".receiver").text(receiver);
-			$("#receiver").val(receiver);
-		}
+		//쪽지쓰기 모달 열기
+		$(".sendMsg-modal-wrap").css("display","flex");
+		//textarea 초기화
+		$("#sendMsgTextarea").val("");
+		//받는 사람 데이터 넣어주기
+		$(".receiver").text(receiver);
+		$("#receiver").val(receiver);
 	});
 	
 	//쪽지 쓰기 모달 닫기
