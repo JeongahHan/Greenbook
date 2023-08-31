@@ -20,4 +20,7 @@ public class ProductTradeList {
 	private int grade;
 	private int productSellCheck;
 	
+	//거래일 추가
+	private String tradeCompleteDate;
+	
 }

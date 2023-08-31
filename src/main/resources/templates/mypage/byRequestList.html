@@ -52,7 +52,8 @@ height:50px;
 						<input type="hidden" class="tradeNo" th:value="${requestList.tradeNo}">
 						<input type="hidden" class="grade" th:value="${requestList.grade}">
 						<input type="hidden" class="productBoardWriter" th:value="${requestList.productBoardWriter}">
-						<button class="post-btn byRequestBtn byRequestBc1" th:if="${requestList.productSellCheck==1 && requestList.tradeCompleteDone=='0'}" style="height:46px;">거래평가</button>
+						
+						<button class="post-btn byRequestBtn byRequestBc1" th:if="${requestList.productSellCheck==1 && requestList.tradeCompleteDone=='0' && requestList.tradeCompleteDate!=null}" style="height:46px;">거래평가</button>
 						<button class="post-btn byRequestBtn byRequestBc2" th:if="${requestList.productSellCheck==1 && requestList.tradeCompleteDone=='1'}" style="height:46px;" disabled>평가완료</button>
 					</td>
 					<!-- <td th:value="${requestList.tradeCompleteDone}"></td>  value가 0이면 버튼X, 1이면 버튼O -->

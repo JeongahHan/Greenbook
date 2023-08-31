@@ -330,6 +330,9 @@ public class MypageController {
 //		
 //		model.addAttribute("byRequestList", mld.getMypageList());
 		
+		//거래일 넘겨주기위해 추가
+		
+		
 		return "mypage/byRequestList";
 	}
 	
