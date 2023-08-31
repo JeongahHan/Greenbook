@@ -91,7 +91,7 @@
 	                	<input type="hidden" name="sender" th:value="${session.m.memberId}">
 	                </th:block>
 	                <input type="hidden" name="receiver" id="replyReceiver">
-	                <input type="hidden" name="reqPage" th:value="${reqPage}">
+	                <input type="hidden" name="reqPage" class="reqPage" th:value="${reqPage}">
 	                <textarea name="message" class="s-input-form" id="replyTextarea"></textarea>
 	            </div>
 	            <button type="submit" class="modalBtn s-bc1" id="replySubmit">보내기</button>
@@ -201,6 +201,8 @@
 		
 		//휴지통 버튼 클릭 시 삭제 확인 모달 띄우기
 		$("#deleteMsg").on("click", function(){
+			const reqPage = $(".reqPage").val();
+			const listSize = $(".listSize").val();
 			const mid = $("#msg-mid").val();
 			$(".delete-modal-wrap").css("display","flex");
 			//삭제 버튼 클릭 시 삭제
@@ -208,11 +210,11 @@
 				$.ajax({
 					url : "/msg/deleteMsg",
 					type : "get",
-					data : {mid : mid},
-					success : function(){
+					data : {mid : mid, reqPage : reqPage},
+					success : function(data){
 						//쪽지 상세보기 모달 닫기
 						$(".msgView-modal-wrap").css("display","none");
-						location.href = "/msg/loginCheck";
+						location.href = "/msg/receiveList?reqPage=1";
 					}
 				});
 			});
