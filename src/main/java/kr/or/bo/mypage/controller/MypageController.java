@@ -233,8 +233,6 @@ public class MypageController {
 		model.addAttribute("pageNavi", mld.getPageNavi());
 		//model.addAttribute("mySellBookImgList", mld.getMySellBookImgList());
 		
-		Product p = (Product) mld.getMypageList().get(0);
-		System.out.println("마이페이지 서비스 : " + p);
 		
 		return "mypage/mySellBook";
 	}
