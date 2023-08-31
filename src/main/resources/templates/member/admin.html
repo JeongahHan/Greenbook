@@ -203,8 +203,8 @@
 	$(".changeLevel").on("click",function(){
 		const memberLevel = $(this).parent().prev().children().val();
 		const memberNo = $(this).parent().parent().children().eq(0).text();
-		console.log(memberLevel);
-		console.log(memberNo);
+		//console.log(memberLevel);
+		//console.log(memberNo);
 		location.href="/member/changeLevel?memberNo="+memberNo+"&memberLevel="+memberLevel; 
 	});
 	
