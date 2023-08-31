@@ -297,17 +297,19 @@
 		
 		
 	 //게시글삭제
-		function boardDelete(boardNo){
+		function boardDelete(boardNo) {
 			swal({
-			  title: '글을 삭제하시겠습니까?',
-			  text: "삭제하시면 다시 복구시킬 수 없습니다.",
-			  icon: 'warning'
-			}).then(function(){
-				location.href = "/board/delete?boardNo="+boardNo;
-			});
-		}
-	 
-	 
+				title: '글을 삭제하시겠습니까?',
+				text: "삭제하시면 다시 복구시킬 수 없습니다.",
+				icon: 'warning'
+			}).then(function(isConfirm) {
+				if(!isConfirm){
+					return;
+				}else if(isConfirm){
+					location.href = "/board/delete?boardNo="+boardNo;
+				}
+				});
+			};
 	 
 	 
 	 
@@ -391,17 +393,25 @@
 			$(obj).next().show();
 		}
 		
-		//댓글삭제
-		function deleteComment(obj,boardCommentNo,boardNo){
+		//댓글삭제		
+		function deleteComment(obj,boardCommentNo,boardNo) {
 			swal({
 				  title: '댓글을 삭제하시겠습니까?',
 				  text: "삭제하시면 다시 복구시킬 수 없습니다.",
 				  icon: 'warning'
-				}).then(function(){
+			}).then(function(isConfirm) {
+				if(!isConfirm){
+					return;
+				}else if(isConfirm){
 					location.href = "/board/deleteComment?boardCommentNo="+boardCommentNo+"&boardNo="+boardNo;
+				}
 				});
-		}
-		
+			};
+	 
+			
+			
+			
+			
 		//쪽지 쓰기 관련 스크립트 시작
 		const memberId = $(".memberId").val();
 		
