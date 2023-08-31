@@ -251,7 +251,7 @@ public class MypageDao {
 	//TRADE_COMPLETE_DATE 넣어주기
 	public int soldOutFromTradeList(TradeList tradeList) {
 		// TODO Auto-generated method stub
-		String query = "update trade_list set TRADE_COMPLETE_DONE = 1 , TRADE_COMPLETE_DATE=TO_CHAR(SYSDATE, 'YYYY-MM-DD') where trade_No= ? ";
+		String query = "update trade_list set  TRADE_COMPLETE_DATE=TO_CHAR(SYSDATE, 'YYYY-MM-DD') where trade_No= ? ";
 		int result = jdbc.update(query, tradeList.getTradeNo());
 		
 		return result;
