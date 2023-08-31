@@ -9,7 +9,7 @@
 //   $(".sub-navi").prev().after("<span class='material-icons dropdown'>expand_more</span>");
 // });
 
-
+//독서노트 삭제모달
 $(function () {
   $(document).on("click", ".modal-open-btn", function () {//모달오픈버튼을 누르면
     $($(this).attr("target")).css("display", "flex");
