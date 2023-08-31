@@ -221,7 +221,8 @@ B31312 빨강
     box-sizing: border-box;
     transition-duration: 0.3s;
     font-size: 16px;
-    font-family: ns-light;    
+    font-family: ns-light;
+    padding: 7px 15px;
     
 }
 .bc1 {
@@ -444,9 +445,13 @@ B31312 빨강
 }
 .book-img-box{
     float: left;
+    max-width: 200px;
+    max-height: 300px;
 }
+
 .bookInfo img{
-    height: 300px;
+    width: 100%;
+    height: 100%;
 }
 .book-content{
     float: left;
