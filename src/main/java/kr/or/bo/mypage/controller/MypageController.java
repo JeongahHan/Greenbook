@@ -53,11 +53,9 @@ public class MypageController {
 	public String myBoard(HttpSession session,Model model,int reqPage) {
 		
 		//내가 쓴 게시물만 조회 해오기 //아직 Board Vo가 없음
-		//ArrayList<Board> list = mypageService.selectMyBoardList();
-		System.out.println(reqPage);
+
 		Member m = (Member)session.getAttribute("m");
-		System.out.println(reqPage);
-		System.out.println(m.getMemberId());
+
 		
 		//내가 작성한 자유게시판 select 해오기
 		MypageListData mld = mypageService.selectMyBoardList(m.getMemberId(),reqPage);
@@ -72,8 +70,7 @@ public class MypageController {
 	//나의 독서노트 삭제
 	@GetMapping(value = "/myBoardDelete")
 	public String myBoardDelete(Board board, Model model) {
-		System.out.println("삭제 진행확인");
-		System.out.println(board.getBoardNo());
+
 		int result = mypageService.myBoardDelete(board);
 		if(result >0) {
 			model.addAttribute("title", "독서노트 삭제성공");
@@ -163,11 +160,10 @@ public class MypageController {
 		
 	}
 	
-	
+	//회원정보 수정
 	@PostMapping(value = "/update")
 	public String update(Member member, HttpSession session, Model model) {
 		// disabled 때문인거 같은데 멤버 비밀번호, 휴대폰, 이메일만 넘겨받음
-		System.out.println(member.getMemberPw());
 
 		int result = mypageService.updateMember(member);
 		//로그인되있는 세션 정보 바꿔주기
@@ -194,7 +190,6 @@ public class MypageController {
 	//회원탈퇴
 	@GetMapping(value = "/delete")
 	public String memberDelete(@SessionAttribute(required = false)Member m, Model model) {//로그인로직 내가 안만들었는데 세션멤버m 써도 되는건가? 위에 set어트리뷰트 하긴했는데// 써지긴하네
-		System.out.println(m);
 		
 		int result = mypageService.deleteMember(m.getMemberNo());
 		if(result>0) {//회원탈퇴 성공한 경우
@@ -218,8 +213,7 @@ public class MypageController {
 	@GetMapping(value = "/mySellBook")
 	public String mySellBook(HttpSession session,Model model, int reqPage) {
 		Member m = (Member)session.getAttribute("m");
-		System.out.println(reqPage);
-		System.out.println(m.getMemberId());
+
 		
 		//내가 판매중인 도서 select 해오기
 		MypageListData mld =mypageService.selectMySellBook(m, reqPage);
@@ -311,7 +305,6 @@ public class MypageController {
 //		System.out.println("컨트롤러로 돌아와서 있는 구매현황 리스트 갯수 : "+mld.getMypageList().size());
 //		System.out.println(mld.getMypageList());
 //		System.out.println("byRequestList : "+byRequestList);
-		System.out.println("mld.getMypageList : "+mld.getMypageList());
 		
 //		model.addAttribute("requestList", byRequestList);
 		model.addAttribute("requestList", mld.getMypageList());
@@ -333,7 +326,6 @@ public class MypageController {
 	@GetMapping(value = "/soldOut")
 	public String soldOut(TradeList tradeList, Member member, Model model) {
 		tradeList.setMember(member);//멤버 담아온거 셋팅
-		System.out.println(tradeList);
 		
 		int result = mypageService.soldOut(tradeList);
 		if(result>0) {
