@@ -13,7 +13,8 @@ public class BlackInterceptor implements HandlerInterceptor{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		HttpSession session = request.getSession();
 		Member m = (Member)session.getAttribute("m");
-		if(m.getMemberLevel() == 3) {
+		
+		if(m!= null && m.getMemberLevel() == 3) {
 			response.sendRedirect("/member/blackMsg");
 			return false;
 		}else {
