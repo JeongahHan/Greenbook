@@ -205,6 +205,7 @@ B31312 빨강
     padding-left: 210px;
 }
 
+/* 버튼 디자인 */
 .btn-box{
     text-align: center;
 }
@@ -227,6 +228,10 @@ B31312 빨강
     background-color: #005A0D;
     color: #fff;
     cursor: pointer;
+}
+.showConsumer-btn{
+    width: 100%;
+    border-radius: 5px;
 }
 
 
