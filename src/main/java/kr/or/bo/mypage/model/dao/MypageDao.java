@@ -368,5 +368,13 @@ public class MypageDao {
 		int result2 = jdbc.update(query, tradeNo);
 		return result2;
 	}
+
+	//구매요청버튼을 위해 추가
+	public List selectConsumer(Product product) {
+		// TODO Auto-generated method stub
+		String query ="select * from trade_list where product_board_no=?";
+		List list = jdbc.query(query, tradeListRowMapper, product.getProductBoardNo());
+		return list;
+	}
 	
 }
