@@ -190,6 +190,7 @@ B31312 빨강
     float: right;
     font-size: 18px;
     width: 300px;
+    padding-left: 5px;
 
 }
 #checkPw, #checkPwRe{
