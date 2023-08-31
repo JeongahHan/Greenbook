@@ -102,10 +102,7 @@ public class MypageController {
 		//서비스에서 제목받아오기
 		model.addAttribute("myBoardCommentList",mld.getMypageList()); //리스트넘김
 		model.addAttribute("pageNavi", mld.getPageNavi());
-		
-		//어떻게 받아지나
-		
-		
+
 		return "mypage/myComment";
 	}
 	//독서노트 댓글 삭제

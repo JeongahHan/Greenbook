@@ -132,7 +132,7 @@ public class MypageService {
 		}
 		
 		
-		//추가
+		//구매요청 버튼 사라지게하기 위해 추가 tradeList Product에 넣기
 		for(int i = 0; i<mySellBookList.size();i++) {
 			List selectTradeList = mypageDao.selectConsumer((Product) mySellBookList.get(i));
 			
