@@ -341,7 +341,6 @@ public class MypageService {
 				bc.setBoardFile((BoardFile)selectBoardFile.get(0));
 			}
 			
-			//bc.setBoardFile((BoardFile) selectBoardFile.get(0));
 		}
 		
 		// 2. 페이지 네비게이션 제작
