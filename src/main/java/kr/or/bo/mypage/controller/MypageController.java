@@ -104,8 +104,6 @@ public class MypageController {
 		model.addAttribute("pageNavi", mld.getPageNavi());
 		
 		//어떻게 받아지나
-		BoardComment bf =  (BoardComment) mld.getMypageList().get(0);
-		System.out.println("마이페이지 컨트롤 보드파일  : "+bf.getBoardFile());
 		
 		
 		return "mypage/myComment";
@@ -233,8 +231,6 @@ public class MypageController {
 		model.addAttribute("pageNavi", mld.getPageNavi());
 		//model.addAttribute("mySellBookImgList", mld.getMySellBookImgList());
 		
-		Product p = (Product) mld.getMypageList().get(0);
-		System.out.println("마이페이지 서비스 : " + p);
 		
 		return "mypage/mySellBook";
 	}
@@ -329,6 +325,9 @@ public class MypageController {
 //		System.out.println(p);
 //		
 //		model.addAttribute("byRequestList", mld.getMypageList());
+		
+		//거래일 넘겨주기위해 추가
+		
 		
 		return "mypage/byRequestList";
 	}

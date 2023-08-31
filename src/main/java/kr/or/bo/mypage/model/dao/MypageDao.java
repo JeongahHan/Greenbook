@@ -209,11 +209,16 @@ public class MypageDao {
 		return list;
 	}
 
+	//거래일 넘겨주기 추가
 	public List selectByRequestList(String memberId, int start, int end) {
-		String query = "SELECT * FROM(SELECT ROWNUM AS RNUM,N.* FROM(SELECT T.TRADE_NO, P.PRODUCT_BOARD_TITLE, P.PRODUCT_AUTHOR, P.PRODUCT_PRICE, P.PRODUCT_BOARD_WRITER, T.TRADE_REQUEST_DATE, T.TRADE_COMPLETE_DONE, M.GRADE, P.PRODUCT_SELL_CHECK FROM TRADE_LIST T, PRODUCT_BOARD P , MEMBER M WHERE T.PRODUCT_BOARD_NO = P.PRODUCT_BOARD_NO AND T.CONSUMER = ? AND P.PRODUCT_BOARD_WRITER = M.MEMBER_ID ORDER BY 1 DESC)N) WHERE RNUM BETWEEN ? AND ?";
+		//String query = "SELECT * FROM(SELECT ROWNUM AS RNUM,N.* FROM(SELECT T.TRADE_NO, P.PRODUCT_BOARD_TITLE, P.PRODUCT_AUTHOR, P.PRODUCT_PRICE, P.PRODUCT_BOARD_WRITER, T.TRADE_REQUEST_DATE, T.TRADE_COMPLETE_DONE, M.GRADE, P.PRODUCT_SELL_CHECK FROM TRADE_LIST T, PRODUCT_BOARD P , MEMBER M WHERE T.PRODUCT_BOARD_NO = P.PRODUCT_BOARD_NO AND T.CONSUMER = ? AND P.PRODUCT_BOARD_WRITER = M.MEMBER_ID ORDER BY 1 DESC)N) WHERE RNUM BETWEEN ? AND ?";
+		//쿼리문 수정 거래일 추가해서
+		String query= "SELECT * FROM (SELECT ROWNUM AS RNUM,N.* FROM (SELECT T.TRADE_NO, P.PRODUCT_BOARD_TITLE, P.PRODUCT_AUTHOR, P.PRODUCT_PRICE,  P.PRODUCT_BOARD_WRITER, T.TRADE_REQUEST_DATE,  T.TRADE_COMPLETE_DONE, T.TRADE_COMPLETE_DATE, M.GRADE, P.PRODUCT_SELL_CHECK FROM TRADE_LIST T, PRODUCT_BOARD P , MEMBER M WHERE T.PRODUCT_BOARD_NO = P.PRODUCT_BOARD_NO AND T.CONSUMER = ? AND P.PRODUCT_BOARD_WRITER = M.MEMBER_ID ORDER BY 1 DESC)N) WHERE RNUM BETWEEN ? AND ?";
+		// 아이디 비트윈 스타트 앤드
 		Object[] params = {memberId, start, end};
 		List byRequestList = jdbc.query(query, productTradeListMemberRowMapper, params);
 //		List byRequestList = jdbc.query(query, productTradeListRowMapper, memberId);
+		System.out.println("여기는 마이페이지 Dao");
 		return byRequestList;
 	}
 
@@ -251,7 +256,7 @@ public class MypageDao {
 	//TRADE_COMPLETE_DATE 넣어주기
 	public int soldOutFromTradeList(TradeList tradeList) {
 		// TODO Auto-generated method stub
-		String query = "update trade_list set TRADE_COMPLETE_DONE = 1 , TRADE_COMPLETE_DATE=TO_CHAR(SYSDATE, 'YYYY-MM-DD') where trade_No= ? ";
+		String query = "update trade_list set  TRADE_COMPLETE_DATE=TO_CHAR(SYSDATE, 'YYYY-MM-DD') where trade_No= ? ";
 		int result = jdbc.update(query, tradeList.getTradeNo());
 		
 		return result;
