@@ -183,6 +183,8 @@
 
 .product > a> .info > .book-writer{
 	color: gray;
+	overflow: hidden;
+    white-space: nowrap;
 }
 
 .product>a:hover .book-title{
