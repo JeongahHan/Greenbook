@@ -145,7 +145,7 @@ public class MypageService {
 				Product p = (Product)mySellBookList.get(i);
 				System.out.println("p"+ p);
 				p.setTradeList(tl);
-				
+
 			}
 			
 		}

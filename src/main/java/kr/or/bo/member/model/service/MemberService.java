@@ -146,8 +146,8 @@ public class MemberService {
 		int start = end-numPerPage +1;
 		List adminList = memberDao.selectLevelList(start,end, memberlevel);
 		int totalCount = memberDao.selectAdminTotalCount();
-		int totalPage = (int)Math.ceil(totalCount/numPerPage);
-		
+		int totalPage = (int)Math.ceil(totalCount/numPerPage)-1;
+
 		int pageNaviSize = 5;
 		
 		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize + 1;
