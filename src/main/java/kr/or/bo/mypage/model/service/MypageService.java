@@ -132,18 +132,13 @@ public class MypageService {
 
 		}
 		
-		
-		//구매요청 버튼 사라지게하기 위해 추가 tradeList Product에 넣기
+		//구매요청 버튼 사라지게하기 위해 추가  Product에 tradeList 넣기
 		for(int i = 0; i<mySellBookList.size();i++) {
 			List selectTradeList = mypageDao.selectConsumer((Product) mySellBookList.get(i));
-			System.out.println("트레이디리스트 포문 : "+ selectTradeList);
-			if(!selectTradeList.isEmpty()) {
-				System.out.println("진행확인"+i);
-				System.out.println("트레이드리스트 if문 :"+selectTradeList);
-				TradeList tl = (TradeList) selectTradeList.get(i);
-				
+			if(!selectTradeList.isEmpty()) {//거래요청 있으면 진행
+
+				TradeList tl = (TradeList) selectTradeList.get(0);
 				Product p = (Product)mySellBookList.get(i);
-				System.out.println("p"+ p);
 				p.setTradeList(tl);
 
 			}
