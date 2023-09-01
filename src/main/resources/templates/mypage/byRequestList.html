@@ -43,7 +43,7 @@ height:50px;
 				</tr>
 				<tr class="mypageTr mypageTr-2" th:each="requestList, status : ${requestList}">
 					<td th:text="${(reqPage-1)*10+status.count}" style="border-top:unset; border-bottom:1px solid #005A0D;"></td> <!-- <td th:text="${requestList.tradeNo}" style="display:none;"></td> -->
-					<td th:text="${requestList.productBoardTitle}" style="border-top:unset; border-bottom:1px solid #005A0D;"></td>
+					<a th:href="@{/product/productDetail(productBoardNo=${requestList.productBoardNo})}"><td th:text="${requestList.productBoardTitle}" style="border-top:unset; border-bottom:1px solid #005A0D;"></td></a>
 					<td th:text="${requestList.productAuthor}" style="border-top:unset; border-bottom:1px solid #005A0D;"></td>
 					<td style="border-top:unset; border-bottom:1px solid #005A0D;"><span th:text="${requestList.productPrice}"></span>원</td>
 					<td th:text="${requestList.productBoardWriter}" style="border-top:unset; border-bottom:1px solid #005A0D;"></td>
