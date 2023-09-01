@@ -22,5 +22,6 @@ public class ProductTradeList {
 	
 	//거래일 추가
 	private String tradeCompleteDate;
+	private int productBoardNo;
 	
 }
