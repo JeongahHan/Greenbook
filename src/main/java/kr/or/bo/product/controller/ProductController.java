@@ -279,7 +279,7 @@ public class ProductController {
 		model.addAttribute("productList", pld.getProductList());
 		model.addAttribute("pageNavi", pld.getPageNavi());
 		
-		return "product/productBoard";
+		return "product/productBoard2";
 	}
 	
 }
