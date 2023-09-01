@@ -40,7 +40,7 @@ public class MypageService {
 		//여기서 페이지 나비 만들기
 		// 1. 한페이지당 게시물 수 지정 -> 10개
 
-		int numPerPage = 5;
+		int numPerPage = 10;
 		int end = reqPage * numPerPage;
 		int start = end - numPerPage + 1;
 		List mySellBookList = mypageDao.selectMyBoardList(memberId, start, end);
@@ -116,7 +116,7 @@ public class MypageService {
 		//여기서 페이지 나비 만들기
 		// 1. 한페이지당 게시물 수 지정 -> 10개
 
-		int numPerPage = 5;
+		int numPerPage = 10;
 		int end = reqPage * numPerPage;
 		int start = end - numPerPage + 1;
 		List mySellBookList = mypageDao.selectMySellBook(m.getMemberId(), start, end);
@@ -231,7 +231,7 @@ public class MypageService {
 		//여기서 페이지 나비 만들기
 		// 1. 한페이지당 게시물 수 지정 -> 10개
 
-		int numPerPage = 5;
+		int numPerPage = 10;
 		int end = reqPage * numPerPage;
 		int start = end - numPerPage + 1;		
 		List selectMyProductBoardCommentList = mypageDao.selectMyProductBoardComment(m.getMemberId(),start,end);
@@ -324,7 +324,7 @@ public class MypageService {
 		//여기서 페이지 나비 만들기
 		// 1. 한페이지당 게시물 수 지정 -> 10개
 
-		int numPerPage = 5;
+		int numPerPage = 10;
 		int end = reqPage * numPerPage;
 		int start = end - numPerPage + 1;		
 		List selectMyCommentList = mypageDao.selectMyComment(m.getMemberId(), start, end);
@@ -429,7 +429,7 @@ public class MypageService {
 		//여기서 페이지 나비 만들기
 		// 1. 한페이지당 게시물 수 지정 -> 10개
 
-		int numPerPage = 5;
+		int numPerPage = 10;
 		int end = reqPage * numPerPage;
 		int start = end - numPerPage + 1;	
 		List selectConsumerList = mypageDao.selectConsumer(p,m, start, end);
