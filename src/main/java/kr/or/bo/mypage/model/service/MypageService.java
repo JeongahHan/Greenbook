@@ -121,6 +121,7 @@ public class MypageService {
 		int start = end - numPerPage + 1;
 		List mySellBookList = mypageDao.selectMySellBook(m.getMemberId(), start, end);
 
+
 		
 		List mySellBookImgList = mypageDao.selectMySellBookImgList(m.getMemberId(), start, end);
 		for(int i =0 ;i<mySellBookList.size();i++) {
@@ -135,10 +136,14 @@ public class MypageService {
 		//구매요청 버튼 사라지게하기 위해 추가 tradeList Product에 넣기
 		for(int i = 0; i<mySellBookList.size();i++) {
 			List selectTradeList = mypageDao.selectConsumer((Product) mySellBookList.get(i));
-			
+			System.out.println("트레이디리스트 포문 : "+ selectTradeList);
 			if(!selectTradeList.isEmpty()) {
+				System.out.println("진행확인"+i);
+				System.out.println("트레이드리스트 if문 :"+selectTradeList);
 				TradeList tl = (TradeList) selectTradeList.get(i);
+				
 				Product p = (Product)mySellBookList.get(i);
+				System.out.println("p"+ p);
 				p.setTradeList(tl);
 				
 			}
