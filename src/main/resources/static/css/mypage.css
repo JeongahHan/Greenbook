@@ -322,6 +322,7 @@ B31312 빨강
     padding: 10px 25px;
 }
 .myComment-boardtitle{
+    /* 나의 댓글이 어디 달린 댓글인지 */
     font-size: 18px;
     text-decoration: underline;
 }
@@ -383,6 +384,10 @@ B31312 빨강
 .wishList-one:hover{
     background-color: #E7E7E7;
     cursor: pointer;
+}
+.wishList-imgBox{
+    height: 260px;
+    /* 책크기가 다 달라서 이미지박스크기 추가 너비는 160으로 부모에서 */
 }
 .wishList-imgBox img{
     width: 100%;
