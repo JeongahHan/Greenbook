@@ -114,7 +114,7 @@ public class BoardController {
 		
 		//null 일 시 , "/"
 		if(b.getBoardContent().length()==0) {
-			b.setBoardContent(" ");
+			b.setBoardContent("내용없음");
 		}
 			ArrayList<BoardFile> fileList = null; //fileList == null 
 			//첨부파일 목록을 저장할 리스트
