@@ -93,6 +93,8 @@
 }
 .title{
 	padding-top: 10px;
+	white-space: nowrap;
+	overflow: hidden;
 }
 
 /* 게시판 페이징 디자인 */
