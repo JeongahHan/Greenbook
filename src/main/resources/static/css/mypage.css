@@ -336,6 +336,7 @@ B31312 빨강
     float: left;
 }
 .comment-imgBox img{
+    width: 100%;
     height: 100%;
 }
 
