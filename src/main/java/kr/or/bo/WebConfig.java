@@ -28,15 +28,14 @@ public class WebConfig implements WebMvcConfigurer{
 		registry.addInterceptor(new LoginInterceptor())
 		.addPathPatterns("/member/logout", "/member/list", "/member/changeLevel", "/member/checkedchangeLevel", "/member/find", "/member/findresult", "/member/levelSearchList",
 						"/msg/**", "/wish/**", "/mypage/**", "/product/writeFrm", "/product/write", "/product/editor", "/product/updateFrm", "/product/update", "/product/delete",
-						"/product/insertComment", "/product/updateComment", "/product/deleteComment","/board/writeFrm","/board/write","/board/editor","/board/delete","/board/updateFrm",
-						"/board/updateFrm","/board/update","/board/insertComment","/board/updateComment","/board/deleteComment","/board/addLike","/board/removeLike","/board/filedown")
-		.excludePathPatterns("/wish/list", "/wish/more");
+						"/product/insertComment", "/product/updateComment", "/product/deleteComment","/board/**")
+		.excludePathPatterns("/wish/list", "/wish/more","/board/list","/board/getSearchList","/board/view");
 		
 		registry.addInterceptor(new AdminInterceptor())
 		.addPathPatterns("/member/list", "/member/changeLevel", "/member/checkedchangeLevel", "/member/find", "/member/findresult", "/member/levelSearchList");
 		
 		registry.addInterceptor(new BlackInterceptor())
-		.addPathPatterns("/wish/**","/mypage/**")
+		.addPathPatterns("/wish/**","/mypage/**", "/product/board", "/product/productDetail","/board/**")
 		.excludePathPatterns("/wish/list", "/wish/more");
 	}
 }
