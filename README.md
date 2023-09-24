@@ -8,9 +8,9 @@
 > 기간 : 2023.08.17 ~ 2023.08.31 (2주)
 
 3. 참여인원 및 역할분담
->|이름|포지션|구현기능|
->|---|---|---|
->|한정아<br>(본인)|Back, Front| <img width="942" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/cfdeba6e-10f8-4908-a2e5-377fafee2334"> |
+>|이름|구현기능|
+>|---|---|
+>|한정아<br>(본인)| <img width="942" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/fe5566cb-6329-4edd-96e3-28d49f26972e"> |
 >|송슬기|Back|
 >|유재욱|Back|
 >|이유나|Back|
