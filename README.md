@@ -3,8 +3,7 @@
 # I.프로젝트 정보
 <br>
 <br>
-![image](https://github.com/JeongahHan/Greenbook/assets/142190043/46a013eb-80f6-47b7-8b7d-95169828b08c)
-
+<img alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/46a013eb-80f6-47b7-8b7d-95169828b08c">
 <br>
 <br>
 **1. 소개**
