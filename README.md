@@ -11,7 +11,7 @@
 >|이름|구현기능|
 >|---|---|
 >|한정아<br>(본인)|<img width="850" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/0180dcd8-f27d-4b84-8fda-13fc6950190f">|
->|송슬기|Back|
+>|송슬기|Back|![image](https://github.com/JeongahHan/Greenbook/assets/142190043/1f72655e-eb76-4069-9e6a-66b3e8142b39)|
 >|유재욱|Back|
 >|이유나|Back|
 >|최명훈|Back|
