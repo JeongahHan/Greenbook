@@ -16,7 +16,14 @@
 >|이유나|Back|
 >|최명훈|Back|
 
-# II. 팀원 및 업무 분담 내역
+4. 역할 분담
+> ![2D695AD9-3A89-4E1F-8A00-32D19CC5AAD2_1_201_a](https://github.com/JeongahHan/Greenbook/assets/142190043/8dc0308c-bd1a-4dcd-9abf-989552568164)
+
+
+
+
+
+# II. 프로젝트 주요 기능
 
 
 
