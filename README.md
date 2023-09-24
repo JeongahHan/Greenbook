@@ -3,12 +3,11 @@
 # I.프로젝트 정보
 <br>
 <br>
-
+<p align="center"><img alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/46a013eb-80f6-47b7-8b7d-95169828b08c"></p>
+<br>
+<br>
 **1. 소개**
 > 사용자들끼리 '책'을 사고 팔수 있는, 온라인 중고 책 거래 플랫폼입니다.
-<br>
-<br>
-<p align="center"><img alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/46a013eb-80f6-47b7-8b7d-95169828b08c"></p>
 <br>
 <br>
 
