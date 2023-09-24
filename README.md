@@ -1,5 +1,6 @@
 # Greenbook
-![f7PZzlPlrNP4BxG1Zlk35q_an3BgGQmOVyD9T27eJ26Y-6NSGU7-tBATFiDISKDcZGqnArqdKC-TEvN-Vy-Jee5RMsNo5xMq7FgCisyo8Ogx3OnYeKUP92eJxggx](https://github.com/JeongahHan/Greenbook/assets/142190043/bf424090-b471-41a0-9cb1-26f7d3b31784)
+![f7PZzlPlrNP4BxG1Zlk35q_an3BgGQmOVyD9T27eJ26Y-6NSGU7-tBATFiDISKDcZGqnArqdKC-TEvN-Vy-Jee5RMsNo5xMq7FgCisyo8Ogx3OnYeKUP92eJxggx](https://github.com/JeongahHan/Greenbook/assets/142190043/c560f682-b8f6-4ee7-a975-9684721403ee)
+
 
 
 # 프로젝트 소개
