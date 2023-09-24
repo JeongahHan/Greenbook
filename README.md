@@ -37,7 +37,8 @@
 <br>
 <br>
 
-<img width="1010" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/f4d4dce9-81da-4905-9dec-edaeb88f236e">
+<img width="1010" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/1c2a6edb-f912-4f7c-b3fc-f8192d662bc9">
+
 
 <br>
 <br>
