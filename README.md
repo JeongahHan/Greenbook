@@ -53,10 +53,10 @@
 >|이름|구현기능|
 >|---|---|
 >|한정아<br>(본인)|<img width="850" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/a61fe489-6f33-4cc1-bacf-4a49d3ddfed3">|
->|이유나|<img width="850" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/5d9fa025-5bc6-4b54-8a24-99dc95a2baf8">|
->|최명훈|<img width="850" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/de54c6eb-0a32-4296-bc9d-e345dc83b343">|
->|유재욱|<img width="850" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/a5cebb3a-e3ae-4626-8d4f-a87bb4a1608e">|
->|송슬기|<img width="850" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/e175d855-31da-47d9-9fb4-20da78e76207">|
+>|이유나|<img width="800" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/5d9fa025-5bc6-4b54-8a24-99dc95a2baf8">|
+>|최명훈|<img width="800" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/de54c6eb-0a32-4296-bc9d-e345dc83b343">|
+>|유재욱|<img width="800" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/a5cebb3a-e3ae-4626-8d4f-a87bb4a1608e">|
+>|송슬기|<img width="800" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/e175d855-31da-47d9-9fb4-20da78e76207">|
 
 <br>
 <br>
