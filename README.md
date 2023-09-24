@@ -12,7 +12,7 @@
 >|---|---|
 >|한정아<br>(본인)|<img width="850" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/0180dcd8-f27d-4b84-8fda-13fc6950190f">|
 >|송슬기|<img width="850" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/e175d855-31da-47d9-9fb4-20da78e76207">|
->|유재욱|Back|
+>|유재욱|<img width="850" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/a9cdb914-6e46-48e3-9ad4-8804999c916c">|
 >|이유나|Back|
 >|최명훈|Back|
 
