@@ -33,7 +33,16 @@
 <br>
 <br>
 
-**4. 참여인원 및 역할분담**
+**4.개발 환경**
+<br>
+<br>
+
+<img width="1010" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/f4d4dce9-81da-4905-9dec-edaeb88f236e">
+
+<br>
+<br>
+
+**5. 참여인원 및 역할분담**
 >|이름|구현기능|
 >|---|---|
 >|한정아<br>(본인)|<img width="850" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/a61fe489-6f33-4cc1-bacf-4a49d3ddfed3">|
