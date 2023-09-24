@@ -10,8 +10,7 @@
 3. 참여인원 및 역할분담
 >|이름|포지션|구현기능|
 >|---|---|---|
->|한정아<br>(본인)|Back, Front| ![Uploading image.png…]()
- |
+>|한정아<br>(본인)|Back, Front| ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/1dee0941-f734-4159-ae02-021e409d9b39) |
 >|송슬기|Back|
 >|유재욱|Back|
 >|이유나|Back|
