@@ -55,11 +55,11 @@
 
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/cc680070-7e0d-471c-868b-cf8298d1c07f)
 <br>
-![image](https://github.com/JeongahHan/Greenbook/assets/142190043/4711a861-4b14-4ddb-9dab-075d40a31176)
+<img width="1091" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/c59d2b5a-94ef-41dd-a167-767fa8cc097d">
 <br>
-![image](https://github.com/JeongahHan/Greenbook/assets/142190043/cb980623-01b5-495f-9179-6e5b4981db8d)
+<img width="1091" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/5493ce37-3f7b-49e7-b8f4-49ef23c0e623">
 <br>
-<img width="1091" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/480bd909-9ca0-4796-a424-22a1fac9b38a">
+<img width="1091" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/45abbef5-9f5f-4aac-9573-34d710a91cbe">
 <br>
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/b73b6288-bcd5-44e0-b604-bbc74cd8daab)
 <br>
