@@ -8,13 +8,13 @@
 > 기간 : 2023.08.17 ~ 2023.08.31 (2주)
 
 3. 참여인원
-> Name	Position
-한정아	Back, Front
-송슬기	Back
-유재욱	Back
-이유나	Back
-최명훈	Back
-
+>|Name|Position|
+>|---|---|
+>|한정아|Back, Front|
+>|송슬기|Back|
+>|유재욱|Back|
+>|이유나|Back|
+>|최명훈|Back|
 
 # II. 팀원 및 업무 분담 내역
 
