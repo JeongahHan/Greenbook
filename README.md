@@ -42,45 +42,87 @@
 >|유재욱|<img width="850" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/a5cebb3a-e3ae-4626-8d4f-a87bb4a1608e">|
 >|송슬기|<img width="850" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/e175d855-31da-47d9-9fb4-20da78e76207">|
 
+<br>
+<br>
+<br>
+<br>
 
 # II.구현결과
-<br>
-##### 내 기능
+
+
+내 기능
+-----------
 
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/cc680070-7e0d-471c-868b-cf8298d1c07f)
+<br>
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/4711a861-4b14-4ddb-9dab-075d40a31176)
+<br>
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/cb980623-01b5-495f-9179-6e5b4981db8d)
+<br>
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/1008625f-a8dd-4495-8516-13ae436c451f)
+<br>
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/b73b6288-bcd5-44e0-b604-bbc74cd8daab)
+<br>
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/ec347b69-3f01-471a-b3e3-a6076554b048)
 
+<br>
+<br>
+
+---------------
+
+<br>
+<br>
 
 
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/3a928ae3-6a3f-4523-89c9-2d5bcc5251c2)
+<br>
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/21e20433-5870-4120-9937-7e62d280f6b1)
+<br>
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/6dabfd7c-81c3-411d-91f6-4892a3d2f7c9)
+<br>
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/b08c03f9-38aa-4fb7-a149-1475fbc403e3)
+<br>
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/f1d108f7-7a74-4206-9e01-3b3aea58d43c)
+<br>
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/acc23756-9d6c-4e15-97a9-6f188fbbbfb3)
+<br>
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/6c2a8297-2fc4-4a36-af32-bdbe411afdd2)
+<br>
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/f0fd8b88-04f5-4e1a-8e95-77ccbbb728ee)
+<br>
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/54177703-98e1-449d-8845-992cbc1bf130)
+<br>
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/620cfb22-cfe2-4eda-96e2-8c8eb127ff67)
+<br>
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/a9f81162-7463-4198-8704-8d364b7080a3)
+<br>
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/56d8cd04-e8d1-40c9-9f2b-1e8bfb170b8c)
+<br>
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/426d06c7-354d-470c-8e6a-08412b29f9d2)
+<br>
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/56a803f0-728f-479b-86af-00b622836bea)
+<br>
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/512e01e0-c096-42d4-9415-dc7b372266b7)
+<br>
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/0692c9a8-a4a4-4524-bf04-c412835c6aad)
+<br>
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/08f6821b-c867-4efb-abb6-9611c73368eb)
+<br>
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/e2c0c15a-c7f1-4194-bc27-80f8693d8a64)
+<br>
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/83ca47ed-8958-44fe-83f0-208fc51d9310)
+<br>
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/66a96a3c-3ef7-4ee5-8b7b-592597812e35)
+<br>
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/0eedfeb7-3e61-4ea6-8482-36e2b14e9a80)
+<br>
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/9b524b19-63c1-4f15-82b1-37eb5b6b0a05)
+<br>
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/5112b4eb-6780-4040-b5fd-86b798143674)
+<br>
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/5dbdfae4-eb6d-4eb3-9302-2ddd178f3ab8)
-
+<br>
+<br>
 
 
 
