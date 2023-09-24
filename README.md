@@ -59,7 +59,7 @@
 <br>
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/cb980623-01b5-495f-9179-6e5b4981db8d)
 <br>
-![image](https://github.com/JeongahHan/Greenbook/assets/142190043/1008625f-a8dd-4495-8516-13ae436c451f)
+<img width="1091" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/480bd909-9ca0-4796-a424-22a1fac9b38a">
 <br>
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/b73b6288-bcd5-44e0-b604-bbc74cd8daab)
 <br>
