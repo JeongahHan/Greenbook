@@ -10,10 +10,10 @@
 3. 참여인원 및 역할분담
 >|이름|구현기능|
 >|---|---|
->|한정아<br>(본인)|<img width="850" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/0180dcd8-f27d-4b84-8fda-13fc6950190f">|
->|송슬기|<img width="850" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/e175d855-31da-47d9-9fb4-20da78e76207">|
+>|한정아<br>(본인)|<img width="850" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/cc1da7cc-82f4-4e65-805b-ee1988642a10">|
+>|이유나|<img width="850" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/e175d855-31da-47d9-9fb4-20da78e76207">|
 >|유재욱|<img width="850" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/a5cebb3a-e3ae-4626-8d4f-a87bb4a1608e">|
->|이유나|Back|
+>|송슬기|<img width="850" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/e175d855-31da-47d9-9fb4-20da78e76207">|
 >|최명훈|Back|
 
 
