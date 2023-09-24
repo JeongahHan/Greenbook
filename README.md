@@ -45,8 +45,7 @@
 
 # II.구현결과
 <br>
-내 기능
---
+#####내 기능
 
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/cc680070-7e0d-471c-868b-cf8298d1c07f)
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/4711a861-4b14-4ddb-9dab-075d40a31176)
