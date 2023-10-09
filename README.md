@@ -74,7 +74,11 @@
 
 내 기능
 -----------
-
+**1.페이지 front구성**
+<p align-="center">
+  <img src="![1](https://github.com/JeongahHan/Greenbook/assets/142190043/cb2a56af-c834-48ed-ab43-ef526aeb98c3)
+">
+</p>
 ![image](https://github.com/JeongahHan/Greenbook/assets/142190043/cc680070-7e0d-471c-868b-cf8298d1c07f)
 <br>
 <img width="1091" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/c59d2b5a-94ef-41dd-a167-767fa8cc097d">
