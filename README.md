@@ -109,15 +109,6 @@
 <p align-="center">
   <img src="https://github.com/JeongahHan/Greenbook/assets/142190043/832844cb-7968-4217-b6e4-534741ef4e6e">
 </p>
-
-**4.독서후기게시판 제작**
-<br>
-<br>
-<br>
-<br>
-<p align-="center">
-  <img src="https://github.com/JeongahHan/Greenbook/assets/142190043/832844cb-7968-4217-b6e4-534741ef4e6e">
-</p>
 <p align-="center">
   <img src="https://github.com/JeongahHan/Greenbook/assets/142190043/eb69fd7c-993e-4e3f-9d84-dd9acf77c6f3">
 </p>
