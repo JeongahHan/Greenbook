@@ -145,7 +145,7 @@
 + 스크롤에 반응하는 소개 페이지 제작
 <br>
 <p align-="center">
-  <img src="https://github.com/JeongahHan/Greenbook/assets/142190043/b51ecb18-fc0b-4504-a17c-8398458e252e">
+  <img src="https://github.com/JeongahHan/Greenbook/assets/142190043/c24d6bbd-4ee8-45f6-9425-69c08a6a4812">
 </p>
 <br>
 <br>
