@@ -144,13 +144,13 @@
 **7. 회사소개**
 + 스크롤에 반응하는 소개 페이지 제작
 <br>
-<br>
-<br>
-<br>
 <p align-="center">
   <img src="https://github.com/JeongahHan/Greenbook/assets/142190043/b51ecb18-fc0b-4504-a17c-8398458e252e">
 </p>
-
+<br>
+<br>
+<br>
+<br>
 ---------------
 
 <br>
