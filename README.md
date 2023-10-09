@@ -80,6 +80,8 @@
 </p>
 <br>
 <br>
+<br>
+<br>
 
 **2.찜 많은 상품 Top20 기능 구현**
 <p align-="center">
@@ -87,16 +89,38 @@
 </p>
 <br>
 <br>
+<br>
+<br>
 
-**3.카테고리 요즘이책: 외부 베스트셀러 API**
+**3.외부 베스트셀러 API가져오기**
 <p align-="center">
   <img src="https://github.com/JeongahHan/Greenbook/assets/142190043/be150ba3-ea71-4671-ab00-65077f53fbf2">
 </p>
 <br>
 <br>
+<br>
+<br>
 
+**4.독서후기게시판 제작**
 <br>
 <br>
+<br>
+<br>
+<p align-="center">
+  <img src="https://github.com/JeongahHan/Greenbook/assets/142190043/832844cb-7968-4217-b6e4-534741ef4e6e">
+</p>
+
+**4.독서후기게시판 제작**
+<br>
+<br>
+<br>
+<br>
+<p align-="center">
+  <img src="https://github.com/JeongahHan/Greenbook/assets/142190043/832844cb-7968-4217-b6e4-534741ef4e6e">
+</p>
+<p align-="center">
+  <img src="https://github.com/JeongahHan/Greenbook/assets/142190043/eb69fd7c-993e-4e3f-9d84-dd9acf77c6f3">
+</p>
 
 ---------------
 
