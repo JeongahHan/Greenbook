@@ -77,9 +77,14 @@
 **1.페이지 front구성**
 <p align-="center">
   <img src="https://github.com/JeongahHan/Greenbook/assets/142190043/cb2a56af-c834-48ed-ab43-ef526aeb98c3">
-">
 </p>
-![image](https://github.com/JeongahHan/Greenbook/assets/142190043/cc680070-7e0d-471c-868b-cf8298d1c07f)
+
+**2.찜 많은 상품 Top20 기능 구현**
+<p align-="center">
+  <img src="https://github.com/JeongahHan/Greenbook/assets/142190043/8fc3b1e2-0b42-43f4-b62e-7eb84d115679">
+</p>
+
+
 <br>
 <img width="1091" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/c59d2b5a-94ef-41dd-a167-767fa8cc097d">
 <br>
