@@ -78,23 +78,22 @@
 <p align-="center">
   <img src="https://github.com/JeongahHan/Greenbook/assets/142190043/cb2a56af-c834-48ed-ab43-ef526aeb98c3">
 </p>
+<br>
+<br>
 
 **2.찜 많은 상품 Top20 기능 구현**
 <p align-="center">
   <img src="https://github.com/JeongahHan/Greenbook/assets/142190043/8fc3b1e2-0b42-43f4-b62e-7eb84d115679">
 </p>
+<br>
+<br>
 
-
+**3.카테고리 요즘이책: 외부 베스트셀러 API**
+<p align-="center">
+  <img src="https://github.com/JeongahHan/Greenbook/assets/142190043/be150ba3-ea71-4671-ab00-65077f53fbf2">
+</p>
 <br>
-<img width="1091" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/c59d2b5a-94ef-41dd-a167-767fa8cc097d">
 <br>
-<img width="1091" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/5493ce37-3f7b-49e7-b8f4-49ef23c0e623">
-<br>
-<img width="1091" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/45abbef5-9f5f-4aac-9573-34d710a91cbe">
-<br>
-![image](https://github.com/JeongahHan/Greenbook/assets/142190043/b73b6288-bcd5-44e0-b604-bbc74cd8daab)
-<br>
-![image](https://github.com/JeongahHan/Greenbook/assets/142190043/ec347b69-3f01-471a-b3e3-a6076554b048)
 
 <br>
 <br>
