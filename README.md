@@ -113,8 +113,8 @@
 </p>
 
 **5.댓글 / 좋아요 기능구현**
-+ 댓글 작성 / 읽기 / 수정 / 삭제 <br>
-+ 댓글 좋아요 / 좋아요 취소 <br>
++ 댓글 작성 / 읽기 / 수정 / 삭제
++ 댓글 좋아요 / 좋아요 취소
 + 유저한테 쪽지보내기 기능 연결 
 
 <br>
@@ -123,6 +123,26 @@
 <br>
 <p align-="center">
   <img src="https://github.com/JeongahHan/Greenbook/assets/142190043/eb69fd7c-993e-4e3f-9d84-dd9acf77c6f3">
+</p>
+
+**6. 모든 글 통합검색**
++ 통합검색 내 필터기능구현 (중고책방 게시판 글  / 독서노트 게시판 글)
+<br>
+<br>
+<br>
+<br>
+<p align-="center">
+  <img src="https://github.com/JeongahHan/Greenbook/assets/142190043/647bbc31-453d-49bb-b559-9f18b3a9f269">
+</p>
+
+**7. 회사소개**
++ 스크롤에 반응하는 소개 페이지 제작
+<br>
+<br>
+<br>
+<br>
+<p align-="center">
+  <img src="https://github.com/JeongahHan/Greenbook/assets/142190043/b51ecb18-fc0b-4504-a17c-8398458e252e">
 </p>
 
 ---------------
