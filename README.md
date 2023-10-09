@@ -83,10 +83,10 @@
 <br>
 <br>
 
-**2.찜 많은 상품 Top20 기능 구현**
-<p align-="center">
+**2.메인 내 찜 많은 상품 Top20 기능 구현**
+<div align-="center">
   <img src="https://github.com/JeongahHan/Greenbook/assets/142190043/8fc3b1e2-0b42-43f4-b62e-7eb84d115679">
-</p>
+</div>
 <br>
 <br>
 <br>
