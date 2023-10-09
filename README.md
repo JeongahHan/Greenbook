@@ -46,10 +46,16 @@
 
 <br>
 <br>
+
+**5. ERD**
+
+![image](https://github.com/JeongahHan/Greenbook/assets/142190043/c9578c10-e833-4bb9-adf8-19b50ff569e5)
+
+
 <br>
 <br>
 
-**5. 참여인원 및 역할분담**
+**6. 참여인원 및 역할분담**
 >|이름|구현기능|
 >|---|---|
 >|한정아<br>(본인)|<img width="850" alt="image" src="https://github.com/JeongahHan/Greenbook/assets/142190043/a61fe489-6f33-4cc1-bacf-4a49d3ddfed3">|
