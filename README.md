@@ -105,35 +105,41 @@
 + 게시판 글 작성 / 읽기 / 수정 / 삭제
 + 게시판 내 (제목,내용,작성자) 분류하여 검색 기능 구현
 <br>
-<br>
-<br>
-<br>
 <p align-="center">
   <img src="https://github.com/JeongahHan/Greenbook/assets/142190043/832844cb-7968-4217-b6e4-534741ef4e6e">
 </p>
+<br>
+<br>
+<br>
+<br>
 
 **5.댓글 / 좋아요 기능구현**
 + 댓글 작성 / 읽기 / 수정 / 삭제
 + 댓글 좋아요 / 좋아요 취소
 + 유저한테 쪽지보내기 기능 연결 
-
-<br>
-<br>
-<br>
 <br>
 <p align-="center">
   <img src="https://github.com/JeongahHan/Greenbook/assets/142190043/eb69fd7c-993e-4e3f-9d84-dd9acf77c6f3">
 </p>
+<br>
+<br>
+<br>
+<br>
 
 **6. 모든 글 통합검색**
 + 통합검색 내 필터기능구현 (중고책방 게시판 글  / 독서노트 게시판 글)
-<br>
-<br>
-<br>
++ 검색 항목 없을 시 , 이전으로 돌아가기
 <br>
 <p align-="center">
   <img src="https://github.com/JeongahHan/Greenbook/assets/142190043/647bbc31-453d-49bb-b559-9f18b3a9f269">
 </p>
+<p align-="center">
+  <img src="https://github.com/JeongahHan/Greenbook/assets/142190043/9c3b2250-c965-43aa-802f-0a55ddcf74a6">
+</p>
+<br>
+<br>
+<br>
+<br>
 
 **7. 회사소개**
 + 스크롤에 반응하는 소개 페이지 제작
