@@ -74,7 +74,7 @@
 
 내 기능
 -----------
-**1.페이지 front구성**
+**1.전체적인 front구성**
 <p align-="center">
   <img src="https://github.com/JeongahHan/Greenbook/assets/142190043/cb2a56af-c834-48ed-ab43-ef526aeb98c3">
 </p>
@@ -109,6 +109,12 @@
 <p align-="center">
   <img src="https://github.com/JeongahHan/Greenbook/assets/142190043/832844cb-7968-4217-b6e4-534741ef4e6e">
 </p>
+
+**4.댓글,좋아요,쪽지기능연결**
+<br>
+<br>
+<br>
+<br>
 <p align-="center">
   <img src="https://github.com/JeongahHan/Greenbook/assets/142190043/eb69fd7c-993e-4e3f-9d84-dd9acf77c6f3">
 </p>
