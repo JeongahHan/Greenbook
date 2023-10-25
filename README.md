@@ -1,6 +1,4 @@
 # Greenbook
-<br>
-<br>
 
 # I.프로젝트 정보
 <br>
